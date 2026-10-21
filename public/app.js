@@ -1,20 +1,45 @@
 'use strict';
 const $ = id => document.getElementById(id);
-const colours = {missing:'#88969c',green:'#36a46d',yellow:'#e9c345',orange:'#ed8b36',red:'#d94843'};
-let data, chart, selected, thresholds = [5,15,30], markers = new Map();
+const bands = [
+ {id:'green',name:'Green',colour:'#36a46d'},
+ {id:'yellow',name:'Yellow',colour:'#e9c345'},
+ {id:'orange',name:'Orange',colour:'#ed8b36'},
+ {id:'red',name:'Red',colour:'#d94843'},
+ {id:'crimson',name:'Crimson',colour:'#a71930'},
+ {id:'magenta',name:'Magenta',colour:'#cc358c'},
+ {id:'purple',name:'Purple',colour:'#863ab5'},
+ {id:'indigo',name:'Indigo',colour:'#56339c'},
+ {id:'blue',name:'Blue',colour:'#2c64cc'},
+ {id:'navy',name:'Navy',colour:'#122e67'}
+];
+const colours = {missing:'#88969c',...Object.fromEntries(bands.map(b=>[b.id,b.colour]))};
+let data, chart, selected, thresholds = [5,15,30,40,50,80,130,180,200], markers = new Map();
 const map = L.map('map').setView([-27.25,152.75],9);
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 tiles.on('tileerror',()=>{ $('tileStatus').hidden=false; });
 const layer = L.layerGroup().addTo(map);
 const date = iso => new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
 const mm = value => value === null ? 'Missing' : `${value.toFixed(1)} mm`;
-const band = value => value === null ? 'missing' : value <= thresholds[0] ? 'green' : value <= thresholds[1] ? 'yellow' : value <= thresholds[2] ? 'orange' : 'red';
+const band = value => {
+ if(value === null)return 'missing';
+ const index=thresholds.findIndex(limit=>value<=limit);
+ return bands[index===-1?bands.length-1:index].id;
+};
 const latest = s => s.values[data.periods.length-1];
 function node(tag,text,cls){const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(cls)n.className=cls;return n;}
 function legend(){
- const labels = {missing:'Missing',green:`0–${thresholds[0]}`,yellow:`>${thresholds[0]}–${thresholds[1]}`,orange:`>${thresholds[1]}–${thresholds[2]}`,red:`>${thresholds[2]}`};
- $('legend').replaceChildren(...Object.entries(labels).map(([b,label])=>{const n=node('span');const dot=node('i',undefined,'dot');dot.style.background=colours[b];n.append(dot,label);return n;}));
- for(const b of ['missing','green','yellow','orange','red']) $('rainFilter').querySelector(`[value="${b}"]`).textContent = `${b[0].toUpperCase()+b.slice(1)} · ${labels[b]}${b==='missing'?'':' mm'}`;
+ const entries=[{id:'missing',name:'Grey',label:'Missing'},...bands.map((b,i)=>({...b,label:i===0?`0–${thresholds[0]}`:i===thresholds.length?`>${thresholds.at(-1)}`:`>${thresholds[i-1]}–${thresholds[i]}`}))];
+ $('legend').replaceChildren(...entries.map(b=>{const n=node('span');const dot=node('i',undefined,'dot');dot.style.background=colours[b.id];n.append(dot,b.label);return n;}));
+ const prior=$('rainFilter').value;
+ $('rainFilter').replaceChildren(new Option('All observations','all'),...entries.map(b=>new Option(`${b.name} · ${b.label}${b.id==='missing'?'':' mm'}`,b.id)));
+ $('rainFilter').value=prior||'all';
+}
+function thresholdInputs(){
+ $('thresholdInputs').replaceChildren(...thresholds.map((limit,i)=>{
+  const label=node('label',`${bands[i].name} upper limit (mm)`),input=node('input');
+  input.id=`t${i+1}`;input.type='number';input.min='0';input.step='0.1';input.value=limit;input.required=true;
+  label.append(input);return label;
+ }));
 }
 function freshness(){
  if(!data)return;
@@ -29,7 +54,12 @@ function freshness(){
 function draw(){
  if(!data)return;
  const term=$('search').value.trim().toLowerCase(), group=$('group').value, filter=$('rainFilter').value;
- const stations=data.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)&&(filter==='all'||band(latest(s))===filter));
+ const stations=data.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)&&(filter==='all'||band(latest(s))===filter)).sort((a,b)=>{
+  const av=latest(a),bv=latest(b);
+  if(av===null && bv!==null)return 1;
+  if(bv===null && av!==null)return -1;
+  return (bv??0)-(av??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id);
+ });
  layer.clearLayers(); markers.clear(); $('stations').replaceChildren();
  let mapped=0;
  for(const s of stations){
@@ -91,5 +121,5 @@ async function load(refresh=false){
 }
 for(const id of ['search','group','rainFilter'])$(id).addEventListener(id==='search'?'input':'change',draw);
 $('refresh').onclick=()=>load(true);$('fit').onclick=fit;
-$('thresholds').onsubmit=e=>{e.preventDefault();const values=['t1','t2','t3'].map(id=>Number($(id).value));if(values.some(v=>!Number.isFinite(v)||v<0)||!(values[0]<values[1]&&values[1]<values[2])){$('thresholdError').textContent='Enter three increasing, non-negative limits.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();if(selected)choose(selected,false);};
-legend();load();setInterval(()=>load(false),300000);setInterval(freshness,60000);
+$('thresholds').onsubmit=e=>{e.preventDefault();const values=thresholds.map((_,i)=>Number($(`t${i+1}`).value));if(values.some(v=>!Number.isFinite(v)||v<0)||values.some((v,i)=>i>0&&v<=values[i-1])){$('thresholdError').textContent='Enter increasing, non-negative limits for every band.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();if(selected)choose(selected,false);};
+thresholdInputs();legend();load();setInterval(()=>load(false),300000);setInterval(freshness,60000);

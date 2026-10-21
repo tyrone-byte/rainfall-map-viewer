@@ -35,7 +35,7 @@ If port 8000 is already in use: `python3 server.py --port 8001`.
 - Pan/zoom the map and select a coloured gauge, or search the station list.
 - Filter by catchment/station group and rainfall colour band.
 - See the latest completed 3-hour rainfall, the sum across the bulletin's eight separate blocks, an observation table and a chronological bar-chart hyetograph.
-- Adjust the initial 5 / 15 / 30 mm display boundaries. These are **user display thresholds, not official BoM warning thresholds**. Settings last for the browser session.
+- Adjust the initial 5 / 15 / 30 / 40 / 50 / 80 / 130 / 180 / 200 mm display boundaries. Values above 200 mm have their own band. The gauge list sorts by latest completed 3-hour rainfall, highest first, with missing readings last and alphabetical ties. These are **user display thresholds, not official BoM warning thresholds**. Settings last for the browser session.
 - Check the BoM issue time and freshness status. Refresh manually or let the page check every five minutes.
 
 ## Data integrity and limitations
@@ -85,3 +85,7 @@ If Chromium is elsewhere, set `CHROMIUM_PATH` to its executable path. Tests exer
 - `tests/`: real-source regression fixture, backend tests and browser tests.
 
 To refresh coordinates, download the official section1/2/3 catalogues as `bom-rain.html`, `bom-stations.html`, and `bom-telemetry.html`, then run `python3 tools/import_coordinates.py <paths to those files>`. Review the resulting records and matches before accepting them. The catalogue format is fixed-width and an upstream layout change needs a reviewed importer adjustment.
+
+## Brisbane IFD reference
+
+`data/brisbane-ifd-2030.csv` preserves the product owner’s supplied “Default Current (2030) Baseline.csv” as reference material. Its 180-minute row includes 130.2 mm at 1% AEP, 180.0 mm at 0.1% AEP, and 195.9 mm at 0.05% AEP. The file itself does not establish location, units, authorship or climate-adjustment provenance; its Brisbane/2030 context is user supplied. These reference estimates are not rainfall observations, station-specific exceedance assessments, or official warning thresholds. The display bands remain user-defined and are not automatically labelled with AEP or return periods.
