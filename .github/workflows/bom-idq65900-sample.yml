@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Fetch one published CSV, with no retries
-        run: python tools/fetch_bom_idq65900_sample.py
+      - name: Discover the published filename and fetch one sample, with no retries
+        run: python tools/fetch_bom_idq65900_sample.py --discover
       - name: Preserve sample or failure report for review
         if: always()
         uses: actions/upload-artifact@v4

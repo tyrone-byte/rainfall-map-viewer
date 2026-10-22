@@ -1,8 +1,5 @@
 name: Discover BoM IDQ65900 sample filename
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/bom-idq65900-discovery.yml']
   workflow_dispatch:
 permissions:
   contents: read

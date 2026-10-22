@@ -1,4 +1,4 @@
-"""One read-only request for the published FTP product. No retry or scheduled collector.
+"""Bounded read-only FTP sample: optional one directory listing plus one download. No retries.
 Raw data is saved as an authenticated GitHub artifact, not committed or published to the viewer.
 """
 import csv
@@ -39,7 +39,8 @@ def main(discover=False):
         report['matchingNameCount']=len(names)
         annotation('notice','IDQ65900 listing: '+(str(len(names))+' matches; '+', '.join(names[:15]) if names else 'no matching published filenames'))
         supported=[name for name in names if re.fullmatch(r'IDQ65900[A-Za-z0-9_.-]*\.(?:csv|txt|hcs)',name,re.I)]
-        supported.sort(key=lambda n:({'csv':0,'txt':1,'hcs':2}[n.rsplit('.',1)[1].lower()],n))
+        supported.sort(reverse=True)
+        supported.sort(key=lambda n:{'csv':0,'txt':1,'hcs':2}[n.rsplit('.',1)[1].lower()])
         if not supported:
             report['error']='No supported IDQ65900 sample filename is listed in this FTP directory.'
             (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')

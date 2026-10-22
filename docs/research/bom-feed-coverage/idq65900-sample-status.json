@@ -1,0 +1,10 @@
+{
+  "status": "downloaded-in-github-artifact-awaiting-content-inspection",
+  "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022002300.hcs",
+  "bytes": 862934,
+  "githubRun": "https://github.com/tyrone-byte/rainfall-map-viewer/actions/runs/39711565724",
+  "artifact": "bom-idq65900-discovery",
+  "directoryMatchingNames": 9,
+  "observedFilenameStepMinutes": 15,
+  "note": "Filename spacing is not yet verified to be rainfall accumulation duration. Station coverage and value semantics await sample inspection. No ongoing collection."
+}

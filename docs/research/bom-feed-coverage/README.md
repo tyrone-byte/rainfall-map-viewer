@@ -14,9 +14,15 @@ The full machine-readable [BoM anonymous FTP product catalogue](https://www.bom.
 
 These records are preserved in `additional-products.json`. IDQ65900 was missed in the initial investigation. The eight-station result below applies only to **IDQ60920**, not to IDQ65900 or all BoM services. It must not be interpreted as a whole-network availability conclusion.
 
-IDQ65900 should now be the first rainfall product examined for the flood-gauge network. A sample has **not yet been obtained or parsed**: `/fwo/IDQ65900.csv` is not available at the standard HTTPS product path tested (404), while anonymous FTP connectivity could not be verified from this environment. A missing HTTPS mirror does not mean the FTP product is unavailable.
+IDQ65900 should now be the first rainfall product examined for the flood-gauge network. At the initial check, a sample had **not yet been obtained or parsed**: `/fwo/IDQ65900.csv` is not available at the standard HTTPS product path tested (404), while anonymous FTP connectivity could not be verified from this environment. A missing HTTPS mirror does not mean the FTP product is unavailable.
 
 Before using it, check the actual station IDs against our network and establish whether the values are interval totals, cumulative counters, or another observation representation; the catalogue name alone does not establish exact accumulation boundaries. Confirm timestamps, update cadence, missing-value conventions, resets and corrections. Catalogue `delete_time=2` means the product can expire after two hours without replacement, **not** that it necessarily contains two hours of history. No scheduled collection or dashboard feed change has been made.
+
+### Sample download follow-up
+
+The first GitHub FTP attempt reached the server but returned curl error 78 (the assumed `IDQ65900.csv` file did not exist). A bounded directory-listing job subsequently found **nine timestamped HCS files**, spaced 15 minutes apart by filename, and successfully downloaded one: **`IDQ65900_20261022002300.hcs` (862,934 bytes)**. The public run status confirms retrieval; the actual source content remains in the authenticated `bom-idq65900-discovery` artifact pending inspection. Neither station coverage nor rainfall accumulation semantics has yet been verified. Filename spacing alone does not prove 15-minute accumulation blocks.
+
+The successful job is [run 39711565724](https://github.com/tyrone-byte/rainfall-map-viewer/actions/runs/39711565724). Both sample workflows have been left manual-only, with no schedule and no automatic further downloads. No source observations are committed or published to the dashboard. Future manual sample runs discover filenames and prefer the newest supported file. A direct HTTPS request for the exact discovered filename also returned 404; FTP availability does not imply a public HTTPS mirror.
 
 ## Evidence and scope
 
