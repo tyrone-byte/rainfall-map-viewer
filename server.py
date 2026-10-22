@@ -10,6 +10,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 from rainfall import parse, key, SOURCE
+import water_service
 
 ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / '.cache'
@@ -64,6 +65,23 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/water' or path.startswith('/api/water/'):
+            try:
+                if path == '/api/water':
+                    payload = water_service.summary('refresh=1' in self.path)
+                else:
+                    payload = water_service.history(path.removeprefix('/api/water/'), 'refresh=1' in self.path)
+                status = 200
+            except ValueError as exc:
+                payload, status = {'error': str(exc)}, 503
+            body = json.dumps(payload).encode()
+            self.send_response(status)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         if path == '/api/rainfall':
             try:
                 payload, status = load_data('refresh=1' in self.path), 200
@@ -85,7 +103,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            base, relative = ROOT/'public', path.lstrip('/') or 'index.html'
+            base, relative = ROOT/'public', 'water.html' if path in ('/water','/water/') else path.lstrip('/') or 'index.html'
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():
             self.send_error(404)

@@ -102,3 +102,19 @@ Selecting a gauge displays the supplied Brisbane 2030 design depth curves (50%, 
 - The supplied Brisbane 2030 reference is contextual for other gauge locations and is not automatically valid local design rainfall or an official warning threshold. Short-duration reference curves are shown, but no observed rainfall is invented below 3 hours.
 
 `npm test` includes Node.js regression tests for these calculations. Browser checks include both modes, missing windows, malformed references and mobile layouts.
+
+## Water levels page
+
+Use the **Rainfall / Water levels** navigation tabs to switch between separate dashboards. `/water` uses BoM IDQ60286 for Brisbane, Pine, Caboolture and tributaries. Selecting a point or station fetches its linked official observation table and plots a water-level hydrograph, with 24-hour, 72-hour and 7-day windows ending at the latest available report.
+
+- Gauge coordinates in `data/water-stations.json` are imported by exact station number from the official BoM section 3 river catalogue dated 5 January 2022, independently of rainfall names and rainfall updates. The captured bulletin has 233 gauges; 226 have catalogue matches and 7 remain explicitly unresolved.
+- Markers and default ranking use BoM's **reported flood classification**, not the raw numerical height. Colours are below flood level (teal), minor (yellow), moderate (orange), major (red), and missing level/unsupplied classification (grey). Unknown classification never means safe or below flood level.
+- Heights preserve their stated AHD or LGH datum, including negative and missing values. Raw heights from different stations must not be ranked as if they were comparable water depths.
+- Flood classification reference lines are shown only when explicitly supplied by the gauge's history page and matching the bulletin datum. They are not invented or transferred from a nearby station. Tendency is the source's reported tendency, not a calculated forecast.
+- Source observation times are preserved, including irregular sampling and duplicate timestamps. Missing values and intervals over six hours break the plotted line. The recent table shows up to 100 readings in the selected window, newest first; the chart includes all reported readings in that window.
+- Bulletin weekday/time dates are inferred from the issue time within the preceding seven days. Raw reported times remain visible. The history table supplies full observation dates. Observations older than three hours are flagged separately from bulletin freshness.
+- Current bulletin and history snapshots are labelled separately, since BoM can update them at different times. Refreshes occur every five minutes, with history fetched on selection. Failed refreshes retain only genuine previous data with a warning; first-load failures show no invented series.
+- History requests accept only station IDs present in the summary and use the bulletin's validated BoM history paths. No arbitrary URL fetching is exposed.
+- This does not provide predictions, discharge, rainfall-to-river modelling, or operational warning decisions. Follow official warnings and agency guidance.
+
+`water.py` parses the two river formats; `water_service.py` fetches and caches them; `public/water.html` and `public/water.js` provide the dashboard. The Docker image includes both new Python modules. Real captured fixtures and browser regression checks cover station identity, datums, missing/negative heights, failed histories, navigation and selection races.
