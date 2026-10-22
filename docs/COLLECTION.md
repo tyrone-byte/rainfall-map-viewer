@@ -104,8 +104,9 @@ and older source revisions cannot overwrite newer values.
 minutes, or a source issue time is over an hour old. Successful imports alone are
 not proof of a scheduled collector. The dashboard's gauge-status report and saved
 quarter-hour totals can read this archive after the web service is configured;
-see [Gauge status and archive connection](GAUGE_STATUS.md). A historical slider
-and migration of the main map/IFD plots remain subsequent viewer work.
+see [Gauge status and archive connection](GAUGE_STATUS.md). The separate
+[historical rainfall view](HISTORICAL_RAINFALL.md) now uses quarter-hour archive
+data for its slider, rolling map totals, chart and observed IFD comparison.
 
 ## Event recovery and validation, 22 October 2026
 

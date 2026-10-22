@@ -54,7 +54,100 @@ def read_archive(key, reader):
             # A connection failure must never expose a database URL or password.
             result = {'available': False, 'reason': 'unavailable'}
         CACHE[key] = (url, time.monotonic(), result)
+        if len(CACHE) > 128:
+            oldest = min(CACHE, key=lambda item:CACHE[item][1])
+            del CACHE[oldest]
         return result
+
+ACCUMULATION_MINUTES = (15,30,60,180,360,720,1440)
+
+def rainfall_extent():
+    def read(db):
+        extent = query(db, '''SELECT MIN(end_at) AS first, MAX(end_at) AS last FROM observations
+            WHERE kind='rain-15m' AND duration_seconds=900''')[0]
+        sources = query(db, "SELECT checked_at,issued_at,status FROM source_status WHERE source='rain-15m'")
+        return {'firstEnd':extent['first'], 'lastEnd':extent['last'],
+                'source':sources[0] if sources else None}
+    return read_archive('rainfall-extent',read)
+
+def selected_end(requested, extent):
+    if not extent.get('lastEnd'):
+        return None
+    end = date(requested or extent['lastEnd'])
+    if end.second or end.microsecond or end.minute % 15:
+        raise ValueError('Choose an ending time on a 15-minute boundary.')
+    if not date(extent['firstEnd']) <= end <= date(extent['lastEnd']):
+        raise ValueError('The selected time is outside the saved quarter-hour archive.')
+    return end.isoformat()
+
+def rainfall_inventory():
+    gauges = json.loads((ROOT/'data/archive-stations.json').read_text())['gauges']
+    catalogue = json.loads((ROOT/'data/stations.json').read_text())
+    from rainfall import key
+    result=[]
+    for gauge in gauges:
+        sid = gauge['live_map_station_id']
+        coordinates = None
+        if sid and gauge['live_map_lat'] and gauge['live_map_lon']:
+            lat,lon=float(gauge['live_map_lat']),float(gauge['live_map_lon'])
+            if -29<=lat<=-25 and 151<=lon<=154:
+                coordinates={'lat':lat,'lon':lon,'stationNumber':sid,
+                    'source':'https://reg.bom.gov.au/qld/flood/brisbane.shtml'}
+        # Saved IFD references may use the older catalogue point for the same ID.
+        reference=catalogue.get(key(gauge['gauge']))
+        ifd_key = f"{reference['lat']:.6f},{reference['lon']:.6f}" if reference and sid and reference.get('stationNumber')==sid else None
+        result.append({'id':gauge['gauge_row_id'],'name':gauge['gauge'],'group':gauge['group'],
+            'stationNumber':sid or None,'coordinates':coordinates,'ifdLocationKey':ifd_key})
+    return result
+
+def rainfall_frame(requested=None, minutes=180):
+    if minutes not in ACCUMULATION_MINUTES:
+        raise ValueError('Unsupported accumulation period.')
+    extent=rainfall_extent()
+    if not extent['available']:return extent
+    end=selected_end(requested,extent)
+    if end is None:return {'available':True, 'reason':'no-observations', 'stations':[]}
+    def read(db):
+        start=(date(end)-timedelta(minutes=minutes)).isoformat()
+        rows=query(db, '''SELECT station,end_at,value FROM observations WHERE kind='rain-15m'
+            AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY station,end_at''',(start,end))
+        grouped={}
+        for row in rows:grouped.setdefault(row['station'],[]).append(row)
+        totals={}
+        stations=[]
+        for gauge in rainfall_inventory():
+            sid=gauge['stationNumber']
+            if sid not in totals:
+                totals[sid]=aggregate(grouped.get('bom:'+sid,[]) if sid else [],end,minutes)
+            stations.append({**gauge,**totals[sid],
+                'coverageStatus':'identity-unresolved' if not sid else 'complete' if totals[sid]['complete'] else 'incomplete'})
+        return {'start':start,'end':end,'minutes':minutes,'stations':stations}
+    result=read_archive(f'rainfall-frame:{end}:{minutes}',read)
+    return {**result,'extent':extent}
+
+def rainfall_series(gauge_id,requested=None):
+    gauge=next((g for g in rainfall_inventory() if g['id']==gauge_id),None)
+    if gauge is None or not gauge['stationNumber']:
+        return {'available':False,'reason':'identity-unresolved'}
+    extent=rainfall_extent()
+    if not extent['available']:return extent
+    end=selected_end(requested,extent)
+    if end is None:return {'available':True,'reason':'no-observations','periods':[]}
+    def read(db):
+        end_date=date(end);start=end_date-timedelta(hours=24)
+        rows=query(db, '''SELECT end_at,value FROM observations WHERE station=? AND kind='rain-15m'
+            AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY end_at''',
+            ('bom:'+gauge['stationNumber'],start.isoformat(),end))
+        by_end={}
+        for row in rows:
+            time_value=date(row['end_at'])
+            if time_value in by_end:raise ValueError('Duplicate quarter-hours require investigation.')
+            by_end[time_value]=row['value']
+        periods=[{'start':(start+timedelta(minutes=15*i)).isoformat(),
+                  'end':(start+timedelta(minutes=15*(i+1))).isoformat()} for i in range(96)]
+        values=[by_end.get(date(period['end'])) for period in periods]
+        return {'end':end,'periodMinutes':15,'periods':periods,'stations':[{**gauge,'values':values}]}
+    return read_archive(f'rainfall-series:{gauge_id}:{end}',read)
 
 def archive_status():
     def read(db):

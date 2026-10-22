@@ -89,6 +89,20 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path in ('/api/archive-rainfall/extent','/api/archive-rainfall/frame','/api/archive-rainfall/series'):
+            params=parse_qs(urlsplit(self.path).query)
+            try:
+                if path.endswith('/extent'):
+                    payload=archive_service.rainfall_extent()
+                elif path.endswith('/frame'):
+                    payload=archive_service.rainfall_frame(params.get('end',[None])[0],int(params.get('minutes',['180'])[0]))
+                else:
+                    payload=archive_service.rainfall_series(params.get('gauge',[''])[0],params.get('end',[None])[0])
+            except (ValueError,OverflowError):
+                self.send_error(400,'Choose a saved quarter-hour ending time and a supported accumulation period.')
+                return
+            self.diagnostic_response(payload)
+            return
         if path in ('/api/gauge-health', '/api/rainfall-history'):
             params = parse_qs(urlsplit(self.path).query)
             if path == '/api/rainfall-history':
@@ -154,7 +168,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html'}
+            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/history': 'history.html'}
             base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'index.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():

@@ -14,18 +14,19 @@
   if(points.some((p,i)=>p.minutes<=0||(i>0&&p.minutes<=points[i-1].minutes)))throw new Error('IFD durations must increase.');
   return {aeps,points};
  }
- function accumulations(values,periods,mode='latest'){
+ function accumulations(values,periods,mode='latest',blockMinutes=180){
   if(values.length!==periods.length||!['latest','wettest'].includes(mode))throw new Error('Invalid accumulation inputs.');
+  if(!Number.isInteger(blockMinutes)||blockMinutes<=0)throw new Error('Invalid observation interval.');
   return Array.from({length:values.length},(_,i)=>{
    const blocks=i+1,windows=[];
    const ends=mode==='latest'?[values.length]:Array.from({length:values.length-blocks+1},(_,j)=>j+blocks);
    for(const end of ends){
     const start=end-blocks,chunk=values.slice(start,end);
-    const continuous=periods.slice(start,end).every((p,j)=>Number.isFinite(Date.parse(p.start))&&Date.parse(p.end)-Date.parse(p.start)===10800000&&(j===0||Date.parse(p.start)===Date.parse(periods[start+j-1].end)));
+    const continuous=periods.slice(start,end).every((p,j)=>Number.isFinite(Date.parse(p.start))&&Date.parse(p.end)-Date.parse(p.start)===blockMinutes*60000&&(j===0||Date.parse(p.start)===Date.parse(periods[start+j-1].end)));
     if(continuous&&chunk.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0))windows.push({depth:chunk.reduce((a,b)=>a+b,0),start:periods[start].start,end:periods[end-1].end});
    }
    const best=windows.reduce((a,b)=>!a||b.depth>a.depth?b:a,null);
-   return {minutes:blocks*180,depth:best?.depth??null,start:best?.start??null,end:best?.end??null,validWindows:windows.length,possibleWindows:ends.length};
+   return {minutes:blocks*blockMinutes,depth:best?.depth??null,start:best?.start??null,end:best?.end??null,validWindows:windows.length,possibleWindows:ends.length};
   });
  }
  const api={parseReference,accumulations};

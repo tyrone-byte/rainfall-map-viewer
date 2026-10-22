@@ -14,6 +14,11 @@ The [gauge-status report and saved 15-minute totals](docs/GAUGE_STATUS.md) read
 the collector archive when `HISTORY_DATABASE_URL` is configured on the web service.
 Report age limits default to 60 minutes / 6 hours; no rapid-change alarms are used.
 
+The [historical rainfall view](docs/HISTORICAL_RAINFALL.md) at `/history` adds a
+quarter-hour time slider, selectable rolling accumulations, independent chart
+grouping and an IFD comparison from saved 15-minute observations. It reuses the
+web service's existing archive connection. The original bulletin remains at `/`.
+
 [Morning-event recovery](docs/EVENT_RECOVERY.md) is prepared as an opt-in import
 inside the collector. Preparing the package does not backfill the hosted database.
 

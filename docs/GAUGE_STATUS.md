@@ -76,11 +76,10 @@ fill missing quarters. Rounding, publication timing and revisions can differ;
 the earlier sample's matching hourly sums do not prove identical processing for
 every BoM station or bulletin.
 
-The existing map colours, original bulletin hyetograph and IFD comparison still
-use their labelled three-hour bulletin observations. The new saved totals are
-separate; migrating those displays and the IFD observed curve to archive data is
-a subsequent change. This avoids silently changing their time basis or inventing
-short-duration historical data.
+The original bulletin map, hyetograph and IFD comparison still use their labelled
+three-hour observations. The separate [Rainfall history view](HISTORICAL_RAINFALL.md)
+now provides a time slider, rolling map accumulations and quarter-hour IFD data
+from the archive. The source/time basis stays explicit in each view.
 
 Validation: unit tests cover age boundaries, missing versus zero, stale sources,
 exact block alignment, repeatable read-only queries and QA gaps. Browser tests

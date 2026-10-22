@@ -32,3 +32,15 @@ test('reference uses exact supplied depths and durations, with no AEP inference'
  assert.throws(()=>parseReference('bad,1\n180 (3.0),100'));
  assert.throws(()=>parseReference('min (h) AEP,1\n180 (3.0),'));
 });
+test('quarter-hour IFD uses native blocks and preserves gaps at selected ending time',()=>{
+ const quarters=Array.from({length:96},(_,i)=>({start:new Date(Date.UTC(2026,9,22,0,i*15)).toISOString(),end:new Date(Date.UTC(2026,9,22,0,(i+1)*15)).toISOString()}));
+ const values=Array(96).fill(1);values[92]=null;
+ const result=accumulations(values,quarters,'latest',15);
+ assert.equal(result[0].minutes,15);assert.equal(result[95].minutes,1440);
+ assert.equal(result[2].depth,3);assert.equal(result[3].depth,null);
+ assert.equal(result[0].end,quarters[95].end);
+ const wettest=accumulations(values,quarters,'wettest',15);
+ assert.equal(wettest[3].depth,4);assert.equal(wettest[95].depth,null);
+ assert.equal(values[92],null);assert.equal(quarters.length,96);
+ assert.throws(()=>accumulations(values,quarters,'latest',0));
+});
