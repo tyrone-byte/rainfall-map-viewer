@@ -1,4 +1,4 @@
-"""Strict parser for BoM IDQ60348; missing and unknown values stay null."""
+"""Strict parser for BoM IDQ60348/IDQ60336; missing and unknown values stay null."""
 import re
 from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
@@ -36,7 +36,9 @@ class Tables(HTMLParser):
 def key(name):
     return re.sub(r'[^a-z0-9]', '', name.lower())
 
-def parse(html):
+def parse(html, period_hours=3, source=SOURCE):
+    if period_hours not in (1, 3):
+        raise ValueError('Only native one-hour and three-hour bulletins are supported.')
     doc = Tables()
     doc.feed(html)
     text = ' '.join(' '.join(doc.text).split())
@@ -47,7 +49,8 @@ def parse(html):
     stations, periods, warnings = [], None, []
     seen = {}
     for table in doc.tables:
-        if not any('3 hour period ending' in ' '.join(row).lower() for row in table):
+        heading = f'{period_hours} hour period ending'
+        if not any(heading in ' '.join(row).lower() for row in table):
             continue
         labels = next((row for row in table if len(row) == 8 and all(re.fullmatch(r'\d{1,2}\s*[AP]M', c, re.I) for c in row)), None)
         if not labels:
@@ -62,10 +65,10 @@ def parse(html):
             candidate = ends[-1].replace(hour=hour)
             if candidate >= ends[-1]:
                 candidate -= timedelta(days=1)
-            if ends[-1] - candidate != timedelta(hours=3):
+            if ends[-1] - candidate != timedelta(hours=period_hours):
                 raise ValueError('Unexpected rainfall period spacing.')
             ends.append(candidate)
-        current = [{'start': (d-timedelta(hours=3)).isoformat(), 'end': d.isoformat()} for d in reversed(ends)]
+        current = [{'start': (d-timedelta(hours=period_hours)).isoformat(), 'end': d.isoformat()} for d in reversed(ends)]
         if periods is not None and periods != current:
             raise ValueError('Inconsistent rainfall headings across tables.')
         periods = current
@@ -74,7 +77,7 @@ def parse(html):
             if len(row) == 1 and row[0] and 'Station' not in row[0]:
                 group = row[0]
             elif group and len(row) >= 2 and row[0] not in ('Station Name',):
-                if row == labels or '3 hour period ending' in ' '.join(row):
+                if row == labels or heading in ' '.join(row).lower():
                     continue
                 if len(row) != 9:
                     raise ValueError(f'Unexpected column count for {row[0]}.')
@@ -94,4 +97,4 @@ def parse(html):
         raise ValueError('No rainfall stations found. BoM may have changed its format.')
     for station in stations:
         station['ambiguousName'] = seen[station['group'] + ':' + key(station['name'])] > 1
-    return {'source': SOURCE, 'issuedAt': issue.isoformat(), 'periods': periods, 'stations': stations, 'warnings': warnings}
+    return {'source': source, 'issuedAt': issue.isoformat(), 'periods': periods, 'stations': stations, 'warnings': warnings}

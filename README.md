@@ -2,6 +2,10 @@
 
 A working prototype using **real Bureau of Meteorology IDQ60348 observations**, Leaflet, Chart.js and OpenStreetMap. Plain HTML/CSS/JavaScript, a small Python server, and a separate station coordinate file. No database, authentication, or API key.
 
+An optional, separate [permanent observation collector](docs/COLLECTION.md) is
+now prepared for PostgreSQL and a scheduled job. It is not activated by deploying
+the viewer, and the viewer does not yet query that archive.
+
 ## Open it as a website
 
 The included `render.yaml` and `Dockerfile` prepare this app for Render hosting. The code must first be committed and pushed to your GitHub repository; files in this cloud workspace are not automatically on GitHub.

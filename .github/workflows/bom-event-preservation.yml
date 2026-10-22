@@ -1,9 +1,6 @@
 name: Preserve current BoM storm observations
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/bom-event-preservation.yml'
 permissions:
   contents: read
 concurrency:

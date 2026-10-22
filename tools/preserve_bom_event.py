@@ -5,7 +5,6 @@ Raw observations belong in private storage/artifacts, never public Git history.
 import hashlib
 import json
 import re
-import subprocess
 import sys
 import time
 from datetime import datetime, timezone
@@ -13,16 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from bom_hcs import parse_hcs
-
-BASE = 'ftp://ftp.bom.gov.au/anon/gen/fwo/'
-PRODUCTS = ('IDQ60348', 'IDQ60336', 'IDQ60286')
-
-def fetch(url, listing=False):
-    command = ['curl', '--fail', '--silent', '--show-error', '--connect-timeout', '15',
-               '--max-time', '45', '--max-filesize', '20000000', '--retry', '0']
-    if listing:
-        command.append('--list-only')
-    return subprocess.run(command + [url], capture_output=True, check=True).stdout
+from bom_source import BASE, PRODUCTS, fetch
 
 def main():
     root = Path('.cache/event-preservation/recovered'); root.mkdir(parents=True, exist_ok=True)

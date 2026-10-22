@@ -1,0 +1,2575 @@
+{
+  "source": "https://reg.bom.gov.au/qld/flood/brisbane.shtml",
+  "verifiedAt": "2026-10-22",
+  "note": "Audited live-map identities, separate from rainfall values. Unresolved rows have no invented station ID.",
+  "gauges": [
+    {
+      "gauge": "Meadow Flat Rd Bridge",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:meadowflatrdbridge:1",
+      "live_map_station_id": "540806",
+      "live_map_lat": "-27.736",
+      "live_map_lon": "152.467"
+    },
+    {
+      "gauge": "Goolman",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:goolman:1",
+      "live_map_station_id": "540668",
+      "live_map_lat": "-27.7361",
+      "live_map_lon": "152.7668"
+    },
+    {
+      "gauge": "Flinders View (Ash St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:flindersviewashst:1",
+      "live_map_station_id": "540808",
+      "live_map_lat": "-27.655",
+      "live_map_lon": "152.759"
+    },
+    {
+      "gauge": "Churchill",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:churchill:1",
+      "live_map_station_id": "540248",
+      "live_map_lat": "-27.6339",
+      "live_map_lon": "152.7542"
+    },
+    {
+      "gauge": "Lyons",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:lyons:1",
+      "live_map_station_id": "040793",
+      "live_map_lat": "-27.7633",
+      "live_map_lon": "152.8367"
+    },
+    {
+      "gauge": "Redbank Plains",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:redbankplains:1",
+      "live_map_station_id": "540671",
+      "live_map_lat": "-27.6486",
+      "live_map_lon": "152.8642"
+    },
+    {
+      "gauge": "Spring Mt",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:springmt:1",
+      "live_map_station_id": "540665",
+      "live_map_lat": "-27.6772",
+      "live_map_lon": "152.8478"
+    },
+    {
+      "gauge": "South Ripley (Wards Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:southripleywardsrd:1",
+      "live_map_station_id": "540666",
+      "live_map_lat": "-27.7264",
+      "live_map_lon": "152.8219"
+    },
+    {
+      "gauge": "South Ripley (James Ivory Bridge)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:southripleyjamesivorybridge:1",
+      "live_map_station_id": "540727",
+      "live_map_lat": "-27.6928",
+      "live_map_lon": "152.805"
+    },
+    {
+      "gauge": "Bundamba (Barclay St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:bundambabarclayst:1",
+      "live_map_station_id": "540247",
+      "live_map_lat": "-27.6203",
+      "live_map_lon": "152.8261"
+    },
+    {
+      "gauge": "Six Mile Creek",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:sixmilecreek:1",
+      "live_map_station_id": "540664",
+      "live_map_lat": "-27.6409",
+      "live_map_lon": "152.8444"
+    },
+    {
+      "gauge": "Riverview (Conway St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:riverviewconwayst:1",
+      "live_map_station_id": "540807",
+      "live_map_lat": "-27.607",
+      "live_map_lon": "152.847"
+    },
+    {
+      "gauge": "Collingwood Park",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:collingwoodpark:1",
+      "live_map_station_id": "540672",
+      "live_map_lat": "-27.6206",
+      "live_map_lon": "152.8667"
+    },
+    {
+      "gauge": "Springfield Lakes",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:springfieldlakes:1",
+      "live_map_station_id": "540501",
+      "live_map_lat": "-27.6808",
+      "live_map_lon": "152.8972"
+    },
+    {
+      "gauge": "Bellbird Park (Purser Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:bellbirdparkpurserrd:1",
+      "live_map_station_id": "040985",
+      "live_map_lat": "-27.6692",
+      "live_map_lon": "152.8731"
+    },
+    {
+      "gauge": "Bellbird Park (Eugene St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:bellbirdparkeugenest:1",
+      "live_map_station_id": "540728",
+      "live_map_lat": "-27.6333",
+      "live_map_lon": "152.9059"
+    },
+    {
+      "gauge": "Brisbane Rd",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:brisbanerd:1",
+      "live_map_station_id": "040874",
+      "live_map_lat": "-27.6078",
+      "live_map_lon": "152.9083"
+    },
+    {
+      "gauge": "Richlands (Richlands Reservoir)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:richlandsrichlandsreservoir:1",
+      "live_map_station_id": "040785",
+      "live_map_lat": "-27.6017",
+      "live_map_lon": "152.9511"
+    },
+    {
+      "gauge": "Wacol (Wacol WWTP)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:wacolwacolwwtp:1",
+      "live_map_station_id": "540098",
+      "live_map_lat": "-27.5792",
+      "live_map_lon": "152.9053"
+    },
+    {
+      "gauge": "Jingle Downs",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:jingledowns:1",
+      "live_map_station_id": "040786",
+      "live_map_lat": "-27.7456",
+      "live_map_lon": "152.9081"
+    },
+    {
+      "gauge": "Greenbank (Thompson Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:greenbankthompsonrd:1",
+      "live_map_station_id": "040794",
+      "live_map_lat": "-27.6956",
+      "live_map_lon": "152.9333"
+    },
+    {
+      "gauge": "Forestdale (Johnson Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:forestdalejohnsonrd:1",
+      "live_map_station_id": "040788",
+      "live_map_lat": "-27.6583",
+      "live_map_lon": "153.0"
+    },
+    {
+      "gauge": "Calamvale (Beaudesert Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:calamvalebeaudesertrd:1",
+      "live_map_station_id": "040784",
+      "live_map_lat": "-27.615",
+      "live_map_lon": "153.0444"
+    },
+    {
+      "gauge": "Salisbury (Dulcie St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:salisburydulciest:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Archerfield Airport",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:archerfieldairport:1",
+      "live_map_station_id": "040211",
+      "live_map_lat": "-27.5715",
+      "live_map_lon": "153.0071"
+    },
+    {
+      "gauge": "Inala (Durack Bowls Club)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:inaladurackbowlsclub:1",
+      "live_map_station_id": "540029",
+      "live_map_lat": "-27.5884",
+      "live_map_lon": "152.9871"
+    },
+    {
+      "gauge": "Forest Lake (Rachele Cl)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:forestlakerachelecl:1",
+      "live_map_station_id": "540801",
+      "live_map_lat": "-27.6315",
+      "live_map_lon": "152.9536"
+    },
+    {
+      "gauge": "Corinda (Corinda High School)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:corindacorindahighschool:1",
+      "live_map_station_id": "540071",
+      "live_map_lat": "-27.5483",
+      "live_map_lon": "152.9867"
+    },
+    {
+      "gauge": "Rochedale (Landfill)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:rochedalelandfill:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Mt Gravatt (Griffith Uni)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:mtgravattgriffithuni:1",
+      "live_map_station_id": "040790",
+      "live_map_lat": "-27.5448",
+      "live_map_lon": "153.0637"
+    },
+    {
+      "gauge": "Holland Park West (Joachim St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:hollandparkwestjoachimst:1",
+      "live_map_station_id": "540134",
+      "live_map_lat": "-27.5231",
+      "live_map_lon": "153.0542"
+    },
+    {
+      "gauge": "East Brisbane (Caswell St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:eastbrisbanecaswellst:1",
+      "live_map_station_id": "540132",
+      "live_map_lat": "-27.4911",
+      "live_map_lon": "153.0489"
+    },
+    {
+      "gauge": "Brisbane (Raymond Park)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:brisbaneraymondpark:1",
+      "live_map_station_id": "040913",
+      "live_map_lat": "-27.4808",
+      "live_map_lon": "153.0389"
+    },
+    {
+      "gauge": "Eight Mile Plains (Gagarra St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:eightmileplainsgagarrast:1",
+      "live_map_station_id": "540125",
+      "live_map_lat": "-27.5842",
+      "live_map_lon": "153.0875"
+    },
+    {
+      "gauge": "Wishart (Greenwood St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:wishartgreenwoodst:1",
+      "live_map_station_id": "540127",
+      "live_map_lat": "-27.5617",
+      "live_map_lon": "153.1031"
+    },
+    {
+      "gauge": "Mansfield (Merion Pl)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:mansfieldmerionpl:1",
+      "live_map_station_id": "540126",
+      "live_map_lat": "-27.53",
+      "live_map_lon": "153.105"
+    },
+    {
+      "gauge": "Chandler (Bacton Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:chandlerbactonrd:1",
+      "live_map_station_id": "540791",
+      "live_map_lat": "-27.51",
+      "live_map_lon": "153.154"
+    },
+    {
+      "gauge": "Bulimba (Bulimba Library)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:bulimbabulimbalibrary:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Murarrie (Rosewood Pl)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:murarrierosewoodpl:1",
+      "live_map_station_id": "540800",
+      "live_map_lat": "-27.4653",
+      "live_map_lon": "153.0943"
+    },
+    {
+      "gauge": "Carindale (Old Cleveland Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:carindaleoldclevelandrd:1",
+      "live_map_station_id": "540128",
+      "live_map_lat": "-27.5028",
+      "live_map_lon": "153.1044"
+    },
+    {
+      "gauge": "Camp Hill (Tarana St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:camphilltaranast:1",
+      "live_map_station_id": "540240",
+      "live_map_lat": "-27.4964",
+      "live_map_lon": "153.0725"
+    },
+    {
+      "gauge": "Hemmant (Doughboy Pde)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:hemmantdoughboypde:1",
+      "live_map_station_id": "540129",
+      "live_map_lat": "-27.4503",
+      "live_map_lon": "153.125"
+    },
+    {
+      "gauge": "Lytton (WWTP)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:lyttonwwtp:1",
+      "live_map_station_id": "540225",
+      "live_map_lat": "-27.4211",
+      "live_map_lon": "153.1625"
+    },
+    {
+      "gauge": "Ransome (Rickertt Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:ransomerickerttrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Manly (Harman Rec Reserve)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:manlyharmanrecreserve:1",
+      "live_map_station_id": "540282",
+      "live_map_lat": "-27.4622",
+      "live_map_lon": "153.1811"
+    },
+    {
+      "gauge": "Wynnum (Bowls Club)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:wynnumbowlsclub:1",
+      "live_map_station_id": "540322",
+      "live_map_lat": "-27.4453",
+      "live_map_lon": "153.1656"
+    },
+    {
+      "gauge": "Pullenvale (Pullenvale Hall)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:pullenvalepullenvalehall:1",
+      "live_map_station_id": "540297",
+      "live_map_lat": "-27.525",
+      "live_map_lon": "152.8853"
+    },
+    {
+      "gauge": "Kenmore Hills (Chadstone Cl)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:kenmorehillschadstonecl:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Gold Ck Reservoir HG",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:goldckreservoirhg:1",
+      "live_map_station_id": "540609",
+      "live_map_lat": "-27.4605",
+      "live_map_lon": "152.8821"
+    },
+    {
+      "gauge": "Gold Ck Reservoir",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:goldckreservoir:1",
+      "live_map_station_id": "540107",
+      "live_map_lat": "-27.4667",
+      "live_map_lon": "152.8831"
+    },
+    {
+      "gauge": "Chapel Hill (Green Hill Reservoir)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:chapelhillgreenhillreservoir:1",
+      "live_map_station_id": "540465",
+      "live_map_lat": "-27.495",
+      "live_map_lon": "152.9578"
+    },
+    {
+      "gauge": "Toowong (ANZAC Park)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:toowonganzacpark:1",
+      "live_map_station_id": "540281",
+      "live_map_lat": "-27.4819",
+      "live_map_lon": "152.9783"
+    },
+    {
+      "gauge": "Rosalie (Baroona Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:rosaliebaroonard:1",
+      "live_map_station_id": "540785",
+      "live_map_lat": "-27.4654",
+      "live_map_lon": "152.9905"
+    },
+    {
+      "gauge": "Mt Nebo (Three Ways)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:mtnebothreeways:1",
+      "live_map_station_id": "540110",
+      "live_map_lat": "-27.4453",
+      "live_map_lon": "152.8258"
+    },
+    {
+      "gauge": "Enoggera Dam HG",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:enoggeradamhg:1",
+      "live_map_station_id": "540604",
+      "live_map_lat": "-27.4455",
+      "live_map_lon": "152.9275"
+    },
+    {
+      "gauge": "Enoggera Dam",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:enoggeradam:1",
+      "live_map_station_id": "540119",
+      "live_map_lat": "-27.4469",
+      "live_map_lon": "152.9264"
+    },
+    {
+      "gauge": "Mt Coot-Tha (ABQ-2)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:mtcootthaabq2:1",
+      "live_map_station_id": "540117",
+      "live_map_lat": "-27.4647",
+      "live_map_lon": "152.9453"
+    },
+    {
+      "gauge": "Alderley (Sedgley Park)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:alderleysedgleypark:1",
+      "live_map_station_id": "540239",
+      "live_map_lat": "-27.4239",
+      "live_map_lon": "153.0031"
+    },
+    {
+      "gauge": "Bowen Hills (Mayne Railway Yards)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:bowenhillsmaynerailwayyards:1",
+      "live_map_station_id": "540130",
+      "live_map_lat": "-27.4436",
+      "live_map_lon": "153.0328"
+    },
+    {
+      "gauge": "Eagle Farm (Bcc Asphalt Plant)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:eaglefarmbccasphaltplant:1",
+      "live_map_station_id": "540803",
+      "live_map_lat": "-27.4394",
+      "live_map_lon": "153.0836"
+    },
+    {
+      "gauge": "Upper Kedron (Kedron Rec Reserve)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:upperkedronkedronrecreserve:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Everton Park (Osborne Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:evertonparkosbornerd:1",
+      "live_map_station_id": "540111",
+      "live_map_lat": "-27.4047",
+      "live_map_lon": "152.9775"
+    },
+    {
+      "gauge": "Toombul (Nudgee Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:toombulnudgeerd:1",
+      "live_map_station_id": "540548",
+      "live_map_lat": "-27.407",
+      "live_map_lon": "153.074"
+    },
+    {
+      "gauge": "Hendra (Pony Club)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:hendraponyclub:1",
+      "live_map_station_id": "540469",
+      "live_map_lat": "-27.4019",
+      "live_map_lon": "153.0747"
+    },
+    {
+      "gauge": "Brisbane Aero",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:brisbaneaero:1",
+      "live_map_station_id": "040842",
+      "live_map_lat": "-27.3917",
+      "live_map_lon": "153.1292"
+    },
+    {
+      "gauge": "Pinkenba (Luggage Point WWTP)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:pinkenbaluggagepointwwtp:1",
+      "live_map_station_id": "540372",
+      "live_map_lat": "-27.3828",
+      "live_map_lon": "153.1464"
+    },
+    {
+      "gauge": "Boondall (Frank Sleeman Park)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:boondallfranksleemanpark:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Geebung (Brickyard Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:geebungbrickyardrd:1",
+      "live_map_station_id": "540120",
+      "live_map_lat": "-27.3839",
+      "live_map_lon": "153.0578"
+    },
+    {
+      "gauge": "Everton Hills (Collins Rd)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:evertonhillscollinsrd:1",
+      "live_map_station_id": "540121",
+      "live_map_lat": "-27.3822",
+      "live_map_lon": "152.9783"
+    },
+    {
+      "gauge": "Aspley (Reservoir)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:aspleyreservoir:1",
+      "live_map_station_id": "540114",
+      "live_map_lat": "-27.3756",
+      "live_map_lon": "153.0083"
+    },
+    {
+      "gauge": "Deagon (Burralong St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:deagonburralongst:1",
+      "live_map_station_id": "540124",
+      "live_map_lat": "-27.3358",
+      "live_map_lon": "153.0575"
+    },
+    {
+      "gauge": "Bracken Ridge Reserve",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:brackenridgereserve:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Brighton (Queens Pde)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:brightonqueenspde:1",
+      "live_map_station_id": "540802",
+      "live_map_lat": "-27.2989",
+      "live_map_lon": "153.0558"
+    },
+    {
+      "gauge": "Springfield Lakes Low Level Dam",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:springfieldlakeslowleveldam:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Gordon Park (McCord St)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:gordonparkmccordst:1",
+      "live_map_station_id": "540478",
+      "live_map_lat": "-27.4178",
+      "live_map_lon": "153.0308"
+    },
+    {
+      "gauge": "Beatty Road (Archerfield)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:beattyroadarcherfield:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Redland (Alexandra Hills)",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:redlandalexandrahills:1",
+      "live_map_station_id": "140007",
+      "live_map_lat": "-27.5433",
+      "live_map_lon": "153.2394"
+    },
+    {
+      "gauge": "Bundamba School",
+      "group": "Ipswich/Brisbane Creeks",
+      "gauge_row_id": "Ipswich/Brisbane Creeks:bundambaschool:1",
+      "live_map_station_id": "040875",
+      "live_map_lat": "-27.6117",
+      "live_map_lon": "152.8064"
+    },
+    {
+      "gauge": "Mt Glorious",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:mtglorious:1",
+      "live_map_station_id": "540138",
+      "live_map_lat": "-27.3167",
+      "live_map_lon": "152.7469"
+    },
+    {
+      "gauge": "Cedar Ck Rd",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:cedarckrd:1",
+      "live_map_station_id": "540444",
+      "live_map_lat": "-27.3278",
+      "live_map_lon": "152.8647"
+    },
+    {
+      "gauge": "Mt Nebo",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:mtnebo:1",
+      "live_map_station_id": "540520",
+      "live_map_lat": "-27.3955",
+      "live_map_lon": "152.7822"
+    },
+    {
+      "gauge": "Samford",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:samford:1",
+      "live_map_station_id": "540060",
+      "live_map_lat": "-27.3608",
+      "live_map_lon": "152.8794"
+    },
+    {
+      "gauge": "Highvale (Showgrounds Drive)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:highvaleshowgroundsdrive:1",
+      "live_map_station_id": "540655",
+      "live_map_lat": "-27.3711",
+      "live_map_lon": "152.825"
+    },
+    {
+      "gauge": "Samford Valley",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:samfordvalley:1",
+      "live_map_station_id": "540739",
+      "live_map_lat": "-27.367",
+      "live_map_lon": "152.876"
+    },
+    {
+      "gauge": "Samford Village",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:samfordvillage:1",
+      "live_map_station_id": "540416",
+      "live_map_lat": "-27.3703",
+      "live_map_lon": "152.8883"
+    },
+    {
+      "gauge": "Clear Mountain",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:clearmountain:1",
+      "live_map_station_id": "540418",
+      "live_map_lat": "-27.3056",
+      "live_map_lon": "152.8861"
+    },
+    {
+      "gauge": "Drapers Crossing Alert",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:draperscrossingalert:1",
+      "live_map_station_id": "540205",
+      "live_map_lat": "-27.35",
+      "live_map_lon": "152.9167"
+    },
+    {
+      "gauge": "Eatons Hill",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:eatonshill:1",
+      "live_map_station_id": "540794",
+      "live_map_lat": "-27.3486",
+      "live_map_lon": "152.9531"
+    },
+    {
+      "gauge": "Cash's Crossing",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:cashscrossing:1",
+      "live_map_station_id": "540415",
+      "live_map_lat": "-27.3428",
+      "live_map_lon": "152.9608"
+    },
+    {
+      "gauge": "Bridgeman Downs (Pinnaroo Cemetery)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:bridgemandownspinnaroocemetery:1",
+      "live_map_station_id": "540467",
+      "live_map_lat": "-27.3508",
+      "live_map_lon": "152.9908"
+    },
+    {
+      "gauge": "Strathpine (Gympie Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:strathpinegympierd:1",
+      "live_map_station_id": "540625",
+      "live_map_lat": "-27.3156",
+      "live_map_lon": "153.0003"
+    },
+    {
+      "gauge": "Kluvers Lookout",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:kluverslookout:1",
+      "live_map_station_id": "540168",
+      "live_map_lat": "-27.2069",
+      "live_map_lon": "152.7028"
+    },
+    {
+      "gauge": "Raynbird Creek",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:raynbirdcreek:1",
+      "live_map_station_id": "540545",
+      "live_map_lat": "-27.258",
+      "live_map_lon": "152.733"
+    },
+    {
+      "gauge": "Laceys Creek",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:laceyscreek:1",
+      "live_map_station_id": "540409",
+      "live_map_lat": "-27.1964",
+      "live_map_lon": "152.7506"
+    },
+    {
+      "gauge": "Dayboro (Terrors Creek)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:dayboroterrorscreek:1",
+      "live_map_station_id": "540628",
+      "live_map_lat": "-27.1883",
+      "live_map_lon": "152.8267"
+    },
+    {
+      "gauge": "Dayboro",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:dayboro:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Dayboro WWTP",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:dayborowwtp:1",
+      "live_map_station_id": "540484",
+      "live_map_lat": "-27.2186",
+      "live_map_lon": "152.8403"
+    },
+    {
+      "gauge": "Mt Samson Rd",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:mtsamsonrd:1",
+      "live_map_station_id": "540447",
+      "live_map_lat": "-27.2494",
+      "live_map_lon": "152.8375"
+    },
+    {
+      "gauge": "Kobble Creek (Ladies Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:kobblecreekladiesrd:1",
+      "live_map_station_id": "540656",
+      "live_map_lat": "-27.291",
+      "live_map_lon": "152.83"
+    },
+    {
+      "gauge": "North Pine Dam",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:northpinedam:1",
+      "live_map_station_id": "540277",
+      "live_map_lat": "-27.2667",
+      "live_map_lon": "152.9333"
+    },
+    {
+      "gauge": "Browns Creek Rd",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:brownscreekrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Lake Kurwongbah HG",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:lakekurwongbahhg:1",
+      "live_map_station_id": "540605",
+      "live_map_lat": "-27.2572",
+      "live_map_lon": "152.9528"
+    },
+    {
+      "gauge": "Lake Kurwongbah",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:lakekurwongbah:1",
+      "live_map_station_id": "540204",
+      "live_map_lat": "-27.25",
+      "live_map_lon": "152.95"
+    },
+    {
+      "gauge": "Youngs Crossing",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:youngscrossing:1",
+      "live_map_station_id": "540412",
+      "live_map_lat": "-27.2667",
+      "live_map_lon": "152.9542"
+    },
+    {
+      "gauge": "Lawnton (Todds Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:lawntontoddsrd:1",
+      "live_map_station_id": "540562",
+      "live_map_lat": "-27.2825",
+      "live_map_lon": "152.9686"
+    },
+    {
+      "gauge": "Lawnton",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:lawnton:1",
+      "live_map_station_id": "540439",
+      "live_map_lat": "-27.2756",
+      "live_map_lon": "152.9936"
+    },
+    {
+      "gauge": "Warner",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:warner:1",
+      "live_map_station_id": "540651",
+      "live_map_lat": "-27.3077",
+      "live_map_lon": "152.9416"
+    },
+    {
+      "gauge": "John Bray Park",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:johnbraypark:1",
+      "live_map_station_id": "540413",
+      "live_map_lat": "-27.2967",
+      "live_map_lon": "152.985"
+    },
+    {
+      "gauge": "Murrumba Downs",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:murrumbadowns:1",
+      "live_map_station_id": "540417",
+      "live_map_lat": "-27.2881",
+      "live_map_lon": "153.0175"
+    },
+    {
+      "gauge": "Kallangur",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:kallangur:1",
+      "live_map_station_id": "540658",
+      "live_map_lat": "-27.2416",
+      "live_map_lon": "152.9912"
+    },
+    {
+      "gauge": "Lipscombe Rd",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:lipscomberd:1",
+      "live_map_station_id": "540445",
+      "live_map_lat": "-27.2031",
+      "live_map_lon": "153.0147"
+    },
+    {
+      "gauge": "Deception Bay (Major St)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:deceptionbaymajorst:1",
+      "live_map_station_id": "540741",
+      "live_map_lat": "-27.2066",
+      "live_map_lon": "153.0265"
+    },
+    {
+      "gauge": "Rothwell",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:rothwell:1",
+      "live_map_station_id": "540659",
+      "live_map_lat": "-27.2173",
+      "live_map_lon": "153.0443"
+    },
+    {
+      "gauge": "Kippa-Ring",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:kipparing:1",
+      "live_map_station_id": "540629",
+      "live_map_lat": "-27.2166",
+      "live_map_lon": "153.0933"
+    },
+    {
+      "gauge": "Redcliffe",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:redcliffe:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Woody Point",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:woodypoint:1",
+      "live_map_station_id": "540498",
+      "live_map_lat": "-27.258",
+      "live_map_lon": "153.085"
+    },
+    {
+      "gauge": "Moorina",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:moorina:1",
+      "live_map_station_id": "540358",
+      "live_map_lat": "-27.1531",
+      "live_map_lon": "152.8528"
+    },
+    {
+      "gauge": "Narangba (Oakey Flat Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:narangbaoakeyflatrd:1",
+      "live_map_station_id": "540508",
+      "live_map_lat": "-27.1753",
+      "live_map_lon": "152.9222"
+    },
+    {
+      "gauge": "Burpengary (Mathew Cr)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:burpengarymathewcr:1",
+      "live_map_station_id": "540619",
+      "live_map_lat": "-27.1647",
+      "live_map_lon": "152.9411"
+    },
+    {
+      "gauge": "Burpengary (Dale St)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:burpengarydalest:1",
+      "live_map_station_id": "540242",
+      "live_map_lat": "-27.1492",
+      "live_map_lon": "152.9617"
+    },
+    {
+      "gauge": "Deception Bay (Creek Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:deceptionbaycreekrd:1",
+      "live_map_station_id": "540623",
+      "live_map_lat": "-27.1733",
+      "live_map_lon": "152.9827"
+    },
+    {
+      "gauge": "Deception Bay",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:deceptionbay:1",
+      "live_map_station_id": "040980",
+      "live_map_lat": "-27.1822",
+      "live_map_lon": "153.0186"
+    },
+    {
+      "gauge": "Mount Mee",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:mountmee:1",
+      "live_map_station_id": "540588",
+      "live_map_lat": "-27.0811",
+      "live_map_lon": "152.7708"
+    },
+    {
+      "gauge": "Mt Mee",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:mtmee:1",
+      "live_map_station_id": "540185",
+      "live_map_lat": "-27.0697",
+      "live_map_lon": "152.78"
+    },
+    {
+      "gauge": "Ocean View",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:oceanview:1",
+      "live_map_station_id": "540634",
+      "live_map_lat": "-27.1166",
+      "live_map_lon": "152.7886"
+    },
+    {
+      "gauge": "Upper Caboolture (Mcclure Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:uppercaboolturemcclurerd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Upper Caboolture (Hausman Lane)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:uppercaboolturehausmanlane:1",
+      "live_map_station_id": "540357",
+      "live_map_lat": "-27.0978",
+      "live_map_lon": "152.8914"
+    },
+    {
+      "gauge": "Wamuran (Wararba Creek)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:wamuranwararbacreek:1",
+      "live_map_station_id": "540244",
+      "live_map_lat": "-27.0478",
+      "live_map_lon": "152.8594"
+    },
+    {
+      "gauge": "Wamuran (Eureka Ct)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:wamuraneurekact:1",
+      "live_map_station_id": "540793",
+      "live_map_lat": "-27.0592",
+      "live_map_lon": "152.88"
+    },
+    {
+      "gauge": "Caboolture WTP",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:caboolturewtp:1",
+      "live_map_station_id": "540243",
+      "live_map_lat": "-27.0861",
+      "live_map_lon": "152.9394"
+    },
+    {
+      "gauge": "Caboolture (Short St)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:cabooltureshortst:1",
+      "live_map_station_id": "540660",
+      "live_map_lat": "-27.0874",
+      "live_map_lon": "152.9608"
+    },
+    {
+      "gauge": "Morayfield (Williamson Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:morayfieldwilliamsonrd:1",
+      "live_map_station_id": "540654",
+      "live_map_lat": "-27.1446",
+      "live_map_lon": "152.9105"
+    },
+    {
+      "gauge": "Morayfield (Petersen Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:morayfieldpetersenrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Sheep Station Ck",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:sheepstationck:1",
+      "live_map_station_id": "540542",
+      "live_map_lat": "-27.11",
+      "live_map_lon": "152.9486"
+    },
+    {
+      "gauge": "Wamuran (Mcclintock Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:wamuranmcclintockrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Moodlu (Williams Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:moodluwilliamsrd:1",
+      "live_map_station_id": "540557",
+      "live_map_lat": "-27.0506",
+      "live_map_lon": "152.9117"
+    },
+    {
+      "gauge": "Caboolture (Machinery Pde)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:caboolturemachinerypde:1",
+      "live_map_station_id": "540736",
+      "live_map_lat": "-27.073",
+      "live_map_lon": "152.947"
+    },
+    {
+      "gauge": "Round Mt Reservoir",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:roundmtreservoir:1",
+      "live_map_station_id": "540241",
+      "live_map_lat": "-27.0328",
+      "live_map_lon": "152.9344"
+    },
+    {
+      "gauge": "Caboolture (Pumicestone Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:caboolturepumicestonerd:1",
+      "live_map_station_id": "540561",
+      "live_map_lat": "-27.0531",
+      "live_map_lon": "152.9628"
+    },
+    {
+      "gauge": "Caboolture (Bruce Hwy)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:caboolturebrucehwy:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Caboolture (Bribie Is Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:caboolturebribieisrd:1",
+      "live_map_station_id": "540627",
+      "live_map_lat": "-27.0754",
+      "live_map_lon": "153.0111"
+    },
+    {
+      "gauge": "Beachmere (Riversleigh Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:beachmereriversleighrd:1",
+      "live_map_station_id": "540558",
+      "live_map_lat": "-27.1042",
+      "live_map_lon": "153.0072"
+    },
+    {
+      "gauge": "Beachmere (St Smith Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:beachmerestsmithrd:1",
+      "live_map_station_id": "540740",
+      "live_map_lat": "-27.1456",
+      "live_map_lon": "153.0361"
+    },
+    {
+      "gauge": "Beachmere",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:beachmere:1",
+      "live_map_station_id": "540496",
+      "live_map_lat": "-27.1369",
+      "live_map_lon": "153.0497"
+    },
+    {
+      "gauge": "Beerburrum-Woodford Road",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:beerburrumwoodfordroad:1",
+      "live_map_station_id": "540622",
+      "live_map_lat": "-26.9379",
+      "live_map_lon": "152.8509"
+    },
+    {
+      "gauge": "Beerburrum",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:beerburrum:1",
+      "live_map_station_id": "040284",
+      "live_map_lat": "-26.9586",
+      "live_map_lon": "152.9619"
+    },
+    {
+      "gauge": "Elimbah (Rose Creek Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:elimbahrosecreekrd:1",
+      "live_map_station_id": "540543",
+      "live_map_lat": "-27.0131",
+      "live_map_lon": "152.9458"
+    },
+    {
+      "gauge": "Elimbah",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:elimbah:1",
+      "live_map_station_id": "540653",
+      "live_map_lat": "-26.97",
+      "live_map_lon": "152.9164"
+    },
+    {
+      "gauge": "Toorbul (Donnybrook Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:toorbuldonnybrookrd:1",
+      "live_map_station_id": "540635",
+      "live_map_lat": "-27.0311",
+      "live_map_lon": "153.0397"
+    },
+    {
+      "gauge": "Westaways Creek",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:westawayscreek:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Bribie Island Quarry",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:bribieislandquarry:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Banksia Beach",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:banksiabeach:1",
+      "live_map_station_id": "540735",
+      "live_map_lat": "-27.0331",
+      "live_map_lon": "153.1486"
+    },
+    {
+      "gauge": "Bribie Island (Morten Bay)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:bribieislandmortenbay:1",
+      "live_map_station_id": "040978",
+      "live_map_lat": "-27.0797",
+      "live_map_lon": "153.1803"
+    },
+    {
+      "gauge": "Bribie Island Treatment",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:bribieislandtreatment:1",
+      "live_map_station_id": "540631",
+      "live_map_lat": "-27.0956",
+      "live_map_lon": "153.1831"
+    },
+    {
+      "gauge": "Narangba (Main St)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:narangbamainst:1",
+      "live_map_station_id": "540809",
+      "live_map_lat": "-27.2044",
+      "live_map_lon": "152.9616"
+    },
+    {
+      "gauge": "Burpengary (Rowley Rd)",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:burpengaryrowleyrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Morayfield Rd",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:morayfieldrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Lees Crossing",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:leescrossing:1",
+      "live_map_station_id": "540826",
+      "live_map_lat": "-27.2104",
+      "live_map_lon": "152.8101"
+    },
+    {
+      "gauge": "Bribie Island",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:bribieisland:1",
+      "live_map_station_id": "540743",
+      "live_map_lat": "-27.0128",
+      "live_map_lon": "153.1364"
+    },
+    {
+      "gauge": "Normanby Way",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:normanbyway:1",
+      "live_map_station_id": "540414",
+      "live_map_lat": "-27.3064",
+      "live_map_lon": "152.9969"
+    },
+    {
+      "gauge": "Drapers Crossing Tm",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:draperscrossingtm:1",
+      "live_map_station_id": "540398",
+      "live_map_lat": "-27.3467",
+      "live_map_lon": "152.9239"
+    },
+    {
+      "gauge": "Dayboro",
+      "group": "Pine/Caboolture",
+      "gauge_row_id": "Pine/Caboolture:dayboro:2",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Crohamhurst",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:crohamhurst:1",
+      "live_map_station_id": "540662",
+      "live_map_lat": "-26.807",
+      "live_map_lon": "152.865"
+    },
+    {
+      "gauge": "Ferris Knob",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:ferrisknob:1",
+      "live_map_station_id": "540190",
+      "live_map_lat": "-26.8542",
+      "live_map_lon": "152.8167"
+    },
+    {
+      "gauge": "Woodford",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:woodford:1",
+      "live_map_station_id": "540338",
+      "live_map_lat": "-26.9352",
+      "live_map_lon": "152.761"
+    },
+    {
+      "gauge": "Delaneys Ck",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:delaneysck:1",
+      "live_map_station_id": "540657",
+      "live_map_lat": "-27.0019",
+      "live_map_lon": "152.7872"
+    },
+    {
+      "gauge": "Lindfield (Brisbane River)",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:lindfieldbrisbaneriver:1",
+      "live_map_station_id": "540491",
+      "live_map_lat": "-26.8369",
+      "live_map_lon": "152.5811"
+    },
+    {
+      "gauge": "Kilcoy Creek",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:kilcoycreek:1",
+      "live_map_station_id": "540373",
+      "live_map_lat": "-26.92",
+      "live_map_lon": "152.5819"
+    },
+    {
+      "gauge": "Kilcoy",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:kilcoy:1",
+      "live_map_station_id": "540163",
+      "live_map_lat": "-26.9481",
+      "live_map_lon": "152.5836"
+    },
+    {
+      "gauge": "Upper Sheepstation Ck",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:uppersheepstationck:1",
+      "live_map_station_id": "540711",
+      "live_map_lat": "-26.833",
+      "live_map_lon": "152.435"
+    },
+    {
+      "gauge": "Westvale",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:westvale:1",
+      "live_map_station_id": "540486",
+      "live_map_lat": "-27.0244",
+      "live_map_lon": "152.6044"
+    },
+    {
+      "gauge": "Hazeldean",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:hazeldean:1",
+      "live_map_station_id": "540487",
+      "live_map_lat": "-27.0275",
+      "live_map_lon": "152.5372"
+    },
+    {
+      "gauge": "Somerset Dam",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:somersetdam:1",
+      "live_map_station_id": "040820",
+      "live_map_lat": "-27.1169",
+      "live_map_lon": "152.555"
+    },
+    {
+      "gauge": "Top of Brisbane",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:topofbrisbane:1",
+      "live_map_station_id": "540164",
+      "live_map_lat": "-26.4772",
+      "live_map_lon": "152.1567"
+    },
+    {
+      "gauge": "Monsildale",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:monsildale:1",
+      "live_map_station_id": "540490",
+      "live_map_lat": "-26.5814",
+      "live_map_lon": "152.325"
+    },
+    {
+      "gauge": "Mt Stanley",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:mtstanley:1",
+      "live_map_station_id": "540488",
+      "live_map_lat": "-26.6817",
+      "live_map_lon": "152.2044"
+    },
+    {
+      "gauge": "Rangemore",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:rangemore:1",
+      "live_map_station_id": "541152",
+      "live_map_lat": "-26.98",
+      "live_map_lon": "151.682"
+    },
+    {
+      "gauge": "Cooyar-Kooralgin Rd",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:cooyarkooralginrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Blackbutt",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:blackbutt:1",
+      "live_map_station_id": "540493",
+      "live_map_lat": "-26.8858",
+      "live_map_lon": "152.1017"
+    },
+    {
+      "gauge": "Yarraman",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:yarraman:1",
+      "live_map_station_id": "540145",
+      "live_map_lat": "-26.8358",
+      "live_map_lon": "151.9692"
+    },
+    {
+      "gauge": "Cooyar Creek",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:cooyarcreek:1",
+      "live_map_station_id": "540146",
+      "live_map_lat": "-26.7417",
+      "live_map_lon": "152.1367"
+    },
+    {
+      "gauge": "Linville Alert",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:linvillealert:1",
+      "live_map_station_id": "540261",
+      "live_map_lat": "-26.8044",
+      "live_map_lon": "152.2719"
+    },
+    {
+      "gauge": "Devon Hills",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:devonhills:1",
+      "live_map_station_id": "540188",
+      "live_map_lat": "-26.8997",
+      "live_map_lon": "152.3208"
+    },
+    {
+      "gauge": "St Aubyns",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:staubyns:1",
+      "live_map_station_id": "540144",
+      "live_map_lat": "-27.0619",
+      "live_map_lon": "151.8944"
+    },
+    {
+      "gauge": "Mt Binga (Brisbane River)",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:mtbingabrisbaneriver:1",
+      "live_map_station_id": "540494",
+      "live_map_lat": "-26.9953",
+      "live_map_lon": "151.9867"
+    },
+    {
+      "gauge": "Boat Mountain",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:boatmountain:1",
+      "live_map_station_id": "540141",
+      "live_map_lat": "-26.9789",
+      "live_map_lon": "152.2847"
+    },
+    {
+      "gauge": "Glendale",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:glendale:1",
+      "live_map_station_id": "540446",
+      "live_map_lat": "-26.9781",
+      "live_map_lon": "152.3336"
+    },
+    {
+      "gauge": "Pohlman Range",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:pohlmanrange:1",
+      "live_map_station_id": "540459",
+      "live_map_lat": "-26.9922",
+      "live_map_lon": "152.4314"
+    },
+    {
+      "gauge": "Gregor Creek",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:gregorcreek:1",
+      "live_map_station_id": "540139",
+      "live_map_lat": "-26.9906",
+      "live_map_lon": "152.4042"
+    },
+    {
+      "gauge": "Crows Nest (Brisbane River)",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:crowsnestbrisbaneriver:1",
+      "live_map_station_id": "540161",
+      "live_map_lat": "-27.2308",
+      "live_map_lon": "152.0311"
+    },
+    {
+      "gauge": "Perseverance Dam",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:perseverancedam:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Ravensbourne",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:ravensbourne:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Cressbrook Dam",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:cressbrookdam:1",
+      "live_map_station_id": "540142",
+      "live_map_lat": "-27.2653",
+      "live_map_lon": "152.195"
+    },
+    {
+      "gauge": "Redbank Creek (Brisbane River)",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:redbankcreekbrisbaneriver:1",
+      "live_map_station_id": "540489",
+      "live_map_lat": "-27.2767",
+      "live_map_lon": "152.2889"
+    },
+    {
+      "gauge": "Eskdale",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:eskdale:1",
+      "live_map_station_id": "540492",
+      "live_map_lat": "-27.168",
+      "live_map_lon": "152.198"
+    },
+    {
+      "gauge": "Rosentreters Bridge",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:rosentretersbridge:1",
+      "live_map_station_id": "540148",
+      "live_map_lat": "-27.1383",
+      "live_map_lon": "152.3294"
+    },
+    {
+      "gauge": "Toogoolawah Post Office",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:toogoolawahpostoffice:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Fulham",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:fulham:1",
+      "live_map_station_id": "540695",
+      "live_map_lat": "-27.077",
+      "live_map_lon": "152.413"
+    },
+    {
+      "gauge": "Reedy Creek",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:reedycreek:1",
+      "live_map_station_id": "540732",
+      "live_map_lat": "-27.151",
+      "live_map_lon": "152.653"
+    },
+    {
+      "gauge": "Mt Byron",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:mtbyron:1",
+      "live_map_station_id": "540560",
+      "live_map_lat": "-27.135",
+      "live_map_lon": "152.6175"
+    },
+    {
+      "gauge": "Caboonbah",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:caboonbah:1",
+      "live_map_station_id": "540155",
+      "live_map_lat": "-27.1464",
+      "live_map_lon": "152.4903"
+    },
+    {
+      "gauge": "Glen Esk",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:glenesk:1",
+      "live_map_station_id": "540524",
+      "live_map_lat": "-27.221",
+      "live_map_lon": "152.487"
+    },
+    {
+      "gauge": "Bryden",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:bryden:1",
+      "live_map_station_id": "540522",
+      "live_map_lat": "-27.243",
+      "live_map_lon": "152.568"
+    },
+    {
+      "gauge": "Bellevue Bay",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:bellevuebay:1",
+      "live_map_station_id": "540709",
+      "live_map_lat": "-27.346",
+      "live_map_lon": "152.529"
+    },
+    {
+      "gauge": "Hays Landing",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:hayslanding:1",
+      "live_map_station_id": "540458",
+      "live_map_lat": "-27.3322",
+      "live_map_lon": "152.6103"
+    },
+    {
+      "gauge": "Wivenhoe Dam HG",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:wivenhoedamhg:1",
+      "live_map_station_id": "540177",
+      "live_map_lat": "-27.3944",
+      "live_map_lon": "152.6097"
+    },
+    {
+      "gauge": "Wivenhoe Dam TW",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:wivenhoedamtw:1",
+      "live_map_station_id": "540178",
+      "live_map_lat": "-27.4022",
+      "live_map_lon": "152.6069"
+    },
+    {
+      "gauge": "Falls Rd",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:fallsrd:1",
+      "live_map_station_id": "540441",
+      "live_map_lat": "-27.2358",
+      "live_map_lon": "152.4453"
+    },
+    {
+      "gauge": "Cressbrook Dam HW",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:cressbrookdamhw:1",
+      "live_map_station_id": "540750",
+      "live_map_lat": "-27.2633",
+      "live_map_lon": "152.2089"
+    },
+    {
+      "gauge": "Anduramba",
+      "group": "Stanley/Upper Brisbane",
+      "gauge_row_id": "Stanley/Upper Brisbane:anduramba:1",
+      "live_map_station_id": "540846",
+      "live_map_lat": "-27.0712",
+      "live_map_lon": "152.0858"
+    },
+    {
+      "gauge": "Thornville",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:thornville:1",
+      "live_map_station_id": "540705",
+      "live_map_lat": "-27.0575",
+      "live_map_lon": "151.8711"
+    },
+    {
+      "gauge": "Toowoomba",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:toowoomba:1",
+      "live_map_station_id": "540162",
+      "live_map_lat": "-27.5103",
+      "live_map_lon": "151.9547"
+    },
+    {
+      "gauge": "Fifteen Mile",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:fifteenmile:1",
+      "live_map_station_id": "540601",
+      "live_map_lat": "-27.3986",
+      "live_map_lon": "152.0731"
+    },
+    {
+      "gauge": "Paradise Creek Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:paradisecreekrd:1",
+      "live_map_station_id": "540534",
+      "live_map_lat": "-27.4542",
+      "live_map_lon": "152.0789"
+    },
+    {
+      "gauge": "Upper Lockyer",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:upperlockyer:1",
+      "live_map_station_id": "540566",
+      "live_map_lat": "-27.4922",
+      "live_map_lon": "152.0819"
+    },
+    {
+      "gauge": "Withcott",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:withcott:1",
+      "live_map_station_id": "540602",
+      "live_map_lat": "-27.5658",
+      "live_map_lon": "152.0272"
+    },
+    {
+      "gauge": "Helidon",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:helidon:1",
+      "live_map_station_id": "540143",
+      "live_map_lat": "-27.5439",
+      "live_map_lon": "152.1133"
+    },
+    {
+      "gauge": "Gormans Gap",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:gormansgap:1",
+      "live_map_station_id": "540521",
+      "live_map_lat": "-27.6415",
+      "live_map_lon": "151.9845"
+    },
+    {
+      "gauge": "Flagstone Ck Bore",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:flagstoneckbore:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Flagstone Creek",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:flagstonecreek:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Upper Sandy Creek",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:uppersandycreek:1",
+      "live_map_station_id": "540385",
+      "live_map_lat": "-27.4558",
+      "live_map_lon": "152.1983"
+    },
+    {
+      "gauge": "Sandy Creek Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:sandycreekrd:1",
+      "live_map_station_id": "540386",
+      "live_map_lat": "-27.5711",
+      "live_map_lon": "152.1781"
+    },
+    {
+      "gauge": "West Haldon",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:westhaldon:1",
+      "live_map_station_id": "541106",
+      "live_map_lat": "-27.778",
+      "live_map_lon": "152.0803"
+    },
+    {
+      "gauge": "West Woodbine",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:westwoodbine:1",
+      "live_map_station_id": "540166",
+      "live_map_lat": "-27.7847",
+      "live_map_lon": "152.1497"
+    },
+    {
+      "gauge": "Little Egypt",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:littleegypt:1",
+      "live_map_station_id": "540170",
+      "live_map_lat": "-27.7042",
+      "live_map_lon": "152.065"
+    },
+    {
+      "gauge": "Ma Ma Creek",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mamacreek:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Goltz Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:goltzrd:1",
+      "live_map_station_id": "540600",
+      "live_map_lat": "-27.8659",
+      "live_map_lon": "152.1813"
+    },
+    {
+      "gauge": "Upper Blackfellow",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:upperblackfellow:1",
+      "live_map_station_id": "540570",
+      "live_map_lat": "-27.9151",
+      "live_map_lon": "152.2736"
+    },
+    {
+      "gauge": "Junction View",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:junctionview:1",
+      "live_map_station_id": "540568",
+      "live_map_lat": "-27.8011",
+      "live_map_lon": "152.1875"
+    },
+    {
+      "gauge": "Blackfellow Ck",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:blackfellowck:1",
+      "live_map_station_id": "540556",
+      "live_map_lat": "-27.7778",
+      "live_map_lon": "152.1922"
+    },
+    {
+      "gauge": "Upper Tenthill",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:uppertenthill:1",
+      "live_map_station_id": "540519",
+      "live_map_lat": "-27.8092",
+      "live_map_lon": "152.2865"
+    },
+    {
+      "gauge": "Mt Sylvia",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtsylvia:1",
+      "live_map_station_id": "540571",
+      "live_map_lat": "-27.7209",
+      "live_map_lon": "152.2194"
+    },
+    {
+      "gauge": "Mt Petersen",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtpetersen:1",
+      "live_map_station_id": "540525",
+      "live_map_lat": "-27.6517",
+      "live_map_lon": "152.1986"
+    },
+    {
+      "gauge": "Tenthill",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:tenthill:1",
+      "live_map_station_id": "540152",
+      "live_map_lat": "-27.6358",
+      "live_map_lon": "152.2144"
+    },
+    {
+      "gauge": "Tenthill Bore",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:tenthillbore:1",
+      "live_map_station_id": "540553",
+      "live_map_lat": "-27.6378",
+      "live_map_lon": "152.2192"
+    },
+    {
+      "gauge": "Gatton (Lockyer Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:gattonlockyercreek:1",
+      "live_map_station_id": "540156",
+      "live_map_lat": "-27.55",
+      "live_map_lon": "152.2686"
+    },
+    {
+      "gauge": "Gatton (UQ)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:gattonuq:1",
+      "live_map_station_id": "040082",
+      "live_map_lat": "-27.5436",
+      "live_map_lon": "152.3375"
+    },
+    {
+      "gauge": "Mt Castle",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtcastle:1",
+      "live_map_station_id": "540171",
+      "live_map_lat": "-27.9636",
+      "live_map_lon": "152.3756"
+    },
+    {
+      "gauge": "Mt Berryman Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtberrymanrd:1",
+      "live_map_station_id": "540718",
+      "live_map_lat": "-27.7544",
+      "live_map_lon": "152.3368"
+    },
+    {
+      "gauge": "Rockside Mt",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:rocksidemt:1",
+      "live_map_station_id": "540523",
+      "live_map_lat": "-27.7167",
+      "live_map_lon": "152.3103"
+    },
+    {
+      "gauge": "Moon Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:moonrd:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Woodlands Rd (Sandy Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:woodlandsrdsandycreek:1",
+      "live_map_station_id": "540680",
+      "live_map_lat": "-27.6281",
+      "live_map_lon": "152.3299"
+    },
+    {
+      "gauge": "Whiteway Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:whitewayrd:1",
+      "live_map_station_id": "540720",
+      "live_map_lat": "-27.5972",
+      "live_map_lon": "152.3456"
+    },
+    {
+      "gauge": "Forest Hill",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:foresthill:1",
+      "live_map_station_id": "540516",
+      "live_map_lat": "-27.5839",
+      "live_map_lon": "152.3503"
+    },
+    {
+      "gauge": "Stoney Ck Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:stoneyckrd:1",
+      "live_map_station_id": "540573",
+      "live_map_lat": "-27.8731",
+      "live_map_lon": "152.3892"
+    },
+    {
+      "gauge": "Townson",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:townson:1",
+      "live_map_station_id": "540716",
+      "live_map_lat": "-27.8611",
+      "live_map_lon": "152.3837"
+    },
+    {
+      "gauge": "Thornton",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:thornton:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Thornton (School Rd)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:thorntonschoolrd:1",
+      "live_map_station_id": "540789",
+      "live_map_lat": "-27.7983",
+      "live_map_lon": "152.3728"
+    },
+    {
+      "gauge": "Main Camp Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:maincamprd:1",
+      "live_map_station_id": "540717",
+      "live_map_lat": "-27.8336",
+      "live_map_lon": "152.3144"
+    },
+    {
+      "gauge": "Mulgowie",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mulgowie:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Mulgowie Rd (Laidley Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mulgowierdlaidleycreek:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "McGarrigal Rd (Laidley Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mcgarrigalrdlaidleycreek:1",
+      "live_map_station_id": "540722",
+      "live_map_lat": "-27.6969",
+      "live_map_lon": "152.3703"
+    },
+    {
+      "gauge": "Schultz Lookout",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:schultzlookout:1",
+      "live_map_station_id": "540526",
+      "live_map_lat": "-27.6653",
+      "live_map_lon": "152.3458"
+    },
+    {
+      "gauge": "Narda Lagoon",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:nardalagoon:1",
+      "live_map_station_id": "540721",
+      "live_map_lat": "-27.6489",
+      "live_map_lon": "152.3908"
+    },
+    {
+      "gauge": "Showground Weir",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:showgroundweir:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Bill Gunn Dam",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:billgunndam:1",
+      "live_map_station_id": "540563",
+      "live_map_lat": "-27.6317",
+      "live_map_lon": "152.3792"
+    },
+    {
+      "gauge": "Warrego Highway",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:warregohighway:1",
+      "live_map_station_id": "540529",
+      "live_map_lat": "-27.5533",
+      "live_map_lon": "152.3889"
+    },
+    {
+      "gauge": "Lake Clarendon Dam HW",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:lakeclarendondamhw:1",
+      "live_map_station_id": "540546",
+      "live_map_lat": "-27.5156",
+      "live_map_lon": "152.3531"
+    },
+    {
+      "gauge": "Glenore Grove",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:glenoregrove:1",
+      "live_map_station_id": "540149",
+      "live_map_lat": "-27.5231",
+      "live_map_lon": "152.4092"
+    },
+    {
+      "gauge": "Batzloffs Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:batzloffsrd:1",
+      "live_map_station_id": "540554",
+      "live_map_lat": "-27.4919",
+      "live_map_lon": "152.4939"
+    },
+    {
+      "gauge": "Mt Stradbroke",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtstradbroke:1",
+      "live_map_station_id": "540733",
+      "live_map_lat": "-27.52",
+      "live_map_lon": "152.585"
+    },
+    {
+      "gauge": "Buaraba",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:buaraba:1",
+      "live_map_station_id": "540457",
+      "live_map_lat": "-27.4064",
+      "live_map_lon": "152.3825"
+    },
+    {
+      "gauge": "Clarendon",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:clarendon:1",
+      "live_map_station_id": "540701",
+      "live_map_lat": "-27.4201",
+      "live_map_lon": "152.5308"
+    },
+    {
+      "gauge": "O'Reilly's Weir",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:oreillysweir:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Savages Crossing",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:savagescrossing:1",
+      "live_map_station_id": "540150",
+      "live_map_lat": "-27.4411",
+      "live_map_lon": "152.6683"
+    },
+    {
+      "gauge": "Marburg",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:marburg:1",
+      "live_map_station_id": "540312",
+      "live_map_lat": "-27.5778",
+      "live_map_lon": "152.5936"
+    },
+    {
+      "gauge": "Lake Manchester HG",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:lakemanchesterhg:1",
+      "live_map_station_id": "540606",
+      "live_map_lat": "-27.4883",
+      "live_map_lon": "152.7515"
+    },
+    {
+      "gauge": "Mt Crosby",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtcrosby:1",
+      "live_map_station_id": "540199",
+      "live_map_lat": "-27.5364",
+      "live_map_lon": "152.7992"
+    },
+    {
+      "gauge": "Colleges Crossing",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:collegescrossing:1",
+      "live_map_station_id": "540063",
+      "live_map_lat": "-27.5572",
+      "live_map_lon": "152.7975"
+    },
+    {
+      "gauge": "Adams Bridge",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:adamsbridge:1",
+      "live_map_station_id": "540157",
+      "live_map_lat": "-27.8294",
+      "live_map_lon": "152.5108"
+    },
+    {
+      "gauge": "Lower Mt Walker",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:lowermtwalker:1",
+      "live_map_station_id": "540574",
+      "live_map_lat": "-27.704",
+      "live_map_lon": "152.551"
+    },
+    {
+      "gauge": "Spressers Bridge",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:spressersbridge:1",
+      "live_map_station_id": "540314",
+      "live_map_lat": "-27.6631",
+      "live_map_lon": "152.5906"
+    },
+    {
+      "gauge": "Greys Plains Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:greysplainsrd:1",
+      "live_map_station_id": "540317",
+      "live_map_lat": "-27.8025",
+      "live_map_lon": "152.4361"
+    },
+    {
+      "gauge": "Franklyn Vale",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:franklynvale:1",
+      "live_map_station_id": "040912",
+      "live_map_lat": "-27.7597",
+      "live_map_lon": "152.47"
+    },
+    {
+      "gauge": "Upper Western Ck",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:upperwesternck:1",
+      "live_map_station_id": "540667",
+      "live_map_lat": "-27.6814",
+      "live_map_lon": "152.4342"
+    },
+    {
+      "gauge": "Grandchester",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:grandchester:1",
+      "live_map_station_id": "540064",
+      "live_map_lat": "-27.6631",
+      "live_map_lon": "152.4611"
+    },
+    {
+      "gauge": "Kuss Rd",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:kussrd:1",
+      "live_map_station_id": "540194",
+      "live_map_lat": "-27.6658",
+      "live_map_lon": "152.5414"
+    },
+    {
+      "gauge": "Tallegalla",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:tallegalla:1",
+      "live_map_station_id": "040503",
+      "live_map_lat": "-27.6075",
+      "live_map_lon": "152.58"
+    },
+    {
+      "gauge": "Mt Marrow",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:mtmarrow:1",
+      "live_map_station_id": "540663",
+      "live_map_lat": "-27.6044",
+      "live_map_lon": "152.6106"
+    },
+    {
+      "gauge": "Rosewood WWTP",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:rosewoodwwtp:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Rosewood Detention Basin",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:rosewooddetentionbasin:1",
+      "live_map_station_id": "540503",
+      "live_map_lat": "-27.6272",
+      "live_map_lon": "152.5914"
+    },
+    {
+      "gauge": "Rosewood",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:rosewood:1",
+      "live_map_station_id": "540388",
+      "live_map_lat": "-27.6592",
+      "live_map_lon": "152.6042"
+    },
+    {
+      "gauge": "Seven Mile Bridge",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:sevenmilebridge:1",
+      "live_map_station_id": "540669",
+      "live_map_lat": "-27.6483",
+      "live_map_lon": "152.6347"
+    },
+    {
+      "gauge": "Five Mile Bridge",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:fivemilebridge:1",
+      "live_map_station_id": "540147",
+      "live_map_lat": "-27.6289",
+      "live_map_lon": "152.6681"
+    },
+    {
+      "gauge": "Tarome (Warrill Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:taromewarrillcreek:1",
+      "live_map_station_id": "540173",
+      "live_map_lat": "-27.9867",
+      "live_map_lon": "152.5008"
+    },
+    {
+      "gauge": "Warrill Creek Bore",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:warrillcreekbore:1",
+      "live_map_station_id": "540724",
+      "live_map_lat": "-27.9781",
+      "live_map_lon": "152.4983"
+    },
+    {
+      "gauge": "Toohills Crossing",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:toohillscrossing:1",
+      "live_map_station_id": "540549",
+      "live_map_lat": "-27.9753",
+      "live_map_lon": "152.5231"
+    },
+    {
+      "gauge": "Upper Clumber",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:upperclumber:1",
+      "live_map_station_id": "540681",
+      "live_map_lat": "-28.123",
+      "live_map_lon": "152.442"
+    },
+    {
+      "gauge": "Moogerah Dam HG",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:moogerahdamhg:1",
+      "live_map_station_id": "540474",
+      "live_map_lat": "-28.0314",
+      "live_map_lon": "152.55"
+    },
+    {
+      "gauge": "Kalbar Weir HG",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:kalbarweirhg:1",
+      "live_map_station_id": "540058",
+      "live_map_lat": "-27.9353",
+      "live_map_lon": "152.5978"
+    },
+    {
+      "gauge": "Kalbar Weir HW",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:kalbarweirhw:1",
+      "live_map_station_id": "540151",
+      "live_map_lat": "-27.9353",
+      "live_map_lon": "152.5978"
+    },
+    {
+      "gauge": "Kalbar",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:kalbar:1",
+      "live_map_station_id": "040867",
+      "live_map_lat": "-27.9406",
+      "live_map_lon": "152.6236"
+    },
+    {
+      "gauge": "Kents Lagoon",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:kentslagoon:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Harrisville",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:harrisville:1",
+      "live_map_station_id": "540387",
+      "live_map_lat": "-27.8133",
+      "live_map_lon": "152.6417"
+    },
+    {
+      "gauge": "Churchbank Weir Alert",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:churchbankweiralert:1",
+      "live_map_station_id": "540316",
+      "live_map_lat": "-27.7706",
+      "live_map_lon": "152.685"
+    },
+    {
+      "gauge": "Willowbank",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:willowbank:1",
+      "live_map_station_id": "140024",
+      "live_map_lat": "-27.6952",
+      "live_map_lon": "152.6865"
+    },
+    {
+      "gauge": "Amberley",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:amberley:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Amberley DRDMW",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:amberleydrdmw:1",
+      "live_map_station_id": "040816",
+      "live_map_lat": "-27.6658",
+      "live_map_lon": "152.6989"
+    },
+    {
+      "gauge": "Amberley AMO",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:amberleyamo:1",
+      "live_map_station_id": "040004",
+      "live_map_lat": "-27.6297",
+      "live_map_lon": "152.7111"
+    },
+    {
+      "gauge": "Washpool",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:washpool:1",
+      "live_map_station_id": "540195",
+      "live_map_lat": "-27.8292",
+      "live_map_lon": "152.7553"
+    },
+    {
+      "gauge": "Peak Crossing",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:peakcrossing:1",
+      "live_map_station_id": "540065",
+      "live_map_lat": "-27.7806",
+      "live_map_lon": "152.7311"
+    },
+    {
+      "gauge": "Berry's Lagoon",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:berryslagoon:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "One Mile Bridge",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:onemilebridge:1",
+      "live_map_station_id": "040836",
+      "live_map_lat": "-27.6272",
+      "live_map_lon": "152.7461"
+    },
+    {
+      "gauge": "Limestone Park Detention Basin",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:limestoneparkdetentionbasin:1",
+      "live_map_station_id": "540795",
+      "live_map_lat": "-27.6211",
+      "live_map_lon": "152.7657"
+    },
+    {
+      "gauge": "Karalee (Bremer River)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:karaleebremerriver:1",
+      "live_map_station_id": "540661",
+      "live_map_lat": "-27.5843",
+      "live_map_lon": "152.8131"
+    },
+    {
+      "gauge": "Moggill",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:moggill:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Goodna (Brisbane River)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:goodnabrisbaneriver:1",
+      "live_map_station_id": "540670",
+      "live_map_lat": "-27.6003",
+      "live_map_lon": "152.8942"
+    },
+    {
+      "gauge": "Jindalee Alert",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:jindaleealert:1",
+      "live_map_station_id": "540192",
+      "live_map_lat": "-27.5322",
+      "live_map_lon": "152.9239"
+    },
+    {
+      "gauge": "Brisbane City",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:brisbanecity:1",
+      "live_map_station_id": "540198",
+      "live_map_lat": "-27.4707",
+      "live_map_lon": "153.0341"
+    },
+    {
+      "gauge": "Goodna Road (Oxley Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:goodnaroadoxleycreek:1",
+      "live_map_station_id": "540646",
+      "live_map_lat": "-27.705",
+      "live_map_lon": "152.9714"
+    },
+    {
+      "gauge": "Ipswich",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:ipswich:1",
+      "live_map_station_id": "040831",
+      "live_map_lat": "-27.6117",
+      "live_map_lon": "152.7611"
+    },
+    {
+      "gauge": "Greenbank",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:greenbank:1",
+      "live_map_station_id": "140009",
+      "live_map_lat": "-27.6932",
+      "live_map_lon": "152.9935"
+    },
+    {
+      "gauge": "Lowood",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:lowood:1",
+      "live_map_station_id": "540182",
+      "live_map_lat": "-27.47",
+      "live_map_lon": "152.5956"
+    },
+    {
+      "gauge": "Spring Bluff ALERT",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:springbluffalert:1",
+      "live_map_station_id": "540527",
+      "live_map_lat": "-27.4692",
+      "live_map_lon": "151.9836"
+    },
+    {
+      "gauge": "Summerholm",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:summerholm:1",
+      "live_map_station_id": "540828",
+      "live_map_lat": "-27.6116",
+      "live_map_lon": "152.4641"
+    },
+    {
+      "gauge": "Fords Rd (Sandy Creek)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:fordsrdsandycreek:1",
+      "live_map_station_id": "540829",
+      "live_map_lat": "-27.529",
+      "live_map_lon": "152.1928"
+    },
+    {
+      "gauge": "Wilsons Lane",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:wilsonslane:1",
+      "live_map_station_id": "",
+      "live_map_lat": "",
+      "live_map_lon": ""
+    },
+    {
+      "gauge": "Brassall (Hancocks Bridge)",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:brassallhancocksbridge:1",
+      "live_map_station_id": "540250",
+      "live_map_lat": "-27.6036",
+      "live_map_lon": "152.7439"
+    },
+    {
+      "gauge": "Purga Creek",
+      "group": "Lower Brisbane",
+      "gauge_row_id": "Lower Brisbane:purgacreek:1",
+      "live_map_station_id": "140845",
+      "live_map_lat": "-27.8182",
+      "live_map_lon": "152.7547"
+    },
+    {
+      "gauge": "North Stradbroke Island",
+      "group": "Stradbroke Islands",
+      "gauge_row_id": "Stradbroke Islands:northstradbrokeisland:1",
+      "live_map_station_id": "540758",
+      "live_map_lat": "-27.5617",
+      "live_map_lon": "153.4329"
+    },
+    {
+      "gauge": "Dunwich",
+      "group": "Stradbroke Islands",
+      "gauge_row_id": "Stradbroke Islands:dunwich:1",
+      "live_map_station_id": "540212",
+      "live_map_lat": "-27.4933",
+      "live_map_lon": "153.4158"
+    }
+  ]
+}

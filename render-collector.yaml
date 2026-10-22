@@ -1,0 +1,16 @@
+# Separate, opt-in blueprint. It does NOT replace the existing web service.
+# Review Render's displayed charges before creating this scheduled job.
+# Create a persistent PostgreSQL database separately, then set DATABASE_URL.
+services:
+  - type: cron
+    name: rainfall-observation-collector
+    runtime: docker
+    dockerfilePath: ./Dockerfile.collector
+    schedule: '*/10 * * * *'
+    dockerCommand: python collector.py --once
+    autoDeploy: false
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: COLLECTOR_HEARTBEAT_URL
+        sync: false

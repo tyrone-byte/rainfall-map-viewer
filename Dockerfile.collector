@@ -1,0 +1,12 @@
+FROM python:3.12-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements-collector.txt ./
+RUN pip install --no-cache-dir -r requirements-collector.txt
+COPY collector.py history_store.py bom_hcs.py bom_source.py rainfall.py water.py ./
+COPY data/archive-stations.json ./data/archive-stations.json
+RUN useradd --create-home collector && chown -R collector:collector /app
+USER collector
+ENV PYTHONUNBUFFERED=1
+ENV COLLECTOR_REQUIRE_POSTGRES=1
+CMD ["python", "collector.py", "--once"]
