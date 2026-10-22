@@ -1,0 +1,29 @@
+name: Discover BoM IDQ65900 sample filename
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/bom-idq65900-discovery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: bom-idq65900-sample
+  cancel-in-progress: false
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read directory once and download at most one matching file
+        run: python tools/fetch_bom_idq65900_sample.py --discover
+      - name: Preserve source sample or diagnostic report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bom-idq65900-discovery
+          path: .cache/bom-idq65900-sample/
+          retention-days: 14

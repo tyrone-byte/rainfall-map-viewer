@@ -4,20 +4,50 @@ Raw data is saved as an authenticated GitHub artifact, not committed or publishe
 import csv
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime,timezone
 from pathlib import Path
 
-SOURCE='ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900.csv'
+BASE='ftp://ftp.bom.gov.au/anon/gen/fwo/'
+SOURCE=BASE+'IDQ65900.csv'
 
-def main():
+def annotation(kind,message):
+    escaped=str(message).replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+    print(f'::{kind}::{escaped}',flush=True)
+
+def main(discover=False):
     root=Path('.cache/bom-idq65900-sample');root.mkdir(parents=True,exist_ok=True)
     path=root/'IDQ65900.csv'
     # Remove only this job's previous sample, so a failed retry cannot look successful.
     if path.exists():path.unlink()
     report={'source':SOURCE,'requestedAt':datetime.now(timezone.utc).isoformat(),'requests':1,'status':'not-retrieved'}
-    response=subprocess.run(['curl','--fail','--silent','--show-error','--ftp-pasv','--connect-timeout','20','--max-time','90','--max-filesize','20000000','--retry','0',SOURCE,'-o',str(path)],capture_output=True,text=True)
+    source=SOURCE
+    if discover:
+        report['requests']=1
+        listing=subprocess.run(['curl','--fail','--silent','--show-error','--ftp-pasv','--list-only','--connect-timeout','20','--max-time','90','--max-filesize','4000000','--retry','0',BASE],capture_output=True,text=True)
+        report['listingExitCode']=listing.returncode
+        if listing.returncode:
+            report['error']=listing.stderr.strip()
+            (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+            annotation('error',f'FTP listing failed: {report["error"]}')
+            return 1
+        # List only metadata. Download at most one safe basename of this exact product.
+        names=sorted({name.strip() for name in listing.stdout.splitlines() if name.strip().startswith('IDQ65900')})
+        report['matchingNames']=names[:100]
+        report['matchingNameCount']=len(names)
+        annotation('notice','IDQ65900 listing: '+(str(len(names))+' matches; '+', '.join(names[:15]) if names else 'no matching published filenames'))
+        supported=[name for name in names if re.fullmatch(r'IDQ65900[A-Za-z0-9_.-]*\.(?:csv|txt|hcs)',name,re.I)]
+        supported.sort(key=lambda n:({'csv':0,'txt':1,'hcs':2}[n.rsplit('.',1)[1].lower()],n))
+        if not supported:
+            report['error']='No supported IDQ65900 sample filename is listed in this FTP directory.'
+            (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+            annotation('error',report['error'])
+            return 1
+        name=supported[0];source=BASE+name;path=root/name
+        report.update(source=source,requests=2)
+    response=subprocess.run(['curl','--fail','--silent','--show-error','--ftp-pasv','--connect-timeout','20','--max-time','90','--max-filesize','20000000','--retry','0',source,'-o',str(path)],capture_output=True,text=True)
     report['curlExitCode']=response.returncode
     if response.returncode:
         # Retain error information, but never mistake a partial response for a usable sample.
@@ -38,6 +68,7 @@ def main():
         report['interpretation']='Unvalidated source sample: accumulation meaning, station coverage and missing-value codes still require inspection.'
     (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     print(f"IDQ65900 single-request result: {report['status']}; curl exit {response.returncode}. See the artifact report for details.")
+    annotation('notice' if report['status']=='retrieved' else 'error',f"IDQ65900: {report['status']}; "+(f"{report.get('bytes',0)} bytes; source {source}" if report['status']=='retrieved' else report.get('error','Unknown error')))
     return 0 if report['status']=='retrieved' else 1
 
-if __name__=='__main__':sys.exit(main())
+if __name__=='__main__':sys.exit(main('--discover' in sys.argv[1:]))
