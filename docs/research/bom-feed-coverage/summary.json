@@ -1,0 +1,30 @@
+{
+  "rainfallIssue": "2026-10-22T11:23:00+10:00",
+  "weatherFeedIssue": "2026-10-22T11:51:01+10:00",
+  "weatherProduct": "IDQ60920",
+  "weatherStations": 153,
+  "rainfallGaugeRows": 321,
+  "coverageCounts": {
+    "not_in_checked_weather_product": 272,
+    "identity_unresolved": 41,
+    "same_station_id": 8
+  },
+  "overlapWithTenMinuteAmount": 0,
+  "weatherStationsWithTenMinuteAmount": 7,
+  "hourlyOverlapRows": 320,
+  "historicLiveIdDifferences": 8,
+  "sources": {
+    "rainfall-bulletin": {
+      "sha256": "e3c5f5a96db8cffca95b4636616fccce7704ca57618c974b4ffeaba8115fa2ce"
+    },
+    "weather-feed": {
+      "sha256": "78787e7ce9bcc8966de8fea4934461691b94eabe068cf5b0e19ca52a21744f95"
+    },
+    "flood-map": {
+      "sha256": "42f3f572d2538ad9b12596d311fef896a34859d8017041470ce14d12334fef24"
+    },
+    "hourly-bulletin": {
+      "sha256": "47627436d294f8bbecdaca905511d0ff3ec5827808715bd2a54a4bc11e570493"
+    }
+  }
+}

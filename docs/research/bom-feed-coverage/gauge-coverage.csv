@@ -1,0 +1,322 @@
+gauge,group,gauge_row_id,coverage,live_map_station_id,live_map_lat,live_map_lon,weather_station_name,weather_wmo,weather_observation_time,rain_ten_present,rain_ten_value,cumulative_rainfall_present,cumulative_counter_start,cumulative_counter_end,hourly_bulletin_row_present,historic_catalogue_station_id,historic_live_id_difference
+Meadow Flat Rd Bridge,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:meadowflatrdbridge:1,not_in_checked_weather_product,540806,-27.736,152.467,,,,False,,False,,,True,540806,False
+Goolman,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:goolman:1,not_in_checked_weather_product,540668,-27.7361,152.7668,,,,False,,False,,,True,540668,False
+Flinders View (Ash St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:flindersviewashst:1,not_in_checked_weather_product,540808,-27.655,152.759,,,,False,,False,,,True,540808,False
+Churchill,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:churchill:1,not_in_checked_weather_product,540248,-27.6339,152.7542,,,,False,,False,,,True,540248,False
+Lyons,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:lyons:1,not_in_checked_weather_product,040793,-27.7633,152.8367,,,,False,,False,,,True,040793,False
+Redbank Plains,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:redbankplains:1,not_in_checked_weather_product,540671,-27.6486,152.8642,,,,False,,False,,,True,540671,False
+Spring Mt,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:springmt:1,not_in_checked_weather_product,540665,-27.6772,152.8478,,,,False,,False,,,True,540665,False
+South Ripley (Wards Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:southripleywardsrd:1,not_in_checked_weather_product,540666,-27.7264,152.8219,,,,False,,False,,,True,540666,False
+South Ripley (James Ivory Bridge),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:southripleyjamesivorybridge:1,not_in_checked_weather_product,540727,-27.6928,152.805,,,,False,,False,,,True,,False
+Bundamba (Barclay St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:bundambabarclayst:1,not_in_checked_weather_product,540247,-27.6203,152.8261,,,,False,,False,,,True,540247,False
+Six Mile Creek,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:sixmilecreek:1,not_in_checked_weather_product,540664,-27.6409,152.8444,,,,False,,False,,,True,540664,False
+Riverview (Conway St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:riverviewconwayst:1,not_in_checked_weather_product,540807,-27.607,152.847,,,,False,,False,,,True,540807,False
+Collingwood Park,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:collingwoodpark:1,not_in_checked_weather_product,540672,-27.6206,152.8667,,,,False,,False,,,True,540672,False
+Springfield Lakes,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:springfieldlakes:1,not_in_checked_weather_product,540501,-27.6808,152.8972,,,,False,,False,,,True,540501,False
+Bellbird Park (Purser Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:bellbirdparkpurserrd:1,not_in_checked_weather_product,040985,-27.6692,152.8731,,,,False,,False,,,True,040985,False
+Bellbird Park (Eugene St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:bellbirdparkeugenest:1,not_in_checked_weather_product,540728,-27.6333,152.9059,,,,False,,False,,,True,540728,False
+Brisbane Rd,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:brisbanerd:1,not_in_checked_weather_product,040874,-27.6078,152.9083,,,,False,,False,,,True,,False
+Richlands (Richlands Reservoir),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:richlandsrichlandsreservoir:1,not_in_checked_weather_product,040785,-27.6017,152.9511,,,,False,,False,,,True,,False
+Wacol (Wacol WWTP),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:wacolwacolwwtp:1,not_in_checked_weather_product,540098,-27.5792,152.9053,,,,False,,False,,,True,,False
+Jingle Downs,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:jingledowns:1,not_in_checked_weather_product,040786,-27.7456,152.9081,,,,False,,False,,,True,040786,False
+Greenbank (Thompson Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:greenbankthompsonrd:1,not_in_checked_weather_product,040794,-27.6956,152.9333,,,,False,,False,,,True,,False
+Forestdale (Johnson Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:forestdalejohnsonrd:1,not_in_checked_weather_product,040788,-27.6583,153.0,,,,False,,False,,,True,,False
+Calamvale (Beaudesert Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:calamvalebeaudesertrd:1,not_in_checked_weather_product,040784,-27.615,153.0444,,,,False,,False,,,True,,False
+Salisbury (Dulcie St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:salisburydulciest:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Archerfield Airport,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:archerfieldairport:1,same_station_id,040211,-27.5715,153.0071,ARCHERFIELD AIRPORT,94575,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,,False
+Inala (Durack Bowls Club),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:inaladurackbowlsclub:1,not_in_checked_weather_product,540029,-27.5884,152.9871,,,,False,,False,,,True,,False
+Forest Lake (Rachele Cl),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:forestlakerachelecl:1,not_in_checked_weather_product,540801,-27.6315,152.9536,,,,False,,False,,,True,540801,False
+Corinda (Corinda High School),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:corindacorindahighschool:1,not_in_checked_weather_product,540071,-27.5483,152.9867,,,,False,,False,,,True,,False
+Rochedale (Landfill),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:rochedalelandfill:1,identity_unresolved,,,,,,,False,,False,,,True,540786,False
+Mt Gravatt (Griffith Uni),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:mtgravattgriffithuni:1,not_in_checked_weather_product,040790,-27.5448,153.0637,,,,False,,False,,,True,,False
+Holland Park West (Joachim St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:hollandparkwestjoachimst:1,not_in_checked_weather_product,540134,-27.5231,153.0542,,,,False,,False,,,True,,False
+East Brisbane (Caswell St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:eastbrisbanecaswellst:1,not_in_checked_weather_product,540132,-27.4911,153.0489,,,,False,,False,,,True,,False
+Brisbane (Raymond Park),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:brisbaneraymondpark:1,same_station_id,040913,-27.4808,153.0389,BRISBANE,94576,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,,False
+Eight Mile Plains (Gagarra St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:eightmileplainsgagarrast:1,not_in_checked_weather_product,540125,-27.5842,153.0875,,,,False,,False,,,True,,False
+Wishart (Greenwood St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:wishartgreenwoodst:1,not_in_checked_weather_product,540127,-27.5617,153.1031,,,,False,,False,,,True,540127,False
+Mansfield (Merion Pl),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:mansfieldmerionpl:1,not_in_checked_weather_product,540126,-27.53,153.105,,,,False,,False,,,True,,False
+Chandler (Bacton Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:chandlerbactonrd:1,not_in_checked_weather_product,540791,-27.51,153.154,,,,False,,False,,,True,540791,False
+Bulimba (Bulimba Library),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:bulimbabulimbalibrary:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Murarrie (Rosewood Pl),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:murarrierosewoodpl:1,not_in_checked_weather_product,540800,-27.4653,153.0943,,,,False,,False,,,True,540800,False
+Carindale (Old Cleveland Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:carindaleoldclevelandrd:1,not_in_checked_weather_product,540128,-27.5028,153.1044,,,,False,,False,,,True,,False
+Camp Hill (Tarana St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:camphilltaranast:1,not_in_checked_weather_product,540240,-27.4964,153.0725,,,,False,,False,,,True,,False
+Hemmant (Doughboy Pde),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:hemmantdoughboypde:1,not_in_checked_weather_product,540129,-27.4503,153.125,,,,False,,False,,,True,,False
+Lytton (WWTP),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:lyttonwwtp:1,not_in_checked_weather_product,540225,-27.4211,153.1625,,,,False,,False,,,True,,False
+Ransome (Rickertt Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:ransomerickerttrd:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Manly (Harman Rec Reserve),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:manlyharmanrecreserve:1,not_in_checked_weather_product,540282,-27.4622,153.1811,,,,False,,False,,,True,,False
+Wynnum (Bowls Club),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:wynnumbowlsclub:1,not_in_checked_weather_product,540322,-27.4453,153.1656,,,,False,,False,,,True,540322,False
+Pullenvale (Pullenvale Hall),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:pullenvalepullenvalehall:1,not_in_checked_weather_product,540297,-27.525,152.8853,,,,False,,False,,,True,,False
+Kenmore Hills (Chadstone Cl),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:kenmorehillschadstonecl:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Gold Ck Reservoir HG,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:goldckreservoirhg:1,not_in_checked_weather_product,540609,-27.4605,152.8821,,,,False,,False,,,True,,False
+Gold Ck Reservoir,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:goldckreservoir:1,not_in_checked_weather_product,540107,-27.4667,152.8831,,,,False,,False,,,True,540107,False
+Chapel Hill (Green Hill Reservoir),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:chapelhillgreenhillreservoir:1,not_in_checked_weather_product,540465,-27.495,152.9578,,,,False,,False,,,True,,False
+Toowong (ANZAC Park),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:toowonganzacpark:1,not_in_checked_weather_product,540281,-27.4819,152.9783,,,,False,,False,,,True,,False
+Rosalie (Baroona Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:rosaliebaroonard:1,not_in_checked_weather_product,540785,-27.4654,152.9905,,,,False,,False,,,True,540785,False
+Mt Nebo (Three Ways),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:mtnebothreeways:1,not_in_checked_weather_product,540110,-27.4453,152.8258,,,,False,,False,,,True,,False
+Enoggera Dam HG,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:enoggeradamhg:1,not_in_checked_weather_product,540604,-27.4455,152.9275,,,,False,,False,,,True,,False
+Enoggera Dam,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:enoggeradam:1,not_in_checked_weather_product,540119,-27.4469,152.9264,,,,False,,False,,,True,540119,False
+Mt Coot-Tha (ABQ-2),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:mtcootthaabq2:1,not_in_checked_weather_product,540117,-27.4647,152.9453,,,,False,,False,,,True,,False
+Alderley (Sedgley Park),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:alderleysedgleypark:1,not_in_checked_weather_product,540239,-27.4239,153.0031,,,,False,,False,,,True,,False
+Bowen Hills (Mayne Railway Yards),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:bowenhillsmaynerailwayyards:1,not_in_checked_weather_product,540130,-27.4436,153.0328,,,,False,,False,,,True,,False
+Eagle Farm (Bcc Asphalt Plant),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:eaglefarmbccasphaltplant:1,not_in_checked_weather_product,540803,-27.4394,153.0836,,,,False,,False,,,True,,False
+Upper Kedron (Kedron Rec Reserve),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:upperkedronkedronrecreserve:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Everton Park (Osborne Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:evertonparkosbornerd:1,not_in_checked_weather_product,540111,-27.4047,152.9775,,,,False,,False,,,True,,False
+Toombul (Nudgee Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:toombulnudgeerd:1,not_in_checked_weather_product,540548,-27.407,153.074,,,,False,,False,,,True,540548,False
+Hendra (Pony Club),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:hendraponyclub:1,not_in_checked_weather_product,540469,-27.4019,153.0747,,,,False,,False,,,True,,False
+Brisbane Aero,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:brisbaneaero:1,same_station_id,040842,-27.3917,153.1292,BRISBANE AERO,94578,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:53:00+10:00,True,,False
+Pinkenba (Luggage Point WWTP),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:pinkenbaluggagepointwwtp:1,not_in_checked_weather_product,540372,-27.3828,153.1464,,,,False,,False,,,True,,False
+Boondall (Frank Sleeman Park),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:boondallfranksleemanpark:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Geebung (Brickyard Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:geebungbrickyardrd:1,not_in_checked_weather_product,540120,-27.3839,153.0578,,,,False,,False,,,True,,False
+Everton Hills (Collins Rd),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:evertonhillscollinsrd:1,not_in_checked_weather_product,540121,-27.3822,152.9783,,,,False,,False,,,True,,False
+Aspley (Reservoir),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:aspleyreservoir:1,not_in_checked_weather_product,540114,-27.3756,153.0083,,,,False,,False,,,True,540114,False
+Deagon (Burralong St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:deagonburralongst:1,not_in_checked_weather_product,540124,-27.3358,153.0575,,,,False,,False,,,True,,False
+Bracken Ridge Reserve,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:brackenridgereserve:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Brighton (Queens Pde),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:brightonqueenspde:1,not_in_checked_weather_product,540802,-27.2989,153.0558,,,,False,,False,,,True,540802,False
+Springfield Lakes Low Level Dam,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:springfieldlakeslowleveldam:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Gordon Park (McCord St),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:gordonparkmccordst:1,not_in_checked_weather_product,540478,-27.4178,153.0308,,,,False,,False,,,True,,False
+Beatty Road (Archerfield),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:beattyroadarcherfield:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Redland (Alexandra Hills),Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:redlandalexandrahills:1,same_station_id,140007,-27.5433,153.2394,REDLAND (ALEXANDRA HILLS),94561,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,140007,False
+Bundamba School,Ipswich/Brisbane Creeks,Ipswich/Brisbane Creeks:bundambaschool:1,not_in_checked_weather_product,040875,-27.6117,152.8064,,,,False,,False,,,True,040875,False
+Mt Glorious,Pine/Caboolture,Pine/Caboolture:mtglorious:1,not_in_checked_weather_product,540138,-27.3167,152.7469,,,,False,,False,,,True,540138,False
+Cedar Ck Rd,Pine/Caboolture,Pine/Caboolture:cedarckrd:1,not_in_checked_weather_product,540444,-27.3278,152.8647,,,,False,,False,,,True,540444,False
+Mt Nebo,Pine/Caboolture,Pine/Caboolture:mtnebo:1,not_in_checked_weather_product,540520,-27.3955,152.7822,,,,False,,False,,,True,540520,False
+Samford,Pine/Caboolture,Pine/Caboolture:samford:1,not_in_checked_weather_product,540060,-27.3608,152.8794,,,,False,,False,,,True,540060,False
+Highvale (Showgrounds Drive),Pine/Caboolture,Pine/Caboolture:highvaleshowgroundsdrive:1,not_in_checked_weather_product,540655,-27.3711,152.825,,,,False,,False,,,True,,False
+Samford Valley,Pine/Caboolture,Pine/Caboolture:samfordvalley:1,not_in_checked_weather_product,540739,-27.367,152.876,,,,False,,False,,,True,540739,False
+Samford Village,Pine/Caboolture,Pine/Caboolture:samfordvillage:1,not_in_checked_weather_product,540416,-27.3703,152.8883,,,,False,,False,,,True,540416,False
+Clear Mountain,Pine/Caboolture,Pine/Caboolture:clearmountain:1,not_in_checked_weather_product,540418,-27.3056,152.8861,,,,False,,False,,,True,540418,False
+Drapers Crossing Alert,Pine/Caboolture,Pine/Caboolture:draperscrossingalert:1,not_in_checked_weather_product,540205,-27.35,152.9167,,,,False,,False,,,True,,False
+Eatons Hill,Pine/Caboolture,Pine/Caboolture:eatonshill:1,not_in_checked_weather_product,540794,-27.3486,152.9531,,,,False,,False,,,True,540794,False
+Cash's Crossing,Pine/Caboolture,Pine/Caboolture:cashscrossing:1,not_in_checked_weather_product,540415,-27.3428,152.9608,,,,False,,False,,,True,540415,False
+Bridgeman Downs (Pinnaroo Cemetery),Pine/Caboolture,Pine/Caboolture:bridgemandownspinnaroocemetery:1,not_in_checked_weather_product,540467,-27.3508,152.9908,,,,False,,False,,,True,,False
+Strathpine (Gympie Rd),Pine/Caboolture,Pine/Caboolture:strathpinegympierd:1,not_in_checked_weather_product,540625,-27.3156,153.0003,,,,False,,False,,,True,540625,False
+Kluvers Lookout,Pine/Caboolture,Pine/Caboolture:kluverslookout:1,not_in_checked_weather_product,540168,-27.2069,152.7028,,,,False,,False,,,True,540168,False
+Raynbird Creek,Pine/Caboolture,Pine/Caboolture:raynbirdcreek:1,not_in_checked_weather_product,540545,-27.258,152.733,,,,False,,False,,,True,540545,False
+Laceys Creek,Pine/Caboolture,Pine/Caboolture:laceyscreek:1,not_in_checked_weather_product,540409,-27.1964,152.7506,,,,False,,False,,,True,540409,False
+Dayboro (Terrors Creek),Pine/Caboolture,Pine/Caboolture:dayboroterrorscreek:1,not_in_checked_weather_product,540628,-27.1883,152.8267,,,,False,,False,,,True,,False
+Dayboro,Pine/Caboolture,Pine/Caboolture:dayboro:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Dayboro WWTP,Pine/Caboolture,Pine/Caboolture:dayborowwtp:1,not_in_checked_weather_product,540484,-27.2186,152.8403,,,,False,,False,,,True,540484,False
+Mt Samson Rd,Pine/Caboolture,Pine/Caboolture:mtsamsonrd:1,not_in_checked_weather_product,540447,-27.2494,152.8375,,,,False,,False,,,True,540447,False
+Kobble Creek (Ladies Rd),Pine/Caboolture,Pine/Caboolture:kobblecreekladiesrd:1,not_in_checked_weather_product,540656,-27.291,152.83,,,,False,,False,,,True,540656,False
+North Pine Dam,Pine/Caboolture,Pine/Caboolture:northpinedam:1,not_in_checked_weather_product,540277,-27.2667,152.9333,,,,False,,False,,,True,540202,True
+Browns Creek Rd,Pine/Caboolture,Pine/Caboolture:brownscreekrd:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Lake Kurwongbah HG,Pine/Caboolture,Pine/Caboolture:lakekurwongbahhg:1,not_in_checked_weather_product,540605,-27.2572,152.9528,,,,False,,False,,,True,,False
+Lake Kurwongbah,Pine/Caboolture,Pine/Caboolture:lakekurwongbah:1,not_in_checked_weather_product,540204,-27.25,152.95,,,,False,,False,,,True,540204,False
+Youngs Crossing,Pine/Caboolture,Pine/Caboolture:youngscrossing:1,not_in_checked_weather_product,540412,-27.2667,152.9542,,,,False,,False,,,True,540412,False
+Lawnton (Todds Rd),Pine/Caboolture,Pine/Caboolture:lawntontoddsrd:1,not_in_checked_weather_product,540562,-27.2825,152.9686,,,,False,,False,,,True,540562,False
+Lawnton,Pine/Caboolture,Pine/Caboolture:lawnton:1,not_in_checked_weather_product,540439,-27.2756,152.9936,,,,False,,False,,,True,540439,False
+Warner,Pine/Caboolture,Pine/Caboolture:warner:1,not_in_checked_weather_product,540651,-27.3077,152.9416,,,,False,,False,,,True,540651,False
+John Bray Park,Pine/Caboolture,Pine/Caboolture:johnbraypark:1,not_in_checked_weather_product,540413,-27.2967,152.985,,,,False,,False,,,True,540413,False
+Murrumba Downs,Pine/Caboolture,Pine/Caboolture:murrumbadowns:1,not_in_checked_weather_product,540417,-27.2881,153.0175,,,,False,,False,,,True,540417,False
+Kallangur,Pine/Caboolture,Pine/Caboolture:kallangur:1,not_in_checked_weather_product,540658,-27.2416,152.9912,,,,False,,False,,,True,540658,False
+Lipscombe Rd,Pine/Caboolture,Pine/Caboolture:lipscomberd:1,not_in_checked_weather_product,540445,-27.2031,153.0147,,,,False,,False,,,True,540445,False
+Deception Bay (Major St),Pine/Caboolture,Pine/Caboolture:deceptionbaymajorst:1,not_in_checked_weather_product,540741,-27.2066,153.0265,,,,False,,False,,,True,540741,False
+Rothwell,Pine/Caboolture,Pine/Caboolture:rothwell:1,not_in_checked_weather_product,540659,-27.2173,153.0443,,,,False,,False,,,True,540659,False
+Kippa-Ring,Pine/Caboolture,Pine/Caboolture:kipparing:1,not_in_checked_weather_product,540629,-27.2166,153.0933,,,,False,,False,,,True,540629,False
+Redcliffe,Pine/Caboolture,Pine/Caboolture:redcliffe:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Woody Point,Pine/Caboolture,Pine/Caboolture:woodypoint:1,not_in_checked_weather_product,540498,-27.258,153.085,,,,False,,False,,,True,540498,False
+Moorina,Pine/Caboolture,Pine/Caboolture:moorina:1,not_in_checked_weather_product,540358,-27.1531,152.8528,,,,False,,False,,,True,540358,False
+Narangba (Oakey Flat Rd),Pine/Caboolture,Pine/Caboolture:narangbaoakeyflatrd:1,not_in_checked_weather_product,540508,-27.1753,152.9222,,,,False,,False,,,True,540508,False
+Burpengary (Mathew Cr),Pine/Caboolture,Pine/Caboolture:burpengarymathewcr:1,not_in_checked_weather_product,540619,-27.1647,152.9411,,,,False,,False,,,True,540619,False
+Burpengary (Dale St),Pine/Caboolture,Pine/Caboolture:burpengarydalest:1,not_in_checked_weather_product,540242,-27.1492,152.9617,,,,False,,False,,,True,540242,False
+Deception Bay (Creek Rd),Pine/Caboolture,Pine/Caboolture:deceptionbaycreekrd:1,not_in_checked_weather_product,540623,-27.1733,152.9827,,,,False,,False,,,True,540623,False
+Deception Bay,Pine/Caboolture,Pine/Caboolture:deceptionbay:1,not_in_checked_weather_product,040980,-27.1822,153.0186,,,,False,,False,,,True,040980,False
+Mount Mee,Pine/Caboolture,Pine/Caboolture:mountmee:1,not_in_checked_weather_product,540588,-27.0811,152.7708,,,,False,,False,,,True,540588,False
+Mt Mee,Pine/Caboolture,Pine/Caboolture:mtmee:1,not_in_checked_weather_product,540185,-27.0697,152.78,,,,False,,False,,,True,540185,False
+Ocean View,Pine/Caboolture,Pine/Caboolture:oceanview:1,not_in_checked_weather_product,540634,-27.1166,152.7886,,,,False,,False,,,True,540634,False
+Upper Caboolture (Mcclure Rd),Pine/Caboolture,Pine/Caboolture:uppercaboolturemcclurerd:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Upper Caboolture (Hausman Lane),Pine/Caboolture,Pine/Caboolture:uppercaboolturehausmanlane:1,not_in_checked_weather_product,540357,-27.0978,152.8914,,,,False,,False,,,True,,False
+Wamuran (Wararba Creek),Pine/Caboolture,Pine/Caboolture:wamuranwararbacreek:1,not_in_checked_weather_product,540244,-27.0478,152.8594,,,,False,,False,,,True,,False
+Wamuran (Eureka Ct),Pine/Caboolture,Pine/Caboolture:wamuraneurekact:1,not_in_checked_weather_product,540793,-27.0592,152.88,,,,False,,False,,,True,540793,False
+Caboolture WTP,Pine/Caboolture,Pine/Caboolture:caboolturewtp:1,not_in_checked_weather_product,540243,-27.0861,152.9394,,,,False,,False,,,True,540243,False
+Caboolture (Short St),Pine/Caboolture,Pine/Caboolture:cabooltureshortst:1,not_in_checked_weather_product,540660,-27.0874,152.9608,,,,False,,False,,,True,540660,False
+Morayfield (Williamson Rd),Pine/Caboolture,Pine/Caboolture:morayfieldwilliamsonrd:1,not_in_checked_weather_product,540654,-27.1446,152.9105,,,,False,,False,,,True,,False
+Morayfield (Petersen Rd),Pine/Caboolture,Pine/Caboolture:morayfieldpetersenrd:1,identity_unresolved,,,,,,,False,,False,,,True,040979,False
+Sheep Station Ck,Pine/Caboolture,Pine/Caboolture:sheepstationck:1,not_in_checked_weather_product,540542,-27.11,152.9486,,,,False,,False,,,True,,False
+Wamuran (Mcclintock Rd),Pine/Caboolture,Pine/Caboolture:wamuranmcclintockrd:1,identity_unresolved,,,,,,,False,,False,,,True,540652,False
+Moodlu (Williams Rd),Pine/Caboolture,Pine/Caboolture:moodluwilliamsrd:1,not_in_checked_weather_product,540557,-27.0506,152.9117,,,,False,,False,,,True,540557,False
+Caboolture (Machinery Pde),Pine/Caboolture,Pine/Caboolture:caboolturemachinerypde:1,not_in_checked_weather_product,540736,-27.073,152.947,,,,False,,False,,,True,540736,False
+Round Mt Reservoir,Pine/Caboolture,Pine/Caboolture:roundmtreservoir:1,not_in_checked_weather_product,540241,-27.0328,152.9344,,,,False,,False,,,True,540241,False
+Caboolture (Pumicestone Rd),Pine/Caboolture,Pine/Caboolture:caboolturepumicestonerd:1,not_in_checked_weather_product,540561,-27.0531,152.9628,,,,False,,False,,,True,,False
+Caboolture (Bruce Hwy),Pine/Caboolture,Pine/Caboolture:caboolturebrucehwy:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Caboolture (Bribie Is Rd),Pine/Caboolture,Pine/Caboolture:caboolturebribieisrd:1,not_in_checked_weather_product,540627,-27.0754,153.0111,,,,False,,False,,,True,540627,False
+Beachmere (Riversleigh Rd),Pine/Caboolture,Pine/Caboolture:beachmereriversleighrd:1,not_in_checked_weather_product,540558,-27.1042,153.0072,,,,False,,False,,,True,540558,False
+Beachmere (St Smith Rd),Pine/Caboolture,Pine/Caboolture:beachmerestsmithrd:1,not_in_checked_weather_product,540740,-27.1456,153.0361,,,,False,,False,,,True,540740,False
+Beachmere,Pine/Caboolture,Pine/Caboolture:beachmere:1,not_in_checked_weather_product,540496,-27.1369,153.0497,,,,False,,False,,,True,540496,False
+Beerburrum-Woodford Road,Pine/Caboolture,Pine/Caboolture:beerburrumwoodfordroad:1,not_in_checked_weather_product,540622,-26.9379,152.8509,,,,False,,False,,,True,,False
+Beerburrum,Pine/Caboolture,Pine/Caboolture:beerburrum:1,same_station_id,040284,-26.9586,152.9619,BEERBURRUM FOREST STATION,95566,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,040284,False
+Elimbah (Rose Creek Rd),Pine/Caboolture,Pine/Caboolture:elimbahrosecreekrd:1,not_in_checked_weather_product,540543,-27.0131,152.9458,,,,False,,False,,,True,,False
+Elimbah,Pine/Caboolture,Pine/Caboolture:elimbah:1,not_in_checked_weather_product,540653,-26.97,152.9164,,,,False,,False,,,True,540653,False
+Toorbul (Donnybrook Rd),Pine/Caboolture,Pine/Caboolture:toorbuldonnybrookrd:1,not_in_checked_weather_product,540635,-27.0311,153.0397,,,,False,,False,,,True,540635,False
+Westaways Creek,Pine/Caboolture,Pine/Caboolture:westawayscreek:1,identity_unresolved,,,,,,,False,,False,,,True,540587,False
+Bribie Island Quarry,Pine/Caboolture,Pine/Caboolture:bribieislandquarry:1,identity_unresolved,,,,,,,False,,False,,,True,540585,False
+Banksia Beach,Pine/Caboolture,Pine/Caboolture:banksiabeach:1,not_in_checked_weather_product,540735,-27.0331,153.1486,,,,False,,False,,,True,540735,False
+Bribie Island (Morten Bay),Pine/Caboolture,Pine/Caboolture:bribieislandmortenbay:1,not_in_checked_weather_product,040978,-27.0797,153.1803,,,,False,,False,,,True,,False
+Bribie Island Treatment,Pine/Caboolture,Pine/Caboolture:bribieislandtreatment:1,not_in_checked_weather_product,540631,-27.0956,153.1831,,,,False,,False,,,True,540631,False
+Narangba (Main St),Pine/Caboolture,Pine/Caboolture:narangbamainst:1,not_in_checked_weather_product,540809,-27.2044,152.9616,,,,False,,False,,,True,,False
+Burpengary (Rowley Rd),Pine/Caboolture,Pine/Caboolture:burpengaryrowleyrd:1,identity_unresolved,,,,,,,False,,False,,,True,540245,False
+Morayfield Rd,Pine/Caboolture,Pine/Caboolture:morayfieldrd:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Lees Crossing,Pine/Caboolture,Pine/Caboolture:leescrossing:1,not_in_checked_weather_product,540826,-27.2104,152.8101,,,,False,,False,,,True,,False
+Bribie Island,Pine/Caboolture,Pine/Caboolture:bribieisland:1,not_in_checked_weather_product,540743,-27.0128,153.1364,,,,False,,False,,,True,040978,True
+Normanby Way,Pine/Caboolture,Pine/Caboolture:normanbyway:1,not_in_checked_weather_product,540414,-27.3064,152.9969,,,,False,,False,,,True,540414,False
+Drapers Crossing Tm,Pine/Caboolture,Pine/Caboolture:draperscrossingtm:1,not_in_checked_weather_product,540398,-27.3467,152.9239,,,,False,,False,,,True,,False
+Dayboro,Pine/Caboolture,Pine/Caboolture:dayboro:2,identity_unresolved,,,,,,,False,,False,,,True,,False
+Crohamhurst,Stanley/Upper Brisbane,Stanley/Upper Brisbane:crohamhurst:1,not_in_checked_weather_product,540662,-26.807,152.865,,,,False,,False,,,True,540662,False
+Ferris Knob,Stanley/Upper Brisbane,Stanley/Upper Brisbane:ferrisknob:1,not_in_checked_weather_product,540190,-26.8542,152.8167,,,,False,,False,,,True,540190,False
+Woodford,Stanley/Upper Brisbane,Stanley/Upper Brisbane:woodford:1,not_in_checked_weather_product,540338,-26.9352,152.761,,,,False,,False,,,True,,False
+Delaneys Ck,Stanley/Upper Brisbane,Stanley/Upper Brisbane:delaneysck:1,not_in_checked_weather_product,540657,-27.0019,152.7872,,,,False,,False,,,True,540657,False
+Lindfield (Brisbane River),Stanley/Upper Brisbane,Stanley/Upper Brisbane:lindfieldbrisbaneriver:1,not_in_checked_weather_product,540491,-26.8369,152.5811,,,,False,,False,,,True,,False
+Kilcoy Creek,Stanley/Upper Brisbane,Stanley/Upper Brisbane:kilcoycreek:1,not_in_checked_weather_product,540373,-26.92,152.5819,,,,False,,False,,,True,,False
+Kilcoy,Stanley/Upper Brisbane,Stanley/Upper Brisbane:kilcoy:1,not_in_checked_weather_product,540163,-26.9481,152.5836,,,,False,,False,,,True,,False
+Upper Sheepstation Ck,Stanley/Upper Brisbane,Stanley/Upper Brisbane:uppersheepstationck:1,not_in_checked_weather_product,540711,-26.833,152.435,,,,False,,False,,,True,540711,False
+Westvale,Stanley/Upper Brisbane,Stanley/Upper Brisbane:westvale:1,not_in_checked_weather_product,540486,-27.0244,152.6044,,,,False,,False,,,True,540486,False
+Hazeldean,Stanley/Upper Brisbane,Stanley/Upper Brisbane:hazeldean:1,not_in_checked_weather_product,540487,-27.0275,152.5372,,,,False,,False,,,True,,False
+Somerset Dam,Stanley/Upper Brisbane,Stanley/Upper Brisbane:somersetdam:1,not_in_checked_weather_product,040820,-27.1169,152.555,,,,False,,False,,,True,,False
+Top of Brisbane,Stanley/Upper Brisbane,Stanley/Upper Brisbane:topofbrisbane:1,not_in_checked_weather_product,540164,-26.4772,152.1567,,,,False,,False,,,True,540164,False
+Monsildale,Stanley/Upper Brisbane,Stanley/Upper Brisbane:monsildale:1,not_in_checked_weather_product,540490,-26.5814,152.325,,,,False,,False,,,True,540490,False
+Mt Stanley,Stanley/Upper Brisbane,Stanley/Upper Brisbane:mtstanley:1,not_in_checked_weather_product,540488,-26.6817,152.2044,,,,False,,False,,,True,540488,False
+Rangemore,Stanley/Upper Brisbane,Stanley/Upper Brisbane:rangemore:1,not_in_checked_weather_product,541152,-26.98,151.682,,,,False,,False,,,True,541152,False
+Cooyar-Kooralgin Rd,Stanley/Upper Brisbane,Stanley/Upper Brisbane:cooyarkooralginrd:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Blackbutt,Stanley/Upper Brisbane,Stanley/Upper Brisbane:blackbutt:1,not_in_checked_weather_product,540493,-26.8858,152.1017,,,,False,,False,,,True,540493,False
+Yarraman,Stanley/Upper Brisbane,Stanley/Upper Brisbane:yarraman:1,not_in_checked_weather_product,540145,-26.8358,151.9692,,,,False,,False,,,True,540145,False
+Cooyar Creek,Stanley/Upper Brisbane,Stanley/Upper Brisbane:cooyarcreek:1,not_in_checked_weather_product,540146,-26.7417,152.1367,,,,False,,False,,,True,540146,False
+Linville Alert,Stanley/Upper Brisbane,Stanley/Upper Brisbane:linvillealert:1,not_in_checked_weather_product,540261,-26.8044,152.2719,,,,False,,False,,,True,,False
+Devon Hills,Stanley/Upper Brisbane,Stanley/Upper Brisbane:devonhills:1,not_in_checked_weather_product,540188,-26.8997,152.3208,,,,False,,False,,,True,540188,False
+St Aubyns,Stanley/Upper Brisbane,Stanley/Upper Brisbane:staubyns:1,not_in_checked_weather_product,540144,-27.0619,151.8944,,,,False,,False,,,True,540144,False
+Mt Binga (Brisbane River),Stanley/Upper Brisbane,Stanley/Upper Brisbane:mtbingabrisbaneriver:1,not_in_checked_weather_product,540494,-26.9953,151.9867,,,,False,,False,,,True,,False
+Boat Mountain,Stanley/Upper Brisbane,Stanley/Upper Brisbane:boatmountain:1,not_in_checked_weather_product,540141,-26.9789,152.2847,,,,False,,False,,,True,,False
+Glendale,Stanley/Upper Brisbane,Stanley/Upper Brisbane:glendale:1,not_in_checked_weather_product,540446,-26.9781,152.3336,,,,False,,False,,,True,540446,False
+Pohlman Range,Stanley/Upper Brisbane,Stanley/Upper Brisbane:pohlmanrange:1,not_in_checked_weather_product,540459,-26.9922,152.4314,,,,False,,False,,,True,540459,False
+Gregor Creek,Stanley/Upper Brisbane,Stanley/Upper Brisbane:gregorcreek:1,not_in_checked_weather_product,540139,-26.9906,152.4042,,,,False,,False,,,True,040822,True
+Crows Nest (Brisbane River),Stanley/Upper Brisbane,Stanley/Upper Brisbane:crowsnestbrisbaneriver:1,not_in_checked_weather_product,540161,-27.2308,152.0311,,,,False,,False,,,True,,False
+Perseverance Dam,Stanley/Upper Brisbane,Stanley/Upper Brisbane:perseverancedam:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Ravensbourne,Stanley/Upper Brisbane,Stanley/Upper Brisbane:ravensbourne:1,identity_unresolved,,,,,,,False,,False,,,True,540299,False
+Cressbrook Dam,Stanley/Upper Brisbane,Stanley/Upper Brisbane:cressbrookdam:1,not_in_checked_weather_product,540142,-27.2653,152.195,,,,False,,False,,,True,,False
+Redbank Creek (Brisbane River),Stanley/Upper Brisbane,Stanley/Upper Brisbane:redbankcreekbrisbaneriver:1,not_in_checked_weather_product,540489,-27.2767,152.2889,,,,False,,False,,,True,,False
+Eskdale,Stanley/Upper Brisbane,Stanley/Upper Brisbane:eskdale:1,not_in_checked_weather_product,540492,-27.168,152.198,,,,False,,False,,,True,540492,False
+Rosentreters Bridge,Stanley/Upper Brisbane,Stanley/Upper Brisbane:rosentretersbridge:1,not_in_checked_weather_product,540148,-27.1383,152.3294,,,,False,,False,,,True,540148,False
+Toogoolawah Post Office,Stanley/Upper Brisbane,Stanley/Upper Brisbane:toogoolawahpostoffice:1,identity_unresolved,,,,,,,False,,False,,,False,,False
+Fulham,Stanley/Upper Brisbane,Stanley/Upper Brisbane:fulham:1,not_in_checked_weather_product,540695,-27.077,152.413,,,,False,,False,,,True,540695,False
+Reedy Creek,Stanley/Upper Brisbane,Stanley/Upper Brisbane:reedycreek:1,not_in_checked_weather_product,540732,-27.151,152.653,,,,False,,False,,,True,540732,False
+Mt Byron,Stanley/Upper Brisbane,Stanley/Upper Brisbane:mtbyron:1,not_in_checked_weather_product,540560,-27.135,152.6175,,,,False,,False,,,True,540560,False
+Caboonbah,Stanley/Upper Brisbane,Stanley/Upper Brisbane:caboonbah:1,not_in_checked_weather_product,540155,-27.1464,152.4903,,,,False,,False,,,True,540155,False
+Glen Esk,Stanley/Upper Brisbane,Stanley/Upper Brisbane:glenesk:1,not_in_checked_weather_product,540524,-27.221,152.487,,,,False,,False,,,True,540524,False
+Bryden,Stanley/Upper Brisbane,Stanley/Upper Brisbane:bryden:1,not_in_checked_weather_product,540522,-27.243,152.568,,,,False,,False,,,True,540522,False
+Bellevue Bay,Stanley/Upper Brisbane,Stanley/Upper Brisbane:bellevuebay:1,not_in_checked_weather_product,540709,-27.346,152.529,,,,False,,False,,,True,540709,False
+Hays Landing,Stanley/Upper Brisbane,Stanley/Upper Brisbane:hayslanding:1,not_in_checked_weather_product,540458,-27.3322,152.6103,,,,False,,False,,,True,540458,False
+Wivenhoe Dam HG,Stanley/Upper Brisbane,Stanley/Upper Brisbane:wivenhoedamhg:1,not_in_checked_weather_product,540177,-27.3944,152.6097,,,,False,,False,,,True,,False
+Wivenhoe Dam TW,Stanley/Upper Brisbane,Stanley/Upper Brisbane:wivenhoedamtw:1,not_in_checked_weather_product,540178,-27.4022,152.6069,,,,False,,False,,,True,540178,False
+Falls Rd,Stanley/Upper Brisbane,Stanley/Upper Brisbane:fallsrd:1,not_in_checked_weather_product,540441,-27.2358,152.4453,,,,False,,False,,,True,540441,False
+Cressbrook Dam HW,Stanley/Upper Brisbane,Stanley/Upper Brisbane:cressbrookdamhw:1,not_in_checked_weather_product,540750,-27.2633,152.2089,,,,False,,False,,,True,,False
+Anduramba,Stanley/Upper Brisbane,Stanley/Upper Brisbane:anduramba:1,not_in_checked_weather_product,540846,-27.0712,152.0858,,,,False,,False,,,True,,False
+Thornville,Lower Brisbane,Lower Brisbane:thornville:1,not_in_checked_weather_product,540705,-27.0575,151.8711,,,,False,,False,,,True,540705,False
+Toowoomba,Lower Brisbane,Lower Brisbane:toowoomba:1,not_in_checked_weather_product,540162,-27.5103,151.9547,,,,False,,False,,,True,540162,False
+Fifteen Mile,Lower Brisbane,Lower Brisbane:fifteenmile:1,not_in_checked_weather_product,540601,-27.3986,152.0731,,,,False,,False,,,True,540601,False
+Paradise Creek Rd,Lower Brisbane,Lower Brisbane:paradisecreekrd:1,not_in_checked_weather_product,540534,-27.4542,152.0789,,,,False,,False,,,True,,False
+Upper Lockyer,Lower Brisbane,Lower Brisbane:upperlockyer:1,not_in_checked_weather_product,540566,-27.4922,152.0819,,,,False,,False,,,True,540566,False
+Withcott,Lower Brisbane,Lower Brisbane:withcott:1,not_in_checked_weather_product,540602,-27.5658,152.0272,,,,False,,False,,,True,540602,False
+Helidon,Lower Brisbane,Lower Brisbane:helidon:1,not_in_checked_weather_product,540143,-27.5439,152.1133,,,,False,,False,,,True,540143,False
+Gormans Gap,Lower Brisbane,Lower Brisbane:gormansgap:1,not_in_checked_weather_product,540521,-27.6415,151.9845,,,,False,,False,,,True,540521,False
+Flagstone Ck Bore,Lower Brisbane,Lower Brisbane:flagstoneckbore:1,identity_unresolved,,,,,,,False,,False,,,True,540540,False
+Flagstone Creek,Lower Brisbane,Lower Brisbane:flagstonecreek:1,identity_unresolved,,,,,,,False,,False,,,True,540517,False
+Upper Sandy Creek,Lower Brisbane,Lower Brisbane:uppersandycreek:1,not_in_checked_weather_product,540385,-27.4558,152.1983,,,,False,,False,,,True,540385,False
+Sandy Creek Rd,Lower Brisbane,Lower Brisbane:sandycreekrd:1,not_in_checked_weather_product,540386,-27.5711,152.1781,,,,False,,False,,,True,,False
+West Haldon,Lower Brisbane,Lower Brisbane:westhaldon:1,not_in_checked_weather_product,541106,-27.778,152.0803,,,,False,,False,,,True,541106,False
+West Woodbine,Lower Brisbane,Lower Brisbane:westwoodbine:1,not_in_checked_weather_product,540166,-27.7847,152.1497,,,,False,,False,,,True,540166,False
+Little Egypt,Lower Brisbane,Lower Brisbane:littleegypt:1,not_in_checked_weather_product,540170,-27.7042,152.065,,,,False,,False,,,True,540170,False
+Ma Ma Creek,Lower Brisbane,Lower Brisbane:mamacreek:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Goltz Rd,Lower Brisbane,Lower Brisbane:goltzrd:1,not_in_checked_weather_product,540600,-27.8659,152.1813,,,,False,,False,,,True,,False
+Upper Blackfellow,Lower Brisbane,Lower Brisbane:upperblackfellow:1,not_in_checked_weather_product,540570,-27.9151,152.2736,,,,False,,False,,,True,540570,False
+Junction View,Lower Brisbane,Lower Brisbane:junctionview:1,not_in_checked_weather_product,540568,-27.8011,152.1875,,,,False,,False,,,True,540568,False
+Blackfellow Ck,Lower Brisbane,Lower Brisbane:blackfellowck:1,not_in_checked_weather_product,540556,-27.7778,152.1922,,,,False,,False,,,True,540556,False
+Upper Tenthill,Lower Brisbane,Lower Brisbane:uppertenthill:1,not_in_checked_weather_product,540519,-27.8092,152.2865,,,,False,,False,,,True,540519,False
+Mt Sylvia,Lower Brisbane,Lower Brisbane:mtsylvia:1,not_in_checked_weather_product,540571,-27.7209,152.2194,,,,False,,False,,,True,540571,False
+Mt Petersen,Lower Brisbane,Lower Brisbane:mtpetersen:1,not_in_checked_weather_product,540525,-27.6517,152.1986,,,,False,,False,,,True,540525,False
+Tenthill,Lower Brisbane,Lower Brisbane:tenthill:1,not_in_checked_weather_product,540152,-27.6358,152.2144,,,,False,,False,,,True,,False
+Tenthill Bore,Lower Brisbane,Lower Brisbane:tenthillbore:1,not_in_checked_weather_product,540553,-27.6378,152.2192,,,,False,,False,,,True,540553,False
+Gatton (Lockyer Creek),Lower Brisbane,Lower Brisbane:gattonlockyercreek:1,not_in_checked_weather_product,540156,-27.55,152.2686,,,,False,,False,,,True,,False
+Gatton (UQ),Lower Brisbane,Lower Brisbane:gattonuq:1,same_station_id,040082,-27.5436,152.3375,UNIVERSITY OF QUEENSLAND GATTON,94562,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,040082,False
+Mt Castle,Lower Brisbane,Lower Brisbane:mtcastle:1,not_in_checked_weather_product,540171,-27.9636,152.3756,,,,False,,False,,,True,540171,False
+Mt Berryman Rd,Lower Brisbane,Lower Brisbane:mtberrymanrd:1,not_in_checked_weather_product,540718,-27.7544,152.3368,,,,False,,False,,,True,,False
+Rockside Mt,Lower Brisbane,Lower Brisbane:rocksidemt:1,not_in_checked_weather_product,540523,-27.7167,152.3103,,,,False,,False,,,True,540523,False
+Moon Rd,Lower Brisbane,Lower Brisbane:moonrd:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Woodlands Rd (Sandy Creek),Lower Brisbane,Lower Brisbane:woodlandsrdsandycreek:1,not_in_checked_weather_product,540680,-27.6281,152.3299,,,,False,,False,,,True,,False
+Whiteway Rd,Lower Brisbane,Lower Brisbane:whitewayrd:1,not_in_checked_weather_product,540720,-27.5972,152.3456,,,,False,,False,,,True,540720,False
+Forest Hill,Lower Brisbane,Lower Brisbane:foresthill:1,not_in_checked_weather_product,540516,-27.5839,152.3503,,,,False,,False,,,True,540516,False
+Stoney Ck Rd,Lower Brisbane,Lower Brisbane:stoneyckrd:1,not_in_checked_weather_product,540573,-27.8731,152.3892,,,,False,,False,,,True,,False
+Townson,Lower Brisbane,Lower Brisbane:townson:1,not_in_checked_weather_product,540716,-27.8611,152.3837,,,,False,,False,,,True,540716,False
+Thornton,Lower Brisbane,Lower Brisbane:thornton:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Thornton (School Rd),Lower Brisbane,Lower Brisbane:thorntonschoolrd:1,not_in_checked_weather_product,540789,-27.7983,152.3728,,,,False,,False,,,True,,False
+Main Camp Rd,Lower Brisbane,Lower Brisbane:maincamprd:1,not_in_checked_weather_product,540717,-27.8336,152.3144,,,,False,,False,,,True,,False
+Mulgowie,Lower Brisbane,Lower Brisbane:mulgowie:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Mulgowie Rd (Laidley Creek),Lower Brisbane,Lower Brisbane:mulgowierdlaidleycreek:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+McGarrigal Rd (Laidley Creek),Lower Brisbane,Lower Brisbane:mcgarrigalrdlaidleycreek:1,not_in_checked_weather_product,540722,-27.6969,152.3703,,,,False,,False,,,True,,False
+Schultz Lookout,Lower Brisbane,Lower Brisbane:schultzlookout:1,not_in_checked_weather_product,540526,-27.6653,152.3458,,,,False,,False,,,True,540526,False
+Narda Lagoon,Lower Brisbane,Lower Brisbane:nardalagoon:1,not_in_checked_weather_product,540721,-27.6489,152.3908,,,,False,,False,,,True,540721,False
+Showground Weir,Lower Brisbane,Lower Brisbane:showgroundweir:1,identity_unresolved,,,,,,,False,,False,,,True,540158,False
+Bill Gunn Dam,Lower Brisbane,Lower Brisbane:billgunndam:1,not_in_checked_weather_product,540563,-27.6317,152.3792,,,,False,,False,,,True,540472,True
+Warrego Highway,Lower Brisbane,Lower Brisbane:warregohighway:1,not_in_checked_weather_product,540529,-27.5533,152.3889,,,,False,,False,,,True,,False
+Lake Clarendon Dam HW,Lower Brisbane,Lower Brisbane:lakeclarendondamhw:1,not_in_checked_weather_product,540546,-27.5156,152.3531,,,,False,,False,,,True,,False
+Glenore Grove,Lower Brisbane,Lower Brisbane:glenoregrove:1,not_in_checked_weather_product,540149,-27.5231,152.4092,,,,False,,False,,,True,540149,False
+Batzloffs Rd,Lower Brisbane,Lower Brisbane:batzloffsrd:1,not_in_checked_weather_product,540554,-27.4919,152.4939,,,,False,,False,,,True,540554,False
+Mt Stradbroke,Lower Brisbane,Lower Brisbane:mtstradbroke:1,not_in_checked_weather_product,540733,-27.52,152.585,,,,False,,False,,,True,540733,False
+Buaraba,Lower Brisbane,Lower Brisbane:buaraba:1,not_in_checked_weather_product,540457,-27.4064,152.3825,,,,False,,False,,,True,540457,False
+Clarendon,Lower Brisbane,Lower Brisbane:clarendon:1,not_in_checked_weather_product,540701,-27.4201,152.5308,,,,False,,False,,,True,540701,False
+O'Reilly's Weir,Lower Brisbane,Lower Brisbane:oreillysweir:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Savages Crossing,Lower Brisbane,Lower Brisbane:savagescrossing:1,not_in_checked_weather_product,540150,-27.4411,152.6683,,,,False,,False,,,True,,False
+Marburg,Lower Brisbane,Lower Brisbane:marburg:1,not_in_checked_weather_product,540312,-27.5778,152.5936,,,,False,,False,,,True,540312,False
+Lake Manchester HG,Lower Brisbane,Lower Brisbane:lakemanchesterhg:1,not_in_checked_weather_product,540606,-27.4883,152.7515,,,,False,,False,,,True,,False
+Mt Crosby,Lower Brisbane,Lower Brisbane:mtcrosby:1,not_in_checked_weather_product,540199,-27.5364,152.7992,,,,False,,False,,,True,540199,False
+Colleges Crossing,Lower Brisbane,Lower Brisbane:collegescrossing:1,not_in_checked_weather_product,540063,-27.5572,152.7975,,,,False,,False,,,True,540063,False
+Adams Bridge,Lower Brisbane,Lower Brisbane:adamsbridge:1,not_in_checked_weather_product,540157,-27.8294,152.5108,,,,False,,False,,,True,,False
+Lower Mt Walker,Lower Brisbane,Lower Brisbane:lowermtwalker:1,not_in_checked_weather_product,540574,-27.704,152.551,,,,False,,False,,,True,540574,False
+Spressers Bridge,Lower Brisbane,Lower Brisbane:spressersbridge:1,not_in_checked_weather_product,540314,-27.6631,152.5906,,,,False,,False,,,True,540314,False
+Greys Plains Rd,Lower Brisbane,Lower Brisbane:greysplainsrd:1,not_in_checked_weather_product,540317,-27.8025,152.4361,,,,False,,False,,,True,,False
+Franklyn Vale,Lower Brisbane,Lower Brisbane:franklynvale:1,not_in_checked_weather_product,040912,-27.7597,152.47,,,,False,,False,,,True,040912,False
+Upper Western Ck,Lower Brisbane,Lower Brisbane:upperwesternck:1,not_in_checked_weather_product,540667,-27.6814,152.4342,,,,False,,False,,,True,540667,False
+Grandchester,Lower Brisbane,Lower Brisbane:grandchester:1,not_in_checked_weather_product,540064,-27.6631,152.4611,,,,False,,False,,,True,540064,False
+Kuss Rd,Lower Brisbane,Lower Brisbane:kussrd:1,not_in_checked_weather_product,540194,-27.6658,152.5414,,,,False,,False,,,True,,False
+Tallegalla,Lower Brisbane,Lower Brisbane:tallegalla:1,not_in_checked_weather_product,040503,-27.6075,152.58,,,,False,,False,,,True,040503,False
+Mt Marrow,Lower Brisbane,Lower Brisbane:mtmarrow:1,not_in_checked_weather_product,540663,-27.6044,152.6106,,,,False,,False,,,True,540663,False
+Rosewood WWTP,Lower Brisbane,Lower Brisbane:rosewoodwwtp:1,identity_unresolved,,,,,,,False,,False,,,True,540313,False
+Rosewood Detention Basin,Lower Brisbane,Lower Brisbane:rosewooddetentionbasin:1,not_in_checked_weather_product,540503,-27.6272,152.5914,,,,False,,False,,,True,540503,False
+Rosewood,Lower Brisbane,Lower Brisbane:rosewood:1,not_in_checked_weather_product,540388,-27.6592,152.6042,,,,False,,False,,,True,540193,True
+Seven Mile Bridge,Lower Brisbane,Lower Brisbane:sevenmilebridge:1,not_in_checked_weather_product,540669,-27.6483,152.6347,,,,False,,False,,,True,,False
+Five Mile Bridge,Lower Brisbane,Lower Brisbane:fivemilebridge:1,not_in_checked_weather_product,540147,-27.6289,152.6681,,,,False,,False,,,True,,False
+Tarome (Warrill Creek),Lower Brisbane,Lower Brisbane:taromewarrillcreek:1,not_in_checked_weather_product,540173,-27.9867,152.5008,,,,False,,False,,,True,,False
+Warrill Creek Bore,Lower Brisbane,Lower Brisbane:warrillcreekbore:1,not_in_checked_weather_product,540724,-27.9781,152.4983,,,,False,,False,,,True,540724,False
+Toohills Crossing,Lower Brisbane,Lower Brisbane:toohillscrossing:1,not_in_checked_weather_product,540549,-27.9753,152.5231,,,,False,,False,,,True,540549,False
+Upper Clumber,Lower Brisbane,Lower Brisbane:upperclumber:1,not_in_checked_weather_product,540681,-28.123,152.442,,,,False,,False,,,True,540681,False
+Moogerah Dam HG,Lower Brisbane,Lower Brisbane:moogerahdamhg:1,not_in_checked_weather_product,540474,-28.0314,152.55,,,,False,,False,,,True,,False
+Kalbar Weir HG,Lower Brisbane,Lower Brisbane:kalbarweirhg:1,not_in_checked_weather_product,540058,-27.9353,152.5978,,,,False,,False,,,True,,False
+Kalbar Weir HW,Lower Brisbane,Lower Brisbane:kalbarweirhw:1,not_in_checked_weather_product,540151,-27.9353,152.5978,,,,False,,False,,,True,540058,True
+Kalbar,Lower Brisbane,Lower Brisbane:kalbar:1,not_in_checked_weather_product,040867,-27.9406,152.6236,,,,False,,False,,,True,,False
+Kents Lagoon,Lower Brisbane,Lower Brisbane:kentslagoon:1,identity_unresolved,,,,,,,False,,False,,,True,540754,False
+Harrisville,Lower Brisbane,Lower Brisbane:harrisville:1,not_in_checked_weather_product,540387,-27.8133,152.6417,,,,False,,False,,,True,,False
+Churchbank Weir Alert,Lower Brisbane,Lower Brisbane:churchbankweiralert:1,not_in_checked_weather_product,540316,-27.7706,152.685,,,,False,,False,,,True,,False
+Willowbank,Lower Brisbane,Lower Brisbane:willowbank:1,not_in_checked_weather_product,140024,-27.6952,152.6865,,,,False,,False,,,True,,False
+Amberley,Lower Brisbane,Lower Brisbane:amberley:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Amberley DRDMW,Lower Brisbane,Lower Brisbane:amberleydrdmw:1,not_in_checked_weather_product,040816,-27.6658,152.6989,,,,False,,False,,,True,,False
+Amberley AMO,Lower Brisbane,Lower Brisbane:amberleyamo:1,same_station_id,040004,-27.6297,152.7111,AMBERLEY AMO,94568,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,,False
+Washpool,Lower Brisbane,Lower Brisbane:washpool:1,not_in_checked_weather_product,540195,-27.8292,152.7553,,,,False,,False,,,True,540195,False
+Peak Crossing,Lower Brisbane,Lower Brisbane:peakcrossing:1,not_in_checked_weather_product,540065,-27.7806,152.7311,,,,False,,False,,,True,540065,False
+Berry's Lagoon,Lower Brisbane,Lower Brisbane:berryslagoon:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+One Mile Bridge,Lower Brisbane,Lower Brisbane:onemilebridge:1,not_in_checked_weather_product,040836,-27.6272,152.7461,,,,False,,False,,,True,040836,False
+Limestone Park Detention Basin,Lower Brisbane,Lower Brisbane:limestoneparkdetentionbasin:1,not_in_checked_weather_product,540795,-27.6211,152.7657,,,,False,,False,,,True,,False
+Karalee (Bremer River),Lower Brisbane,Lower Brisbane:karaleebremerriver:1,not_in_checked_weather_product,540661,-27.5843,152.8131,,,,False,,False,,,True,,False
+Moggill,Lower Brisbane,Lower Brisbane:moggill:1,identity_unresolved,,,,,,,False,,False,,,True,,False
+Goodna (Brisbane River),Lower Brisbane,Lower Brisbane:goodnabrisbaneriver:1,not_in_checked_weather_product,540670,-27.6003,152.8942,,,,False,,False,,,True,,False
+Jindalee Alert,Lower Brisbane,Lower Brisbane:jindaleealert:1,not_in_checked_weather_product,540192,-27.5322,152.9239,,,,False,,False,,,True,,False
+Brisbane City,Lower Brisbane,Lower Brisbane:brisbanecity:1,not_in_checked_weather_product,540198,-27.4707,153.0341,,,,False,,False,,,True,540198,False
+Goodna Road (Oxley Creek),Lower Brisbane,Lower Brisbane:goodnaroadoxleycreek:1,not_in_checked_weather_product,540646,-27.705,152.9714,,,,False,,False,,,True,,False
+Ipswich,Lower Brisbane,Lower Brisbane:ipswich:1,not_in_checked_weather_product,040831,-27.6117,152.7611,,,,False,,False,,,True,040101,True
+Greenbank,Lower Brisbane,Lower Brisbane:greenbank:1,same_station_id,140009,-27.6932,152.9935,GREENBANK (DEFENCE),94419,2026-10-22T11:50:00+10:00,False,,True,2026-10-22T09:00:00+10:00,2026-10-22T11:52:00+10:00,True,040659,True
+Lowood,Lower Brisbane,Lower Brisbane:lowood:1,not_in_checked_weather_product,540182,-27.47,152.5956,,,,False,,False,,,True,,False
+Spring Bluff ALERT,Lower Brisbane,Lower Brisbane:springbluffalert:1,not_in_checked_weather_product,540527,-27.4692,151.9836,,,,False,,False,,,True,,False
+Summerholm,Lower Brisbane,Lower Brisbane:summerholm:1,not_in_checked_weather_product,540828,-27.6116,152.4641,,,,False,,False,,,True,,False
+Fords Rd (Sandy Creek),Lower Brisbane,Lower Brisbane:fordsrdsandycreek:1,not_in_checked_weather_product,540829,-27.529,152.1928,,,,False,,False,,,True,,False
+Wilsons Lane,Lower Brisbane,Lower Brisbane:wilsonslane:1,identity_unresolved,,,,,,,False,,False,,,True,540626,False
+Brassall (Hancocks Bridge),Lower Brisbane,Lower Brisbane:brassallhancocksbridge:1,not_in_checked_weather_product,540250,-27.6036,152.7439,,,,False,,False,,,True,,False
+Purga Creek,Lower Brisbane,Lower Brisbane:purgacreek:1,not_in_checked_weather_product,140845,-27.8182,152.7547,,,,False,,False,,,True,,False
+North Stradbroke Island,Stradbroke Islands,Stradbroke Islands:northstradbrokeisland:1,not_in_checked_weather_product,540758,-27.5617,153.4329,,,,False,,False,,,True,,False
+Dunwich,Stradbroke Islands,Stradbroke Islands:dunwich:1,not_in_checked_weather_product,540212,-27.4933,153.4158,,,,False,,False,,,True,,False
