@@ -12,7 +12,15 @@ test('live water page maps official stations and opens a real hydrograph',async(
  expect(chart[0].data.at(-1).y).toBe(history.observations.at(-1).level);
  expect(chart[0].data.at(-1).x).toBe(Date.parse(history.observations.at(-1).time));
  expect(chart[0].label).toContain('AHD');expect(chart.length).toBe(1+history.thresholds.length);
- await page.locator('#historyRange').selectOption('168');await expect(page.locator('#waterChart')).toBeVisible();
+ for(const hours of [3,6,12,24,72,168]){
+  await page.locator('#historyRange').selectOption(String(hours));
+  const window=await page.locator('#waterChart').evaluate(c=>{const chart=Chart.getChart(c);return {min:chart.options.scales.x.min,max:chart.options.scales.x.max,points:chart.data.datasets[0].data};});
+  expect(window.max-window.min).toBe(hours*3600000);
+  expect(window.max).toBe(Date.parse(history.observations.at(-1).time));
+  const expected=history.observations.filter(o=>Date.parse(o.time)>=window.min).map(o=>({x:Date.parse(o.time),y:o.level}));
+  expect(window.points).toEqual(expected);
+ }
+
  await page.setViewportSize({width:390,height:844});
  await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
  await page.locator('#statusFilter').selectOption('major');await expect(page.locator('#waterChart')).toHaveCount(0);

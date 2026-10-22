@@ -105,7 +105,7 @@ Selecting a gauge displays the supplied Brisbane 2030 design depth curves (50%, 
 
 ## Water levels page
 
-Use the **Rainfall / Water levels** navigation tabs to switch between separate dashboards. `/water` uses BoM IDQ60286 for Brisbane, Pine, Caboolture and tributaries. Selecting a point or station fetches its linked official observation table and plots a water-level hydrograph, with 24-hour, 72-hour and 7-day windows ending at the latest available report.
+Use the **Rainfall / Water levels** navigation tabs to switch between separate dashboards. `/water` uses BoM IDQ60286 for Brisbane, Pine, Caboolture and tributaries. Selecting a point or station fetches its linked official observation table and plots a water-level hydrograph, with 3-hour, 6-hour, 12-hour, 24-hour, 72-hour and 7-day windows ending at the latest available report.
 
 - Gauge coordinates in `data/water-stations.json` are imported by exact station number from the official BoM section 3 river catalogue dated 5 January 2022, independently of rainfall names and rainfall updates. The captured bulletin has 233 gauges; 226 have catalogue matches and 7 remain explicitly unresolved.
 - Markers and default ranking use BoM's **reported flood classification**, not the raw numerical height. Colours are below flood level (teal), minor (yellow), moderate (orange), major (red), and missing level/unsupplied classification (grey). Unknown classification never means safe or below flood level.
