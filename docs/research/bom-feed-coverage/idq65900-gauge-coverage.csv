@@ -1,0 +1,322 @@
+gauge,group,station_id,coverage,record_count,first_observation_utc,last_observation_utc,quality_codes,full_nine_sample_records
+Meadow Flat Rd Bridge,Ipswich/Brisbane Creeks,540806,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Goolman,Ipswich/Brisbane Creeks,540668,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Flinders View (Ash St),Ipswich/Brisbane Creeks,540808,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Churchill,Ipswich/Brisbane Creeks,540248,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lyons,Ipswich/Brisbane Creeks,040793,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Redbank Plains,Ipswich/Brisbane Creeks,540671,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Spring Mt,Ipswich/Brisbane Creeks,540665,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+South Ripley (Wards Rd),Ipswich/Brisbane Creeks,540666,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+South Ripley (James Ivory Bridge),Ipswich/Brisbane Creeks,540727,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bundamba (Barclay St),Ipswich/Brisbane Creeks,540247,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Six Mile Creek,Ipswich/Brisbane Creeks,540664,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Riverview (Conway St),Ipswich/Brisbane Creeks,540807,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Collingwood Park,Ipswich/Brisbane Creeks,540672,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Springfield Lakes,Ipswich/Brisbane Creeks,540501,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bellbird Park (Purser Rd),Ipswich/Brisbane Creeks,040985,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bellbird Park (Eugene St),Ipswich/Brisbane Creeks,540728,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Brisbane Rd,Ipswich/Brisbane Creeks,040874,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Richlands (Richlands Reservoir),Ipswich/Brisbane Creeks,040785,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wacol (Wacol WWTP),Ipswich/Brisbane Creeks,540098,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Jingle Downs,Ipswich/Brisbane Creeks,040786,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Greenbank (Thompson Rd),Ipswich/Brisbane Creeks,040794,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Forestdale (Johnson Rd),Ipswich/Brisbane Creeks,040788,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Calamvale (Beaudesert Rd),Ipswich/Brisbane Creeks,040784,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Salisbury (Dulcie St),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Archerfield Airport,Ipswich/Brisbane Creeks,040211,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Inala (Durack Bowls Club),Ipswich/Brisbane Creeks,540029,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Forest Lake (Rachele Cl),Ipswich/Brisbane Creeks,540801,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Corinda (Corinda High School),Ipswich/Brisbane Creeks,540071,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rochedale (Landfill),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Mt Gravatt (Griffith Uni),Ipswich/Brisbane Creeks,040790,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Holland Park West (Joachim St),Ipswich/Brisbane Creeks,540134,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+East Brisbane (Caswell St),Ipswich/Brisbane Creeks,540132,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Brisbane (Raymond Park),Ipswich/Brisbane Creeks,040913,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Eight Mile Plains (Gagarra St),Ipswich/Brisbane Creeks,540125,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wishart (Greenwood St),Ipswich/Brisbane Creeks,540127,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mansfield (Merion Pl),Ipswich/Brisbane Creeks,540126,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Chandler (Bacton Rd),Ipswich/Brisbane Creeks,540791,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bulimba (Bulimba Library),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Murarrie (Rosewood Pl),Ipswich/Brisbane Creeks,540800,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Carindale (Old Cleveland Rd),Ipswich/Brisbane Creeks,540128,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Camp Hill (Tarana St),Ipswich/Brisbane Creeks,540240,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Hemmant (Doughboy Pde),Ipswich/Brisbane Creeks,540129,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lytton (WWTP),Ipswich/Brisbane Creeks,540225,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Ransome (Rickertt Rd),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Manly (Harman Rec Reserve),Ipswich/Brisbane Creeks,540282,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wynnum (Bowls Club),Ipswich/Brisbane Creeks,540322,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Pullenvale (Pullenvale Hall),Ipswich/Brisbane Creeks,540297,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kenmore Hills (Chadstone Cl),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Gold Ck Reservoir HG,Ipswich/Brisbane Creeks,540609,mapped_station_absent_from_sample,0,,,,False
+Gold Ck Reservoir,Ipswich/Brisbane Creeks,540107,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Chapel Hill (Green Hill Reservoir),Ipswich/Brisbane Creeks,540465,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Toowong (ANZAC Park),Ipswich/Brisbane Creeks,540281,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rosalie (Baroona Rd),Ipswich/Brisbane Creeks,540785,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Nebo (Three Ways),Ipswich/Brisbane Creeks,540110,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Enoggera Dam HG,Ipswich/Brisbane Creeks,540604,present,2,2026-10-21T22:15:00+00:00,2026-10-21T22:30:00+00:00,3,False
+Enoggera Dam,Ipswich/Brisbane Creeks,540119,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Coot-Tha (ABQ-2),Ipswich/Brisbane Creeks,540117,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Alderley (Sedgley Park),Ipswich/Brisbane Creeks,540239,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bowen Hills (Mayne Railway Yards),Ipswich/Brisbane Creeks,540130,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Eagle Farm (Bcc Asphalt Plant),Ipswich/Brisbane Creeks,540803,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Kedron (Kedron Rec Reserve),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Everton Park (Osborne Rd),Ipswich/Brisbane Creeks,540111,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Toombul (Nudgee Rd),Ipswich/Brisbane Creeks,540548,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Hendra (Pony Club),Ipswich/Brisbane Creeks,540469,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Brisbane Aero,Ipswich/Brisbane Creeks,040842,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Pinkenba (Luggage Point WWTP),Ipswich/Brisbane Creeks,540372,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Boondall (Frank Sleeman Park),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Geebung (Brickyard Rd),Ipswich/Brisbane Creeks,540120,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Everton Hills (Collins Rd),Ipswich/Brisbane Creeks,540121,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Aspley (Reservoir),Ipswich/Brisbane Creeks,540114,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Deagon (Burralong St),Ipswich/Brisbane Creeks,540124,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bracken Ridge Reserve,Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Brighton (Queens Pde),Ipswich/Brisbane Creeks,540802,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Springfield Lakes Low Level Dam,Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Gordon Park (McCord St),Ipswich/Brisbane Creeks,540478,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Beatty Road (Archerfield),Ipswich/Brisbane Creeks,,station_identity_unresolved,0,,,,False
+Redland (Alexandra Hills),Ipswich/Brisbane Creeks,140007,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bundamba School,Ipswich/Brisbane Creeks,040875,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Glorious,Pine/Caboolture,540138,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Cedar Ck Rd,Pine/Caboolture,540444,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Nebo,Pine/Caboolture,540520,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Samford,Pine/Caboolture,540060,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Highvale (Showgrounds Drive),Pine/Caboolture,540655,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Samford Valley,Pine/Caboolture,540739,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Samford Village,Pine/Caboolture,540416,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Clear Mountain,Pine/Caboolture,540418,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Drapers Crossing Alert,Pine/Caboolture,540205,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Eatons Hill,Pine/Caboolture,540794,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Cash's Crossing,Pine/Caboolture,540415,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bridgeman Downs (Pinnaroo Cemetery),Pine/Caboolture,540467,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Strathpine (Gympie Rd),Pine/Caboolture,540625,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kluvers Lookout,Pine/Caboolture,540168,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Raynbird Creek,Pine/Caboolture,540545,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Laceys Creek,Pine/Caboolture,540409,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Dayboro (Terrors Creek),Pine/Caboolture,540628,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Dayboro,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Dayboro WWTP,Pine/Caboolture,540484,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Samson Rd,Pine/Caboolture,540447,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kobble Creek (Ladies Rd),Pine/Caboolture,540656,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+North Pine Dam,Pine/Caboolture,540277,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Browns Creek Rd,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Lake Kurwongbah HG,Pine/Caboolture,540605,present,3,2026-10-21T22:15:00+00:00,2026-10-21T22:45:00+00:00,3,False
+Lake Kurwongbah,Pine/Caboolture,540204,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Youngs Crossing,Pine/Caboolture,540412,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lawnton (Todds Rd),Pine/Caboolture,540562,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lawnton,Pine/Caboolture,540439,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Warner,Pine/Caboolture,540651,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+John Bray Park,Pine/Caboolture,540413,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Murrumba Downs,Pine/Caboolture,540417,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kallangur,Pine/Caboolture,540658,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lipscombe Rd,Pine/Caboolture,540445,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Deception Bay (Major St),Pine/Caboolture,540741,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rothwell,Pine/Caboolture,540659,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kippa-Ring,Pine/Caboolture,540629,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Redcliffe,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Woody Point,Pine/Caboolture,540498,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Moorina,Pine/Caboolture,540358,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Narangba (Oakey Flat Rd),Pine/Caboolture,540508,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Burpengary (Mathew Cr),Pine/Caboolture,540619,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Burpengary (Dale St),Pine/Caboolture,540242,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Deception Bay (Creek Rd),Pine/Caboolture,540623,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Deception Bay,Pine/Caboolture,040980,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mount Mee,Pine/Caboolture,540588,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Mt Mee,Pine/Caboolture,540185,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Ocean View,Pine/Caboolture,540634,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Caboolture (Mcclure Rd),Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Upper Caboolture (Hausman Lane),Pine/Caboolture,540357,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wamuran (Wararba Creek),Pine/Caboolture,540244,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wamuran (Eureka Ct),Pine/Caboolture,540793,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Caboolture WTP,Pine/Caboolture,540243,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Caboolture (Short St),Pine/Caboolture,540660,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Morayfield (Williamson Rd),Pine/Caboolture,540654,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Morayfield (Petersen Rd),Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Sheep Station Ck,Pine/Caboolture,540542,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wamuran (Mcclintock Rd),Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Moodlu (Williams Rd),Pine/Caboolture,540557,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Caboolture (Machinery Pde),Pine/Caboolture,540736,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Round Mt Reservoir,Pine/Caboolture,540241,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Caboolture (Pumicestone Rd),Pine/Caboolture,540561,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Caboolture (Bruce Hwy),Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Caboolture (Bribie Is Rd),Pine/Caboolture,540627,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Beachmere (Riversleigh Rd),Pine/Caboolture,540558,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Beachmere (St Smith Rd),Pine/Caboolture,540740,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Beachmere,Pine/Caboolture,540496,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Beerburrum-Woodford Road,Pine/Caboolture,540622,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Beerburrum,Pine/Caboolture,040284,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Elimbah (Rose Creek Rd),Pine/Caboolture,540543,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Elimbah,Pine/Caboolture,540653,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Toorbul (Donnybrook Rd),Pine/Caboolture,540635,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Westaways Creek,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Bribie Island Quarry,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Banksia Beach,Pine/Caboolture,540735,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bribie Island (Morten Bay),Pine/Caboolture,040978,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bribie Island Treatment,Pine/Caboolture,540631,present,6,2026-10-21T22:15:00+00:00,2026-10-21T23:30:00+00:00,3,False
+Narangba (Main St),Pine/Caboolture,540809,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Burpengary (Rowley Rd),Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Morayfield Rd,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Lees Crossing,Pine/Caboolture,540826,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bribie Island,Pine/Caboolture,540743,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Normanby Way,Pine/Caboolture,540414,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Drapers Crossing Tm,Pine/Caboolture,540398,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Dayboro,Pine/Caboolture,,station_identity_unresolved,0,,,,False
+Crohamhurst,Stanley/Upper Brisbane,540662,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Ferris Knob,Stanley/Upper Brisbane,540190,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Woodford,Stanley/Upper Brisbane,540338,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Delaneys Ck,Stanley/Upper Brisbane,540657,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lindfield (Brisbane River),Stanley/Upper Brisbane,540491,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kilcoy Creek,Stanley/Upper Brisbane,540373,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Kilcoy,Stanley/Upper Brisbane,540163,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Sheepstation Ck,Stanley/Upper Brisbane,540711,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Westvale,Stanley/Upper Brisbane,540486,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Hazeldean,Stanley/Upper Brisbane,540487,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Somerset Dam,Stanley/Upper Brisbane,040820,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Top of Brisbane,Stanley/Upper Brisbane,540164,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Monsildale,Stanley/Upper Brisbane,540490,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Stanley,Stanley/Upper Brisbane,540488,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rangemore,Stanley/Upper Brisbane,541152,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Cooyar-Kooralgin Rd,Stanley/Upper Brisbane,,station_identity_unresolved,0,,,,False
+Blackbutt,Stanley/Upper Brisbane,540493,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Yarraman,Stanley/Upper Brisbane,540145,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Cooyar Creek,Stanley/Upper Brisbane,540146,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Linville Alert,Stanley/Upper Brisbane,540261,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Devon Hills,Stanley/Upper Brisbane,540188,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+St Aubyns,Stanley/Upper Brisbane,540144,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Binga (Brisbane River),Stanley/Upper Brisbane,540494,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Boat Mountain,Stanley/Upper Brisbane,540141,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Glendale,Stanley/Upper Brisbane,540446,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Pohlman Range,Stanley/Upper Brisbane,540459,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Gregor Creek,Stanley/Upper Brisbane,540139,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Crows Nest (Brisbane River),Stanley/Upper Brisbane,540161,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Perseverance Dam,Stanley/Upper Brisbane,,station_identity_unresolved,0,,,,False
+Ravensbourne,Stanley/Upper Brisbane,,station_identity_unresolved,0,,,,False
+Cressbrook Dam,Stanley/Upper Brisbane,540142,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Redbank Creek (Brisbane River),Stanley/Upper Brisbane,540489,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Eskdale,Stanley/Upper Brisbane,540492,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rosentreters Bridge,Stanley/Upper Brisbane,540148,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Toogoolawah Post Office,Stanley/Upper Brisbane,,station_identity_unresolved,0,,,,False
+Fulham,Stanley/Upper Brisbane,540695,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Reedy Creek,Stanley/Upper Brisbane,540732,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Byron,Stanley/Upper Brisbane,540560,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Caboonbah,Stanley/Upper Brisbane,540155,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Glen Esk,Stanley/Upper Brisbane,540524,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bryden,Stanley/Upper Brisbane,540522,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Bellevue Bay,Stanley/Upper Brisbane,540709,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Hays Landing,Stanley/Upper Brisbane,540458,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wivenhoe Dam HG,Stanley/Upper Brisbane,540177,present,6,2026-10-21T22:15:00+00:00,2026-10-21T23:30:00+00:00,3,False
+Wivenhoe Dam TW,Stanley/Upper Brisbane,540178,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Falls Rd,Stanley/Upper Brisbane,540441,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Cressbrook Dam HW,Stanley/Upper Brisbane,540750,present,3,2026-10-21T22:15:00+00:00,2026-10-21T22:45:00+00:00,3,False
+Anduramba,Stanley/Upper Brisbane,540846,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Thornville,Lower Brisbane,540705,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Toowoomba,Lower Brisbane,540162,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Fifteen Mile,Lower Brisbane,540601,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Paradise Creek Rd,Lower Brisbane,540534,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Lockyer,Lower Brisbane,540566,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Withcott,Lower Brisbane,540602,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Helidon,Lower Brisbane,540143,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Gormans Gap,Lower Brisbane,540521,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Flagstone Ck Bore,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Flagstone Creek,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Upper Sandy Creek,Lower Brisbane,540385,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Sandy Creek Rd,Lower Brisbane,540386,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+West Haldon,Lower Brisbane,541106,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+West Woodbine,Lower Brisbane,540166,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Little Egypt,Lower Brisbane,540170,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Ma Ma Creek,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Goltz Rd,Lower Brisbane,540600,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Blackfellow,Lower Brisbane,540570,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Junction View,Lower Brisbane,540568,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Blackfellow Ck,Lower Brisbane,540556,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Upper Tenthill,Lower Brisbane,540519,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Sylvia,Lower Brisbane,540571,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Petersen,Lower Brisbane,540525,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Tenthill,Lower Brisbane,540152,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Tenthill Bore,Lower Brisbane,540553,present,6,2026-10-21T22:15:00+00:00,2026-10-21T23:30:00+00:00,3,False
+Gatton (Lockyer Creek),Lower Brisbane,540156,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Gatton (UQ),Lower Brisbane,040082,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Castle,Lower Brisbane,540171,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Berryman Rd,Lower Brisbane,540718,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rockside Mt,Lower Brisbane,540523,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Moon Rd,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Woodlands Rd (Sandy Creek),Lower Brisbane,540680,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Whiteway Rd,Lower Brisbane,540720,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Forest Hill,Lower Brisbane,540516,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Stoney Ck Rd,Lower Brisbane,540573,present,6,2026-10-21T22:15:00+00:00,2026-10-21T23:30:00+00:00,3,False
+Townson,Lower Brisbane,540716,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Thornton,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Thornton (School Rd),Lower Brisbane,540789,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Main Camp Rd,Lower Brisbane,540717,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mulgowie,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Mulgowie Rd (Laidley Creek),Lower Brisbane,,station_identity_unresolved,0,,,,False
+McGarrigal Rd (Laidley Creek),Lower Brisbane,540722,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Schultz Lookout,Lower Brisbane,540526,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Narda Lagoon,Lower Brisbane,540721,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Showground Weir,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Bill Gunn Dam,Lower Brisbane,540563,present,3,2026-10-21T22:15:00+00:00,2026-10-21T22:45:00+00:00,3,False
+Warrego Highway,Lower Brisbane,540529,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lake Clarendon Dam HW,Lower Brisbane,540546,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Glenore Grove,Lower Brisbane,540149,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Batzloffs Rd,Lower Brisbane,540554,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Mt Stradbroke,Lower Brisbane,540733,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Buaraba,Lower Brisbane,540457,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Clarendon,Lower Brisbane,540701,present,6,2026-10-21T22:15:00+00:00,2026-10-21T23:30:00+00:00,3,False
+O'Reilly's Weir,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Savages Crossing,Lower Brisbane,540150,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Marburg,Lower Brisbane,540312,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lake Manchester HG,Lower Brisbane,540606,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Crosby,Lower Brisbane,540199,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Colleges Crossing,Lower Brisbane,540063,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Adams Bridge,Lower Brisbane,540157,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lower Mt Walker,Lower Brisbane,540574,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Spressers Bridge,Lower Brisbane,540314,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Greys Plains Rd,Lower Brisbane,540317,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Franklyn Vale,Lower Brisbane,040912,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Western Ck,Lower Brisbane,540667,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Grandchester,Lower Brisbane,540064,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kuss Rd,Lower Brisbane,540194,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Tallegalla,Lower Brisbane,040503,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Mt Marrow,Lower Brisbane,540663,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rosewood WWTP,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Rosewood Detention Basin,Lower Brisbane,540503,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Rosewood,Lower Brisbane,540388,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Seven Mile Bridge,Lower Brisbane,540669,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Five Mile Bridge,Lower Brisbane,540147,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Tarome (Warrill Creek),Lower Brisbane,540173,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Warrill Creek Bore,Lower Brisbane,540724,present,5,2026-10-21T22:15:00+00:00,2026-10-21T23:15:00+00:00,3,False
+Toohills Crossing,Lower Brisbane,540549,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Upper Clumber,Lower Brisbane,540681,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Moogerah Dam HG,Lower Brisbane,540474,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kalbar Weir HG,Lower Brisbane,540058,present,2,2026-10-21T22:15:00+00:00,2026-10-21T22:30:00+00:00,3,False
+Kalbar Weir HW,Lower Brisbane,540151,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kalbar,Lower Brisbane,040867,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Kents Lagoon,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Harrisville,Lower Brisbane,540387,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Churchbank Weir Alert,Lower Brisbane,540316,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Willowbank,Lower Brisbane,140024,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Amberley,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Amberley DRDMW,Lower Brisbane,040816,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Amberley AMO,Lower Brisbane,040004,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Washpool,Lower Brisbane,540195,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Peak Crossing,Lower Brisbane,540065,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Berry's Lagoon,Lower Brisbane,,station_identity_unresolved,0,,,,False
+One Mile Bridge,Lower Brisbane,040836,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Limestone Park Detention Basin,Lower Brisbane,540795,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Karalee (Bremer River),Lower Brisbane,540661,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Moggill,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Goodna (Brisbane River),Lower Brisbane,540670,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Jindalee Alert,Lower Brisbane,540192,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Brisbane City,Lower Brisbane,540198,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Goodna Road (Oxley Creek),Lower Brisbane,540646,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Ipswich,Lower Brisbane,040831,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Greenbank,Lower Brisbane,140009,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Lowood,Lower Brisbane,540182,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Spring Bluff ALERT,Lower Brisbane,540527,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Summerholm,Lower Brisbane,540828,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Fords Rd (Sandy Creek),Lower Brisbane,540829,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Wilsons Lane,Lower Brisbane,,station_identity_unresolved,0,,,,False
+Brassall (Hancocks Bridge),Lower Brisbane,540250,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+Purga Creek,Lower Brisbane,140845,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True
+North Stradbroke Island,Stradbroke Islands,540758,present,4,2026-10-21T22:15:00+00:00,2026-10-21T23:00:00+00:00,3,False
+Dunwich,Stradbroke Islands,540212,present,9,2026-10-21T22:15:00+00:00,2026-10-22T00:15:00+00:00,3,True

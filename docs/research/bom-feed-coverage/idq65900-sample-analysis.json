@@ -1,0 +1,35 @@
+{
+  "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022002300.hcs",
+  "sourceSha256": "bf5fdaa84702300041ce7a1ff0ae32aaad6f5f06ab83fdba3c2b42c07f4b5060",
+  "sourceFormat": "BOM-HCS",
+  "sourceVersion": "2.0",
+  "fileGeneratedAt": "2026-10-22T00:23:11Z",
+  "records": 12647,
+  "stations": 1694,
+  "unit": "mm",
+  "sensorTypeCounts": {
+    "RN": 12647
+  },
+  "sensorDataTypeCounts": {
+    "6": 12647
+  },
+  "durationParameter": 900,
+  "qualityCounts": {
+    "3": 12647
+  },
+  "firstObservationUTC": "2026-10-21T22:15:00+00:00",
+  "lastObservationUTC": "2026-10-22T00:15:00+00:00",
+  "currentGaugeRows": 321,
+  "coverage": {
+    "present": 279,
+    "station_identity_unresolved": 41,
+    "mapped_station_absent_from_sample": 1
+  },
+  "completeNineRecordsAmongMatches": 253,
+  "duplicateStationTimes": 0,
+  "hourlyCrossChecks": 527,
+  "hourlyCrossChecksAgreeWithinPointOneMM": 527,
+  "qualityCodeMeaning": "Not yet independently established. Codes preserved; no quality-control guarantee inferred.",
+  "rawDataPublished": false,
+  "dashboardOrCollectorChanged": false
+}

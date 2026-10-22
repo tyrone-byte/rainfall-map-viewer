@@ -24,6 +24,32 @@ The first GitHub FTP attempt reached the server but returned curl error 78 (the 
 
 The successful job is [run 39711565724](https://github.com/tyrone-byte/rainfall-map-viewer/actions/runs/39711565724). Both sample workflows have been left manual-only, with no schedule and no automatic further downloads. No source observations are committed or published to the dashboard. Future manual sample runs discover filenames and prefer the newest supported file. A direct HTTPS request for the exact discovered filename also returned 404; FTP availability does not imply a public HTTPS mirror.
 
+### Sample inspected: broad fifteen-minute rainfall coverage confirmed
+
+The user supplied the successful job artifact, allowing the actual HCS file to be inspected offline. The source SHA-256 matches the downloader report: `bf5fdaa84702300041ce7a1ff0ae32aaad6f5f06ab83fdba3c2b42c07f4b5060`.
+
+| Check | Result |
+|---|---:|
+| Actual rows / header record count | 12,647 / 12,647 |
+| Distinct source station IDs | 1,694 |
+| Current rainfall gauge rows found by live-map station ID | **279** |
+| Mapped ID absent from this sample | **1** |
+| Gauge identities still unresolved | **41** |
+| Matched gauges with all nine sample timestamps | **253 of 279** |
+| Complete quarter-hour sums agreeing with the hourly bulletin | **527 of 527** |
+
+All records in this sample use `SensorType=RN`, `SensorDataType=6`, `SiteIdType=SR`, `Unit=mm`, `SensorParam2=900` and `Quality=3`. Observation timestamps are explicit UTC (`Z`), on quarter-hour boundaries. End timestamps run from **08:15 to 10:15 AEST on 22 October 2026**, and the file was generated at 10:23:11 AEST. There are no duplicate station/timestamp pairs in this capture.
+
+To test whether amounts represent rainfall within the preceding quarter hour, four consecutive end-stamped values were summed for hours ending 09:00 and 10:00 AEST and compared with the separately captured IDQ60336 hourly bulletin. All **527** comparisons with complete source coverage agreed to the bulletin's 0.1-mm display precision. This provides strong empirical validation of interval totals and end timestamps. Missing comparisons were omitted, never filled with zero. Source quality code 3 is preserved without assigning an undocumented meaning or claiming the data has passed final quality assurance; HCS code definitions and operational usage arrangements still need confirmation before production ingestion.
+
+The one identifiable gauge absent from this particular sample is **Gold Ck Reservoir HG (540609)**. Absence in this capture is not a permanent coverage claim. The 41 unresolved identities must be reconciled separately; they cannot be declared uncovered merely because the name-to-ID join is incomplete. An additional 26 matched gauges have fewer than nine observations in the sample, so data gaps are a real requirement rather than a hypothetical one.
+
+The key conclusion is now different from the initial weather-feed-only investigation: **IDQ65900 has broad overlap with the actual flood-warning rainfall network and is a suitable candidate for the requested sub-hourly archive.** The eight-overlap IDQ60920 findings below remain accurate only for that narrower weather feed.
+
+`idq65900-gauge-coverage.csv` provides all 321 gauge rows, coverage classification, observation counts and UTC time ranges, without publishing raw rainfall amounts. `idq65900-sample-analysis.json` preserves source metadata and validation counts. The raw HCS source remains in the user-provided artifact; it has not been committed or published to the viewer. `bom_hcs.py` is an offline, side-effect-free reader with focused regression tests. No scheduled collection, persistent archive, source switch or dashboard change has been made.
+
+A future collector should fetch the newest timestamped product periodically, record its source timestamp/hash, deduplicate the overlapping windows by source station/sensor/time, retain quality and correction history, and persist data independently of Render's ephemeral cache. It must distinguish a failed download or missing station block from zero rainfall. A dedicated archive and collection schedule are still implementation work, not an existing capability.
+
 ## Evidence and scope
 
 The official ten-minute Queensland observation product **IDQ60920** was retrieved successfully from [BoM's HTTPS product directory](https://reg.bom.gov.au/fwo/IDQ60920.xml). Its issue time in the capture is **22 October 2026, 11:51:01 AEST**. The [technical guide](https://www.bom.gov.au/catalogue/Observations-XML.pdf) also lists it on anonymous FTP at `ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ60920.xml`. Direct FTP access could not be verified from this environment: the hostname did not resolve. Successful HTTPS access does not establish FTP connectivity or registered-service access.
