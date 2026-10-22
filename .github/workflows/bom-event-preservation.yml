@@ -1,0 +1,29 @@
+name: Preserve current BoM storm observations
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/bom-event-preservation.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bom-event-preservation
+  cancel-in-progress: false
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover at most twelve retained rainfall files and three bulletin tables
+        run: python tools/preserve_bom_event.py
+      - name: Save authenticated recovery archive
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bom-storm-recovery
+          path: .cache/event-preservation/recovered/
+          retention-days: 90
