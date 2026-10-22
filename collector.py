@@ -25,7 +25,7 @@ def targets():
     rows = json.loads((ROOT / 'data/archive-stations.json').read_text())['gauges']
     return {r['gauge_row_id']: r['live_map_station_id'] for r in rows}
 
-def ingest(store, raw, source, kind=None):
+def ingest(store, raw, source, kind=None, update_status=True, fetched_at=None):
     """Validate a complete source before archiving its normalized observations."""
     mapping = targets()
     if kind == 'rain-15m' or source.endswith('.hcs'):
@@ -53,7 +53,7 @@ def ingest(store, raw, source, kind=None):
             kind = f'rain-{interval}h'
             data = rainfall.parse(html, interval, source)
         issued = data['issuedAt']
-    snapshot, fresh = store.snapshot(raw, source, kind, issued)
+    snapshot, fresh = store.snapshot(raw, source, kind, issued, fetched_at=fetched_at)
     count = 0
     if fresh:
         if kind == 'rain-15m':
@@ -88,8 +88,9 @@ def ingest(store, raw, source, kind=None):
                     observation['time'], 0, observation['level'], kind, issued,
                     datum=data.get('datum', 'Unspecified'), metadata={'sourceOrder': ordinal,
                     'timeBasis': 'Explicit history-table timestamp'})
-    store.status(kind, issued, 'ok', {'newOrChangedObservations': count,
-                                     'warnings': data.get('warnings', [])})
+    if update_status:
+        store.status(kind, issued, 'ok', {'newOrChangedObservations': count,
+                                         'warnings': data.get('warnings', [])})
     store.db.commit()
     return count
 
@@ -184,7 +185,7 @@ def main():
             for name in args.import_files:
                 path = Path(name)
                 try:
-                    count += ingest(store, path.read_bytes(), str(path))
+                    count += ingest(store, path.read_bytes(), str(path), update_status=False)
                 except Exception:
                     store.db.rollback()
                     raise
@@ -195,10 +196,24 @@ def main():
                 if not lock['acquired']:
                     print('Another collector is already active.'); return 1
             run = store.start_run()
+            recovery_error = False
+            if os.environ.get('EVENT_IMPORT_KEY'):
+                from event_recovery import recover_event
+                try:
+                    recovery = recover_event(store, ingest)
+                    print(json.dumps({'eventRecovery': recovery}), flush=True)
+                except Exception:
+                    store.db.rollback()
+                    recovery_error = True
+                    print(json.dumps({'eventRecovery': {'status': 'failed',
+                        'message': 'Saved-event import failed. Check the import key and package. Normal collection will still run.'}}), flush=True)
             results, errors = collect(store)
-            store.finish_run(run, 'failed' if errors else 'ok', {'results': results, 'errors': errors})
+            if recovery_error:
+                errors.append({'source': 'event-recovery', 'error': 'ImportFailed'})
+            store.finish_run(run, 'failed' if errors or recovery_error else 'ok',
+                             {'results': results, 'errors': errors, 'recoveryFailed': recovery_error})
             print(json.dumps({'newOrChangedObservations': results, 'errors': errors}))
-            if errors:
+            if errors or recovery_error:
                 return 1
             # Optional independent dead-man monitor: alert if successful runs stop.
             # Treat the URL as a secret; never include it in logs or exceptions.

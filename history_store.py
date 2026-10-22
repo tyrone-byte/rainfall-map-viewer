@@ -56,6 +56,8 @@ class Store:
             '''CREATE TABLE IF NOT EXISTS source_status (
                 source TEXT PRIMARY KEY, checked_at TEXT NOT NULL, issued_at TEXT,
                 status TEXT NOT NULL, details TEXT NOT NULL)''',
+            '''CREATE TABLE IF NOT EXISTS event_imports (
+                id TEXT PRIMARY KEY, completed_at TEXT NOT NULL, report TEXT NOT NULL)''',
         ):
             self.execute(sql)
         self.db.commit()

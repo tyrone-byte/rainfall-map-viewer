@@ -14,6 +14,9 @@ The [gauge-status report and saved 15-minute totals](docs/GAUGE_STATUS.md) read
 the collector archive when `HISTORY_DATABASE_URL` is configured on the web service.
 Report age limits default to 60 minutes / 6 hours; no rapid-change alarms are used.
 
+[Morning-event recovery](docs/EVENT_RECOVERY.md) is prepared as an opt-in import
+inside the collector. Preparing the package does not backfill the hosted database.
+
 ## Open it as a website
 
 The included `render.yaml` and `Dockerfile` prepare this app for Render hosting. The code must first be committed and pushed to your GitHub repository; files in this cloud workspace are not automatically on GitHub.

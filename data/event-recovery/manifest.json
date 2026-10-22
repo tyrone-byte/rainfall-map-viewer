@@ -1,0 +1,50 @@
+{
+  "event": "2026-10-22",
+  "captures": 7,
+  "includesGitHubRecovery": false,
+  "packageSha256": "c4b58e15e6ad9ccf94f28ae707c3c2315273f082a78e421e18b60f1ca823d486",
+  "sources": [
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022002300.hcs",
+      "issuedAt": "2026-10-22T00:23:11+00:00",
+      "sha256": "bf5fdaa84702300041ce7a1ff0ae32aaad6f5f06ab83fdba3c2b42c07f4b5060"
+    },
+    {
+      "kind": "rain-3h",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60348.html",
+      "issuedAt": "2026-10-22T08:53:00+10:00",
+      "sha256": "89134993a844820548019425afcbb87382acb7466e645fae1f18adb07c58937f"
+    },
+    {
+      "kind": "water-history",
+      "source": "https://reg.bom.gov.au/fwo/IDQ65389/IDQ65389.540245.tbl.shtml",
+      "issuedAt": "2026-10-22T10:38:00+10:00",
+      "sha256": "18dbd43a785f5e1eedbbcf84f801ab8d9907f99aacbbaa999550deb698ba875d"
+    },
+    {
+      "kind": "rain-3h",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60348.html",
+      "issuedAt": "2026-10-22T11:23:00+10:00",
+      "sha256": "e3c5f5a96db8cffca95b4636616fccce7704ca57618c974b4ffeaba8115fa2ce"
+    },
+    {
+      "kind": "water-history",
+      "source": "https://reg.bom.gov.au/fwo/IDQ65389/IDQ65389.540111.tbl.shtml",
+      "issuedAt": "2026-10-22T11:23:00+10:00",
+      "sha256": "1732c42ea51c98ff4038e78e138231a03d017ecd5cd19f1e287d029adde7b876"
+    },
+    {
+      "kind": "water-summary",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "issuedAt": "2026-10-22T11:24:00+10:00",
+      "sha256": "3b6840e36d0d188bf574629a694dcf9a2d11d1a77b2ba306aba70958dd07ac29"
+    },
+    {
+      "kind": "rain-1h",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60336.html",
+      "issuedAt": "2026-10-22T11:53:00+10:00",
+      "sha256": "47627436d294f8bbecdaca905511d0ff3ec5827808715bd2a54a4bc11e570493"
+    }
+  ]
+}
