@@ -45,11 +45,12 @@ test('chart interval groups bars independently of map totals and native IFD, wit
  expect(points[0]).toEqual({x:15,y:1});expect(points.at(-1)).toEqual({x:1440,y:96});
  const period=await page.locator('#period').textContent();
  await page.locator('#chartInterval').selectOption('60');
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(24).fill(4));
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(3).fill(4));
  expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(points);
  await expect(page.locator('#period')).toHaveText(period);
  await page.locator('#accumulation').selectOption('30');await expect(page.locator('#period')).toContainText('30 minutes');
- await expect(page.locator('#chartInterval')).toHaveValue('60');
+ await expect(page.locator('#chartInterval')).toHaveValue('30');
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual([2]);
  await page.setViewportSize({width:390,height:844});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
  expect(errors).toEqual([]);
 });
@@ -71,6 +72,7 @@ test('IFD keeps a missing quarter as a gap and map labels stay on failed window 
  const points=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
  expect(points[0].y).toBe(1);expect(points[1].y).toBeNull();
  await page.locator('#chartInterval').selectOption('30');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.at(-1))).toBeNull();
+ await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
  const caption=await page.locator('#period').textContent();
  await page.route('**/api/archive-rainfall/frame?*',r=>r.fulfill({status:503,json:{error:'Test failure'}}));
  await page.locator('#previous').click();await expect(page.locator('#notice')).toContainText('earlier labelled window');
@@ -78,6 +80,7 @@ test('IFD keeps a missing quarter as a gap and map labels stay on failed window 
 });
 test('late window response cannot replace a newer slider selection',async({page})=>{
  await mock(page);await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
+ await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
  let delayed=false;
  await page.route('**/api/archive-rainfall/frame?*',async route=>{
   const url=new URL(route.request().url()),end=url.searchParams.get('end'),minutes=Number(url.searchParams.get('minutes'));
@@ -109,10 +112,37 @@ test('ending picker uses Brisbane time and bookmarked selections survive reload'
 });
 test('refresh preserves a paused time while Latest follows newly collected periods',async({page})=>{
  const requests=await mock(page);await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
+ await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
  await page.locator('#previous').click();await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-900000);
  const newer=new Date(Date.parse(last)+900000).toISOString();
  await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{...metadata,lastEnd:newer}}));
  await page.locator('#refresh').click();await expect(page.locator('#refresh')).toBeEnabled();
  expect(Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-900000);
  await page.locator('#latest').click();await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(newer));
+});
+
+test('rainfall duration bounds the chart and steps ending time while IFD retains its 24-hour search',async({page})=>{
+ const requests=await mock(page);
+ await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{...metadata,firstEnd:'2026-10-20T00:00:00Z'}}));
+ await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
+ await expect(page.getByLabel('Rainfall duration',{exact:true})).toHaveValue('180');
+ await expect(page.locator('#previous')).toHaveText('← 3 hours');
+ await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
+ await expect(page.locator('#observationTable tbody tr')).toHaveCount(12);
+ const original=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
+ await page.locator('#ifdMode').selectOption({label:'Wettest windows in preceding 24 hours'});
+ await expect(page.locator('.ifd-explanation')).toContainText('24 hours preceding');
+ await page.locator('#accumulation').selectOption('360');
+ await expect(page.locator('#observationTable tbody tr')).toHaveCount(24);
+ expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(original);
+ await expect(page.locator('#previous')).toHaveText('← 6 hours');
+ await page.locator('#previous').click();
+ await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-6*3600000);
+ await expect(page.locator('#observationTable tbody tr').first()).toContainText('23:00');
+ await expect(page.locator('#observationTable tbody tr').last()).toContainText('05:00');
+ await page.locator('#chartInterval').selectOption('60');
+ await expect(page.locator('#observationTable tbody tr')).toHaveCount(6);
+ await page.locator('#next').click();
+ await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last));
+ await expect(page.locator('#chartInterval')).toHaveValue('60');
 });

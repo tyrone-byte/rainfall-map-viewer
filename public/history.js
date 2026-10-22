@@ -34,9 +34,11 @@ function controlTime(){
  $('timeline').max=Math.round((last-first)/900000);$('timeline').value=Math.round((selectedTime-first)/900000);
  $('timeline').disabled=false;$('ending').disabled=false;$('accumulation').disabled=false;$('latest').disabled=false;
  $('ending').min=localInput(extent.firstEnd);$('ending').max=localInput(extent.lastEnd);$('ending').value=localInput(targetEnd);
- $('timeLabel').textContent=`Ending ${date(targetEnd)} AEST`;$('timeline').setAttribute('aria-valuetext',`${date(targetEnd)} AEST`);
+ $('timeLabel').textContent=`${date(new Date(selectedTime-Number($('accumulation').value)*60000).toISOString())} – ${date(targetEnd)} AEST`;$('timeline').setAttribute('aria-valuetext',`${date(targetEnd)} AEST`);
  $('firstTime').textContent=date(extent.firstEnd);$('lastTime').textContent=date(extent.lastEnd);
- $('previous').disabled=selectedTime<=first;$('next').disabled=selectedTime>=last;
+ const step=Number($('accumulation').value)*60000,stepLabel=duration(step/60000);
+ $('previous').textContent=`← ${stepLabel}`;$('next').textContent=`${stepLabel} →`;
+ $('previous').disabled=selectedTime-step<first;$('next').disabled=selectedTime+step>last;
  $('latest').setAttribute('aria-pressed',String(follow));
 }
 function freshness(){
@@ -89,8 +91,10 @@ function renderDetail(station,series){
  const metrics=node('div',undefined,'metrics');
  for(const [value,label] of [[mm(station.depth),`Selected ${duration(frame.minutes)} total`],[complete?mm(valid.reduce((a,b)=>a+b,0)):'Incomplete','24-hour total ending at selected time']]){const metric=node('div',undefined,'metric');metric.append(node('strong',value),node('span',label));metrics.append(metric);}host.append(metrics);
  host.append(node('p',`${date(frame.start)} – ${date(frame.end)} AEST · ${station.validBlocks}/${station.expectedBlocks} required quarter-hours present.`,'history-coverage'));
- host.append(node('p',`The following chart covers the 24 hours ending at the selected time. ${valid.length}/96 saved quarter-hours are available. Chart interval groups bars only; it does not change map accumulations or IFD calculations.`,'history-window'));
- const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';for(const m of [15,30,60,180])select.append(new Option(duration(m),m));select.value=chartMinutes;label.append(select);controls.append(label);host.append(controls);
+ host.append(node('p',`The chart covers the selected ${duration(frame.minutes)} ending at ${date(frame.end)} AEST, matching the map window. Missing observations remain gaps. Chart interval groups bars only; the IFD comparison independently uses the preceding 24 hours.`,'history-window'));
+ const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';const intervals=[15,30,60,180].filter(m=>m<=frame.minutes&&frame.minutes%m===0);
+ if(!intervals.includes(chartMinutes))chartMinutes=intervals.at(-1);
+ for(const m of intervals)select.append(new Option(duration(m),m));select.value=chartMinutes;label.append(select);controls.append(label);host.append(controls);
  const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='hyetograph';canvas.setAttribute('role','img');wrap.append(canvas);host.append(wrap);
  const tw=node('div',undefined,'history-table table-wrap'),table=node('table');table.id='observationTable';tw.append(table);host.append(tw);
  select.onchange=()=>{chartMinutes=Number(select.value);renderChart(series,chartMinutes);};renderChart(series,chartMinutes);
@@ -99,8 +103,8 @@ function renderDetail(station,series){
 }
 function renderChart(station,minutes){
  if(!data)return;
- const step=minutes/15,periods=[],values=[];
- for(let i=0;i<data.periods.length;i+=step){const chunk=station.values.slice(i,i+step);periods.push({start:data.periods[i].start,end:data.periods[i+step-1].end});values.push(chunk.length===step&&chunk.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0)?chunk.reduce((a,b)=>a+b,0):null);}
+ const step=minutes/15,periods=[],values=[],first=data.periods.length-frame.minutes/15;
+ for(let i=first;i<data.periods.length;i+=step){const chunk=station.values.slice(i,i+step);periods.push({start:data.periods[i].start,end:data.periods[i+step-1].end});values.push(chunk.length===step&&chunk.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0)?chunk.reduce((a,b)=>a+b,0):null);}
  chart?.destroy();const canvas=$('hyetograph');canvas.setAttribute('aria-label',`${station.name}: saved rainfall in chronological ${duration(minutes)} bars, in millimetres.`);
  chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:`${duration(minutes)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:`${duration(minutes)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
  const table=$('observationTable');table.replaceChildren();const head=node('thead'),tr=node('tr');for(const text of ['Period start (AEST)','Period end (AEST)','Rainfall (mm)'])tr.append(node('th',text));head.append(tr);table.append(head);const body=node('tbody');periods.forEach((p,i)=>{const row=node('tr');row.append(node('td',date(p.start)),node('td',date(p.end)),node('td',values[i]===null?'Incomplete':values[i].toFixed(1)));body.append(row);});table.append(body);table.parentElement.scrollTop=table.parentElement.scrollHeight;
@@ -133,9 +137,9 @@ async function refresh(){
 function selectTime(end){targetEnd=end;follow=false;loadVersion++;detailVersion++;frameController?.abort();detailController?.abort();controlTime();$('loading').textContent='Loading selection… Existing map shows the previous completed selection.';clearTimeout(sliderTimer);sliderTimer=setTimeout(loadFrame,180);}
 $('timeline').oninput=()=>selectTime(new Date(Date.parse(extent.firstEnd)+Number($('timeline').value)*900000).toISOString());
 $('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!Number.isFinite(time)||time<Date.parse(extent.firstEnd)||time>Date.parse(extent.lastEnd)||time%900000!==0){notice('Choose a saved ending time on a 15-minute boundary, in Brisbane time.');return;}selectTime(new Date(time).toISOString());};
-$('previous').onclick=()=>selectTime(new Date(Date.parse(targetEnd)-900000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(targetEnd)+900000).toISOString());
+$('previous').onclick=()=>selectTime(new Date(Date.parse(targetEnd)-Number($('accumulation').value)*60000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(targetEnd)+Number($('accumulation').value)*60000).toISOString());
 $('latest').onclick=()=>{follow=true;targetEnd=extent.lastEnd;controlTime();clearTimeout(sliderTimer);loadFrame();};
-$('accumulation').onchange=()=>{clearTimeout(sliderTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
+$('accumulation').onchange=()=>{controlTime();clearTimeout(sliderTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
 for(const id of ['search','group','rainFilter'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
 $('thresholds').onsubmit=event=>{event.preventDefault();const values=thresholds.map((_,i)=>Number($(`t${i+1}`).value));if(values.some(v=>!Number.isFinite(v)||v<0)||values.some((v,i)=>i>0&&v<=values[i-1])){$('thresholdError').textContent='Enter increasing non-negative limits.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();};
 displayLimits();legend();refresh();setInterval(refresh,60000);
