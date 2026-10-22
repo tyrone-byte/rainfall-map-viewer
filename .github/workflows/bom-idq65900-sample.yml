@@ -1,0 +1,29 @@
+name: Fetch one BoM IDQ65900 sample
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/bom-idq65900-sample.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: bom-idq65900-sample
+  cancel-in-progress: false
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch one published CSV, with no retries
+        run: python tools/fetch_bom_idq65900_sample.py
+      - name: Preserve sample or failure report for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bom-idq65900-sample
+          path: .cache/bom-idq65900-sample/
+          retention-days: 14
