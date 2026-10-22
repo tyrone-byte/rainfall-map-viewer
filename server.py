@@ -55,6 +55,13 @@ def load_data(refresh=False):
         return data
 
 class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        # Browser application files must not survive a deployment as stale code.
+        # Vendor libraries remain independently cacheable.
+        if urlsplit(self.path).path.startswith('/public/'):
+            self.send_header('Cache-Control', 'no-store')
+        super().end_headers()
+
     def do_GET(self):
         path = urlsplit(self.path).path
         if path == '/api/rainfall':

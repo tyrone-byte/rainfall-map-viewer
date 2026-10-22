@@ -40,3 +40,25 @@ class CacheTests(unittest.TestCase):
         with patch('server.subprocess.run',side_effect=subprocess.CalledProcessError(22,['curl'])):
             with self.assertRaises(ValueError):server.load_data()
         self.assertFalse((self.cache/'bulletin.json').exists())
+
+class BrowserCacheTests(unittest.TestCase):
+    def test_deployment_serves_versioned_uncached_application_files(self):
+        import threading
+        from urllib.request import urlopen
+        httpd=server.ThreadingHTTPServer(('127.0.0.1',0),server.Handler)
+        thread=threading.Thread(target=httpd.serve_forever,daemon=True)
+        thread.start()
+        try:
+            base=f'http://127.0.0.1:{httpd.server_port}'
+            with urlopen(base+'/') as response:
+                html=response.read().decode()
+                self.assertEqual(response.headers.get('Cache-Control'),'no-store')
+                self.assertIn('/app.js?v=ifd-2',html)
+                self.assertIn('/ifd-view.js?v=ifd-2',html)
+            with urlopen(base+'/app.js?v=ifd-2') as response:
+                self.assertEqual(response.headers.get('Cache-Control'),'no-store')
+                self.assertIn('renderIfd(s)',response.read().decode())
+        finally:
+            httpd.shutdown()
+            httpd.server_close()
+            thread.join()
