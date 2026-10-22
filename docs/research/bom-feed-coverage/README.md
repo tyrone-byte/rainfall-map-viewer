@@ -2,6 +2,22 @@
 
 This is a read-only investigation. No collector, archive, dashboard data source, or ARR batch was started or changed.
 
+## Follow-up: IDQ65900 is the more relevant product to investigate
+
+The full machine-readable [BoM anonymous FTP product catalogue](https://www.bom.gov.au/catalogue/data/SMSRPR09.json), loaded by the public catalogue page, explicitly lists:
+
+| Product | Official description | Formats |
+|---|---|---|
+| **IDQ65900** | **Rain gauge 15 minute observations for QLD** | CSV, HCS, TXT |
+| IDQ65910 | River height most recent observations for QLD | CSV, HCS, TXT |
+| IDQ65911 | River height last 3-hour observations for QLD | CSV, HCS, TXT |
+
+These records are preserved in `additional-products.json`. IDQ65900 was missed in the initial investigation. The eight-station result below applies only to **IDQ60920**, not to IDQ65900 or all BoM services. It must not be interpreted as a whole-network availability conclusion.
+
+IDQ65900 should now be the first rainfall product examined for the flood-gauge network. A sample has **not yet been obtained or parsed**: `/fwo/IDQ65900.csv` is not available at the standard HTTPS product path tested (404), while anonymous FTP connectivity could not be verified from this environment. A missing HTTPS mirror does not mean the FTP product is unavailable.
+
+Before using it, check the actual station IDs against our network and establish whether the values are interval totals, cumulative counters, or another observation representation; the catalogue name alone does not establish exact accumulation boundaries. Confirm timestamps, update cadence, missing-value conventions, resets and corrections. Catalogue `delete_time=2` means the product can expire after two hours without replacement, **not** that it necessarily contains two hours of history. No scheduled collection or dashboard feed change has been made.
+
 ## Evidence and scope
 
 The official ten-minute Queensland observation product **IDQ60920** was retrieved successfully from [BoM's HTTPS product directory](https://reg.bom.gov.au/fwo/IDQ60920.xml). Its issue time in the capture is **22 October 2026, 11:51:01 AEST**. The [technical guide](https://www.bom.gov.au/catalogue/Observations-XML.pdf) also lists it on anonymous FTP at `ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ60920.xml`. Direct FTP access could not be verified from this environment: the hostname did not resolve. Successful HTTPS access does not establish FTP connectivity or registered-service access.

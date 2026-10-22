@@ -1,0 +1,44 @@
+{
+  "source": "https://www.bom.gov.au/catalogue/data/SMSRPR09.json",
+  "products": [
+    {
+      "id": "IDQ65900",
+      "description": "Rain gauge 15 minute observations for QLD",
+      "formats": [
+        "csv",
+        "hcs",
+        "txt"
+      ],
+      "type": "O",
+      "type_descr": "Observation",
+      "delete_time": "2",
+      "source_system_group_id": "AIFS"
+    },
+    {
+      "id": "IDQ65910",
+      "description": "River height most recent observations for QLD",
+      "formats": [
+        "csv",
+        "hcs",
+        "txt"
+      ],
+      "type": "O",
+      "type_descr": "Observation",
+      "delete_time": "2",
+      "source_system_group_id": "AIFS"
+    },
+    {
+      "id": "IDQ65911",
+      "description": "River height last 3-hour observations for QLD",
+      "formats": [
+        "csv",
+        "hcs",
+        "txt"
+      ],
+      "type": "O",
+      "type_descr": "Observation",
+      "delete_time": "6",
+      "source_system_group_id": "AIFS"
+    }
+  ]
+}
