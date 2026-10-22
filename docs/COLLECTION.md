@@ -102,8 +102,10 @@ and older source revisions cannot overwrite newer values.
 
 `--health` exits nonzero when a required source failed, checks stopped for thirty
 minutes, or a source issue time is over an hour old. Successful imports alone are
-not proof of a scheduled collector. The dashboard has not yet been connected to
-this archive; a historical slider and archive API are subsequent viewer work.
+not proof of a scheduled collector. The dashboard's gauge-status report and saved
+quarter-hour totals can read this archive after the web service is configured;
+see [Gauge status and archive connection](GAUGE_STATUS.md). A historical slider
+and migration of the main map/IFD plots remain subsequent viewer work.
 
 ## Event recovery and validation, 22 October 2026
 

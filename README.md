@@ -1,14 +1,18 @@
 # Rainfall Atlas — Southeast Queensland
 
-A working prototype using **real Bureau of Meteorology IDQ60348 observations**, Leaflet, Chart.js and OpenStreetMap. Plain HTML/CSS/JavaScript, a small Python server, and a separate station coordinate file. No database, authentication, or API key.
+A working prototype using **real Bureau of Meteorology IDQ60348 observations**, Leaflet, Chart.js and OpenStreetMap. Plain HTML/CSS/JavaScript, a small Python server, and a separate station coordinate file. Live bulletin views require no database, authentication, or API key.
 
 An optional, separate [permanent observation collector](docs/COLLECTION.md) is
-now prepared for PostgreSQL and a scheduled job. It is not activated by deploying
-the viewer, and the viewer does not yet query that archive.
+prepared for PostgreSQL and a scheduled job is not activated by deploying the
+viewer. Archive views require the web service's own database connection.
 
 Before purchasing collection hosting, use the [BoM FTP connection test](docs/BOM_CONNECTION_TEST.md)
 on the existing free Render service at `/diagnostics/bom`. It requires one explicit
 button click and does not create paid resources.
+
+The [gauge-status report and saved 15-minute totals](docs/GAUGE_STATUS.md) read
+the collector archive when `HISTORY_DATABASE_URL` is configured on the web service.
+Report age limits default to 60 minutes / 6 hours; no rapid-change alarms are used.
 
 ## Open it as a website
 

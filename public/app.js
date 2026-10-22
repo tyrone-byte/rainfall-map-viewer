@@ -106,6 +106,7 @@ function choose(id,pan){
  for(const h of ['3-hour period start (AEST)','Period end (AEST)','Rainfall (mm)'])hr.append(node('th',h));head.append(hr);table.append(head);
  const body=node('tbody');data.periods.forEach((p,i)=>{const r=node('tr');r.append(node('td',date(p.start)),node('td',date(p.end)),node('td',mm(s.values[i])));body.append(r);});table.append(body);tw.append(table);detail.append(tw);
  const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';detail.append(comparison);renderIfd(s);
+ const archive=node('section',undefined,'archived-rainfall ifd-comparison');detail.append(archive);renderArchivedRainfall(archive,s);
  if(s.coordinates){const c=s.coordinates,p=node('p',undefined,'detail-source'),a=node('a',`BoM station ${c.stationNumber} · ${c.catalogueName}`);a.href=c.source;a.target='_blank';a.rel='noopener';p.append(a,` · ${c.lat}, ${c.lon} · catalogue ${c.catalogueDate}.`);detail.append(p);}
 }
 async function load(refresh=false){

@@ -8,7 +8,9 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY server.py rainfall.py water.py water_service.py bom_diagnostic.py bom_hcs.py bom_source.py ./
+COPY requirements-collector.txt ./
+RUN pip install --no-cache-dir -r requirements-collector.txt
+COPY server.py rainfall.py water.py water_service.py bom_diagnostic.py bom_hcs.py bom_source.py archive_service.py ./
 COPY public ./public
 COPY data ./data
 COPY --from=browser-libraries /build/node_modules/leaflet/dist ./node_modules/leaflet/dist

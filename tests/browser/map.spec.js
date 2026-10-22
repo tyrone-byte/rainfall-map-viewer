@@ -24,7 +24,7 @@ test('live BoM -> map -> station -> chronological hyetograph and filters',async(
  expect(values.labels).toEqual(live.periods.map(p=>date(p.end)));
  await page.locator('#rainFilter').selectOption(latest!==null && latest<=5?'red':'green');await expect(page.locator('.station')).toHaveCount(0);
  await page.locator('#rainFilter').selectOption('all');await page.locator('.station').click();
- await page.locator('summary').click();await page.locator('#t1').fill('0');await page.locator('#t2').fill('0.1');await page.locator('#t3').fill('0.2');await page.getByRole('button',{name:'Apply',exact:true}).click();
+ await page.locator('.settings > summary').click();await page.locator('#t1').fill('0');await page.locator('#t2').fill('0.1');await page.locator('#t3').fill('0.2');await page.getByRole('button',{name:'Apply',exact:true}).click();
  const limits=[0,.1,.2,40,50,80,130,180,200],ids=['green','yellow','orange','red','crimson','magenta','purple','indigo','blue','navy'];
  const i=limits.findIndex(v=>latest<=v);
  await page.locator('#rainFilter').selectOption(latest===null?'missing':ids[i<0?9:i]);await expect(page.locator('.station')).toHaveCount(1);
@@ -89,7 +89,7 @@ test('extended bands include exact boundaries and gauge ranking survives refresh
  await page.locator('#search').fill('Test 19');await page.locator('.station').click();
  const point=page.locator('.leaflet-interactive');await expect(point).toHaveAttribute('fill','#122e67');
  expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].backgroundColor.at(-1))).toBe('#122e67');
- await page.locator('summary').click();await expect(page.locator('#thresholdInputs input')).toHaveCount(9);
+ await page.locator('.settings > summary').click();await expect(page.locator('#thresholdInputs input')).toHaveCount(9);
  await page.locator('#t9').fill('250');await page.getByRole('button',{name:'Apply',exact:true}).click();
  await expect(point).toHaveAttribute('fill','#2c64cc');
  await expect(page.locator('#legend')).toContainText('>180–250');await expect(page.locator('#legend')).toContainText('>250');

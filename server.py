@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""No Python dependencies. Run: python3 server.py"""
+"""Standard-library web server; optional PostgreSQL archive client. Run: python3 server.py"""
 import argparse
 import json
 import os
@@ -8,10 +8,11 @@ import threading
 from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 from rainfall import parse, key, SOURCE
 import water_service
 from bom_diagnostic import diagnostic
+import archive_service
 
 ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / '.cache'
@@ -88,6 +89,26 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path in ('/api/gauge-health', '/api/rainfall-history'):
+            params = parse_qs(urlsplit(self.path).query)
+            if path == '/api/rainfall-history':
+                payload = archive_service.rainfall_history(params.get('gauge',[''])[0])
+            else:
+                try:
+                    suspect = int(params.get('suspect',['60'])[0])
+                    out = int(params.get('out',['360'])[0])
+                    if not 1 <= suspect < out <= 43200:
+                        raise ValueError('Invalid limits')
+                except ValueError:
+                    self.send_error(400, 'Use increasing observation-age limits, up to 30 days.')
+                    return
+                try:
+                    bulletin = water_service.summary()
+                except ValueError:
+                    bulletin = None
+                payload = archive_service.report(archive_service.archive_status(), bulletin, suspect=suspect, out=out)
+            self.diagnostic_response(payload)
+            return
         if path == '/api/diagnostics/bom':
             self.diagnostic_response(diagnostic.get())
             return
@@ -133,7 +154,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html'}
+            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html'}
             base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'index.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():
