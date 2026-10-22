@@ -6,6 +6,10 @@ An optional, separate [permanent observation collector](docs/COLLECTION.md) is
 now prepared for PostgreSQL and a scheduled job. It is not activated by deploying
 the viewer, and the viewer does not yet query that archive.
 
+Before purchasing collection hosting, use the [BoM FTP connection test](docs/BOM_CONNECTION_TEST.md)
+on the existing free Render service at `/diagnostics/bom`. It requires one explicit
+button click and does not create paid resources.
+
 ## Open it as a website
 
 The included `render.yaml` and `Dockerfile` prepare this app for Render hosting. The code must first be committed and pushed to your GitHub repository; files in this cloud workspace are not automatically on GitHub.

@@ -11,6 +11,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from rainfall import parse, key, SOURCE
 import water_service
+from bom_diagnostic import diagnostic
 
 ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / '.cache'
@@ -56,6 +57,28 @@ def load_data(refresh=False):
         return data
 
 class Handler(SimpleHTTPRequestHandler):
+    def diagnostic_response(self, payload):
+        body = json.dumps(payload).encode()
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_POST(self):
+        if urlsplit(self.path).path != '/api/diagnostics/bom':
+            self.send_error(404)
+            return
+        origin = self.headers.get('Origin')
+        if origin and (urlsplit(origin).scheme not in ('http', 'https') or urlsplit(origin).netloc != self.headers.get('Host')):
+            self.send_error(403)
+            return
+        if self.headers.get('Content-Length', '0') != '0' or self.headers.get('Transfer-Encoding'):
+            self.send_error(400)
+            return
+        self.diagnostic_response(diagnostic.start())
+
     def end_headers(self):
         # Browser application files must not survive a deployment as stale code.
         # Vendor libraries remain independently cacheable.
@@ -65,6 +88,9 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/diagnostics/bom':
+            self.diagnostic_response(diagnostic.get())
+            return
         if path == '/api/water' or path.startswith('/api/water/'):
             try:
                 if path == '/api/water':
@@ -107,7 +133,8 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            base, relative = ROOT/'public', 'water.html' if path in ('/water','/water/') else path.lstrip('/') or 'index.html'
+            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html'}
+            base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'index.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():
             self.send_error(404)

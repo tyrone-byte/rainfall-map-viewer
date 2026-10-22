@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BoM connection test · Rainfall Atlas</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>main{display:block;max-width:820px}.detail{margin-top:0}h1{font-size:27px}.detail p{margin:14px 0}dl{display:grid;grid-template-columns:minmax(120px,1fr) 2fr;gap:10px}dt{font-weight:600}dd{margin:0;overflow-wrap:anywhere}#result{padding:14px;border-radius:6px;background:#edf4f3}#result[data-status=passed]{background:#e2f4eb}#result[data-status=failed],#result[data-status=interrupted]{background:#fff0cc}#report{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}button{margin:10px 0}</style>
+</head>
+<body>
+  <header><div><p class="eyebrow">RAINFALL ATLAS · SETUP CHECK</p><h1>BoM connection test</h1></div><a href="/">Back to rainfall map</a></header>
+  <main><section class="detail">
+    <p>This checks whether this web service can access BoM’s 15-minute rainfall feed. It uses your existing hosting and does not create a database or paid service.</p>
+    <p>The test makes one FTP directory request and downloads at most one rainfall file, with no retries. It normally finishes within a minute. Reopening this page shows the saved result rather than repeating the test.</p>
+    <button id="start" type="button" disabled>Run connection test</button>
+    <p id="result" role="status" aria-live="polite">Loading saved result…</p>
+    <dl><dt>Running on Render</dt><dd id="environment">Checking…</dd><dt>FTP directory</dt><dd id="directory">Not tested</dd><dt>Rainfall download</dt><dd id="download">Not tested</dd><dt>15-minute format</dt><dd id="format">Not tested</dd><dt>Completed (Brisbane)</dt><dd id="completed">—</dd></dl>
+    <details><summary>Result to share</summary><pre id="report"></pre></details>
+    <p class="muted">A pass verifies this web service’s connection and one file’s format only. It does not verify a separate collector’s network access, ongoing scheduling, database persistence, backups, station coverage or rainfall quality. No raw observations are displayed or retained by this test.</p>
+  </section></main>
+  <script src="/bom-test.js?v=1"></script>
+</body>
+</html>
