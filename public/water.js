@@ -5,6 +5,7 @@ const rank={major:4,moderate:3,minor:2,below:1,unknown:0};
 const labels={below:'Below flood level',minor:'Minor',moderate:'Moderate',major:'Major',unknown:'Not supplied / missing'};
 let data,selected,historyData,chart,requestId=0,rangeHours=72;
 const markers=new Map(),map=L.map('map').setView([-27.25,152.75],9),layer=L.layerGroup().addTo(map);
+let initialMapFitPending=!SharedMapView.attach(map);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on('tileerror',()=>{$('tileStatus').hidden=false;}).addTo(map);
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 const date=iso=>iso?new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}):'Time not supplied';
@@ -81,7 +82,7 @@ async function load(refresh=false){
   const response=await fetch(`/api/water${refresh?'?refresh=1':''}`),result=await response.json();if(!response.ok)throw new Error(result.error||'Water-level bulletin unavailable.');
   data=result;const group=$('group').value;$('group').replaceChildren(new Option('All groups',''),...[...new Set(data.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
   const notices=[data.refreshError?`${data.refreshError} Showing last successful bulletin.`:'',data.warnings.length?`${data.warnings.length} unrecognised levels shown as missing.`:''].filter(Boolean);$('notice').hidden=!notices.length;$('notice').textContent=notices.join(' ');
-  freshness();draw();if(selected)choose(selected,false,refresh);else if(!refresh)fit();
+  freshness();draw();if(selected)choose(selected,false,refresh);else if(initialMapFitPending)fit();initialMapFitPending=false;
  }catch(error){if(data)data.refreshError=error.message;$('notice').hidden=false;$('notice').textContent=`${error.message} ${data?'Previously displayed readings retained.':'No water-level observations loaded.'}`;$('freshness').className='badge stale';$('freshness').textContent='● Data unavailable / refresh failed';}
  finally{$('refresh').disabled=false;}
 }

@@ -118,3 +118,7 @@ Use the **Rainfall / Water levels** navigation tabs to switch between separate d
 - This does not provide predictions, discharge, rainfall-to-river modelling, or operational warning decisions. Follow official warnings and agency guidance.
 
 `water.py` parses the two river formats; `water_service.py` fetches and caches them; `public/water.html` and `public/water.js` provide the dashboard. The Docker image includes both new Python modules. Real captured fixtures and browser regression checks cover station identity, datums, missing/negative heights, failed histories, navigation and selection races.
+
+## Shared map viewport
+
+Panning or zooming either dashboard saves its map centre and zoom for this browser tab. Switching between Rainfall and Water levels, or reloading, restores that viewport. Automatic data refreshes do not refit the map. **Fit gauges** still deliberately fits the currently visible gauges. A new tab with no saved viewport uses the normal initial fit. Browser storage is optional: blocked or corrupt storage never prevents either dashboard from loading.

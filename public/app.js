@@ -15,6 +15,7 @@ const bands = [
 const colours = {missing:'#88969c',...Object.fromEntries(bands.map(b=>[b.id,b.colour]))};
 let data, chart, selected, thresholds = [5,15,30,40,50,80,130,180,200], markers = new Map();
 const map = L.map('map').setView([-27.25,152.75],9);
+let initialMapFitPending=!SharedMapView.attach(map);
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 tiles.on('tileerror',()=>{ $('tileStatus').hidden=false; });
 const layer = L.layerGroup().addTo(map);
@@ -118,7 +119,7 @@ async function load(refresh=false){
   const messages=[];if(data.refreshError)messages.push(`${data.refreshError} Showing the last successfully fetched bulletin.`);
   if(data.warnings.length)messages.push(`${data.warnings.length} unrecognised readings are shown as missing.`);
   $('notice').hidden=!messages.length;$('notice').textContent=messages.join(' ');
-  freshness();draw();if(selected)choose(selected,false);else if(!refresh)fit();
+  freshness();draw();if(selected)choose(selected,false);else if(initialMapFitPending)fit();initialMapFitPending=false;
  }catch(e){if(data)data.refreshError=e.message;$('notice').hidden=false;$('notice').textContent=`${e.message} ${data?'Previously displayed data is retained.':'No rainfall observations have been loaded.'}`;$('freshness').className='badge stale';$('freshness').textContent='● Data unavailable / refresh failed';}
  finally{$('refresh').disabled=false;$('refresh').textContent='↻ Refresh bulletin';}
 }
