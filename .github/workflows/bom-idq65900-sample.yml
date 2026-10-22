@@ -1,8 +1,5 @@
 name: Fetch one BoM IDQ65900 sample
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/bom-idq65900-sample.yml']
   workflow_dispatch:
 permissions:
   contents: read
