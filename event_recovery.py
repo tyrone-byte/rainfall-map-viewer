@@ -80,7 +80,11 @@ def recover_event(store, ingest, package=None, encoded_key=None):
                        update_status=False, fetched_at=capture['fetchedAt'])
         counts[capture['kind']] = counts.get(capture['kind'], 0) + count
     report = {'status': 'imported', 'package': identity, 'captures': len(captures),
-              'newOrChangedObservations': sum(counts.values()), 'bySource': counts}
+              'newOrChangedObservations': sum(counts.values()), 'bySource': counts,
+              'storedCoverage': [dict(row) for row in store.execute('''SELECT kind,
+                  COUNT(*) AS records, COUNT(value) AS numeric_records,
+                  COUNT(DISTINCT station) AS gauges, MIN(end_at) AS first_end_utc,
+                  MAX(end_at) AS last_end_utc FROM observations GROUP BY kind''')]}
     store.execute('INSERT INTO event_imports VALUES(?,?,?)', (identity, now(), json.dumps(report)))
     store.db.commit()
     return report

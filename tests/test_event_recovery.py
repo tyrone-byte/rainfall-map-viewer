@@ -40,6 +40,7 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(result['status'],'imported')
         self.assertEqual(result['captures'],1)
         self.assertEqual(result['newOrChangedObservations'],321*8)
+        self.assertEqual(sum(row['records'] for row in result['storedCoverage']),321*8)
         self.assertEqual(dict(self.store.execute('SELECT * FROM source_status').fetchone()),before)
         second=recover_event(self.store,ingest,self.path,self.encoded)
         self.assertEqual(second['status'],'already-imported')

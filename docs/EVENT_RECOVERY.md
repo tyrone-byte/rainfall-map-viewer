@@ -7,18 +7,22 @@ invented quarter-hours. Database credentials stay in Render.
 
 ## Current recovery state
 
-Seven original workspace captures are available and packaged. The separately
-saved [GitHub recovery artifact](https://github.com/tyrone-byte/rainfall-map-viewer/actions/runs/39712902575)
-contains ten overlapping HCS files and three bulletins. Its `bom-storm-recovery`
-ZIP must be downloaded by the signed-in user and attached to this workspace:
-the workspace's GitHub API access cannot download that authenticated artifact.
-It is retained for 90 days from 22 October 2026, not permanently.
+The uploaded `bom-storm-recovery.zip` has been received and validated against
+its source checksums. Its ten overlapping HCS files and three bulletin captures
+are combined with the seven original workspace captures. One identical HCS
+capture is deduplicated, leaving **19 distinct source captures**. When a source
+was captured twice, the earliest recorded retrieval time is retained.
 
-The current encrypted bundle is intentionally labelled
-`includesGitHubRecovery: false` in its manifest. It is not a claim that all
-morning data is included. Rebuild with the additional ZIP before enabling the
-hosted import whenever possible. A later expanded package can also be imported
-safely: source hashes and source-issued timestamps deduplicate existing records.
+The encrypted bundle is now labelled `includesGitHubRecovery: true`. The recovered
+quarter-hour series contains 4,946 numeric records across 280 identified dashboard
+gauges, with interval ends from 08:15 through 12:30 AEST on 22 October 2026.
+Coverage varies by gauge; this is not a claim of a full day of quarter-hour data.
+Hourly and three-hour history is preserved at its native resolution.
+
+The original [GitHub recovery artifact](https://github.com/tyrone-byte/rainfall-map-viewer/actions/runs/39712902575)
+is retained for 90 days from 22 October 2026, not permanently. Its privately held
+ZIP remains an independent source copy. A later expanded package can also be
+imported safely: source hashes and source-issued timestamps deduplicate records.
 
 ## How the import works
 
@@ -59,7 +63,9 @@ The website has no public write/import endpoint.
    the next scheduled run. No console/SSH commands are required.
 4. Check that `eventRecovery.status` is `imported` (or `already-imported`), the
    overall run succeeded, and normal `errors` is empty. Counts depend on overlap
-   with observations already present in the hosted database.
+   with observations already present in the hosted database. `storedCoverage`
+   records actual database coverage at import time. On repeat imports this is
+   under `originalImport`; it is not a fresh coverage check.
 5. After successful verification, remove **EVENT_IMPORT_KEY** from the collector
    environment. Its import receipt and observations remain in the database.
 
@@ -78,3 +84,10 @@ records. Reimport reported `already-imported` and zero new/changed records.
 Source-health timestamps remained unchanged. Unit tests also cover altered
 ciphertext, incorrect keys, checksum/provenance validation, protection of newer
 revisions and continuing live collection after an import failure.
+
+The expanded 19-capture package was tested against PostgreSQL with the newest
+capture of each source kind already loaded, simulating an existing live archive.
+All 8,031 preloaded records retained their values and payloads. Recovery added
+3,790 new/changed revisions and left 11,813 current records, including 4,946
+quarter-hour records. Reimport was a no-op and source-health timestamps remained
+unchanged. Counts in the live database depend on its existing data.

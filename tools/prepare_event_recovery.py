@@ -71,7 +71,12 @@ def build(zip_path=None):
                 if hashlib.sha256(raw).hexdigest()!=entry['sha256']:raise ValueError('Artifact source checksum mismatch.')
                 # The original recovery tool recorded request start, not per-file completion.
                 captures.append(capture(raw,entry['source'],kind,manifest['startedAt']))
-    unique={(c['kind'],c['sha256']):c for c in captures}
+    unique={}
+    for item in captures:
+        identity=(item['kind'],item['sha256'])
+        prior=unique.get(identity)
+        if prior is None or datetime.fromisoformat(item['fetchedAt'])<datetime.fromisoformat(prior['fetchedAt']):
+            unique[identity]=item
     return sorted(unique.values(),key=lambda c:c['issuedAt'])
 
 def main():

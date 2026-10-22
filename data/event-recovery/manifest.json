@@ -1,14 +1,68 @@
 {
   "event": "2026-10-22",
-  "captures": 7,
-  "includesGitHubRecovery": false,
-  "packageSha256": "c4b58e15e6ad9ccf94f28ae707c3c2315273f082a78e421e18b60f1ca823d486",
+  "captures": 19,
+  "includesGitHubRecovery": true,
+  "packageSha256": "857e27a39eb4f4ebc754dfdd7d1f34a53dc8e04fbbf3f50a6787a7c95a63c05b",
   "sources": [
     {
       "kind": "rain-15m",
       "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022002300.hcs",
       "issuedAt": "2026-10-22T00:23:11+00:00",
       "sha256": "bf5fdaa84702300041ce7a1ff0ae32aaad6f5f06ab83fdba3c2b42c07f4b5060"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022003800.hcs",
+      "issuedAt": "2026-10-22T00:38:12+00:00",
+      "sha256": "754e9e77c95216e07d9f8fcaafa48cef118becdfa4f1abab37b433645871250c"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022005300.hcs",
+      "issuedAt": "2026-10-22T00:53:11+00:00",
+      "sha256": "1933072e232125f4dce3808b8c0f2df9afb7f554b10c634a23c088e7d050ce28"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022010800.hcs",
+      "issuedAt": "2026-10-22T01:08:13+00:00",
+      "sha256": "bf0908a847e47253e8610147004fc61d13cd318d3ac222b217f192adfa105cf0"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022012300.hcs",
+      "issuedAt": "2026-10-22T01:23:12+00:00",
+      "sha256": "2087410c3a86123c0fbae1d725f8d4d858052ee257de9d39d03ed03d2079bafe"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022013800.hcs",
+      "issuedAt": "2026-10-22T01:38:12+00:00",
+      "sha256": "9ca5705cbd899471a161b8220a4d10312c302ebb4b4b8e43a66a71fd165cd033"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022015300.hcs",
+      "issuedAt": "2026-10-22T01:53:11+00:00",
+      "sha256": "47aa5bf9119e91177c33e94a1b1d09db0fb78179520ddd919da933b3507b3343"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022020800.hcs",
+      "issuedAt": "2026-10-22T02:08:14+00:00",
+      "sha256": "0002f9ab363f9dd53ce5c666a1e4582de705006ad4bc375c77a2816aa540c212"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022022300.hcs",
+      "issuedAt": "2026-10-22T02:23:11+00:00",
+      "sha256": "41d77cdfd6e5ce5a536ab5f3fff28e5924ba27580367440a9c36bb7417e28253"
+    },
+    {
+      "kind": "rain-15m",
+      "source": "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_20261022023800.hcs",
+      "issuedAt": "2026-10-22T02:38:15+00:00",
+      "sha256": "6e5bf18d4ebe0302a098058e89d1a0bae6b89ffdecbca9eb355554591b3455c2"
     },
     {
       "kind": "rain-3h",
@@ -45,6 +99,24 @@
       "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60336.html",
       "issuedAt": "2026-10-22T11:53:00+10:00",
       "sha256": "47627436d294f8bbecdaca905511d0ff3ec5827808715bd2a54a4bc11e570493"
+    },
+    {
+      "kind": "rain-3h",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60348.html",
+      "issuedAt": "2026-10-22T12:38:00+10:00",
+      "sha256": "9c47558020d6bfb2ab02bdc14e2cdb93fecf37c8647d09bf87885fdc46d8a2e1"
+    },
+    {
+      "kind": "rain-1h",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60336.html",
+      "issuedAt": "2026-10-22T12:38:00+10:00",
+      "sha256": "09016d300303ecfa467230d3373cfd5b5027e5efdc7ea62aec2716bdf61b655d"
+    },
+    {
+      "kind": "water-summary",
+      "source": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "issuedAt": "2026-10-22T12:39:00+10:00",
+      "sha256": "514a6dff357cd343d49bd28183e72d18ad78f238c43efd92adf9498886f10bda"
     }
   ]
 }
