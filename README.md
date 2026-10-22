@@ -122,3 +122,24 @@ Use the **Rainfall / Water levels** navigation tabs to switch between separate d
 ## Shared map viewport
 
 Panning or zooming either dashboard saves its map centre and zoom for this browser tab. Switching between Rainfall and Water levels, or reloading, restores that viewport. Automatic data refreshes do not refit the map. **Fit gauges** still deliberately fits the currently visible gauges. A new tab with no saved viewport uses the normal initial fit. Browser storage is optional: blocked or corrupt storage never prevents either dashboard from loading.
+
+## Local ARR 2030 IFD datasets and manual collection pilot
+
+Goolman's user-uploaded ARR JSON has been imported at the verified coordinates `-27.736111, 152.766667`. The normalized local file contains all 12 supplied 2030 tables: three source families and SSP1/SSP2/SSP3/SSP5. No family or scenario is chosen automatically. In the rainfall gauge detail, explicitly choose a **Local dataset and climate scenario**. Other gauges currently show the shared Brisbane reference with an explicit no-local-table notice. A known local-file failure never silently substitutes the Brisbane table.
+
+`data/ifd/index.json` maps exact six-decimal gauge coordinates to files under `data/ifd/locations/`. Each file records coordinates, source request, ARR version, named families/scenarios, units, raw-response SHA-256, import time and acquisition method. Manual uploads have no invented fetch timestamp. Original JSON responses are retained under `data/ifd/raw/` for traceability, excluded from the app image. The public viewer reads saved files only; it never makes ARR requests.
+
+`tools/import_arr_ifd.py` validates a manually downloaded JSON before importing. It requires explicit expected latitude/longitude, rejects mismatched locations and malformed axes/values, preserves every supplied 2030 table, and never extrapolates or calculates missing design values. Example for the supplied file:
+
+```sh
+python3 tools/import_arr_ifd.py results.json --lat=-27.736111 --lon=152.766667
+```
+
+The **Collect ARR IFD pilot** GitHub Actions workflow is manual only, with read-only repository permission. It is not triggered by commits, schedules, page visits or viewer refreshes. Run it from GitHub → Actions → Collect ARR IFD pilot → Run workflow. Choose 1, 3 or 5 maximum new coordinate requests. It uses only the documented `CCAdjIFDDatasets=1` point API, with verified target coordinates in `data/ifd/targets.json`.
+
+- One request at a time, at least 30 seconds between requests, no automatic retries, and at most five new requests per run. This spacing is our conservative trial setting, not a published ARR limit or a guarantee of permitted bulk use. Stop on any access refusal, HTTP error, rate limit, timeout, format change or coordinate mismatch. Rate-limit `Retry-After` is recorded for review; the job does not retry automatically or bypass restrictions.
+- Completed downloads are cached between manual workflow runs when the GitHub cache remains available. Existing normalized files are skipped. GitHub caches may be evicted, so review previous downloads before repeating a trial. The job is serialised to avoid overlapping runs.
+- Results and `pilot-report.json` are saved as the **arr-ifd-pilot-results** workflow artifact for 30 days, including partial results on failure. Download that ZIP and provide it for validation/import. The workflow does not commit data, update Render, or publish automatically.
+- The target list covers the 181 confidently mapped rainfall coordinates from the captured bulletin. Unsupported/missing coordinates are excluded; coincident coordinates share a download. This is a capped pilot, not an enabled all-gauge batch.
+
+No pilot has been launched by preparing these files. Actual ARR access from a GitHub runner still needs testing. Review the pilot outcome and ARR usage guidance before enabling any broader collection.

@@ -59,7 +59,7 @@ class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
         # Browser application files must not survive a deployment as stale code.
         # Vendor libraries remain independently cacheable.
-        if urlsplit(self.path).path.startswith('/public/'):
+        if urlsplit(self.path).path.startswith(('/public/','/data/ifd/')):
             self.send_header('Cache-Control', 'no-store')
         super().end_headers()
 
@@ -96,7 +96,11 @@ class Handler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
         # Expose only frontend and the two installed browser libraries.
-        if path == '/reference/brisbane-ifd-2030.csv':
+        if path == '/reference/local-ifd-index.json':
+            base, relative = ROOT/'data/ifd', 'index.json'
+        elif path.startswith('/reference/local-ifd/'):
+            base, relative = ROOT/'data/ifd/locations', path.removeprefix('/reference/local-ifd/')
+        elif path == '/reference/brisbane-ifd-2030.csv':
             base, relative = ROOT/'data', 'brisbane-ifd-2030.csv'
         elif path.startswith('/vendor/leaflet/'):
             base, relative = ROOT/'node_modules/leaflet/dist', path.removeprefix('/vendor/leaflet/')

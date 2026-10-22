@@ -54,7 +54,7 @@ class BrowserCacheTests(unittest.TestCase):
                 html=response.read().decode()
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('/app.js?v=map-view-1',html)
-                self.assertIn('/ifd-view.js?v=ifd-2',html)
+                self.assertIn('/ifd-view.js?v=local-ifd-1',html)
             with urlopen(base+'/app.js?v=map-view-1') as response:
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('renderIfd(s)',response.read().decode())

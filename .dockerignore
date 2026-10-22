@@ -6,3 +6,5 @@ __pycache__
 test-results
 tests
 tools
+
+data/ifd/raw

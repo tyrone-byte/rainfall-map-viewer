@@ -1,0 +1,2177 @@
+{
+  "description": "Verified rainfall gauge coordinates; only a capped manual pilot is enabled. No automatic requests.",
+  "locations": [
+    {
+      "lat": -27.375556,
+      "lon": 153.008333,
+      "stationNumbers": [
+        "540114"
+      ],
+      "gaugeNames": [
+        "Aspley (Reservoir)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.033056,
+      "lon": 153.148611,
+      "stationNumbers": [
+        "540735"
+      ],
+      "gaugeNames": [
+        "Banksia Beach"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.491944,
+      "lon": 152.493889,
+      "stationNumbers": [
+        "540554"
+      ],
+      "gaugeNames": [
+        "Batzloffs Rd"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.136944,
+      "lon": 153.049722,
+      "stationNumbers": [
+        "540496"
+      ],
+      "gaugeNames": [
+        "Beachmere"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.104167,
+      "lon": 153.007222,
+      "stationNumbers": [
+        "540558"
+      ],
+      "gaugeNames": [
+        "Beachmere (Riversleigh Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section3.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.145556,
+      "lon": 153.036111,
+      "stationNumbers": [
+        "540740"
+      ],
+      "gaugeNames": [
+        "Beachmere (St Smith Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.958611,
+      "lon": 152.961944,
+      "stationNumbers": [
+        "040284"
+      ],
+      "gaugeNames": [
+        "Beerburrum"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section2.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.633333,
+      "lon": 152.905833,
+      "stationNumbers": [
+        "540728"
+      ],
+      "gaugeNames": [
+        "Bellbird Park (Eugene St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.669167,
+      "lon": 152.873056,
+      "stationNumbers": [
+        "040985"
+      ],
+      "gaugeNames": [
+        "Bellbird Park (Purser Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.346111,
+      "lon": 152.528889,
+      "stationNumbers": [
+        "540709"
+      ],
+      "gaugeNames": [
+        "Bellevue Bay"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.631667,
+      "lon": 152.379444,
+      "stationNumbers": [
+        "540472"
+      ],
+      "gaugeNames": [
+        "Bill Gunn Dam"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.885833,
+      "lon": 152.101667,
+      "stationNumbers": [
+        "540493"
+      ],
+      "gaugeNames": [
+        "Blackbutt"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.777778,
+      "lon": 152.192222,
+      "stationNumbers": [
+        "540556"
+      ],
+      "gaugeNames": [
+        "Blackfellow Ck"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.079722,
+      "lon": 153.180278,
+      "stationNumbers": [
+        "040978"
+      ],
+      "gaugeNames": [
+        "Bribie Island"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.048611,
+      "lon": 153.179167,
+      "stationNumbers": [
+        "540585"
+      ],
+      "gaugeNames": [
+        "Bribie Island Quarry"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.095556,
+      "lon": 153.183056,
+      "stationNumbers": [
+        "540631"
+      ],
+      "gaugeNames": [
+        "Bribie Island Treatment"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.298889,
+      "lon": 153.055833,
+      "stationNumbers": [
+        "540802"
+      ],
+      "gaugeNames": [
+        "Brighton (Queens Pde)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.470833,
+      "lon": 153.034167,
+      "stationNumbers": [
+        "540198"
+      ],
+      "gaugeNames": [
+        "Brisbane City"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.243056,
+      "lon": 152.568056,
+      "stationNumbers": [
+        "540522"
+      ],
+      "gaugeNames": [
+        "Bryden"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.406389,
+      "lon": 152.3825,
+      "stationNumbers": [
+        "540457"
+      ],
+      "gaugeNames": [
+        "Buaraba"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.620278,
+      "lon": 152.826111,
+      "stationNumbers": [
+        "540247"
+      ],
+      "gaugeNames": [
+        "Bundamba (Barclay St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.611667,
+      "lon": 152.806389,
+      "stationNumbers": [
+        "040875"
+      ],
+      "gaugeNames": [
+        "Bundamba School"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section3.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.149167,
+      "lon": 152.961667,
+      "stationNumbers": [
+        "540242"
+      ],
+      "gaugeNames": [
+        "Burpengary (Dale St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.164722,
+      "lon": 152.941111,
+      "stationNumbers": [
+        "540619"
+      ],
+      "gaugeNames": [
+        "Burpengary (Mathew Cr)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.164167,
+      "lon": 152.9375,
+      "stationNumbers": [
+        "540245"
+      ],
+      "gaugeNames": [
+        "Burpengary (Rowley Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.075278,
+      "lon": 153.011111,
+      "stationNumbers": [
+        "540627"
+      ],
+      "gaugeNames": [
+        "Caboolture (Bribie Is Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.073056,
+      "lon": 152.946944,
+      "stationNumbers": [
+        "540736"
+      ],
+      "gaugeNames": [
+        "Caboolture (Machinery Pde)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section3.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.0875,
+      "lon": 152.960833,
+      "stationNumbers": [
+        "540660"
+      ],
+      "gaugeNames": [
+        "Caboolture (Short St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.086111,
+      "lon": 152.939444,
+      "stationNumbers": [
+        "540243"
+      ],
+      "gaugeNames": [
+        "Caboolture WTP"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.146389,
+      "lon": 152.490278,
+      "stationNumbers": [
+        "540155"
+      ],
+      "gaugeNames": [
+        "Caboonbah"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.342778,
+      "lon": 152.960833,
+      "stationNumbers": [
+        "540415"
+      ],
+      "gaugeNames": [
+        "Cash's Crossing"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.327778,
+      "lon": 152.864722,
+      "stationNumbers": [
+        "540444"
+      ],
+      "gaugeNames": [
+        "Cedar Ck Rd"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.51,
+      "lon": 153.153889,
+      "stationNumbers": [
+        "540791"
+      ],
+      "gaugeNames": [
+        "Chandler (Bacton Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.633889,
+      "lon": 152.754167,
+      "stationNumbers": [
+        "540248"
+      ],
+      "gaugeNames": [
+        "Churchill"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.42,
+      "lon": 152.530833,
+      "stationNumbers": [
+        "540701"
+      ],
+      "gaugeNames": [
+        "Clarendon"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.305556,
+      "lon": 152.886111,
+      "stationNumbers": [
+        "540418"
+      ],
+      "gaugeNames": [
+        "Clear Mountain"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.557222,
+      "lon": 152.7975,
+      "stationNumbers": [
+        "540063"
+      ],
+      "gaugeNames": [
+        "Colleges Crossing"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.620556,
+      "lon": 152.866667,
+      "stationNumbers": [
+        "540672"
+      ],
+      "gaugeNames": [
+        "Collingwood Park"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.741667,
+      "lon": 152.136667,
+      "stationNumbers": [
+        "540146"
+      ],
+      "gaugeNames": [
+        "Cooyar Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.806944,
+      "lon": 152.865,
+      "stationNumbers": [
+        "540662"
+      ],
+      "gaugeNames": [
+        "Crohamhurst"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.218611,
+      "lon": 152.840278,
+      "stationNumbers": [
+        "540484"
+      ],
+      "gaugeNames": [
+        "Dayboro WWTP"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.182222,
+      "lon": 153.018611,
+      "stationNumbers": [
+        "040980"
+      ],
+      "gaugeNames": [
+        "Deception Bay"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.173333,
+      "lon": 152.982778,
+      "stationNumbers": [
+        "540623"
+      ],
+      "gaugeNames": [
+        "Deception Bay (Creek Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.206667,
+      "lon": 153.026389,
+      "stationNumbers": [
+        "540741"
+      ],
+      "gaugeNames": [
+        "Deception Bay (Major St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.001944,
+      "lon": 152.787222,
+      "stationNumbers": [
+        "540657"
+      ],
+      "gaugeNames": [
+        "Delaneys Ck"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.899722,
+      "lon": 152.320833,
+      "stationNumbers": [
+        "540188"
+      ],
+      "gaugeNames": [
+        "Devon Hills"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.348611,
+      "lon": 152.953056,
+      "stationNumbers": [
+        "540794"
+      ],
+      "gaugeNames": [
+        "Eatons Hill"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.97,
+      "lon": 152.916389,
+      "stationNumbers": [
+        "540653"
+      ],
+      "gaugeNames": [
+        "Elimbah"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.446944,
+      "lon": 152.926389,
+      "stationNumbers": [
+        "540119"
+      ],
+      "gaugeNames": [
+        "Enoggera Dam"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.168056,
+      "lon": 152.198056,
+      "stationNumbers": [
+        "540492"
+      ],
+      "gaugeNames": [
+        "Eskdale"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.235833,
+      "lon": 152.445278,
+      "stationNumbers": [
+        "540441"
+      ],
+      "gaugeNames": [
+        "Falls Rd"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section3.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.854167,
+      "lon": 152.816667,
+      "stationNumbers": [
+        "540190"
+      ],
+      "gaugeNames": [
+        "Ferris Knob"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.398611,
+      "lon": 152.073056,
+      "stationNumbers": [
+        "540601"
+      ],
+      "gaugeNames": [
+        "Fifteen Mile"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.618056,
+      "lon": 152.111944,
+      "stationNumbers": [
+        "540540"
+      ],
+      "gaugeNames": [
+        "Flagstone Ck Bore"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.604722,
+      "lon": 152.1325,
+      "stationNumbers": [
+        "540517"
+      ],
+      "gaugeNames": [
+        "Flagstone Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.655,
+      "lon": 152.758889,
+      "stationNumbers": [
+        "540808"
+      ],
+      "gaugeNames": [
+        "Flinders View (Ash St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.583889,
+      "lon": 152.350278,
+      "stationNumbers": [
+        "540516"
+      ],
+      "gaugeNames": [
+        "Forest Hill"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.631389,
+      "lon": 152.953611,
+      "stationNumbers": [
+        "540801"
+      ],
+      "gaugeNames": [
+        "Forest Lake (Rachele Cl)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.759722,
+      "lon": 152.47,
+      "stationNumbers": [
+        "040912"
+      ],
+      "gaugeNames": [
+        "Franklyn Vale"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.076944,
+      "lon": 152.413056,
+      "stationNumbers": [
+        "540695"
+      ],
+      "gaugeNames": [
+        "Fulham"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.543611,
+      "lon": 152.3375,
+      "stationNumbers": [
+        "040082"
+      ],
+      "gaugeNames": [
+        "Gatton (UQ)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section2.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.221111,
+      "lon": 152.486944,
+      "stationNumbers": [
+        "540524"
+      ],
+      "gaugeNames": [
+        "Glen Esk"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.978056,
+      "lon": 152.333611,
+      "stationNumbers": [
+        "540446"
+      ],
+      "gaugeNames": [
+        "Glendale"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.523056,
+      "lon": 152.409167,
+      "stationNumbers": [
+        "540149"
+      ],
+      "gaugeNames": [
+        "Glenore Grove"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.466667,
+      "lon": 152.883056,
+      "stationNumbers": [
+        "540107"
+      ],
+      "gaugeNames": [
+        "Gold Ck Reservoir"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.736111,
+      "lon": 152.766667,
+      "stationNumbers": [
+        "540668"
+      ],
+      "gaugeNames": [
+        "Goolman"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.641667,
+      "lon": 151.984444,
+      "stationNumbers": [
+        "540521"
+      ],
+      "gaugeNames": [
+        "Gormans Gap"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.663056,
+      "lon": 152.461111,
+      "stationNumbers": [
+        "540064"
+      ],
+      "gaugeNames": [
+        "Grandchester"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.695556,
+      "lon": 152.940833,
+      "stationNumbers": [
+        "040659"
+      ],
+      "gaugeNames": [
+        "Greenbank"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section2.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.999722,
+      "lon": 152.399722,
+      "stationNumbers": [
+        "040822"
+      ],
+      "gaugeNames": [
+        "Gregor Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.332222,
+      "lon": 152.610278,
+      "stationNumbers": [
+        "540458"
+      ],
+      "gaugeNames": [
+        "Hays Landing"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.543889,
+      "lon": 152.113333,
+      "stationNumbers": [
+        "540143"
+      ],
+      "gaugeNames": [
+        "Helidon"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.611667,
+      "lon": 152.760833,
+      "stationNumbers": [
+        "040101"
+      ],
+      "gaugeNames": [
+        "Ipswich"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section3.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.745556,
+      "lon": 152.908056,
+      "stationNumbers": [
+        "040786"
+      ],
+      "gaugeNames": [
+        "Jingle Downs"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.296667,
+      "lon": 152.985,
+      "stationNumbers": [
+        "540413"
+      ],
+      "gaugeNames": [
+        "John Bray Park"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.801111,
+      "lon": 152.1875,
+      "stationNumbers": [
+        "540568"
+      ],
+      "gaugeNames": [
+        "Junction View"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.935278,
+      "lon": 152.597778,
+      "stationNumbers": [
+        "540058"
+      ],
+      "gaugeNames": [
+        "Kalbar Weir HW"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.241667,
+      "lon": 152.991111,
+      "stationNumbers": [
+        "540658"
+      ],
+      "gaugeNames": [
+        "Kallangur"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.878056,
+      "lon": 152.633056,
+      "stationNumbers": [
+        "540754"
+      ],
+      "gaugeNames": [
+        "Kents Lagoon"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.216667,
+      "lon": 153.093333,
+      "stationNumbers": [
+        "540629"
+      ],
+      "gaugeNames": [
+        "Kippa-Ring"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.206944,
+      "lon": 152.702778,
+      "stationNumbers": [
+        "540168"
+      ],
+      "gaugeNames": [
+        "Kluvers Lookout"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.291111,
+      "lon": 152.83,
+      "stationNumbers": [
+        "540656"
+      ],
+      "gaugeNames": [
+        "Kobble Creek (Ladies Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.196389,
+      "lon": 152.750556,
+      "stationNumbers": [
+        "540409"
+      ],
+      "gaugeNames": [
+        "Laceys Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.25,
+      "lon": 152.95,
+      "stationNumbers": [
+        "540204"
+      ],
+      "gaugeNames": [
+        "Lake Kurwongbah"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.275556,
+      "lon": 152.993611,
+      "stationNumbers": [
+        "540439"
+      ],
+      "gaugeNames": [
+        "Lawnton"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.2825,
+      "lon": 152.968611,
+      "stationNumbers": [
+        "540562"
+      ],
+      "gaugeNames": [
+        "Lawnton (Todds Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.203056,
+      "lon": 153.014722,
+      "stationNumbers": [
+        "540445"
+      ],
+      "gaugeNames": [
+        "Lipscombe Rd"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.704167,
+      "lon": 152.065,
+      "stationNumbers": [
+        "540170"
+      ],
+      "gaugeNames": [
+        "Little Egypt"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.703889,
+      "lon": 152.551111,
+      "stationNumbers": [
+        "540574"
+      ],
+      "gaugeNames": [
+        "Lower Mt Walker"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.763333,
+      "lon": 152.836667,
+      "stationNumbers": [
+        "040793"
+      ],
+      "gaugeNames": [
+        "Lyons"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.577778,
+      "lon": 152.593611,
+      "stationNumbers": [
+        "540312"
+      ],
+      "gaugeNames": [
+        "Marburg"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.736111,
+      "lon": 152.466944,
+      "stationNumbers": [
+        "540806"
+      ],
+      "gaugeNames": [
+        "Meadow Flat Rd Bridge"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.581389,
+      "lon": 152.325,
+      "stationNumbers": [
+        "540490"
+      ],
+      "gaugeNames": [
+        "Monsildale"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.050556,
+      "lon": 152.911667,
+      "stationNumbers": [
+        "540557"
+      ],
+      "gaugeNames": [
+        "Moodlu (Williams Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.153056,
+      "lon": 152.852778,
+      "stationNumbers": [
+        "540358"
+      ],
+      "gaugeNames": [
+        "Moorina"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.124722,
+      "lon": 152.935556,
+      "stationNumbers": [
+        "040979"
+      ],
+      "gaugeNames": [
+        "Morayfield (Petersen Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.081111,
+      "lon": 152.770833,
+      "stationNumbers": [
+        "540588"
+      ],
+      "gaugeNames": [
+        "Mount Mee"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.135,
+      "lon": 152.6175,
+      "stationNumbers": [
+        "540560"
+      ],
+      "gaugeNames": [
+        "Mt Byron"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.963611,
+      "lon": 152.375556,
+      "stationNumbers": [
+        "540171"
+      ],
+      "gaugeNames": [
+        "Mt Castle"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.536389,
+      "lon": 152.799167,
+      "stationNumbers": [
+        "540199"
+      ],
+      "gaugeNames": [
+        "Mt Crosby"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.316667,
+      "lon": 152.746944,
+      "stationNumbers": [
+        "540138"
+      ],
+      "gaugeNames": [
+        "Mt Glorious"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.604444,
+      "lon": 152.610556,
+      "stationNumbers": [
+        "540663"
+      ],
+      "gaugeNames": [
+        "Mt Marrow"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.069722,
+      "lon": 152.78,
+      "stationNumbers": [
+        "540185"
+      ],
+      "gaugeNames": [
+        "Mt Mee"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.4,
+      "lon": 152.788889,
+      "stationNumbers": [
+        "540520"
+      ],
+      "gaugeNames": [
+        "Mt Nebo"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.651667,
+      "lon": 152.198611,
+      "stationNumbers": [
+        "540525"
+      ],
+      "gaugeNames": [
+        "Mt Petersen"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.249444,
+      "lon": 152.8375,
+      "stationNumbers": [
+        "540447"
+      ],
+      "gaugeNames": [
+        "Mt Samson Rd"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.681667,
+      "lon": 152.204444,
+      "stationNumbers": [
+        "540488"
+      ],
+      "gaugeNames": [
+        "Mt Stanley"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.52,
+      "lon": 152.585,
+      "stationNumbers": [
+        "540733"
+      ],
+      "gaugeNames": [
+        "Mt Stradbroke"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.720833,
+      "lon": 152.219444,
+      "stationNumbers": [
+        "540571"
+      ],
+      "gaugeNames": [
+        "Mt Sylvia"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.465278,
+      "lon": 153.094167,
+      "stationNumbers": [
+        "540800"
+      ],
+      "gaugeNames": [
+        "Murarrie (Rosewood Pl)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.288056,
+      "lon": 153.0175,
+      "stationNumbers": [
+        "540417"
+      ],
+      "gaugeNames": [
+        "Murrumba Downs"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.175278,
+      "lon": 152.922222,
+      "stationNumbers": [
+        "540508"
+      ],
+      "gaugeNames": [
+        "Narangba (Oakey Flat Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.648889,
+      "lon": 152.390833,
+      "stationNumbers": [
+        "540721"
+      ],
+      "gaugeNames": [
+        "Narda Lagoon"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.306389,
+      "lon": 152.996944,
+      "stationNumbers": [
+        "540414"
+      ],
+      "gaugeNames": [
+        "Normanby Way"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.266667,
+      "lon": 152.933333,
+      "stationNumbers": [
+        "540202"
+      ],
+      "gaugeNames": [
+        "North Pine Dam"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.116667,
+      "lon": 152.788611,
+      "stationNumbers": [
+        "540634"
+      ],
+      "gaugeNames": [
+        "Ocean View"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.627222,
+      "lon": 152.746111,
+      "stationNumbers": [
+        "040836"
+      ],
+      "gaugeNames": [
+        "One Mile Bridge"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.780556,
+      "lon": 152.731111,
+      "stationNumbers": [
+        "540065"
+      ],
+      "gaugeNames": [
+        "Peak Crossing"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.992222,
+      "lon": 152.431389,
+      "stationNumbers": [
+        "540459"
+      ],
+      "gaugeNames": [
+        "Pohlman Range"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.98,
+      "lon": 151.681944,
+      "stationNumbers": [
+        "541152"
+      ],
+      "gaugeNames": [
+        "Rangemore"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.362778,
+      "lon": 152.158889,
+      "stationNumbers": [
+        "540299"
+      ],
+      "gaugeNames": [
+        "Ravensbourne"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.258056,
+      "lon": 152.733056,
+      "stationNumbers": [
+        "540545"
+      ],
+      "gaugeNames": [
+        "Raynbird Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.648611,
+      "lon": 152.864167,
+      "stationNumbers": [
+        "540671"
+      ],
+      "gaugeNames": [
+        "Redbank Plains"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.543333,
+      "lon": 153.239444,
+      "stationNumbers": [
+        "140007"
+      ],
+      "gaugeNames": [
+        "Redland (Alexandra Hills)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section2.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.151111,
+      "lon": 152.653056,
+      "stationNumbers": [
+        "540732"
+      ],
+      "gaugeNames": [
+        "Reedy Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.606944,
+      "lon": 152.846944,
+      "stationNumbers": [
+        "540807"
+      ],
+      "gaugeNames": [
+        "Riverview (Conway St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.558333,
+      "lon": 153.121111,
+      "stationNumbers": [
+        "540786"
+      ],
+      "gaugeNames": [
+        "Rochedale (Landfill)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.716667,
+      "lon": 152.310556,
+      "stationNumbers": [
+        "540523"
+      ],
+      "gaugeNames": [
+        "Rockside Mt"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.465278,
+      "lon": 152.990556,
+      "stationNumbers": [
+        "540785"
+      ],
+      "gaugeNames": [
+        "Rosalie (Baroona Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.138333,
+      "lon": 152.329444,
+      "stationNumbers": [
+        "540148"
+      ],
+      "gaugeNames": [
+        "Rosentreters Bridge"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.659444,
+      "lon": 152.604444,
+      "stationNumbers": [
+        "540193"
+      ],
+      "gaugeNames": [
+        "Rosewood"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.627222,
+      "lon": 152.591389,
+      "stationNumbers": [
+        "540503"
+      ],
+      "gaugeNames": [
+        "Rosewood Detention Basin"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.6475,
+      "lon": 152.588333,
+      "stationNumbers": [
+        "540313"
+      ],
+      "gaugeNames": [
+        "Rosewood WWTP"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.217222,
+      "lon": 153.044167,
+      "stationNumbers": [
+        "540659"
+      ],
+      "gaugeNames": [
+        "Rothwell"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.032778,
+      "lon": 152.934444,
+      "stationNumbers": [
+        "540241"
+      ],
+      "gaugeNames": [
+        "Round Mt Reservoir"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.360833,
+      "lon": 152.879444,
+      "stationNumbers": [
+        "540060"
+      ],
+      "gaugeNames": [
+        "Samford"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.366944,
+      "lon": 152.876111,
+      "stationNumbers": [
+        "540739"
+      ],
+      "gaugeNames": [
+        "Samford Valley"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.370278,
+      "lon": 152.888333,
+      "stationNumbers": [
+        "540416"
+      ],
+      "gaugeNames": [
+        "Samford Village"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.665278,
+      "lon": 152.345833,
+      "stationNumbers": [
+        "540526"
+      ],
+      "gaugeNames": [
+        "Schultz Lookout"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.638611,
+      "lon": 152.384444,
+      "stationNumbers": [
+        "540158"
+      ],
+      "gaugeNames": [
+        "Showground Weir"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.640833,
+      "lon": 152.844444,
+      "stationNumbers": [
+        "540664"
+      ],
+      "gaugeNames": [
+        "Six Mile Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.726389,
+      "lon": 152.821944,
+      "stationNumbers": [
+        "540666"
+      ],
+      "gaugeNames": [
+        "South Ripley (Wards Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.663056,
+      "lon": 152.590556,
+      "stationNumbers": [
+        "540314"
+      ],
+      "gaugeNames": [
+        "Spressers Bridge"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.677222,
+      "lon": 152.847778,
+      "stationNumbers": [
+        "540665"
+      ],
+      "gaugeNames": [
+        "Spring Mt"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.680833,
+      "lon": 152.897222,
+      "stationNumbers": [
+        "540501"
+      ],
+      "gaugeNames": [
+        "Springfield Lakes"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.061944,
+      "lon": 151.894444,
+      "stationNumbers": [
+        "540144"
+      ],
+      "gaugeNames": [
+        "St Aubyns"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.315556,
+      "lon": 153.000278,
+      "stationNumbers": [
+        "540625"
+      ],
+      "gaugeNames": [
+        "Strathpine (Gympie Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.6075,
+      "lon": 152.58,
+      "stationNumbers": [
+        "040503"
+      ],
+      "gaugeNames": [
+        "Tallegalla"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.637778,
+      "lon": 152.219167,
+      "stationNumbers": [
+        "540553"
+      ],
+      "gaugeNames": [
+        "Tenthill Bore"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.0575,
+      "lon": 151.871111,
+      "stationNumbers": [
+        "540705"
+      ],
+      "gaugeNames": [
+        "Thornville"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.975278,
+      "lon": 152.523056,
+      "stationNumbers": [
+        "540549"
+      ],
+      "gaugeNames": [
+        "Toohills Crossing"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.406944,
+      "lon": 153.073889,
+      "stationNumbers": [
+        "540548"
+      ],
+      "gaugeNames": [
+        "Toombul (Nudgee Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.031111,
+      "lon": 153.039722,
+      "stationNumbers": [
+        "540635"
+      ],
+      "gaugeNames": [
+        "Toorbul (Donnybrook Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.510278,
+      "lon": 151.954722,
+      "stationNumbers": [
+        "540162"
+      ],
+      "gaugeNames": [
+        "Toowoomba"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.477222,
+      "lon": 152.156667,
+      "stationNumbers": [
+        "540164"
+      ],
+      "gaugeNames": [
+        "Top of Brisbane"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.861111,
+      "lon": 152.383611,
+      "stationNumbers": [
+        "540716"
+      ],
+      "gaugeNames": [
+        "Townson"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.915,
+      "lon": 152.273611,
+      "stationNumbers": [
+        "540570"
+      ],
+      "gaugeNames": [
+        "Upper Blackfellow"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -28.123056,
+      "lon": 152.441944,
+      "stationNumbers": [
+        "540681"
+      ],
+      "gaugeNames": [
+        "Upper Clumber"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.492222,
+      "lon": 152.081944,
+      "stationNumbers": [
+        "540566"
+      ],
+      "gaugeNames": [
+        "Upper Lockyer"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.455833,
+      "lon": 152.198333,
+      "stationNumbers": [
+        "540385"
+      ],
+      "gaugeNames": [
+        "Upper Sandy Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.833056,
+      "lon": 152.435,
+      "stationNumbers": [
+        "540711"
+      ],
+      "gaugeNames": [
+        "Upper Sheepstation Ck"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.809444,
+      "lon": 152.286667,
+      "stationNumbers": [
+        "540519"
+      ],
+      "gaugeNames": [
+        "Upper Tenthill"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.681389,
+      "lon": 152.434167,
+      "stationNumbers": [
+        "540667"
+      ],
+      "gaugeNames": [
+        "Upper Western Ck"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.059167,
+      "lon": 152.88,
+      "stationNumbers": [
+        "540793"
+      ],
+      "gaugeNames": [
+        "Wamuran (Eureka Ct)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.002222,
+      "lon": 152.868889,
+      "stationNumbers": [
+        "540652"
+      ],
+      "gaugeNames": [
+        "Wamuran (Mcclintock Rd)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.307778,
+      "lon": 152.941667,
+      "stationNumbers": [
+        "540651"
+      ],
+      "gaugeNames": [
+        "Warner"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.978056,
+      "lon": 152.498333,
+      "stationNumbers": [
+        "540724"
+      ],
+      "gaugeNames": [
+        "Warrill Creek Bore"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.829167,
+      "lon": 152.755278,
+      "stationNumbers": [
+        "540195"
+      ],
+      "gaugeNames": [
+        "Washpool"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.778056,
+      "lon": 152.080278,
+      "stationNumbers": [
+        "541106"
+      ],
+      "gaugeNames": [
+        "West Haldon"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.784722,
+      "lon": 152.149722,
+      "stationNumbers": [
+        "540166"
+      ],
+      "gaugeNames": [
+        "West Woodbine"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.9175,
+      "lon": 153.098611,
+      "stationNumbers": [
+        "540587"
+      ],
+      "gaugeNames": [
+        "Westaways Creek"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.024444,
+      "lon": 152.604444,
+      "stationNumbers": [
+        "540486"
+      ],
+      "gaugeNames": [
+        "Westvale"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.597222,
+      "lon": 152.345556,
+      "stationNumbers": [
+        "540720"
+      ],
+      "gaugeNames": [
+        "Whiteway Rd"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.819722,
+      "lon": 152.3775,
+      "stationNumbers": [
+        "540626"
+      ],
+      "gaugeNames": [
+        "Wilsons Lane"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.561667,
+      "lon": 153.103056,
+      "stationNumbers": [
+        "540127"
+      ],
+      "gaugeNames": [
+        "Wishart (Greenwood St)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.565833,
+      "lon": 152.027222,
+      "stationNumbers": [
+        "540602"
+      ],
+      "gaugeNames": [
+        "Withcott"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.402222,
+      "lon": 152.606944,
+      "stationNumbers": [
+        "540178"
+      ],
+      "gaugeNames": [
+        "Wivenhoe Dam TW"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.258056,
+      "lon": 153.085,
+      "stationNumbers": [
+        "540498"
+      ],
+      "gaugeNames": [
+        "Woody Point"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.445278,
+      "lon": 153.165556,
+      "stationNumbers": [
+        "540322"
+      ],
+      "gaugeNames": [
+        "Wynnum (Bowls Club)"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -26.835833,
+      "lon": 151.969167,
+      "stationNumbers": [
+        "540145"
+      ],
+      "gaugeNames": [
+        "Yarraman"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    },
+    {
+      "lat": -27.266667,
+      "lon": 152.954167,
+      "stationNumbers": [
+        "540412"
+      ],
+      "gaugeNames": [
+        "Youngs Crossing"
+      ],
+      "coordinateSource": "https://reg.bom.gov.au/qld/flood/networks/section1.shtml",
+      "coordinateCatalogueDate": "2022-01-05"
+    }
+  ]
+}
