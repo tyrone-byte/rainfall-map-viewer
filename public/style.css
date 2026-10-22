@@ -3,3 +3,5 @@
 
 #legend{display:grid;grid-template-columns:repeat(4,max-content);gap:5px 12px}.legend{max-width:calc(100% - 24px)}#thresholdInputs{display:flex;flex-wrap:wrap;gap:8px 14px}#thresholdInputs label{margin-top:10px}#thresholdInputs input{display:block;margin-top:4px}@media(max-width:450px){#legend{grid-template-columns:repeat(3,max-content);gap:4px 9px}}
 .workspace{min-width:0}.chart canvas{max-width:100%}
+
+.ifd-comparison{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}.ifd-comparison h2{font-size:23px;margin:5px 0 10px}.ifd-provisional{background:#fff3dd;border-left:3px solid #d6a750;color:#795b2c;padding:9px 12px;font-size:12px}.ifd-controls{margin:16px 0}.ifd-controls label{max-width:340px}.ifd-controls select{margin-top:5px}.ifd-explanation{font-size:12px;color:#546e6a;margin-bottom:15px}.ifd-chart{height:390px;min-width:0}.ifd-chart canvas{max-width:100%}.ifd-comparison th,.ifd-comparison td{white-space:nowrap}@media(max-width:600px){.ifd-chart{height:350px}.ifd-comparison h2{font-size:20px}}

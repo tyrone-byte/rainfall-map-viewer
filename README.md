@@ -88,4 +88,17 @@ To refresh coordinates, download the official section1/2/3 catalogues as `bom-ra
 
 ## Brisbane IFD reference
 
-`data/brisbane-ifd-2030.csv` preserves the product owner’s supplied “Default Current (2030) Baseline.csv” as reference material. Its 180-minute row includes 130.2 mm at 1% AEP, 180.0 mm at 0.1% AEP, and 195.9 mm at 0.05% AEP. The file itself does not establish location, units, authorship or climate-adjustment provenance; its Brisbane/2030 context is user supplied. These reference estimates are not rainfall observations, station-specific exceedance assessments, or official warning thresholds. The display bands remain user-defined and are not automatically labelled with AEP or return periods.
+`data/brisbane-ifd-2030.csv` preserves the product owner’s supplied “Default Current (2030) Baseline.csv” as reference material. Its 180-minute row includes 130.2 mm at 1% AEP, 180.0 mm at 0.1% AEP, and 195.9 mm at 0.05% AEP. The product owner confirmed the values are rainfall depths in millimetres. The file itself does not establish location, authorship or climate-adjustment provenance; its Brisbane/2030 context is user supplied. These reference estimates are not rainfall observations, station-specific exceedance assessments, or official warning thresholds. The display bands remain user-defined and are not automatically labelled with AEP or return periods.
+
+## IFD comparison
+
+Selecting a gauge displays the supplied Brisbane 2030 design depth curves (50%, 20%, 10%, 5%, 2%, 1%, 0.1% AEP) from 5 minutes through 24 hours, with observed accumulation points from 3 hours onwards. The horizontal axis uses a logarithmic duration scale; the vertical axis shows depth in mm. This is a depth–duration comparison, not a reconstructed sub-hourly intensity record.
+
+- **Ending at latest observation** sums consecutive blocks backwards from the bulletin’s last completed block.
+- **Wettest available window** searches all complete block-aligned windows for each duration independently. Points can have different start/end times, shown in tooltips. It cannot find a peak window offset from the 3-hour block boundaries.
+- Missing or discontinuous blocks invalidate a window. The wettest mode warns when excluded windows mean the actual peak is unknown. No gap is filled with zero.
+- A table compares 3-, 6-, 12- and 24-hour observed depths with exact 10%, 1% and 0.1% AEP values from the supplied table. No return period or station AEP is inferred.
+- Only the current bulletin window is used; no persistent observation history has been added.
+- The supplied Brisbane 2030 reference is contextual for other gauge locations and is not automatically valid local design rainfall or an official warning threshold. Short-duration reference curves are shown, but no observed rainfall is invented below 3 hours.
+
+`npm test` includes Node.js regression tests for these calculations. Browser checks include both modes, missing windows, malformed references and mobile layouts.

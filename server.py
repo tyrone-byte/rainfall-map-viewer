@@ -71,7 +71,9 @@ class Handler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
         # Expose only frontend and the two installed browser libraries.
-        if path.startswith('/vendor/leaflet/'):
+        if path == '/reference/brisbane-ifd-2030.csv':
+            base, relative = ROOT/'data', 'brisbane-ifd-2030.csv'
+        elif path.startswith('/vendor/leaflet/'):
             base, relative = ROOT/'node_modules/leaflet/dist', path.removeprefix('/vendor/leaflet/')
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'

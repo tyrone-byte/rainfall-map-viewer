@@ -78,7 +78,7 @@ function draw(){
  $('count').textContent=`${stations.length} gauges · ${mapped} mapped · ${stations.length-mapped} unresolved`;
  if(!stations.length)$('stations').append(node('p','No gauges match these filters.','filters muted'));
  if(selected && !stations.some(s=>s.id===selected)){
-  selected=null; if(chart)chart.destroy();chart=null;
+  selected=null; clearIfdChart(); if(chart)chart.destroy();chart=null;
   $('detail').replaceChildren(node('p','The selected station is outside these filters. Select another gauge.','muted'));
  }
 }
@@ -87,6 +87,7 @@ function choose(id,pan){
  selected=id;const s=data.stations.find(s=>s.id===id); if(!s)return;
  draw();if(pan&&s.coordinates)map.setView([s.coordinates.lat,s.coordinates.lon],12);
  if(chart){chart.destroy();chart=null;}
+ clearIfdChart();
  const detail=$('detail');detail.replaceChildren();
  const top=node('div',undefined,'detail-top'), title=node('div');title.append(node('span',s.group.toUpperCase(),'eyebrow'),node('h2',s.name));top.append(title);
  if(!s.coordinates)top.append(node('span',s.coordinateStatus,'unmapped'));detail.append(top);
@@ -97,11 +98,13 @@ function choose(id,pan){
  }
  detail.append(metrics,node('p',`Observation window: ${date(data.periods[0].start)} – ${date(data.periods.at(-1).end)} AEST`,'muted'));
  if(!complete)detail.append(node('p','Missing blocks are gaps. The partial sum is not a complete rainfall total.','unmapped'));
- const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${s.name}: rainfall in millimetres for each chronological 3-hour block; readings are also in the table below.`);wrap.append(canvas);detail.append(wrap);
+ const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='hyetograph';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${s.name}: rainfall in millimetres for each chronological 3-hour block; readings are also in the table below.`);wrap.append(canvas);detail.append(wrap);
  chart=new Chart(canvas,{type:'bar',data:{labels:data.periods.map(p=>date(p.end)),datasets:[{label:'3-hour rainfall (mm)',data:s.values,backgroundColor:s.values.map(v=>colours[band(v)]),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=data.periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}},x:{title:{display:true,text:'3-hour period ending · AEST'},grid:{display:false}}}}});
  const tw=node('div',undefined,'table-wrap'),table=node('table'),head=node('thead'),hr=node('tr');
+ table.id='observationTable';
  for(const h of ['3-hour period start (AEST)','Period end (AEST)','Rainfall (mm)'])hr.append(node('th',h));head.append(hr);table.append(head);
  const body=node('tbody');data.periods.forEach((p,i)=>{const r=node('tr');r.append(node('td',date(p.start)),node('td',date(p.end)),node('td',mm(s.values[i])));body.append(r);});table.append(body);tw.append(table);detail.append(tw);
+ const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';detail.append(comparison);renderIfd(s);
  if(s.coordinates){const c=s.coordinates,p=node('p',undefined,'detail-source'),a=node('a',`BoM station ${c.stationNumber} · ${c.catalogueName}`);a.href=c.source;a.target='_blank';a.rel='noopener';p.append(a,` · ${c.lat}, ${c.lon} · catalogue ${c.catalogueDate}.`);detail.append(p);}
 }
 async function load(refresh=false){

@@ -13,12 +13,12 @@ test('live BoM -> map -> station -> chronological hyetograph and filters',async(
  await page.locator('#search').fill('Goolman');
  await expect(page.locator('.station')).toHaveCount(1);
  await page.locator('.leaflet-interactive').click();
- await expect(page.locator('#detail h2')).toHaveText('Goolman');
+ await expect(page.locator('.detail-top h2')).toHaveText('Goolman');
  await expect(page.locator('.metric strong').first()).toHaveText(mm(latest));
  await expect(page.locator('.metric strong').nth(1)).toHaveText(mm(gauge.values.filter(v=>v!==null).reduce((a,b)=>a+b,0)));
- await expect(page.locator('tbody tr')).toHaveCount(8);
+ await expect(page.locator('#observationTable tbody tr')).toHaveCount(8);
  await page.screenshot({path:'test-results/gauge-detail.png',fullPage:true});
- const values=await page.locator('#detail canvas').evaluate(canvas=>{const c=Chart.getChart(canvas);return {values:c.data.datasets[0].data,labels:c.data.labels};});
+ const values=await page.locator('#hyetograph').evaluate(canvas=>{const c=Chart.getChart(canvas);return {values:c.data.datasets[0].data,labels:c.data.labels};});
  expect(values.values).toEqual(gauge.values);
  const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
  expect(values.labels).toEqual(live.periods.map(p=>date(p.end)));
@@ -44,7 +44,7 @@ test('missing values remain gaps, partial totals and refresh failure are explici
  await expect(page.locator('.metric strong').first()).toHaveText('Missing');
  await expect(page.locator('.metric').nth(1)).toContainText('6/8 blocks');
  await expect(page.locator('#notice')).toContainText('last successfully fetched');
- expect(await page.locator('canvas').evaluate(c=>Chart.getChart(c).data.datasets[0].data[0])).toBeNull();
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data[0])).toBeNull();
  await page.route('**/api/rainfall*',route=>route.fulfill({status:503,json:{error:'BoM unreachable'}}));
  await page.locator('#refresh').click();await expect(page.locator('#notice')).toContainText('Previously displayed data');
 });
@@ -58,7 +58,7 @@ test('mobile layout and first-load source failure',async({page})=>{
 test('mobile with observations and chart stays within viewport',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto('/');
  await page.locator('#search').fill('Goolman');await page.locator('.station').click();
- await expect(page.locator('#detail canvas')).toBeVisible();
+ await expect(page.locator('#hyetograph')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
  await page.screenshot({path:'test-results/mobile.png',fullPage:true});
 });
@@ -88,7 +88,7 @@ test('extended bands include exact boundaries and gauge ranking survives refresh
  expect(await names()).toEqual(expected);
  await page.locator('#search').fill('Test 19');await page.locator('.station').click();
  const point=page.locator('.leaflet-interactive');await expect(point).toHaveAttribute('fill','#122e67');
- expect(await page.locator('canvas').evaluate(c=>Chart.getChart(c).data.datasets[0].backgroundColor.at(-1))).toBe('#122e67');
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].backgroundColor.at(-1))).toBe('#122e67');
  await page.locator('summary').click();await expect(page.locator('#thresholdInputs input')).toHaveCount(9);
  await page.locator('#t9').fill('250');await page.getByRole('button',{name:'Apply',exact:true}).click();
  await expect(point).toHaveAttribute('fill','#2c64cc');
