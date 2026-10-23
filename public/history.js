@@ -21,7 +21,6 @@ const layer=L.layerGroup().addTo(map),markers=new Map();
 function legend(){
  const entries=[{id:'missing',name:'Grey',label:'Incomplete'},...bands.map((b,i)=>({...b,label:i===0?`0–${thresholds[0]}`:i===9?`>${thresholds[8]}`:`>${thresholds[i-1]}–${thresholds[i]}`}))];
  $('legend').replaceChildren(...entries.map(b=>{const e=node('span'),dot=node('i',undefined,'dot');dot.style.background=colours[b.id];e.append(dot,b.label);return e;}));
- const prior=$('rainFilter').value;$('rainFilter').replaceChildren(new Option('All observations','all'),...entries.map(b=>new Option(`${b.name} · ${b.label}`,b.id)));$('rainFilter').value=prior||'all';
 }
 function displayLimits(){
  $('thresholdInputs').replaceChildren(...thresholds.map((limit,i)=>{const label=node('label',`${bands[i].name} upper limit (mm)`),input=node('input');input.id=`t${i+1}`;input.type='number';input.min='0';input.step='.1';input.required=true;input.value=limit;label.append(input);return label;}));
@@ -53,9 +52,9 @@ function saveURL(){
 }
 function draw(){
  if(!frame)return;
- const term=$('search').value.toLowerCase(),group=$('group').value,filter=$('rainFilter').value;
- const rows=frame.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)&&(filter==='all'||band(s.depth)===filter)).sort((a,b)=>a.depth===null&&b.depth!==null?1:b.depth===null&&a.depth!==null?-1:(b.depth??0)-(a.depth??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id));
- layer.clearLayers();markers.clear();$('stations').replaceChildren();let mapped=0;
+ const term=$('search').value.toLowerCase(),group=$('group').value;
+ const rows=frame.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.depth===null&&b.depth!==null?1:b.depth===null&&a.depth!==null?-1:(b.depth??0)-(a.depth??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id));
+ const listScroll=$('stations').scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();let mapped=0;
  for(const station of rows){
   const colour=colours[band(station.depth)],button=node('button',undefined,'station'+(station.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=colour;
   button.append(dot,node('span',mm(station.depth),'reading'),document.createTextNode(station.name),node('small',`${station.group} · ${station.validBlocks}/${station.expectedBlocks} quarter-hours`));
@@ -63,6 +62,7 @@ function draw(){
   button.onclick=()=>choose(station.id,true);$('stations').append(button);
   if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${station.name} · ${mm(station.depth)} / ${duration(frame.minutes)}`));marker.on('click',()=>choose(station.id,false));markers.set(station.id,marker);}
  }
+ $('stations').scrollTop=listScroll;
  $('count').textContent=`${rows.length} gauges · ${mapped} mapped · ${rows.filter(s=>s.complete).length} complete`;
  if(!rows.length)$('stations').append(node('p','No gauges match these filters.','filters muted'));
  if(selected&&!rows.some(s=>s.id===selected)){selected=null;detailVersion++;detailController?.abort();data=null;clearIfdChart();chart?.destroy();chart=null;$('detail').replaceChildren(node('p','Select a gauge within these filters.','muted'));}
@@ -73,17 +73,20 @@ async function choose(id,pan=false){
  const station=frame.stations.find(s=>s.id===id);if(!station)return;
  selected=id;draw();saveURL();if(pan&&station.coordinates)map.setView([station.coordinates.lat,station.coordinates.lon],12);
  const version=++detailVersion,frameVersion=loadVersion,end=frame.end;
- detailController?.abort();detailController=new AbortController();data=null;clearIfdChart();chart?.destroy();chart=null;
- $('detail').replaceChildren(node('h2',station.name),node('p','Loading saved quarter-hours…','muted'));
+ detailController?.abort();detailController=new AbortController();data=null;
+ $('detail').style.minHeight=`${$('detail').offsetHeight}px`;$('detail').setAttribute('aria-busy','true');$('detail').inert=true;
+ if(!chart)$('detail').replaceChildren(node('h2',station.name),node('p','Loading saved quarter-hours…','muted'));
  try{
   const response=await fetch(`/api/archive-rainfall/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(end)}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error('Could not read this gauge.');
   const result=await response.json();if(version!==detailVersion||frameVersion!==loadVersion)return;
   if(!result.available||!result.periods?.length){$('detail').replaceChildren(node('h2',station.name),node('p',result.reason==='identity-unresolved'?'No confident station identity is assigned. Saved quarter-hours cannot be shown for this gauge.':'Saved gauge observations are unavailable.'));return;}
-  data=result;renderDetail(station,result.stations[0]);
+  data=result;renderDetail(station,result.stations[0]);$('detail').setAttribute('aria-busy','false');
  }catch(error){if(error.name!=='AbortError'&&version===detailVersion)$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved observations. No rainfall has been estimated.'));}
+ finally{if(version===detailVersion){$('detail').setAttribute('aria-busy','false');$('detail').inert=false;}}
 }
 function renderDetail(station,series){
+ clearIfdChart();chart?.destroy();chart=null;
  const host=$('detail');host.replaceChildren();host.append(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name));
  const valid=series.values.filter(v=>v!==null),complete=valid.length===96;
  const metrics=node('div',undefined,'metrics');
@@ -115,11 +118,11 @@ async function loadFrame(){
   const response=await fetch(`/api/archive-rainfall/frame?end=${encodeURIComponent(targetEnd)}&minutes=${$('accumulation').value}`,{signal:frameController.signal,cache:'no-store'});
   if(!response.ok)throw new Error('Choose a saved quarter-hour ending time.');const result=await response.json();if(version!==loadVersion)return;
   if(!result.available||!result.stations?.length)throw new Error('The saved rainfall archive is unavailable.');
-  frame=result;data=null;clearIfdChart();chart?.destroy();chart=null;
+  frame=result;data=null;
   const group=$('group').value;$('group').replaceChildren(new Option('All groups',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
   $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;$('legendTitle').textContent=`Rainfall · mm / ${duration(frame.minutes)}`;
   $('loading').textContent='';notice('');draw();if(initialFit){fit();initialFit=false;}if(selected)choose(selected,false);saveURL();freshness();
- }catch(error){if(error.name!=='AbortError'&&version===loadVersion){$('loading').textContent='Selection not loaded.';notice(`${error.message} ${frame?'The map still shows its earlier labelled window.':'No historical observations are displayed.'}`);}}
+ }catch(error){if(error.name!=='AbortError'&&version===loadVersion){$('detail').inert=false;$('detail').setAttribute('aria-busy','false');$('loading').textContent='Selection not loaded.';notice(`${error.message} ${frame?'The map still shows its earlier labelled window.':'No historical observations are displayed.'}`);}}
 }
 async function refresh(){
  $('refresh').disabled=true;
@@ -137,6 +140,6 @@ $('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!
 $('previous').onclick=()=>selectTime(new Date(Date.parse(targetEnd)-Number($('accumulation').value)*60000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(targetEnd)+Number($('accumulation').value)*60000).toISOString());
 $('latest').onclick=()=>{follow=true;targetEnd=extent.lastEnd;controlTime();clearTimeout(selectionTimer);loadFrame();};
 $('accumulation').onchange=()=>{controlTime();clearTimeout(selectionTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
-for(const id of ['search','group','rainFilter'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
+for(const id of ['search','group'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
 $('thresholds').onsubmit=event=>{event.preventDefault();const values=thresholds.map((_,i)=>Number($(`t${i+1}`).value));if(values.some(v=>!Number.isFinite(v)||v<0)||values.some((v,i)=>i>0&&v<=values[i-1])){$('thresholdError').textContent='Enter increasing non-negative limits.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();};
 displayLimits();legend();refresh();setInterval(refresh,60000);

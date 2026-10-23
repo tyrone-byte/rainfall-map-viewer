@@ -89,3 +89,10 @@ ranking/colour updates, fixed zoom, independent bar grouping, missing IFD data,
 archive failure and mobile layout. Existing rainfall/water/IFD browser checks
 also pass. A real PostgreSQL read test used the preserved event observations;
 frame and series queries left stored records unchanged and ran read-only.
+
+## Desktop layout
+
+Time controls, search, catchment selection and the ranked gauge list are in the
+left sidebar. The rainfall-depth filter is removed. The map and plots share a
+separate scrollable right pane, so changing time or gauge preserves the plot
+position. On narrow screens the sidebar and views stack normally.

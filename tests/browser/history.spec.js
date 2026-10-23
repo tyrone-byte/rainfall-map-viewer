@@ -148,3 +148,29 @@ test('rainfall duration bounds the chart and steps ending time while IFD retains
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last));
  await expect(page.locator('#chartInterval')).toHaveValue('60');
 });
+
+test('sidebar controls and right plots scroll independently and keep the plot position on updates',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));const requests=await mock(page);
+ await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
+ await expect(page.locator('#rainFilter')).toHaveCount(0);
+ await expect(page.locator('.sidebar #accumulation')).toBeVisible();
+ await expect(page.locator('.sidebar #ending')).toBeVisible();
+ await expect(page.locator('.sidebar #previous')).toBeVisible();
+ await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
+ await page.locator('.workspace').evaluate(el=>el.scrollTop=700);
+ const top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
+ expect(top).toBeGreaterThan(500);
+ await page.locator('.station').filter({hasText:'Beta gauge'}).click();
+ await expect(page.locator('#detail h2').first()).toHaveText('Beta gauge');
+ await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
+ expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeCloseTo(top,0);
+ await page.locator('#accumulation').selectOption('15');
+ await expect(page.locator('#period')).toContainText('15 minutes');
+ await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
+ await page.locator('#previous').click();
+ await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-900000);
+ await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
+ expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeCloseTo(top,0);
+ expect(await page.evaluate(()=>window.scrollY)).toBe(0);
+ expect(errors).toEqual([]);
+});
