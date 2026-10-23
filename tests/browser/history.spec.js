@@ -19,7 +19,7 @@ async function mock(page){
  });
  return requests;
 }
-test('accumulation and slider change totals, ranking and colours together without changing zoom',async({page})=>{
+test('duration and ending time change totals, ranking and colours together without changing zoom',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));const requests=await mock(page);
  await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
  await expect(page.locator('.station').first()).toContainText('Alpha gauge');
@@ -27,7 +27,7 @@ test('accumulation and slider change totals, ranking and colours together withou
  await page.locator('#accumulation').selectOption('15');
  await expect(page.locator('#period')).toContainText('15 minutes');await expect(page.locator('.station').first()).toContainText('Beta gauge');
  expect(await page.evaluate(()=>markers.get('b').options.fillColor)).toBe('#e9c345');
- await page.locator('#timeline').evaluate(el=>{el.value='2';el.dispatchEvent(new Event('input',{bubbles:true}));});
+ await page.locator('#ending').fill('2026-10-22T10:30');await page.locator('#ending').dispatchEvent('change');
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(first)+1800000);
  await expect(page.locator('.station').first()).toContainText('Beta gauge');
  await expect(page.locator('.station').first()).toContainText('60.0 mm');
@@ -57,7 +57,7 @@ test('chart interval groups bars independently of map totals and native IFD, wit
 test('unavailable archive never falls back to unlabelled coarse values',async({page})=>{
  await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{available:false,reason:'not-connected'}}));
  await page.goto('/history');await expect(page.locator('#notice')).toContainText('unavailable or empty');
- await expect(page.locator('#timeline')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
+ await expect(page.locator('#ending')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
  await expect(page.locator('#freshness')).toContainText('Archive unavailable');
 });
 test('IFD keeps a missing quarter as a gap and map labels stay on failed window loads',async({page})=>{
@@ -103,7 +103,7 @@ test('history and water pages preserve the same geographic viewport',async({page
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lng)).toBeCloseTo(152.95,5);
 });
 test('ending picker uses Brisbane time and bookmarked selections survive reload',async({page})=>{
- const requests=await mock(page);await page.goto('/history');await expect(page.locator('#timeline')).toBeEnabled();
+ const requests=await mock(page);await page.goto('/history');await expect(page.locator('#ending')).toBeEnabled();
  await page.locator('#ending').fill('2026-10-22T10:30');await page.locator('#ending').dispatchEvent('change');
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(first)+1800000);
  await expect(page).toHaveURL(/end=/);await page.reload();
@@ -145,4 +145,31 @@ test('rainfall duration bounds the chart and steps ending time while IFD retains
  await page.locator('#next').click();
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last));
  await expect(page.locator('#chartInterval')).toHaveValue('60');
+});
+
+test('no slider or IFD markers, and early three-hour observations appear as one undivided bar',async({page})=>{
+ const requests=await mock(page),early='2026-10-21T19:00:00+00:00';
+ await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{...metadata,coarseEnds:[early]}}));
+ await page.route('**/api/archive-rainfall/frame?*',route=>{
+  const url=new URL(route.request().url()),end=url.searchParams.get('end'),minutes=Number(url.searchParams.get('minutes'));
+  requests.push({end,minutes});
+  const station={...gauge('a','Alpha gauge',42,minutes,end),sourceKind:Date.parse(end)<Date.parse(first)?'rain-3h':'rain-15m',validBlocks:1,expectedBlocks:1};
+  return route.fulfill({json:{available:true,end,start:station.start,minutes,stations:[station]}});
+ });
+ await page.goto('/history');await expect(page.locator('#ending')).toBeEnabled();
+ await expect(page.locator('input[type=range]')).toHaveCount(0);
+ await page.locator('#previous').click();
+ await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(early));
+ await page.locator('.station').click();await expect(page.locator('#hyetograph')).toBeVisible();
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual([42]);
+ await expect(page.locator('#chartInterval option')).toHaveCount(1);
+ await expect(page.locator('#observationTable tbody tr')).toHaveCount(1);
+ await expect(page.locator('#ifdChart')).toBeVisible();
+ expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].pointRadius)).toBe(0);
+ await page.locator('#refresh').click();await expect(page.locator('#refresh')).toBeEnabled();
+ expect(Date.parse(requests.at(-1).end)).toBe(Date.parse(early));
+ await page.locator('#accumulation').selectOption('60');
+ await expect.poll(()=>requests.at(-1).minutes).toBe(60);
+ expect(Date.parse(requests.at(-1).end)).toBe(Date.parse(first));
+ await expect(page.locator('#ending')).toHaveAttribute('min','2026-10-22T10:00');
 });

@@ -17,7 +17,7 @@ class HistoricalRainTests(unittest.TestCase):
         self.store=Store(str(self.path));snapshot,_=self.store.snapshot(b'test-only periods','fixture','fixture',END.isoformat())
         for i,value in enumerate([0,2,3,4]):
             self.store.observation(snapshot,'bom:540668','rainfall',(END-timedelta(minutes=15*i)).isoformat(),900,value,'rain-15m',END.isoformat())
-        # Coarse values must never fill missing quarters or enter map sums.
+        # Coarse totals are used only for early three-hour map windows, never shorter windows.
         self.store.observation(snapshot,'bom:540668','rainfall',END.isoformat(),10800,999,'rain-3h',END.isoformat())
         self.store.status('rain-15m',END.isoformat(),'ok',{})
         self.store.db.commit();api.CACHE.clear()
@@ -36,7 +36,7 @@ class HistoricalRainTests(unittest.TestCase):
         self.assertEqual(station['coordinates']['stationNumber'],'540668')
         self.assertEqual(station['ifdLocationKey'],'-27.736111,152.766667')
         longer=next(s for s in api.rainfall_frame(minutes=180)['stations'] if s['id']==GOOLMAN)
-        self.assertIsNone(longer['depth']);self.assertEqual(longer['coverageStatus'],'incomplete')
+        self.assertEqual(longer['depth'],999);self.assertEqual(longer['sourceKind'],'rain-3h')
         earlier=next(s for s in api.rainfall_frame((END-timedelta(minutes=15)).isoformat(),30)['stations'] if s['id']==GOOLMAN)
         self.assertEqual(earlier['depth'],5)
 
@@ -58,6 +58,33 @@ class HistoricalRainTests(unittest.TestCase):
         self.assertEqual(api.rainfall_series('not-a-station')['reason'],'identity-unresolved')
         unresolved=next(s for s in api.rainfall_frame()['stations'] if s['stationNumber'] is None)
         self.assertIsNone(unresolved['coordinates']);self.assertIsNone(unresolved['depth'])
+
+    def test_early_three_hour_observations_remain_separate_and_only_fill_early_three_hour_windows(self):
+        early=END-timedelta(hours=6)
+        snap,_=self.store.snapshot(b'early coarse fixture','fixture-early','rain-3h',END.isoformat())
+        self.store.observation(snap,'bom:540668','rainfall',early.isoformat(),10800,42,'rain-3h',END.isoformat())
+        self.store.db.commit();api.CACHE.clear()
+        self.assertEqual(api.rainfall_extent()['coarseEnds'][0],early.isoformat())
+        station=next(s for s in api.rainfall_frame(early.isoformat(),180)['stations'] if s['id']==GOOLMAN)
+        self.assertEqual(station['depth'],42);self.assertEqual(station['sourceKind'],'rain-3h')
+        self.assertEqual(station['expectedBlocks'],1)
+        series=api.rainfall_series(GOOLMAN,early.isoformat(),180)
+        self.assertTrue(all(v is None for v in series['stations'][0]['values']))
+        for minutes in (15,30,60,360,720,1440):
+            with self.assertRaises(ValueError):api.rainfall_frame(early.isoformat(),minutes)
+        # Complete native quarters always take precedence over a coarse total.
+        for i in range(4,12):
+            self.store.observation(snap,'bom:540668','rainfall',(END-timedelta(minutes=15*i)).isoformat(),900,1,'rain-15m',END.isoformat())
+        self.store.db.commit();api.CACHE.clear()
+        station=next(s for s in api.rainfall_frame(END.isoformat(),180)['stations'] if s['id']==GOOLMAN)
+        self.assertEqual(station['depth'],17);self.assertEqual(station['sourceKind'],'rain-15m')
+        # A later missing quarter does not trigger coarse fallback.
+        late=END+timedelta(hours=3)
+        self.store.observation(snap,'bom:540668','rainfall',late.isoformat(),900,1,'rain-15m',late.isoformat())
+        self.store.observation(snap,'bom:540668','rainfall',late.isoformat(),10800,88,'rain-3h',late.isoformat())
+        self.store.db.commit();api.CACHE.clear()
+        station=next(s for s in api.rainfall_frame(late.isoformat(),180)['stations'] if s['id']==GOOLMAN)
+        self.assertIsNone(station['depth'])
 
     def test_queries_are_read_only_and_absent_connection_is_explicit(self):
         before=self.store.execute('SELECT COUNT(*) AS n FROM observations').fetchone()['n']

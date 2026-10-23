@@ -65,19 +65,25 @@ def rainfall_extent():
     def read(db):
         extent = query(db, '''SELECT MIN(end_at) AS first, MAX(end_at) AS last FROM observations
             WHERE kind='rain-15m' AND duration_seconds=900''')[0]
+        coarse = query(db, """SELECT DISTINCT end_at FROM observations WHERE kind='rain-3h'
+            AND duration_seconds=10800 AND end_at<? ORDER BY end_at""",
+            ((date(extent['first'])+timedelta(minutes=165)).isoformat(),)) if extent['first'] else []
         sources = query(db, "SELECT checked_at,issued_at,status FROM source_status WHERE source='rain-15m'")
         return {'firstEnd':extent['first'], 'lastEnd':extent['last'],
-                'source':sources[0] if sources else None}
+                'source':sources[0] if sources else None,
+                'coarseEnds':[r['end_at'] for r in coarse]}
     return read_archive('rainfall-extent',read)
 
-def selected_end(requested, extent):
+def selected_end(requested, extent, minutes=None):
     if not extent.get('lastEnd'):
         return None
     end = date(requested or extent['lastEnd'])
     if end.second or end.microsecond or end.minute % 15:
         raise ValueError('Choose an ending time on a 15-minute boundary.')
-    if not date(extent['firstEnd']) <= end <= date(extent['lastEnd']):
-        raise ValueError('The selected time is outside the saved quarter-hour archive.')
+    first=extent['firstEnd']
+    if minutes==180 and extent.get('coarseEnds'):first=min(first,extent['coarseEnds'][0])
+    if not date(first) <= end <= date(extent['lastEnd']):
+        raise ValueError('The selected time is outside the saved archive for this rainfall duration.')
     return end.isoformat()
 
 def rainfall_inventory():
@@ -105,7 +111,7 @@ def rainfall_frame(requested=None, minutes=180):
         raise ValueError('Unsupported accumulation period.')
     extent=rainfall_extent()
     if not extent['available']:return extent
-    end=selected_end(requested,extent)
+    end=selected_end(requested,extent,minutes)
     if end is None:return {'available':True, 'reason':'no-observations', 'stations':[]}
     def read(db):
         start=(date(end)-timedelta(minutes=minutes)).isoformat()
@@ -113,25 +119,34 @@ def rainfall_frame(requested=None, minutes=180):
             AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY station,end_at''',(start,end))
         grouped={}
         for row in rows:grouped.setdefault(row['station'],[]).append(row)
+        coarse={}
+        if minutes==180 and date(start)<date(extent['firstEnd'])-timedelta(minutes=15):
+            for row in query(db,"SELECT station,value FROM observations WHERE kind='rain-3h' AND duration_seconds=10800 AND end_at=?",(end,)):
+                coarse[row['station']]=row['value']
         totals={}
         stations=[]
         for gauge in rainfall_inventory():
             sid=gauge['stationNumber']
             if sid not in totals:
                 totals[sid]=aggregate(grouped.get('bom:'+sid,[]) if sid else [],end,minutes)
-            stations.append({**gauge,**totals[sid],
-                'coverageStatus':'identity-unresolved' if not sid else 'complete' if totals[sid]['complete'] else 'incomplete'})
+            total={**totals[sid],'sourceKind':'rain-15m'}
+            identity='bom:'+sid if sid else 'bulletin:'+gauge['id']
+            value=coarse.get(identity)
+            if not total['complete'] and isinstance(value,(int,float)) and math.isfinite(value) and value>=0:
+                total.update(depth=value,complete=True,validBlocks=1,expectedBlocks=1,sourceKind='rain-3h')
+            stations.append({**gauge,**total,
+                'coverageStatus':'identity-unresolved' if not sid else 'complete' if total['complete'] else 'incomplete'})
         return {'start':start,'end':end,'minutes':minutes,'stations':stations}
     result=read_archive(f'rainfall-frame:{end}:{minutes}',read)
     return {**result,'extent':extent}
 
-def rainfall_series(gauge_id,requested=None):
+def rainfall_series(gauge_id,requested=None,minutes=None):
     gauge=next((g for g in rainfall_inventory() if g['id']==gauge_id),None)
     if gauge is None or not gauge['stationNumber']:
         return {'available':False,'reason':'identity-unresolved'}
     extent=rainfall_extent()
     if not extent['available']:return extent
-    end=selected_end(requested,extent)
+    end=selected_end(requested,extent,minutes)
     if end is None:return {'available':True,'reason':'no-observations','periods':[]}
     def read(db):
         end_date=date(end);start=end_date-timedelta(hours=24)

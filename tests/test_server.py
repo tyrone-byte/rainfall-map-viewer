@@ -54,7 +54,7 @@ class BrowserCacheTests(unittest.TestCase):
                 html=response.read().decode()
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('/app.js?v=archive-1',html)
-                self.assertIn('/ifd-view.js?v=duration-2',html)
+                self.assertIn('/ifd-view.js?v=coarse-3',html)
             with urlopen(base+'/app.js?v=archive-1') as response:
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('renderIfd(s)',response.read().decode())

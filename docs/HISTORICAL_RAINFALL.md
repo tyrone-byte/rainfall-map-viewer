@@ -1,22 +1,22 @@
-# Time slider and rainfall accumulation
+# Ending time and rainfall duration
 
 The **Rainfall history** tab at `/history` reads the saved PostgreSQL archive.
 The original rainfall bulletin remains at `/`; water-level views remain unchanged.
 Both rainfall pages use the same general design and share the map viewport with
-the water page. Moving a time slider or changing accumulation does not refit or
+the water page. Changing ending time or rainfall duration does not refit or
 zoom the map. The explicit **Fit gauges** button remains available.
 
 ## Controls
 
-- **Observation ending time:** slider in 15-minute steps, previous/next buttons stepping by rainfall duration,
+- **Observation ending time:** previous/next buttons stepping by rainfall duration,
   and a date/time picker explicitly labelled Brisbane AEST. Its range is the
-  first through last quarter-hour timestamp actually present in the archive.
+  first through last quarter-hour timestamp actually present in the archive. With exactly 3 hours selected, earlier saved three-hour bulletin ending times are also available. The slider has been removed.
 - **Rainfall duration:** 15 or 30 minutes, or 1, 3, 6, 12 or 24 hours. Each
   map total and hyetograph cover the same rolling window ending at the selected timestamp. The default
   is 3 hours to preserve a familiar scale; windows need not align to bulletin
   boundaries such as 09:00 or 12:00.
 - **Latest saved:** follows the newest saved ending time as the page checks each
-  minute. Moving the slider pauses that following behavior. Clicking Latest
+  minute. Changing ending time pauses that following behavior. Clicking Latest
   resumes it. No browser request starts a new BoM collection job.
 - **Chart interval:** groups the selected-duration hyetograph into 15-minute,
   30-minute, hourly or three-hour bars. It does not change map totals or the IFD
@@ -36,8 +36,7 @@ interprets entered values in AEST regardless of the browser's local timezone.
 ## Data rules
 
 Every required quarter-hour must be present and numeric. Missing/null quarters
-produce **Incomplete** instead of zero or a complete partial sum. Neither hourly
-nor three-hour bulletin totals fill gaps. Unknown station IDs are not guessed.
+produce **Incomplete** instead of zero or a complete partial sum. Hourly bulletin totals never fill gaps. For exactly the 3-hour duration, an early window that starts before quarter-hour collection began can use an exact matching saved BoM three-hour total if the native quarter-hours are incomplete. It appears as one undivided three-hour bar. Complete native quarters take precedence; later missing quarters do not trigger this fallback. No coarse value enters the quarter-hour series, shorter durations or IFD calculation. Unknown station IDs are not guessed.
 Map coordinates come from the separate audited live BoM map identities. Gauges
 whose coordinates/identity remain unresolved stay in the list without an invented
 map location. Local IFD references can retain their saved catalogue coordinate key
@@ -52,7 +51,7 @@ The historical IFD comparison uses the native quarter-hour series, with observed
 durations from 15 minutes through 24 hours. Its latest mode ends at the selected
 time; its wettest mode examines complete, quarter-hour-aligned windows within
 the preceding 24 hours, labelled “Wettest windows in preceding 24 hours”. Map accumulation and chart-bar grouping do not change
-these calculations. Design curves remain the supplied full-duration references;
+these calculations. IFD point markers are hidden to keep the curves readable; hover tooltips remain available. Design curves remain the supplied full-duration references;
 durations below 15 minutes have no reconstructed observations. The original
 bulletin page's IFD still uses native three-hour data and retains its previous
 behavior. No AEP is assigned automatically to the storm.
@@ -70,7 +69,7 @@ are queried using parameterized SQL, cached for up to one minute, and the shared
 cache is capped at 128 entries. Connection/statement timeouts remain in force.
 An unavailable archive is explicitly reported; it never silently substitutes a
 bulletin or fabricated values. During a failed/slow selection, the previous map
-keeps its earlier window label. Stale responses from older slider/gauge requests
+keeps its earlier window label. Stale responses from older time/gauge requests
 are aborted/ignored. The freshness indicator describes the newest archived
 period and collection status separately from the historical time being viewed.
 
