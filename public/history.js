@@ -8,7 +8,7 @@ const bands=[['green','Green','#36a46d'],['yellow','Yellow','#e9c345'],['orange'
 const colours={missing:'#88969c',...Object.fromEntries(bands.map(b=>[b.id,b.colour]))};
 let thresholds=[5,15,30,40,50,80,130,180,200];
 const band=value=>value===null?'missing':bands[thresholds.findIndex(limit=>value<=limit)===-1?9:thresholds.findIndex(limit=>value<=limit)].id;
-let data=null,selected=null,frame=null,extent=null,chart=null,chartMinutes=15,follow=true,targetEnd=null,loadVersion=0,detailVersion=0,sliderTimer,frameController,detailController;
+let data=null,selected=null,frame=null,extent=null,chart=null,chartMinutes=15,follow=true,targetEnd=null,loadVersion=0,detailVersion=0,selectionTimer,frameController,detailController;
 const params=new URLSearchParams(location.search);
 if(params.get('end')){targetEnd=params.get('end');follow=false;}
 if(['15','30','60','180','360','720','1440'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
@@ -31,11 +31,9 @@ function localInput(iso){return new Date(Date.parse(iso)+10*3600000).toISOString
 function controlTime(){
  if(!extent?.lastEnd)return;
  const first=Date.parse(extent.firstEnd),last=Date.parse(extent.lastEnd),selectedTime=Date.parse(targetEnd);
- $('timeline').max=Math.round((last-first)/900000);$('timeline').value=Math.round((selectedTime-first)/900000);
- $('timeline').disabled=false;$('ending').disabled=false;$('accumulation').disabled=false;$('latest').disabled=false;
+ $('ending').disabled=false;$('accumulation').disabled=false;$('latest').disabled=false;
  $('ending').min=localInput(extent.firstEnd);$('ending').max=localInput(extent.lastEnd);$('ending').value=localInput(targetEnd);
- $('timeLabel').textContent=`${date(new Date(selectedTime-Number($('accumulation').value)*60000).toISOString())} – ${date(targetEnd)} AEST`;$('timeline').setAttribute('aria-valuetext',`${date(targetEnd)} AEST`);
- $('firstTime').textContent=date(extent.firstEnd);$('lastTime').textContent=date(extent.lastEnd);
+ $('timeLabel').textContent=`${date(new Date(selectedTime-Number($('accumulation').value)*60000).toISOString())} – ${date(targetEnd)} AEST`;
  const step=Number($('accumulation').value)*60000,stepLabel=duration(step/60000);
  $('previous').textContent=`← ${stepLabel}`;$('next').textContent=`${stepLabel} →`;
  $('previous').disabled=selectedTime-step<first;$('next').disabled=selectedTime+step>last;
@@ -134,12 +132,11 @@ async function refresh(){
  }catch(error){notice(error.message);$('freshness').className='badge stale';$('freshness').textContent='● Archive unavailable';}
  finally{$('refresh').disabled=false;}
 }
-function selectTime(end){targetEnd=end;follow=false;loadVersion++;detailVersion++;frameController?.abort();detailController?.abort();controlTime();$('loading').textContent='Loading selection… Existing map shows the previous completed selection.';clearTimeout(sliderTimer);sliderTimer=setTimeout(loadFrame,180);}
-$('timeline').oninput=()=>selectTime(new Date(Date.parse(extent.firstEnd)+Number($('timeline').value)*900000).toISOString());
+function selectTime(end){targetEnd=end;follow=false;loadVersion++;detailVersion++;frameController?.abort();detailController?.abort();controlTime();$('loading').textContent='Loading selection… Existing map shows the previous completed selection.';clearTimeout(selectionTimer);selectionTimer=setTimeout(loadFrame,180);}
 $('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!Number.isFinite(time)||time<Date.parse(extent.firstEnd)||time>Date.parse(extent.lastEnd)||time%900000!==0){notice('Choose a saved ending time on a 15-minute boundary, in Brisbane time.');return;}selectTime(new Date(time).toISOString());};
 $('previous').onclick=()=>selectTime(new Date(Date.parse(targetEnd)-Number($('accumulation').value)*60000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(targetEnd)+Number($('accumulation').value)*60000).toISOString());
-$('latest').onclick=()=>{follow=true;targetEnd=extent.lastEnd;controlTime();clearTimeout(sliderTimer);loadFrame();};
-$('accumulation').onchange=()=>{controlTime();clearTimeout(sliderTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
+$('latest').onclick=()=>{follow=true;targetEnd=extent.lastEnd;controlTime();clearTimeout(selectionTimer);loadFrame();};
+$('accumulation').onchange=()=>{controlTime();clearTimeout(selectionTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
 for(const id of ['search','group','rainFilter'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
 $('thresholds').onsubmit=event=>{event.preventDefault();const values=thresholds.map((_,i)=>Number($(`t${i+1}`).value));if(values.some(v=>!Number.isFinite(v)||v<0)||values.some((v,i)=>i>0&&v<=values[i-1])){$('thresholdError').textContent='Enter increasing non-negative limits.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();};
 displayLimits();legend();refresh();setInterval(refresh,60000);

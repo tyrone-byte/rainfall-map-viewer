@@ -19,7 +19,7 @@ async function mock(page){
  });
  return requests;
 }
-test('accumulation and slider change totals, ranking and colours together without changing zoom',async({page})=>{
+test('duration and ending time change totals, ranking and colours together without changing zoom',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));const requests=await mock(page);
  await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
  await expect(page.locator('.station').first()).toContainText('Alpha gauge');
@@ -27,7 +27,7 @@ test('accumulation and slider change totals, ranking and colours together withou
  await page.locator('#accumulation').selectOption('15');
  await expect(page.locator('#period')).toContainText('15 minutes');await expect(page.locator('.station').first()).toContainText('Beta gauge');
  expect(await page.evaluate(()=>markers.get('b').options.fillColor)).toBe('#e9c345');
- await page.locator('#timeline').evaluate(el=>{el.value='2';el.dispatchEvent(new Event('input',{bubbles:true}));});
+ await page.locator('#ending').fill('2026-10-22T10:30');await page.locator('#ending').dispatchEvent('change');
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(first)+1800000);
  await expect(page.locator('.station').first()).toContainText('Beta gauge');
  await expect(page.locator('.station').first()).toContainText('60.0 mm');
@@ -41,6 +41,8 @@ test('chart interval groups bars independently of map totals and native IFD, wit
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await mock(page);
  await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');await page.locator('.station').first().click();
  await expect(page.locator('#ifdChart')).toBeVisible();
+ await expect(page.locator('input[type=range]')).toHaveCount(0);
+ expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets.every(d=>d.pointRadius===0))).toBe(true);
  const points=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
  expect(points[0]).toEqual({x:15,y:1});expect(points.at(-1)).toEqual({x:1440,y:96});
  const period=await page.locator('#period').textContent();
@@ -57,7 +59,7 @@ test('chart interval groups bars independently of map totals and native IFD, wit
 test('unavailable archive never falls back to unlabelled coarse values',async({page})=>{
  await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{available:false,reason:'not-connected'}}));
  await page.goto('/history');await expect(page.locator('#notice')).toContainText('unavailable or empty');
- await expect(page.locator('#timeline')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
+ await expect(page.locator('#ending')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
  await expect(page.locator('#freshness')).toContainText('Archive unavailable');
 });
 test('IFD keeps a missing quarter as a gap and map labels stay on failed window loads',async({page})=>{
@@ -78,7 +80,7 @@ test('IFD keeps a missing quarter as a gap and map labels stay on failed window 
  await page.locator('#previous').click();await expect(page.locator('#notice')).toContainText('earlier labelled window');
  await expect(page.locator('#period')).toHaveText(caption);
 });
-test('late window response cannot replace a newer slider selection',async({page})=>{
+test('late window response cannot replace a newer ending-time selection',async({page})=>{
  await mock(page);await page.goto('/history');await expect(page.locator('#count')).toContainText('3 gauges');
  await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
  let delayed=false;
@@ -103,7 +105,7 @@ test('history and water pages preserve the same geographic viewport',async({page
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lng)).toBeCloseTo(152.95,5);
 });
 test('ending picker uses Brisbane time and bookmarked selections survive reload',async({page})=>{
- const requests=await mock(page);await page.goto('/history');await expect(page.locator('#timeline')).toBeEnabled();
+ const requests=await mock(page);await page.goto('/history');await expect(page.locator('#ending')).toBeEnabled();
  await page.locator('#ending').fill('2026-10-22T10:30');await page.locator('#ending').dispatchEvent('change');
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(first)+1800000);
  await expect(page).toHaveURL(/end=/);await page.reload();

@@ -1,14 +1,14 @@
-# Time slider and rainfall accumulation
+# Ending time and rainfall duration
 
 The **Rainfall history** tab at `/history` reads the saved PostgreSQL archive.
 The original rainfall bulletin remains at `/`; water-level views remain unchanged.
 Both rainfall pages use the same general design and share the map viewport with
-the water page. Moving a time slider or changing accumulation does not refit or
+the water page. Changing ending time or rainfall duration does not refit or
 zoom the map. The explicit **Fit gauges** button remains available.
 
 ## Controls
 
-- **Observation ending time:** slider in 15-minute steps, previous/next buttons stepping by rainfall duration,
+- **Observation ending time:** previous/next buttons stepping by rainfall duration,
   and a date/time picker explicitly labelled Brisbane AEST. Its range is the
   first through last quarter-hour timestamp actually present in the archive.
 - **Rainfall duration:** 15 or 30 minutes, or 1, 3, 6, 12 or 24 hours. Each
@@ -16,7 +16,7 @@ zoom the map. The explicit **Fit gauges** button remains available.
   is 3 hours to preserve a familiar scale; windows need not align to bulletin
   boundaries such as 09:00 or 12:00.
 - **Latest saved:** follows the newest saved ending time as the page checks each
-  minute. Moving the slider pauses that following behavior. Clicking Latest
+  minute. Changing ending time pauses that following behavior. Clicking Latest
   resumes it. No browser request starts a new BoM collection job.
 - **Chart interval:** groups the selected-duration hyetograph into 15-minute,
   30-minute, hourly or three-hour bars. It does not change map totals or the IFD
@@ -76,7 +76,7 @@ are queried using parameterized SQL, cached for up to one minute, and the shared
 cache is capped at 128 entries. Connection/statement timeouts remain in force.
 An unavailable archive is explicitly reported; it never silently substitutes a
 bulletin or fabricated values. During a failed/slow selection, the previous map
-keeps its earlier window label. Stale responses from older slider/gauge requests
+keeps its earlier window label. Stale responses from older ending-time/gauge requests
 are aborted/ignored. The freshness indicator describes the newest archived
 period and collection status separately from the historical time being viewed.
 
