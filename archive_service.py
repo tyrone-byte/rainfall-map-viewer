@@ -81,7 +81,7 @@ def selected_end(requested, extent, minutes=None):
     if end.second or end.microsecond or end.minute % 15:
         raise ValueError('Choose an ending time on a 15-minute boundary.')
     first=extent['firstEnd']
-    if minutes==180 and extent.get('coarseEnds'):first=min(first,extent['coarseEnds'][0])
+    if minutes and minutes>=180 and extent.get('coarseEnds'):first=min(first,extent['coarseEnds'][0])
     if not date(first) <= end <= date(extent['lastEnd']):
         raise ValueError('The selected time is outside the saved archive for this rainfall duration.')
     return end.isoformat()
@@ -120,9 +120,9 @@ def rainfall_frame(requested=None, minutes=180):
         grouped={}
         for row in rows:grouped.setdefault(row['station'],[]).append(row)
         coarse={}
-        if minutes==180 and date(start)<date(extent['firstEnd'])-timedelta(minutes=15):
-            for row in query(db,"SELECT station,value FROM observations WHERE kind='rain-3h' AND duration_seconds=10800 AND end_at=?",(end,)):
-                coarse[row['station']]=row['value']
+        if minutes>=180 and date(start)<date(extent['firstEnd'])-timedelta(minutes=15):
+            for row in query(db,"SELECT station,end_at,value FROM observations WHERE kind='rain-3h' AND duration_seconds=10800 AND end_at>? AND end_at<=?",(start,end)):
+                coarse[(row['station'],row['end_at'])]=row['value']
         totals={}
         stations=[]
         for gauge in rainfall_inventory():
@@ -131,9 +131,30 @@ def rainfall_frame(requested=None, minutes=180):
                 totals[sid]=aggregate(grouped.get('bom:'+sid,[]) if sid else [],end,minutes)
             total={**totals[sid],'sourceKind':'rain-15m'}
             identity='bom:'+sid if sid else 'bulletin:'+gauge['id']
-            value=coarse.get(identity)
-            if not total['complete'] and isinstance(value,(int,float)) and math.isfinite(value) and value>=0:
-                total.update(depth=value,complete=True,validBlocks=1,expectedBlocks=1,sourceKind='rain-3h')
+            if not total['complete'] and coarse and extent.get('coarseEnds'):
+                # Partition on actual bulletin boundaries, with native partial edges.
+                # Each non-overlapping block uses complete quarters first, otherwise
+                # one exact early bulletin observation. Never divide a coarse value.
+                anchor=date(extent['coarseEnds'][0]);left=date(start);right=date(end)
+                boundary=anchor+timedelta(hours=3*((left-anchor)//timedelta(hours=3)+1))
+                edges=[left]
+                while boundary<right:
+                    edges.append(boundary);boundary+=timedelta(hours=3)
+                edges.append(right)
+                periods=[];values=[];used_coarse=False
+                for a,b in zip(edges,edges[1:]):
+                    length=int((b-a).total_seconds()/60)
+                    block=aggregate(grouped.get(identity,[]),b.isoformat(),length)
+                    value=block['depth']
+                    saved=coarse.get((identity,b.isoformat()))
+                    if value is None and length==180 and a<date(extent['firstEnd'])-timedelta(minutes=15) and isinstance(saved,(int,float)) and math.isfinite(saved) and saved>=0:
+                        value=saved;used_coarse=True
+                    periods.append({'start':a.isoformat(),'end':b.isoformat()});values.append(value)
+                if used_coarse:
+                    complete=all(v is not None for v in values)
+                    total.update(depth=float(sum(Decimal(str(v)) for v in values)) if complete else None,
+                        complete=complete,validBlocks=sum(v is not None for v in values),expectedBlocks=len(values),
+                        sourceKind='rain-3h',observationPeriods=periods,observationValues=values)
             stations.append({**gauge,**total,
                 'coverageStatus':'identity-unresolved' if not sid else 'complete' if total['complete'] else 'incomplete'})
         return {'start':start,'end':end,'minutes':minutes,'stations':stations}

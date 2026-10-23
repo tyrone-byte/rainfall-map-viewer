@@ -28,11 +28,11 @@ function displayLimits(){
 }
 function notice(text){$('notice').hidden=!text;$('notice').textContent=text||'';}
 function localInput(iso){return new Date(Date.parse(iso)+10*3600000).toISOString().slice(0,16);}
-function earliestEnd(){return Number($('accumulation').value)===180&&extent.coarseEnds?.length?new Date(Math.min(Date.parse(extent.coarseEnds[0]),Date.parse(extent.firstEnd))).toISOString():extent.firstEnd;}
+function earliestEnd(){return Number($('accumulation').value)>=180&&extent.coarseEnds?.length?new Date(Math.min(Date.parse(extent.coarseEnds[0]),Date.parse(extent.firstEnd))).toISOString():extent.firstEnd;}
 function stepEnd(direction){
  const current=Date.parse(targetEnd),candidate=current+direction*Number($('accumulation').value)*60000;
  const first=Date.parse(earliestEnd()),last=Date.parse(extent.lastEnd),native=Date.parse(extent.firstEnd);
- if(Number($('accumulation').value)===180&&extent.coarseEnds?.length&&candidate<native+165*60000){
+ if(Number($('accumulation').value)>=180&&extent.coarseEnds?.length&&candidate<native+165*60000){
   const ends=extent.coarseEnds.map(Date.parse).filter(t=>direction<0?t<current:t>current);
   const match=ends.sort((a,b)=>Math.abs(a-candidate)-Math.abs(b-candidate)||a-b)[0];
   if(match!==undefined)return new Date(match).toISOString();
@@ -71,7 +71,7 @@ function draw(){
  layer.clearLayers();markers.clear();$('stations').replaceChildren();let mapped=0;
  for(const station of rows){
   const colour=colours[band(station.depth)],button=node('button',undefined,'station'+(station.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=colour;
-  button.append(dot,node('span',mm(station.depth),'reading'),document.createTextNode(station.name),node('small',`${station.group} · ${station.sourceKind==='rain-3h'?'BoM 3-hour total':`${station.validBlocks}/${station.expectedBlocks} quarter-hours`}`));
+  button.append(dot,node('span',mm(station.depth),'reading'),document.createTextNode(station.name),node('small',`${station.group} · ${station.sourceKind==='rain-3h'?'3-hour rainfall blocks':`${station.validBlocks}/${station.expectedBlocks} quarter-hours`}`));
   if(!station.coordinates)button.append(node('span','Identity / location unresolved · not plotted','unmapped'));
   button.onclick=()=>choose(station.id,true);$('stations').append(button);
   if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${station.name} · ${mm(station.depth)} / ${duration(frame.minutes)}`));marker.on('click',()=>choose(station.id,false));markers.set(station.id,marker);}
@@ -101,7 +101,7 @@ function renderDetail(station,series){
  const valid=series.values.filter(v=>v!==null),complete=valid.length===96;
  const metrics=node('div',undefined,'metrics');
  for(const [value,label] of [[mm(station.depth),`Selected ${duration(frame.minutes)} total`],[complete?mm(valid.reduce((a,b)=>a+b,0)):'Incomplete','24-hour total ending at selected time']]){const metric=node('div',undefined,'metric');metric.append(node('strong',value),node('span',label));metrics.append(metric);}host.append(metrics);
- host.append(node('p',`${date(frame.start)} – ${date(frame.end)} AEST · ${station.sourceKind==='rain-3h'?'Saved BoM 3-hour observation.':`${station.validBlocks}/${station.expectedBlocks} required quarter-hours present.`}`,'history-coverage'));
+ host.append(node('p',`${date(frame.start)} – ${date(frame.end)} AEST · ${station.sourceKind==='rain-3h'?'Saved 3-hour blocks; complete quarter-hour data used where available.':`${station.validBlocks}/${station.expectedBlocks} required quarter-hours present.`}`,'history-coverage'));
  host.append(node('p',`The chart covers the selected ${duration(frame.minutes)} ending at ${date(frame.end)} AEST, matching the map window. Missing observations remain gaps. Chart interval groups bars only; the IFD comparison independently uses the preceding 24 hours.`,'history-window'));
  const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';const intervals=(station.sourceKind==='rain-3h'?[180]:[15,30,60,180]).filter(m=>m<=frame.minutes&&frame.minutes%m===0);
  if(!intervals.includes(chartMinutes))chartMinutes=intervals.at(-1);
@@ -116,11 +116,11 @@ function renderChart(station,minutes){
  if(!data)return;
  const step=minutes/15,periods=[],values=[],first=data.periods.length-frame.minutes/15;
  const gauge=frame.stations.find(s=>s.id===selected);
- if(gauge?.sourceKind==='rain-3h'){periods.push({start:frame.start,end:frame.end});values.push(gauge.depth);}
+ if(gauge?.sourceKind==='rain-3h'){periods.push(...(gauge.observationPeriods||[{start:frame.start,end:frame.end}]));values.push(...(gauge.observationValues||[gauge.depth]));}
  else
  for(let i=first;i<data.periods.length;i+=step){const chunk=station.values.slice(i,i+step);periods.push({start:data.periods[i].start,end:data.periods[i+step-1].end});values.push(chunk.length===step&&chunk.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0)?chunk.reduce((a,b)=>a+b,0):null);}
  chart?.destroy();const canvas=$('hyetograph');canvas.setAttribute('aria-label',`${station.name}: saved rainfall in chronological ${duration(minutes)} bars, in millimetres.`);
- chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:`${duration(minutes)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:`${duration(minutes)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
+ chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:gauge?.sourceKind==='rain-3h'?'Rainfall depth (mm)':`${duration(minutes)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:gauge?.sourceKind==='rain-3h'?'Period ending · AEST':`${duration(minutes)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
  const table=$('observationTable');table.replaceChildren();const head=node('thead'),tr=node('tr');for(const text of ['Period start (AEST)','Period end (AEST)','Rainfall (mm)'])tr.append(node('th',text));head.append(tr);table.append(head);const body=node('tbody');periods.forEach((p,i)=>{const row=node('tr');row.append(node('td',date(p.start)),node('td',date(p.end)),node('td',values[i]===null?'Incomplete':values[i].toFixed(1)));body.append(row);});table.append(body);table.parentElement.scrollTop=table.parentElement.scrollHeight;
 }
 async function loadFrame(){

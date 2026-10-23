@@ -173,3 +173,20 @@ test('no slider or IFD markers, and early three-hour observations appear as one 
  expect(Date.parse(requests.at(-1).end)).toBe(Date.parse(first));
  await expect(page.locator('#ending')).toHaveAttribute('min','2026-10-22T10:00');
 });
+
+test('long early rainfall duration shows multiple whole three-hour bars',async({page})=>{
+ await mock(page);const early='2026-10-21T19:00:00+00:00';
+ await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{...metadata,coarseEnds:[early]}}));
+ await page.route('**/api/archive-rainfall/frame?*',route=>{
+  const u=new URL(route.request().url()),end=u.searchParams.get('end'),minutes=Number(u.searchParams.get('minutes'));
+  const periods=Array.from({length:4},(_,i)=>({start:new Date(Date.parse(end)-(4-i)*10800000).toISOString(),end:new Date(Date.parse(end)-(3-i)*10800000).toISOString()}));
+  const station={...gauge('a','Alpha gauge',100,minutes,end),sourceKind:'rain-3h',observationPeriods:periods,observationValues:[10,20,30,40]};
+  return route.fulfill({json:{available:true,end,start:station.start,minutes,stations:[station]}});
+ });
+ await page.goto('/history?minutes=720&end='+encodeURIComponent(early));
+ await expect(page.locator('.station')).toHaveCount(1);await page.locator('.station').click();
+ await expect(page.locator('#observationTable tbody tr')).toHaveCount(4);
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual([10,20,30,40]);
+ await expect(page.locator('#chartInterval')).toHaveValue('180');
+ await expect(page.locator('#ending')).toHaveValue('2026-10-22T05:00');
+});

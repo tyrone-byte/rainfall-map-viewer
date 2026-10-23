@@ -70,7 +70,7 @@ class HistoricalRainTests(unittest.TestCase):
         self.assertEqual(station['expectedBlocks'],1)
         series=api.rainfall_series(GOOLMAN,early.isoformat(),180)
         self.assertTrue(all(v is None for v in series['stations'][0]['values']))
-        for minutes in (15,30,60,360,720,1440):
+        for minutes in (15,30,60):
             with self.assertRaises(ValueError):api.rainfall_frame(early.isoformat(),minutes)
         # Complete native quarters always take precedence over a coarse total.
         for i in range(4,12):
@@ -85,6 +85,32 @@ class HistoricalRainTests(unittest.TestCase):
         self.store.db.commit();api.CACHE.clear()
         station=next(s for s in api.rainfall_frame(late.isoformat(),180)['stations'] if s['id']==GOOLMAN)
         self.assertIsNone(station['depth'])
+
+    def test_long_windows_sum_whole_coarse_blocks_and_native_blocks_without_overlap(self):
+        snap,_=self.store.snapshot(b'long window','long-fixture','rain-3h',END.isoformat())
+        for hours,value in [(9,10),(6,20),(3,30),(0,40)]:
+            self.store.observation(snap,'bom:540668','rainfall',(END-timedelta(hours=hours)).isoformat(),10800,value,'rain-3h',END.isoformat())
+        for i in range(12):
+            self.store.observation(snap,'bom:540668','rainfall',(END-timedelta(minutes=15*i)).isoformat(),900,1,'rain-15m',END.isoformat())
+        self.store.db.commit();api.CACHE.clear()
+        station=next(s for s in api.rainfall_frame(END.isoformat(),720)['stations'] if s['id']==GOOLMAN)
+        self.assertEqual(station['depth'],72)
+        self.assertEqual(station['observationValues'],[10,20,30,12])
+        self.assertEqual(len(station['observationPeriods']),4)
+        # A missing coarse block stays a gap, while other bars remain visible.
+        self.store.observation(snap,'bom:540668','rainfall',(END-timedelta(hours=6)).isoformat(),10800,None,'rain-3h',END.isoformat())
+        self.store.db.commit();api.CACHE.clear()
+        station=next(s for s in api.rainfall_frame(END.isoformat(),720)['stations'] if s['id']==GOOLMAN)
+        self.assertIsNone(station['depth'])
+        self.assertEqual(station['observationValues'],[10,None,30,12])
+        # A non-aligned edge cannot take a fraction of a three-hour depth.
+        later=END+timedelta(minutes=15)
+        self.store.observation(snap,'bom:540668','rainfall',later.isoformat(),900,5,'rain-15m',later.isoformat())
+        self.store.db.commit();api.CACHE.clear()
+        station=next(s for s in api.rainfall_frame(later.isoformat(),720)['stations'] if s['id']==GOOLMAN)
+        self.assertEqual(station['observationValues'],[None,None,30,12,5])
+        self.assertIsNone(station['depth'])
+        self.assertEqual(api.rainfall_series(GOOLMAN,later.isoformat(),720)['stations'][0]['values'][-1],5)
 
     def test_queries_are_read_only_and_absent_connection_is_explicit(self):
         before=self.store.execute('SELECT COUNT(*) AS n FROM observations').fetchone()['n']

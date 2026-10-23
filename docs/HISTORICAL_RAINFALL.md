@@ -10,7 +10,7 @@ zoom the map. The explicit **Fit gauges** button remains available.
 
 - **Observation ending time:** previous/next buttons stepping by rainfall duration,
   and a date/time picker explicitly labelled Brisbane AEST. Its range is the
-  first through last quarter-hour timestamp actually present in the archive. With exactly 3 hours selected, earlier saved three-hour bulletin ending times are also available. The slider has been removed.
+  first through last quarter-hour timestamp actually present in the archive. With 3 hours or longer selected, earlier saved three-hour bulletin ending times are also available. The slider has been removed.
 - **Rainfall duration:** 15 or 30 minutes, or 1, 3, 6, 12 or 24 hours. Each
   map total and hyetograph cover the same rolling window ending at the selected timestamp. The default
   is 3 hours to preserve a familiar scale; windows need not align to bulletin
@@ -36,7 +36,7 @@ interprets entered values in AEST regardless of the browser's local timezone.
 ## Data rules
 
 Every required quarter-hour must be present and numeric. Missing/null quarters
-produce **Incomplete** instead of zero or a complete partial sum. Hourly bulletin totals never fill gaps. For exactly the 3-hour duration, an early window that starts before quarter-hour collection began can use an exact matching saved BoM three-hour total if the native quarter-hours are incomplete. It appears as one undivided three-hour bar. Complete native quarters take precedence; later missing quarters do not trigger this fallback. No coarse value enters the quarter-hour series, shorter durations or IFD calculation. Unknown station IDs are not guessed.
+produce **Incomplete** instead of zero or a complete partial sum. Hourly bulletin totals never fill gaps. For durations of 3 hours or longer, an early window that starts before quarter-hour collection began can use an exact matching saved BoM three-hour total if the native quarter-hours are incomplete. Whole early three-hour observations appear as separate bars. Longer windows use a non-overlapping partition on bulletin boundaries; each block prefers complete native quarter-hours, otherwise an exact early three-hour observation. Partial window edges use native data only. Complete native quarters take precedence; later missing quarters do not trigger this fallback. No coarse value enters the quarter-hour series, durations shorter than three hours or IFD calculation. Unknown station IDs are not guessed.
 Map coordinates come from the separate audited live BoM map identities. Gauges
 whose coordinates/identity remain unresolved stay in the list without an invented
 map location. Local IFD references can retain their saved catalogue coordinate key
