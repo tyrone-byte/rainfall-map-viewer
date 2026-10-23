@@ -207,6 +207,13 @@ def main():
                     recovery_error = True
                     print(json.dumps({'eventRecovery': {'status': 'failed',
                         'message': 'Saved-event import failed. Check the import key and package. Normal collection will still run.'}}), flush=True)
+            from event_backfill import backfill_event
+            try:
+                print(json.dumps({'eventBackfill':backfill_event(store)}), flush=True)
+            except Exception:
+                store.db.rollback()
+                recovery_error = True
+                print(json.dumps({'eventBackfill':{'status':'failed','message':'Estimated event backfill failed; normal collection will continue.'}}), flush=True)
             results, errors = collect(store)
             if recovery_error:
                 errors.append({'source': 'event-recovery', 'error': 'ImportFailed'})

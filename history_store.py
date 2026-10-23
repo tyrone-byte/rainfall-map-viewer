@@ -84,7 +84,11 @@ class Store:
                           'quality': quality, 'sourceKind': kind, 'metadata': metadata or {}})
         previous = self.execute('SELECT payload, issued_at FROM observations WHERE id=?', (identity,)).fetchone()
         if previous:
-            if previous['issued_at'] > issued:
+            previous_estimated = json.loads(previous['payload']).get('metadata', {}).get('estimated', False)
+            incoming_estimated = bool((metadata or {}).get('estimated'))
+            if incoming_estimated and not previous_estimated:
+                return False
+            if previous['issued_at'] > issued and not (previous_estimated and not incoming_estimated):
                 return False
             if previous['payload'] == payload:
                 # Even an unchanged value establishes a newer revision boundary.

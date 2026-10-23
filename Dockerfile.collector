@@ -3,7 +3,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certifi
 WORKDIR /app
 COPY requirements-collector.txt ./
 RUN pip install --no-cache-dir -r requirements-collector.txt
-COPY collector.py history_store.py bom_hcs.py bom_source.py rainfall.py water.py event_recovery.py ./
+COPY collector.py history_store.py bom_hcs.py bom_source.py rainfall.py water.py event_recovery.py event_backfill.py ./
 COPY data/archive-stations.json ./data/archive-stations.json
 COPY data/event-recovery ./data/event-recovery
 RUN useradd --create-home collector && chown -R collector:collector /app

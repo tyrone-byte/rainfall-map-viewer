@@ -97,7 +97,7 @@ class Handler(SimpleHTTPRequestHandler):
                 elif path.endswith('/frame'):
                     payload=archive_service.rainfall_frame(params.get('end',[None])[0],int(params.get('minutes',['180'])[0]))
                 else:
-                    payload=archive_service.rainfall_series(params.get('gauge',[''])[0],params.get('end',[None])[0],int(params.get('minutes',['0'])[0]))
+                    payload=archive_service.rainfall_series(params.get('gauge',[''])[0],params.get('end',[None])[0])
             except (ValueError,OverflowError):
                 self.send_error(400,'Choose a saved quarter-hour ending time and a supported accumulation period.')
                 return

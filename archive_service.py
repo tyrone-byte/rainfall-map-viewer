@@ -65,25 +65,19 @@ def rainfall_extent():
     def read(db):
         extent = query(db, '''SELECT MIN(end_at) AS first, MAX(end_at) AS last FROM observations
             WHERE kind='rain-15m' AND duration_seconds=900''')[0]
-        coarse = query(db, """SELECT DISTINCT end_at FROM observations WHERE kind='rain-3h'
-            AND duration_seconds=10800 AND end_at<? ORDER BY end_at""",
-            ((date(extent['first'])+timedelta(minutes=165)).isoformat(),)) if extent['first'] else []
         sources = query(db, "SELECT checked_at,issued_at,status FROM source_status WHERE source='rain-15m'")
         return {'firstEnd':extent['first'], 'lastEnd':extent['last'],
-                'source':sources[0] if sources else None,
-                'coarseEnds':[r['end_at'] for r in coarse]}
+                'source':sources[0] if sources else None}
     return read_archive('rainfall-extent',read)
 
-def selected_end(requested, extent, minutes=None):
+def selected_end(requested, extent):
     if not extent.get('lastEnd'):
         return None
     end = date(requested or extent['lastEnd'])
     if end.second or end.microsecond or end.minute % 15:
         raise ValueError('Choose an ending time on a 15-minute boundary.')
-    first=extent['firstEnd']
-    if minutes and minutes>=180 and extent.get('coarseEnds'):first=min(first,extent['coarseEnds'][0])
-    if not date(first) <= end <= date(extent['lastEnd']):
-        raise ValueError('The selected time is outside the saved archive for this rainfall duration.')
+    if not date(extent['firstEnd']) <= end <= date(extent['lastEnd']):
+        raise ValueError('The selected time is outside the saved quarter-hour archive.')
     return end.isoformat()
 
 def rainfall_inventory():
@@ -111,7 +105,7 @@ def rainfall_frame(requested=None, minutes=180):
         raise ValueError('Unsupported accumulation period.')
     extent=rainfall_extent()
     if not extent['available']:return extent
-    end=selected_end(requested,extent,minutes)
+    end=selected_end(requested,extent)
     if end is None:return {'available':True, 'reason':'no-observations', 'stations':[]}
     def read(db):
         start=(date(end)-timedelta(minutes=minutes)).isoformat()
@@ -119,55 +113,25 @@ def rainfall_frame(requested=None, minutes=180):
             AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY station,end_at''',(start,end))
         grouped={}
         for row in rows:grouped.setdefault(row['station'],[]).append(row)
-        coarse={}
-        if minutes>=180 and date(start)<date(extent['firstEnd'])-timedelta(minutes=15):
-            for row in query(db,"SELECT station,end_at,value FROM observations WHERE kind='rain-3h' AND duration_seconds=10800 AND end_at>? AND end_at<=?",(start,end)):
-                coarse[(row['station'],row['end_at'])]=row['value']
         totals={}
         stations=[]
         for gauge in rainfall_inventory():
             sid=gauge['stationNumber']
             if sid not in totals:
                 totals[sid]=aggregate(grouped.get('bom:'+sid,[]) if sid else [],end,minutes)
-            total={**totals[sid],'sourceKind':'rain-15m'}
-            identity='bom:'+sid if sid else 'bulletin:'+gauge['id']
-            if not total['complete'] and coarse and extent.get('coarseEnds'):
-                # Partition on actual bulletin boundaries, with native partial edges.
-                # Each non-overlapping block uses complete quarters first, otherwise
-                # one exact early bulletin observation. Never divide a coarse value.
-                anchor=date(extent['coarseEnds'][0]);left=date(start);right=date(end)
-                boundary=anchor+timedelta(hours=3*((left-anchor)//timedelta(hours=3)+1))
-                edges=[left]
-                while boundary<right:
-                    edges.append(boundary);boundary+=timedelta(hours=3)
-                edges.append(right)
-                periods=[];values=[];used_coarse=False
-                for a,b in zip(edges,edges[1:]):
-                    length=int((b-a).total_seconds()/60)
-                    block=aggregate(grouped.get(identity,[]),b.isoformat(),length)
-                    value=block['depth']
-                    saved=coarse.get((identity,b.isoformat()))
-                    if value is None and length==180 and a<date(extent['firstEnd'])-timedelta(minutes=15) and isinstance(saved,(int,float)) and math.isfinite(saved) and saved>=0:
-                        value=saved;used_coarse=True
-                    periods.append({'start':a.isoformat(),'end':b.isoformat()});values.append(value)
-                if used_coarse:
-                    complete=all(v is not None for v in values)
-                    total.update(depth=float(sum(Decimal(str(v)) for v in values)) if complete else None,
-                        complete=complete,validBlocks=sum(v is not None for v in values),expectedBlocks=len(values),
-                        sourceKind='rain-3h',observationPeriods=periods,observationValues=values)
-            stations.append({**gauge,**total,
-                'coverageStatus':'identity-unresolved' if not sid else 'complete' if total['complete'] else 'incomplete'})
+            stations.append({**gauge,**totals[sid],
+                'coverageStatus':'identity-unresolved' if not sid else 'complete' if totals[sid]['complete'] else 'incomplete'})
         return {'start':start,'end':end,'minutes':minutes,'stations':stations}
     result=read_archive(f'rainfall-frame:{end}:{minutes}',read)
     return {**result,'extent':extent}
 
-def rainfall_series(gauge_id,requested=None,minutes=None):
+def rainfall_series(gauge_id,requested=None):
     gauge=next((g for g in rainfall_inventory() if g['id']==gauge_id),None)
     if gauge is None or not gauge['stationNumber']:
         return {'available':False,'reason':'identity-unresolved'}
     extent=rainfall_extent()
     if not extent['available']:return extent
-    end=selected_end(requested,extent,minutes)
+    end=selected_end(requested,extent)
     if end is None:return {'available':True,'reason':'no-observations','periods':[]}
     def read(db):
         end_date=date(end);start=end_date-timedelta(hours=24)
