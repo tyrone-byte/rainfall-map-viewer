@@ -54,7 +54,7 @@ function draw(){
  if(!frame)return;
  const term=$('search').value.toLowerCase(),group=$('group').value;
  const rows=frame.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.depth===null&&b.depth!==null?1:b.depth===null&&a.depth!==null?-1:(b.depth??0)-(a.depth??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id));
- const listScroll=$('stations').scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();let mapped=0;
+ const sidebar=document.querySelector('.sidebar'),listScroll=sidebar.scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();let mapped=0;
  for(const station of rows){
   const colour=colours[band(station.depth)],button=node('button',undefined,'station'+(station.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=colour;
   button.append(dot,node('span',mm(station.depth),'reading'),document.createTextNode(station.name),node('small',`${station.group} · ${station.validBlocks}/${station.expectedBlocks} quarter-hours`));
@@ -62,7 +62,7 @@ function draw(){
   button.onclick=()=>choose(station.id,true);$('stations').append(button);
   if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${station.name} · ${mm(station.depth)} / ${duration(frame.minutes)}`));marker.on('click',()=>choose(station.id,false));markers.set(station.id,marker);}
  }
- $('stations').scrollTop=listScroll;
+ sidebar.scrollTop=listScroll;
  $('count').textContent=`${rows.length} gauges · ${mapped} mapped · ${rows.filter(s=>s.complete).length} complete`;
  if(!rows.length)$('stations').append(node('p','No gauges match these filters.','filters muted'));
  if(selected&&!rows.some(s=>s.id===selected)){selected=null;detailVersion++;detailController?.abort();data=null;clearIfdChart();chart?.destroy();chart=null;$('detail').replaceChildren(node('p','Select a gauge within these filters.','muted'));}
@@ -97,7 +97,6 @@ function renderDetail(station,series){
  if(!intervals.includes(chartMinutes))chartMinutes=intervals.at(-1);
  for(const m of intervals)select.append(new Option(duration(m),m));select.value=chartMinutes;label.append(select);controls.append(label);host.append(controls);
  const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='hyetograph';canvas.setAttribute('role','img');wrap.append(canvas);host.append(wrap);
- const tw=node('div',undefined,'history-table table-wrap'),table=node('table');table.id='observationTable';tw.append(table);host.append(tw);
  select.onchange=()=>{chartMinutes=Number(select.value);renderChart(series,chartMinutes);};renderChart(series,chartMinutes);
  const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';host.append(comparison);renderIfd(series);
  if(station.coordinates){const p=node('p',undefined,'detail-source'),link=node('a',`BoM station ${station.stationNumber} · audited map coordinates`);link.href=station.coordinates.source;link.target='_blank';link.rel='noopener';p.append(link);host.append(p);}
@@ -108,7 +107,6 @@ function renderChart(station,minutes){
  for(let i=first;i<data.periods.length;i+=step){const chunk=station.values.slice(i,i+step);periods.push({start:data.periods[i].start,end:data.periods[i+step-1].end});values.push(chunk.length===step&&chunk.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0)?chunk.reduce((a,b)=>a+b,0):null);}
  chart?.destroy();const canvas=$('hyetograph');canvas.setAttribute('aria-label',`${station.name}: saved rainfall in chronological ${duration(minutes)} bars, in millimetres.`);
  chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:`${duration(minutes)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:`${duration(minutes)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
- const table=$('observationTable');table.replaceChildren();const head=node('thead'),tr=node('tr');for(const text of ['Period start (AEST)','Period end (AEST)','Rainfall (mm)'])tr.append(node('th',text));head.append(tr);table.append(head);const body=node('tbody');periods.forEach((p,i)=>{const row=node('tr');row.append(node('td',date(p.start)),node('td',date(p.end)),node('td',values[i]===null?'Incomplete':values[i].toFixed(1)));body.append(row);});table.append(body);table.parentElement.scrollTop=table.parentElement.scrollHeight;
 }
 async function loadFrame(){
  if(!extent?.lastEnd)return;

@@ -49,10 +49,10 @@ whose coordinates/identity remain unresolved stay in the list without an invente
 map location. Local IFD references can retain their saved catalogue coordinate key
 only when the catalogue and audited map agree on the exact station number.
 
-The station chart and table show the selected rainfall duration ending at the selected
+The station chart shows the selected rainfall duration ending at the selected
 time, independent of the first stored observation. Missing bars remain gaps, including periods before collection began. A
 grouped bar is complete only when every constituent quarter-hour is complete.
-The table stays chronological and initially scrolls to its newest rows.
+The period-value table beneath the hyetograph is omitted; rainfall depths remain available through chart tooltips.
 
 The historical IFD comparison uses the native quarter-hour series, with observed
 durations from 15 minutes through 24 hours. Its latest mode ends at the selected
@@ -93,6 +93,6 @@ frame and series queries left stored records unchanged and ran read-only.
 ## Desktop layout
 
 Time controls, search, catchment selection and the ranked gauge list are in the
-left sidebar. The rainfall-depth filter is removed. The map and plots share a
+left sidebar with one shared scrollbar for controls and gauges. The rainfall-depth filter is removed. The map and plots share a
 separate scrollable right pane, so changing time or gauge preserves the plot
 position. On narrow screens the sidebar and views stack normally.

@@ -130,20 +130,21 @@ test('rainfall duration bounds the chart and steps ending time while IFD retains
  await expect(page.getByLabel('Rainfall duration',{exact:true})).toHaveValue('180');
  await expect(page.locator('#previous')).toHaveText('← 3 hours');
  await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
- await expect(page.locator('#observationTable tbody tr')).toHaveCount(12);
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.length)).toBe(12);
+ await expect(page.locator('#observationTable')).toHaveCount(0);
  const original=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
  await page.locator('#ifdMode').selectOption({label:'Wettest windows in preceding 24 hours'});
  await expect(page.locator('.ifd-explanation')).toContainText('24 hours preceding');
  await page.locator('#accumulation').selectOption('360');
- await expect(page.locator('#observationTable tbody tr')).toHaveCount(24);
- expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(original);
+ await expect.poll(()=>page.locator('#hyetograph').evaluate(c=>Chart.getChart(c)?.data.labels.length)).toBe(24);
+ await expect.poll(()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].data)).toEqual(original);
  await expect(page.locator('#previous')).toHaveText('← 6 hours');
  await page.locator('#previous').click();
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-6*3600000);
- await expect(page.locator('#observationTable tbody tr').first()).toContainText('23:00');
- await expect(page.locator('#observationTable tbody tr').last()).toContainText('05:00');
+ await expect.poll(()=>page.locator('#hyetograph').evaluate(c=>Chart.getChart(c)?.data.labels[0]||'')).toContain('23:15');
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.at(-1))).toContain('05:00');
  await page.locator('#chartInterval').selectOption('60');
- await expect(page.locator('#observationTable tbody tr')).toHaveCount(6);
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.length)).toBe(6);
  await page.locator('#next').click();
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last));
  await expect(page.locator('#chartInterval')).toHaveValue('60');
@@ -173,4 +174,20 @@ test('sidebar controls and right plots scroll independently and keep the plot po
  expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeCloseTo(top,0);
  expect(await page.evaluate(()=>window.scrollY)).toBe(0);
  expect(errors).toEqual([]);
+});
+
+test('gauge list and controls share a single sidebar scrollbar',async({page})=>{
+ await mock(page);
+ await page.route('**/api/archive-rainfall/frame?*',r=>{
+  const stations=Array.from({length:50},(_,i)=>gauge('g'+i,'Gauge '+String(i).padStart(2,'0'),50-i,180,last));
+  return r.fulfill({json:{available:true,end:last,start:stations[0].start,minutes:180,stations}});
+ });
+ await page.goto('/history');await expect(page.locator('.station')).toHaveCount(50);
+ const state=await page.evaluate(()=>{
+  const list=document.getElementById('stations'),side=document.querySelector('.sidebar');
+  side.scrollTop=300;
+  return {listOverflow:getComputedStyle(list).overflowY,listScroll:list.scrollTop,sideScroll:side.scrollTop,sideOverflow:side.scrollHeight>side.clientHeight};
+ });
+ expect(state.listOverflow).toBe('visible');expect(state.listScroll).toBe(0);
+ expect(state.sideScroll).toBe(300);expect(state.sideOverflow).toBe(true);
 });
