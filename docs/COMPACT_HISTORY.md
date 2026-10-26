@@ -42,6 +42,9 @@ The first run of the new collector, under the existing PostgreSQL advisory lock:
 2. Extracts any previously unextracted Queensland rainfall observations from the
    old saved HCS files before discarding those files. Newest captured source wins
    for recovered observations. Existing observations are not overwritten.
+   Recovery inserts missing readings in bounded COPY batches on PostgreSQL, rather
+   than issuing individual INSERT/UPDATE round trips. Progress logs report source
+   files completed and readings recovered every five files.
 3. Removes unused hourly rainfall, three-hour rainfall and imported detailed
    water histories, then removes raw files and duplicate initial revision copies.
 4. Moves descriptive station fields to the registry. Existing one-off event
@@ -55,6 +58,11 @@ The first run of the new collector, under the existing PostgreSQL advisory lock:
    database readers. If compaction cannot acquire its lock or finishes late, the
    measurements remain committed and compaction retries next run.
 
+Database metadata is compacted in bulk. Source-reference updates have an indexed
+lookup and skip already-canonical source IDs. Cleanup logs each major stage; SQL
+statements have a five-minute timeout and lock waits a ten-second limit, so a
+blocked step fails with rollback rather than waiting indefinitely.
+
 The original snapshot-linked receipt time is the best recoverable receipt time
 for migrated records; it cannot establish their first-ever arrival after old
 collector updates. New readings preserve their receipt time through later
@@ -62,6 +70,10 @@ corrections. Original observation QA and one-off backfill provenance remain
 available, with descriptive/source-interpretation metadata represented separately.
 
 ## Deployment
+
+If an older cleanup run is still active, cancel that run before rebuilding the
+collector. Do not trigger overlapping cleanup attempts. Cancelling an unfinished
+transaction rolls it back; a completed migration receipt is detected on retry.
 
 1. Deploy the latest **rainfall-map-viewer** web service first. This updates read
    compatibility for PostgreSQL timestamp values and the separate station registry;

@@ -5,7 +5,7 @@ from history_store import utc
 def active(store):
     return store.postgres and bool(store.execute("SELECT to_regclass('history_readings') AS relation").fetchone()['relation'])
 
-def normalise(store):
+def normalise(store,progress=lambda *args,**kwargs:None):
     if not store.postgres or active(store):return
     store.execute('''CREATE TABLE history_gauges (id SERIAL PRIMARY KEY, station TEXT UNIQUE NOT NULL)''')
     store.execute('''CREATE TABLE history_datums (id SMALLSERIAL PRIMARY KEY, datum TEXT UNIQUE NOT NULL)''')
@@ -22,6 +22,7 @@ def normalise(store):
         quality TEXT, issued_at TIMESTAMPTZ NOT NULL, received_at TIMESTAMPTZ NOT NULL,
         feed_id SMALLINT NOT NULL REFERENCES history_feeds(id), qa_metadata TEXT NOT NULL,
         UNIQUE(gauge_id,kind_id,end_at,datum_id))''')
+    progress('copying_readings_into_compact_tables')
     store.execute('''INSERT INTO history_readings(gauge_id,kind_id,end_at,datum_id,value,quality,issued_at,received_at,feed_id,qa_metadata)
         SELECT g.id,k.id,o.end_at::timestamptz,d.id,o.value,o.quality,o.issued_at::timestamptz,
             COALESCE(NULLIF(o.received_at,''),o.issued_at)::timestamptz,f.id,
@@ -29,6 +30,7 @@ def normalise(store):
         FROM observations o JOIN history_gauges g ON g.station=o.station
         JOIN history_kinds k ON k.kind=o.kind JOIN history_datums d ON d.datum=o.datum
         JOIN history_feeds f ON f.snapshot_id=o.snapshot_id ORDER BY o.id''')
+    progress('indexing_compact_readings')
     store.execute('CREATE INDEX history_period_lookup ON history_readings(kind_id,end_at,gauge_id)')
     # Retain correction linkage after replacing large hash keys with numeric row IDs.
     store.execute('''UPDATE revisions rev SET observation_id=r.id::text FROM observations o

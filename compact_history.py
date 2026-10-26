@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import re
+import time
 from datetime import datetime,timedelta,timezone
 
 from history_store import now,utc,packed
@@ -124,34 +125,54 @@ def retained_fingerprint(store,original_only=False):
         count+=1
     return {'records':count,'sha256':digest.hexdigest()}
 
+def progress(stage,**details):
+    print(json.dumps({'historyCleanup':{'status':'progress','stage':stage,**details}}),flush=True)
+
+def insert_recovered(store,rows):
+    if not rows:return
+    columns='id,station,metric,end_at,duration_seconds,datum,value,quality,kind,issued_at,snapshot_id,payload,received_at'
+    if store.postgres:
+        with store.db.cursor() as cursor:
+            with cursor.copy('COPY observations ('+columns+') FROM STDIN') as copy:
+                for row in rows:copy.write_row(row)
+    else:
+        store.db.executemany('INSERT INTO observations ('+columns+') VALUES('+','.join('?' for _ in range(13))+')',rows)
+
 def recover_unextracted_rainfall(store):
     from bom_hcs import parse_hcs
     from collector import register_station
     known={r['id'] for r in iter_rows(store,"SELECT id FROM observations WHERE kind='rain-15m'")}
     known_stations={r['station'] for r in iter_rows(store,"SELECT DISTINCT station FROM observations WHERE kind='rain-15m'")}
-    registered=set();count=0
-    # Newest source wins for newly recovered observations. Existing readings never change.
+    registered=set();count=0;files=0;started=time.monotonic()
+    total=store.execute("SELECT COUNT(*) AS n FROM snapshots WHERE kind='rain-15m' AND raw_gzip_b64<>''").fetchone()['n']
+    progress('recovering_saved_rainfall',files_total=total)
     sources=iter_rows(store,"SELECT source,issued_at,fetched_at,raw_gzip_b64 FROM snapshots WHERE kind='rain-15m' AND raw_gzip_b64<>'' ORDER BY issued_at DESC,fetched_at DESC,id DESC")
     for source in sources:
         raw=gzip.decompress(base64.b64decode(source['raw_gzip_b64']))
         data=parse_hcs(raw)
-        numeric_stations={'bom:'+o['stationId'] for o in data['observations'] if o['value'] is not None}
-        known_stations.update(numeric_stations)
+        known_stations.update('bom:'+o['stationId'] for o in data['observations'] if o['value'] is not None)
         snapshot,_=source_receipt(store,raw,source['source'],'rain-15m',source['issued_at'],source['fetched_at'])
+        rows=[]
         for o in data['observations']:
             station='bom:'+o['stationId'];end=utc(o['time'])
             identity=hashlib.sha256(packed([station,'rainfall',end,900,'','rain-15m']).encode()).hexdigest()
             if identity in known or (o['value'] is None and station not in known_stations):continue
             if station not in registered:
                 register_station(store,o['stationId']);registered.add(station)
-            count+=save_observation(store,snapshot,station,'rainfall',end,900,o['value'],'rain-15m',source['issued_at'],quality=o['quality'],metadata={'comment':o['comment']})
-            store.execute('UPDATE observations SET received_at=? WHERE id=?',(source['fetched_at'],identity))
-            known.add(identity)
+            rows.append((identity,station,'rainfall',end,900,'',o['value'],o['quality'],'rain-15m',utc(source['issued_at']),snapshot,packed({'metadata':qa_meta({'comment':o['comment']})}),source['fetched_at']))
+            known.add(identity);count+=1
+            if len(rows)==1000:insert_recovered(store,rows);rows=[]
+        insert_recovered(store,rows);files+=1
+        if files==1 or files%5==0 or files==total:
+            progress('recovering_saved_rainfall',files_done=files,files_total=total,recovered_readings=count,elapsed_seconds=round(time.monotonic()-started))
     return count
 
 def migrate(store):
     previous=store.execute('SELECT report FROM event_imports WHERE id=?',(MIGRATION,)).fetchone()
     if previous:return {'status':'already-cleaned'}
+    if store.postgres:
+        store.execute("SET LOCAL lock_timeout='10s'");store.execute("SET LOCAL statement_timeout='300s'")
+    progress('verifying_original_readings')
     before=retained_fingerprint(store)
     counts={r['kind']:r['n'] for r in store.execute('SELECT kind,COUNT(*) AS n FROM observations GROUP BY kind')}
     unknown=set(counts)-{'rain-15m','water-summary','rain-1h','rain-3h','water-history'}
@@ -161,7 +182,10 @@ def migrate(store):
     try:
         store.execute('CREATE TEMP TABLE cleanup_original_ids (id TEXT PRIMARY KEY)')
         store.execute("INSERT INTO cleanup_original_ids SELECT id FROM observations WHERE kind IN ('rain-15m','water-summary')")
+        progress('indexing_legacy_source_references')
+        store.execute('CREATE INDEX IF NOT EXISTS observation_snapshot_lookup ON observations(snapshot_id)')
         recovered=recover_unextracted_rainfall(store)
+        progress('removing_unused_series',recovered_readings=recovered)
         store.execute("DELETE FROM observations WHERE kind NOT IN ('rain-15m','water-summary')")
         store.execute('DELETE FROM revisions WHERE NOT EXISTS (SELECT 1 FROM observations o WHERE o.id=revisions.observation_id)')
         store.execute("""DELETE FROM revisions WHERE id IN (
@@ -175,37 +199,45 @@ def migrate(store):
             state=json.loads(correction['payload'])
             state.update(source_issued_at=correction['issued_at'],source_fetched_at=correction['fetched_at'],source_product=source_key(correction['source'] or '',correction['kind'] or '')[0])
             store.execute('UPDATE revisions SET payload=?,snapshot_id=? WHERE id=?',(packed(state),source_key(correction['source'] or '',correction['kind'] or '')[1],correction['id']))
+        progress('compacting_source_references')
         source_rows=list(store.execute("SELECT DISTINCT s.id,s.source,o.kind,s.issued_at,s.fetched_at FROM snapshots s JOIN observations o ON o.snapshot_id=s.id ORDER BY s.issued_at"))
         for src in source_rows:
             product,key=source_key(src['source'],src['kind'])
+            if src['id']==key:continue
             store.execute("UPDATE observations SET snapshot_id=?,received_at=CASE WHEN received_at='' THEN ? ELSE received_at END WHERE snapshot_id=?",(key,src['fetched_at'],src['id']))
             # Only current provenance remains; raw bytes are discarded, not copied.
             store.execute('''INSERT INTO snapshots VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET
                 issued_at=excluded.issued_at,fetched_at=excluded.fetched_at''',(key,product,src['kind'],src['issued_at'],src['fetched_at'],''))
-        keys={source_key(src['source'],src['kind'])[1] for src in source_rows}
-        for src in list(store.execute('SELECT id FROM snapshots')):
-            if src['id'] not in keys:store.execute('DELETE FROM snapshots WHERE id=?',(src['id'],))
-        # Strip duplicated scalar columns from JSON; retain all original QA metadata.
-        batch=[]
-        for row in iter_rows(store,'SELECT id,station,payload FROM observations'):
-            meta=json.loads(row['payload']).get('metadata',{})
-            if meta.get('name') or meta.get('group'):save_station(store,row['station'],meta.get('name',''),meta.get('group',''))
-            batch.append((packed({'metadata':qa_meta(meta)}),row['id']))
-            if len(batch)==1000:
-                for payload,identity in batch:store.execute('UPDATE observations SET payload=? WHERE id=?',(payload,identity))
-                batch=[]
-        for payload,identity in batch:store.execute('UPDATE observations SET payload=? WHERE id=?',(payload,identity))
+        store.execute('DELETE FROM snapshots WHERE id NOT IN (SELECT DISTINCT snapshot_id FROM observations)')
+        progress('compacting_observation_metadata')
+        if store.postgres:
+            descriptions=store.execute("""SELECT DISTINCT station,COALESCE(payload::jsonb->'metadata'->>'name','') AS name,
+                COALESCE(payload::jsonb->'metadata'->>'group','') AS station_group FROM observations
+                WHERE jsonb_exists(payload::jsonb->'metadata','name') OR jsonb_exists(payload::jsonb->'metadata','group')""")
+            for row in descriptions:save_station(store,row['station'],row['name'],row['station_group'])
+            store.execute("""UPDATE observations SET payload=jsonb_build_object('metadata',
+                CASE WHEN COALESCE(payload::jsonb->'metadata'->>'comment','')=''
+                    THEN COALESCE(payload::jsonb->'metadata','{}'::jsonb)-'name'-'group'-'qualityMeaning'-'comment'
+                    ELSE COALESCE(payload::jsonb->'metadata','{}'::jsonb)-'name'-'group'-'qualityMeaning' END)::text""")
+        else:
+            for row in iter_rows(store,'SELECT id,station,payload FROM observations'):
+                meta=json.loads(row['payload']).get('metadata',{})
+                if meta.get('name') or meta.get('group'):save_station(store,row['station'],meta.get('name',''),meta.get('group',''))
+                store.execute('UPDATE observations SET payload=? WHERE id=?',(packed({'metadata':qa_meta(meta)}),row['id']))
         from collector import register_station
         for row in iter_rows(store,'SELECT DISTINCT station FROM observations'):
             if row['station'].startswith('bom:'):register_station(store,row['station'].removeprefix('bom:'))
+        progress('verifying_original_readings_after_cleanup')
         after=retained_fingerprint(store,original_only=True)
         if before!=after:raise ValueError('Retained observation verification failed; cleanup cancelled.')
         store.execute("DELETE FROM source_status WHERE source IN ('rain-1h','rain-3h','water-history')")
         verified_before=retained_fingerprint(store)
         from normalise_postgres import normalise,finish
-        normalise(store)
+        progress('building_compact_reading_tables')
+        normalise(store,progress)
         store.normalised=store.postgres
         if retained_fingerprint(store)!=verified_before:raise ValueError('Typed reading conversion changed retained data.')
+        progress('verification_passed_committing_cleanup')
         finish(store)
         report={'original_verified':after,'recovered_statewide_readings':recovered,'retained':retained_fingerprint(store),'removed_by_kind':{k:n for k,n in counts.items() if k not in KEEP},'discarded_source_bytes':raw_bytes}
         store.execute('INSERT INTO event_imports VALUES(?,?,?)',(MIGRATION,now(),packed(report)))
