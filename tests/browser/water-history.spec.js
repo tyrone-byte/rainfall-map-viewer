@@ -33,3 +33,24 @@ test('failed series cannot leave another gauge hydrograph labelled as the select
  await page.route('**/api/archive-water/series?*',r=>r.fulfill({status:503,json:{available:false}}));
  await page.locator('.station').filter({hasText:'No readings'}).click();await expect(page.locator('#detail')).toContainText('Could not load');await expect(page.locator('#waterHistoryChart')).toHaveCount(0);
 });
+
+test('water plots default to lines, distinguish long gaps and retain point preference across time changes',async({page})=>{
+ await mock(page);
+ await page.route('**/api/archive-water/series?*',r=>{
+  const q=new URL(r.request().url()).searchParams,ending=q.get('end'),base=Date.parse(ending);
+  const values=[{time:new Date(base-3*3600000).toISOString(),level:1,datum:'AHD'},{time:new Date(base-2.5*3600000).toISOString(),level:2,datum:'AHD'},{time:new Date(base-.5*3600000).toISOString(),level:3,datum:'AHD'},{time:new Date(base-.25*3600000).toISOString(),level:null,datum:'AHD'},{time:ending,level:4,datum:'LGH'}];
+  return r.fulfill({json:{available:true,end:ending,start:new Date(base-24*3600000).toISOString(),minutes:Number(q.get('minutes')),observations:values}});
+ });
+ await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
+ await page.locator('.station').filter({hasText:'Test river'}).click();
+ const toggle=page.getByLabel('Show recorded points');await expect(toggle).toBeVisible();await expect(toggle).not.toBeChecked();
+ const initial=await page.locator('#waterHistoryChart').evaluate(c=>{
+  const dataset=Chart.getChart(c).data.datasets[0],dash=dataset.segment.borderDash;
+  return {radius:dataset.pointRadius,short:dash({p0:{parsed:{x:0}},p1:{parsed:{x:1800000}}})||[],long:dash({p0:{parsed:{x:0}},p1:{parsed:{x:7200000}}}),gaps:dataset.spanGaps,values:dataset.data.map(p=>p.y)};
+ });
+ expect(initial).toEqual({radius:0,short:[],long:[6,5],gaps:false,values:[1,2,3,null,null]});
+ await toggle.check();expect(await page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c).data.datasets.every(d=>d.pointRadius===3))).toBe(true);
+ await page.locator('#accumulation').selectOption('180');await expect(page.locator('#period')).toContainText('3 hours');
+ await expect(toggle).toBeChecked();await expect.poll(()=>page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].pointRadius)).toBe(3);
+ await toggle.uncheck();expect(await page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c).data.datasets[0].pointRadius)).toBe(0);
+});

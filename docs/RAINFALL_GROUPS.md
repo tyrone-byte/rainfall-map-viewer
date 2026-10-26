@@ -62,7 +62,7 @@ AEST, and arrows step by the chosen duration. The map shows each station's last
 observation in that window, never a future reading or a reading before the window.
 The hydrograph shows all stored observations within the same window at their
 actual timestamps. Water heights are never accumulated, averaged or resampled.
-Nulls and gaps longer than 60 minutes break the plot. Datum changes have separate
+Missing values break the plot. Gaps longer than 60 minutes use dashed connections between the saved endpoints; no observations are added. Lines are the default; “Show recorded points” reveals actual numeric samples and persists across gauge/time changes within the page. Datum changes have separate
 labelled series. Negative heights and measured zero remain valid values.
 
 Marker age is relative to the selected historical ending time: under 60 minutes
@@ -70,3 +70,5 @@ is green, 60 minutes to under six hours amber, and six hours or missing grey.
 These are age flags, not historical BoM flood classifications or equipment-failure
 assertions. Flood classifications have not been archived, so none are inferred.
 The independent sidebar/workspace scrolling follows rainfall history.
+
+Long intervals between saved water observations are not a communications heartbeat or proof of failure. Gauges may report on level changes or remain dry. Points represent saved observations, not every collector poll. Gauge-specific reporting expectations are not currently known.

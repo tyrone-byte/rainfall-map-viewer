@@ -28,3 +28,5 @@
 .group-picker{max-width:1120px;width:100%;margin:0 auto;padding:28px 24px;overflow-y:auto;min-height:0;flex:1}.group-picker h2{font-size:28px;margin:8px 0}.basin-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}.basin-choice{text-align:left;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px;background:white;border:1px solid var(--line);border-radius:9px;color:var(--ink,#183f43);line-height:1.5}.basin-choice:hover,.basin-choice:focus-visible{background:#e8f4ee;border-color:#247a69}.basin-choice strong{display:block;font-size:15px}.basin-choice small{display:block;color:#546e6a;margin-top:4px}#basinTitle{font-size:15px;margin-top:14px}#changeBasin{width:100%;text-align:left}@media(max-width:650px){.basin-groups{grid-template-columns:1fr}.group-picker{padding:20px 16px}}
 
 .basin-stats{white-space:pre-line;line-height:1.6}.basin-highlight{color:#167563!important;font-weight:700}
+
+.water-plot-controls{margin:12px 0}.water-plot-controls label{display:flex;align-items:center;gap:9px;cursor:pointer}.water-plot-controls input{width:auto;margin:0;accent-color:#228d85}
