@@ -50,7 +50,9 @@ The first run of the new collector, under the existing PostgreSQL advisory lock:
 4. Moves descriptive station fields to the registry. Existing one-off event
    estimates remain intact; no new estimates or historical interpolation run.
 5. Verifies the original readings and QA, then verifies the complete dataset
-   before/after conversion to typed PostgreSQL storage. Any mismatch rolls back
+   before/after conversion to typed PostgreSQL storage. Verification streams the
+   physical records and uses a count plus an order-independent SHA-256 row
+   fingerprint, avoiding large database sorts and joined-view reconstruction. Any mismatch rolls back
    the cleanup and stops that run. The old physical observation table is dropped
    only after verification succeeds. An import receipt makes retries idempotent.
 6. Physically compacts the tables with a one-time `VACUUM FULL`, with a five-second
@@ -58,10 +60,22 @@ The first run of the new collector, under the existing PostgreSQL advisory lock:
    database readers. If compaction cannot acquire its lock or finishes late, the
    measurements remain committed and compaction retries next run.
 
-Database metadata is compacted in bulk. Source-reference updates have an indexed
-lookup and skip already-canonical source IDs. Cleanup logs each major stage; SQL
+Source references are resolved through a small temporary mapping table during
+the typed-table copy; PostgreSQL does not rewrite the legacy observations just
+to change their source identifiers. Correction references are updated in bulk.
+Legacy observation metadata is not rewritten in place: its compact form is
+created during the typed-table copy, in batches of 5,000 rows. Foreign-key
+constraints are validated in bulk before the compact tables become visible. The registry reads
+each water gauge description once. Progress includes copied/total row counts. Cleanup logs each major stage; SQL
 statements have a five-minute timeout and lock waits a ten-second limit, so a
-blocked step fails with rollback rather than waiting indefinitely.
+blocked step fails with rollback rather than waiting indefinitely. Failures log
+the stage, exception type and SQLSTATE without exposing connection details.
+A failed cleanup is durably paused; ordinary reading collection continues on
+subsequent scheduled runs instead of automatically repeating the full cleanup.
+An operator can explicitly retry with `--once --retry-cleanup` after fixing the
+reported cause. The first failure is reported as a failed run, but still attempts
+normal collection before exiting. A paused cleanup alone does not mark future
+collection runs as failed.
 
 The original snapshot-linked receipt time is the best recoverable receipt time
 for migrated records; it cannot establish their first-ever arrival after old
@@ -106,6 +120,9 @@ production database files and are not removed by this cleanup.
 
 ## Verification
 
+- A 600,000-reading synthetic PostgreSQL migration passed with the database
+  limited to 0.1 CPU and 256 MiB RAM. Cleanup and compaction took 481 seconds,
+  excluding recovery from saved source files; this is not a production ETA.
 - SQLite unit tests: original records/QA unchanged, recovery before file removal,
   failed-verification rollback, existing estimates preserved, no duplicate writes,
   corrections/out-of-order protection, bounded receipts and statewide source set.

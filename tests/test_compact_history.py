@@ -83,6 +83,46 @@ class CompactHistoryTests(unittest.TestCase):
         states=[json.loads(r['payload'])['value'] for r in self.store.execute('SELECT payload FROM revisions ORDER BY archived_at')]
         self.assertEqual(states,[1,2])
 
+    def test_cleanup_failure_pauses_retries_but_new_readings_keep_collecting(self):
+        import collector
+        class QueryCanceled(Exception):sqlstate='57014'
+        database=Path(self.temp.name)/'paused.sqlite'
+        def current_readings(store):
+            issued='2026-10-26T01:00:00+00:00'
+            snap,_=store.snapshot(b'fixture live values','ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_live.hcs','rain-15m',issued)
+            changed=store.observation(snap,'bom:540668','rainfall',issued,900,2,'rain-15m',issued)
+            store.db.commit();return {'rain-15m':int(changed)},[]
+        args=['collector.py','--database',str(database),'--once']
+        with patch('sys.argv',args),patch('compact_history.migrate',side_effect=QueryCanceled('do not log private connection data')) as cleanup,patch('collector.collect',side_effect=current_readings),patch('builtins.print') as output:
+            self.assertEqual(collector.main(),1)
+            self.assertEqual(collector.main(),0)
+            cleanup.assert_called_once()
+            text=str(output.call_args_list)
+            self.assertIn('57014',text);self.assertIn('paused',text)
+            self.assertNotIn('private connection data',text)
+        verify=Store(str(database))
+        self.assertEqual(verify.execute('SELECT COUNT(*) AS n FROM observations').fetchone()['n'],1)
+        verify.close()
+
+    def test_paused_cleanup_does_not_turn_old_description_fields_into_corrections(self):
+        self.seed();self.enable()
+        source,_=self.store.snapshot(b'current rain','ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_current.hcs','rain-15m','2026-10-22T02:00:00Z')
+        before=self.store.execute('SELECT COUNT(*) AS n FROM revisions').fetchone()['n']
+        self.assertFalse(self.store.observation(source,'bom:540668','rainfall','2026-10-22T01:00:00Z',900,0,'rain-15m','2026-10-22T02:00:00Z',quality='3',metadata={'comment':'QA note'}))
+        self.assertEqual(self.store.execute('SELECT COUNT(*) AS n FROM revisions').fetchone()['n'],before)
+
+    def test_streamed_fingerprint_is_order_independent_and_detects_value_and_qa_changes(self):
+        import compact_history
+        self.seed();original=retained_fingerprint(self.store)
+        iterator=compact_history.iter_rows
+        with patch('compact_history.iter_rows',side_effect=lambda store,sql:reversed(list(iterator(store,sql)))):
+            self.assertEqual(retained_fingerprint(self.store),original)
+        self.store.execute("UPDATE observations SET value=1 WHERE kind='rain-15m'")
+        changed=retained_fingerprint(self.store)
+        self.assertNotEqual(changed['sha256'],original['sha256'])
+        self.store.execute("UPDATE observations SET quality='9' WHERE kind='rain-15m'")
+        self.assertNotEqual(retained_fingerprint(self.store)['sha256'],changed['sha256'])
+
     def test_failed_verification_rolls_back_cleanup(self):
         self.seed();self.enable();before=retained_fingerprint(self.store)
         with patch('compact_history.retained_fingerprint',side_effect=[before,{'records':999,'sha256':'invalid'}]):

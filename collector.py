@@ -21,6 +21,7 @@ from history_store import Store, now, utc
 from bom_source import BASE, PRODUCTS, fetch
 
 ROOT = Path(__file__).resolve().parent
+CLEANUP_FAILURE='history-cleanup-paused-batched-v3'
 
 def targets():
     rows = json.loads((ROOT / 'data/archive-stations.json').read_text())['gauges']
@@ -215,6 +216,7 @@ def main():
     parser.add_argument('--station', help='Exact archive identity, e.g. bom:540668')
     parser.add_argument('--health', action='store_true')
     parser.add_argument('--once', action='store_true')
+    parser.add_argument('--retry-cleanup',action='store_true',help='Explicitly retry a paused cleanup once.')
     args = parser.parse_args()
     if os.environ.get('COLLECTOR_REQUIRE_POSTGRES') == '1' and not args.database.startswith(('postgres://', 'postgresql://')):
         parser.error('A persistent PostgreSQL DATABASE_URL is required in this deployment.')
@@ -247,21 +249,32 @@ def main():
                 lock = store.execute('SELECT pg_try_advisory_lock(65900) AS acquired').fetchone()
                 if not lock['acquired']:
                     print('Another collector is already active.'); return 1
-            from compact_history import migrate,reclaim_space
-            try:
-                print(json.dumps({'historyCleanup':{'status':'checking','message':'Verifying retained readings before cleanup.'}}),flush=True)
-                print(json.dumps({'historyCleanup':migrate(store)}),flush=True)
-            except Exception:
-                store.rollback()
-                print(json.dumps({'historyCleanup':{'status':'failed','message':'Cleanup verification failed. Transaction rolled back; collector stopped.'}}),flush=True)
-                return 1
-            try:
-                print(json.dumps({'storageCompaction':reclaim_space(store)}),flush=True)
-            except Exception as error:
-                store.rollback()
-                print(json.dumps({'storageCompaction':{'status':'deferred','error':type(error).__name__,'message':'Measurements preserved. Physical compaction will retry next run.'}}),flush=True)
+            from compact_history import migrate,reclaim_space,failure_details
+            if args.retry_cleanup:
+                store.execute('DELETE FROM event_imports WHERE id=?',(CLEANUP_FAILURE,));store.db.commit()
+            paused=store.execute('SELECT report FROM event_imports WHERE id=?',(CLEANUP_FAILURE,)).fetchone()
+            cleanup_failed=False
+            if paused:
+                print(json.dumps({'historyCleanup':{'status':'paused','message':'Cleanup paused after an earlier error. Normal reading collection continues.','previous_error':json.loads(paused['report'])}}),flush=True)
+            else:
+                try:
+                    print(json.dumps({'historyCleanup':{'status':'checking','message':'Verifying retained readings before cleanup.'}}),flush=True)
+                    print(json.dumps({'historyCleanup':migrate(store)}),flush=True)
+                except Exception as error:
+                    store.rollback();cleanup_failed=True
+                    details=failure_details(error)
+                    store.execute('INSERT INTO event_imports VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET report=excluded.report',
+                        (CLEANUP_FAILURE,now(),json.dumps(details)));store.db.commit()
+                    print(json.dumps({'historyCleanup':{'status':'failed',**details,'message':'Cleanup rolled back and paused. Normal reading collection will continue.'}}),flush=True)
+                if not cleanup_failed:
+                    try:
+                        print(json.dumps({'storageCompaction':reclaim_space(store)}),flush=True)
+                    except Exception as error:
+                        store.rollback()
+                        print(json.dumps({'storageCompaction':{'status':'deferred','error':type(error).__name__,'message':'Measurements preserved. Physical compaction will retry next run.'}}),flush=True)
             run = store.start_run()
             results, errors = collect(store)
+            if cleanup_failed:errors.append({'source':'history-cleanup','error':'CleanupPaused'})
             store.finish_run(run, 'failed' if errors else 'ok',
                              {'results':results,'errors':errors})
             print(json.dumps({'newOrChangedObservations': results, 'errors': errors}))
