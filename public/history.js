@@ -159,7 +159,7 @@ async function openBasin(id,gauge=null){
 }
 $('changeBasin').onclick=()=>{
  resetSelection();basinId=null;$('historyWorkspace').hidden=true;$('groupPicker').hidden=false;notice('');
- $('loading').textContent='';$('refresh').disabled=true;$('freshness').textContent='Choose a rainfall group';history.replaceState(null,'','/history');$('groupTitle').setAttribute('tabindex','-1');$('groupTitle').focus();
+ $('loading').textContent='';$('refresh').disabled=true;$('freshness').textContent='Choose a rainfall group';loadGroupStats();history.replaceState(null,'','/history');$('groupTitle').setAttribute('tabindex','-1');$('groupTitle').focus();
 };
 async function loadGroups(){
  try{
@@ -169,8 +169,24 @@ async function loadGroups(){
    const button=node('button',undefined,'basin-choice'),label=node('span');button.dataset.basin=group.id;
    label.append(node('strong',group.label),node('small',`${group.gaugeCount} gauges`));button.append(label,node('span','→'));button.onclick=()=>openBasin(group.id);return button;
   }));
+  loadGroupStats();
   const requested=basinGroups.find(g=>g.id===params.get('basin'));
   if(requested)await openBasin(requested.id,params.get('gauge'));
  }catch(_){$('basinGroups').replaceChildren(node('p','Could not load basin groups. Please refresh to try again.'));}
 }
 displayLimits();legend();loadGroups();setInterval(refresh,60000);
+
+async function loadGroupStats(){
+ try{
+  const response=await fetch('/api/archive-rainfall/group-stats',{cache:'no-store'});if(!response.ok)throw new Error();
+  const result=await response.json();if(!result.available||!result.groups)throw new Error();
+  $('groupStatsTime').textContent=`Latest saved 24 hours ending ${date(result.end)} AEST. Wet = greater than 0 mm. Percentages describe gauges with complete records, not land area.`;
+  const available=result.groups.filter(g=>g.completeGauges>0),max=Math.max(...available.map(g=>g.maxDepth)),widespread=Math.max(...available.map(g=>g.wetPercent));
+  for(const group of result.groups){
+   const label=document.querySelector(`[data-basin="${group.id}"] > span`);if(!label)continue;label.querySelectorAll('.basin-stats,.basin-highlight').forEach(n=>n.remove());
+   const stats=node('small',group.completeGauges?`Highest: ${group.maxDepth.toFixed(1)} mm · ${group.maxStation}\nRain at ${group.wetGauges}/${group.completeGauges} complete gauges (${group.wetPercent}%) · ${group.completeGauges}/${group.knownGauges} identified gauges complete`:'No complete 24-hour gauge records');stats.className='basin-stats';label.append(stats);
+   if(group.completeGauges&&group.maxDepth===max&&max>0)label.append(node('small','● Highest gauge rainfall','basin-highlight'));
+   if(group.completeGauges&&group.wetPercent===widespread&&widespread>0)label.append(node('small','● Most widespread among complete gauges','basin-highlight'));
+  }
+ }catch(_){$('groupStatsTime').textContent='Rainfall summaries unavailable. You can still select a group.';}
+}

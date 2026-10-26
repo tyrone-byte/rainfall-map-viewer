@@ -89,6 +89,21 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/archive-rainfall/group-stats':
+            self.diagnostic_response(archive_service.rainfall_group_stats())
+            return
+        if path.startswith('/api/archive-water/'):
+            params=parse_qs(urlsplit(self.path).query)
+            try:
+                if path.endswith('/extent'):payload=archive_service.water_extent()
+                elif path.endswith('/frame'):payload=archive_service.water_frame(params.get('end',[None])[0],int(params.get('minutes',['1440'])[0]),params.get('basin',[None])[0])
+                elif path.endswith('/series'):payload=archive_service.water_series(params.get('gauge',[''])[0],params.get('end',[None])[0],int(params.get('minutes',['1440'])[0]))
+                else:self.send_error(404);return
+            except (ValueError,OverflowError):
+                self.send_error(400,'Choose a saved ending time, duration and basin.')
+                return
+            self.diagnostic_response(payload)
+            return
         if path == '/api/archive-rainfall/groups':
             self.diagnostic_response(archive_service.rainfall_groups())
             return
@@ -98,7 +113,7 @@ class Handler(SimpleHTTPRequestHandler):
                 if path.endswith('/extent'):
                     payload=archive_service.rainfall_extent()
                 elif path.endswith('/frame'):
-                    payload=archive_service.rainfall_frame(params.get('end',[None])[0],int(params.get('minutes',['180'])[0]),params.get('basin',[None])[0])
+                    payload=archive_service.rainfall_frame(params.get('end',[None])[0],int(params.get('minutes',['1440'])[0]),params.get('basin',[None])[0])
                 else:
                     payload=archive_service.rainfall_series(params.get('gauge',[''])[0],params.get('end',[None])[0])
             except (ValueError,OverflowError):
@@ -171,7 +186,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/history': 'history.html'}
+            pages = {'/water': 'water.html', '/water/': 'water.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
             base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'index.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():

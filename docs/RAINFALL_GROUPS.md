@@ -35,3 +35,38 @@ without joining the observation query to the compatibility view. This is a
 reader-only change; collection and stored readings are unchanged. Failed reads
 log only an error category and SQLSTATE, and are cached for three seconds rather
 than a minute. The UI distinguishes a query timeout from an empty archive.
+
+## Latest 24-hour group summaries
+
+Rainfall history defaults to a 24-hour duration. The group landing page also
+summarises the latest saved 24-hour period, independently of bookmarked map
+windows. Highest rainfall is the maximum complete gauge total, never a sum of
+rain depths across gauges. Widespread rainfall means the percentage of complete
+gauges recording greater than zero, not geographic area or an estimate for
+unreported gauges. Station IDs are deduplicated within each basin. Incomplete
+24-hour records are excluded and the eligible/identified counts are displayed.
+A group with no eligible gauges displays no ranking. Ties share the highlight.
+
+## Saved water-level history
+
+`/water-history` uses the same database URL as rainfall history. No new collector,
+service, database or migration is required. Its catalogue is maintained separately
+in `data/water-groups.json`, built from the same 12 BoM water bulletins, matching
+coordinates by exact official station numbers. Run the manual metadata refresh
+with `python3 tools/build_water_groups.py`. Current bulletin heights are not
+imported or used as substitutes for saved history by the viewer.
+
+A basin must be selected first. History duration defaults to 24 hours with the
+same 15-minute through 24-hour choices as rainfall. The ending time is Brisbane
+AEST, and arrows step by the chosen duration. The map shows each station's last
+observation in that window, never a future reading or a reading before the window.
+The hydrograph shows all stored observations within the same window at their
+actual timestamps. Water heights are never accumulated, averaged or resampled.
+Nulls and gaps longer than 60 minutes break the plot. Datum changes have separate
+labelled series. Negative heights and measured zero remain valid values.
+
+Marker age is relative to the selected historical ending time: under 60 minutes
+is green, 60 minutes to under six hours amber, and six hours or missing grey.
+These are age flags, not historical BoM flood classifications or equipment-failure
+assertions. Flood classifications have not been archived, so none are inferred.
+The independent sidebar/workspace scrolling follows rainfall history.

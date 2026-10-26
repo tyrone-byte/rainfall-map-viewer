@@ -106,7 +106,7 @@ def rainfall_groups():
 def rainfall_inventory():
     return json.loads((ROOT/'data/rainfall-groups.json').read_text())['stations']
 
-def rainfall_frame(requested=None, minutes=180, basin=None):
+def rainfall_frame(requested=None, minutes=1440, basin=None):
     if basin and basin not in {g["id"] for g in rainfall_groups()["groups"]}:
         raise ValueError("Unknown basin group.")
     if minutes not in ACCUMULATION_MINUTES:
@@ -319,3 +319,112 @@ def rainfall_history(gauge_id):
                     'match' if abs(difference)<=0.1 else 'difference'})
         return {'station': station, 'end': last, 'totals': totals, 'qa': qa}
     return read_archive('rainfall:'+station, read)
+
+
+def rainfall_group_stats():
+    """Latest complete 24-hour station depths; percentages describe reporting gauges."""
+    extent=rainfall_extent()
+    if not extent.get('available') or not extent.get('lastEnd'):return extent
+    end=extent['lastEnd'];start=(date(end)-timedelta(hours=24)).isoformat()
+    def read(db):
+        totals={}
+        if has_table(db,'history_readings'):
+            names={g['id']:g['station'] for g in query(db,'SELECT id,station FROM history_gauges')}
+            rows=query(db,"""SELECT gauge_id,COUNT(*) AS valid,SUM(value) AS depth FROM history_readings
+                WHERE kind_id=(SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900)
+                AND end_at>? AND end_at<=? AND value IS NOT NULL AND value>=0
+                AND MOD(EXTRACT(EPOCH FROM end_at),900)=0 GROUP BY gauge_id""",(start,end))
+            totals={names[r['gauge_id']]:r['depth'] for r in rows if r['valid']==96}
+        else:
+            rows=query(db,"SELECT station,end_at,value FROM observations WHERE kind='rain-15m' AND duration_seconds=900 AND end_at>? AND end_at<=?",(start,end))
+            grouped={}
+            for row in rows:grouped.setdefault(row['station'],[]).append(row)
+            for station,values in grouped.items():
+                result=aggregate(values,end,1440)
+                if result['complete']:totals[station]=result['depth']
+        inventory=rainfall_inventory();groups=[]
+        for group in rainfall_groups()['groups']:
+            gauges={s['stationNumber']:s for s in inventory if s['basinId']==group['id'] and s['stationNumber']}
+            complete=[(gauges[sid],totals['bom:'+sid]) for sid in gauges if 'bom:'+sid in totals]
+            wet=sum(depth>0 for _,depth in complete)
+            peak=max(complete,key=lambda pair:pair[1],default=None)
+            groups.append({'id':group['id'],'completeGauges':len(complete),'knownGauges':len(gauges),'wetGauges':wet,
+                'wetPercent':round(wet/len(complete)*100) if complete else None,
+                'maxDepth':peak[1] if peak else None,'maxStation':peak[0]['name'] if peak else None})
+        return {'start':start,'end':end,'minutes':1440,'groups':groups}
+    return read_archive('rainfall-group-stats:'+end,read)
+
+
+def water_inventory():
+    return json.loads((ROOT/'data/water-groups.json').read_text())['stations']
+
+
+def water_extent():
+    def read(db):
+        if has_table(db,'history_readings'):
+            kind=query(db,"SELECT id FROM history_kinds WHERE kind='water-summary'")
+            bounds=[]
+            for direction in ('ASC','DESC'):
+                rows=query(db,f'SELECT end_at FROM history_readings WHERE kind_id=? ORDER BY end_at {direction} LIMIT 1',(kind[0]['id'],)) if kind else []
+                bounds.append(rows[0]['end_at'] if rows else None)
+            first,last=bounds
+        else:
+            row=query(db,"SELECT MIN(end_at) AS first,MAX(end_at) AS last FROM observations WHERE kind='water-summary'")[0]
+            first,last=row['first'],row['last']
+        sources=query(db,"SELECT checked_at,issued_at,status FROM source_status WHERE source='water-summary'")
+        return {'firstEnd':first,'lastEnd':last,'source':sources[0] if sources else None}
+    return read_archive('water-extent',read)
+
+
+def water_window(requested,minutes):
+    if minutes not in ACCUMULATION_MINUTES:raise ValueError('Unsupported history duration.')
+    extent=water_extent()
+    if not extent.get('available') or not extent.get('lastEnd'):return extent,None,None
+    end=date(requested or extent['lastEnd'])
+    if not date(extent['firstEnd'])<=end<=date(extent['lastEnd']):raise ValueError('Outside saved water history.')
+    return extent,(end-timedelta(minutes=minutes)).isoformat(),end.isoformat()
+
+
+def water_rows(db,start,end,station_ids,latest=False):
+    if not station_ids:return []
+    placeholders=','.join('?' for _ in station_ids)
+    if has_table(db,'history_readings'):
+        gauges=query(db,'SELECT id,station FROM history_gauges')
+        names={g['id']:g['station'] for g in gauges if g['station'] in station_ids}
+        if not names:return []
+        datums={r['id']:r['datum'] for r in query(db,'SELECT id,datum FROM history_datums')}
+        select='SELECT DISTINCT ON (gauge_id) ' if latest else 'SELECT '
+        order='gauge_id,end_at DESC,issued_at DESC,id DESC' if latest else 'gauge_id,end_at,issued_at'
+        rows=query(db,select+"gauge_id,end_at,datum_id,value FROM history_readings WHERE kind_id=(SELECT id FROM history_kinds WHERE kind='water-summary') AND end_at>=? AND end_at<=? AND gauge_id IN ("+','.join('?' for _ in names)+') ORDER BY '+order,(start,end,*names))
+        for r in rows:r['station']=names[r.pop('gauge_id')];r['datum']=datums[r.pop('datum_id')]
+        return rows
+    rows=query(db,"SELECT station,end_at,datum,value FROM observations WHERE kind='water-summary' AND end_at>=? AND end_at<=? AND station IN ("+placeholders+') ORDER BY station,end_at,issued_at',(start,end,*station_ids))
+    return list({r['station']:r for r in rows}.values()) if latest else rows
+
+
+def water_frame(requested=None,minutes=1440,basin=None):
+    if basin not in {g['id'] for g in rainfall_groups()['groups']}:raise ValueError('Choose a basin group.')
+    extent,start,end=water_window(requested,minutes)
+    if not end:return extent
+    inventory=[g for g in water_inventory() if g['basinId']==basin]
+    def read(db):
+        rows=water_rows(db,start,end,{'bom:'+g['id'] for g in inventory},latest=True)
+        latest={r['station']:r for r in rows}
+        stations=[]
+        for gauge in inventory:
+            r=latest.get('bom:'+gauge['id']);age=(date(end)-date(r['end_at'])).total_seconds()/60 if r else None
+            state='missing' if not r or r['value'] is None else 'out' if age>=360 else 'suspect' if age>=60 else 'current'
+            stations.append({**gauge,'level':r['value'] if r else None,'datum':r['datum'] if r else 'Unspecified','observedAt':r['end_at'] if r else None,'ageMinutes':age,'status':state})
+        return {'start':start,'end':end,'minutes':minutes,'stations':stations,'extent':extent}
+    return read_archive(f'water-frame:{basin}:{end}:{minutes}',read)
+
+
+def water_series(gauge_id,requested=None,minutes=1440):
+    gauge=next((g for g in water_inventory() if g['id']==gauge_id),None)
+    if not gauge:return {'available':False,'reason':'identity-unresolved'}
+    extent,start,end=water_window(requested,minutes)
+    if not end:return extent
+    def read(db):
+        rows=water_rows(db,start,end,{'bom:'+gauge_id})
+        return {'start':start,'end':end,'minutes':minutes,'station':gauge,'observations':[{'time':r['end_at'],'level':r['value'],'datum':r['datum']} for r in rows]}
+    return read_archive(f'water-series:{gauge_id}:{end}:{minutes}',read)
