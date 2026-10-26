@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from archive_service import connect
+from archive_service import connect,has_table
 
 FIELDS = ['station_id','measurement','observed_end_utc','period_seconds','value','unit','datum',
           'source_product','source_quality','source_issued_utc','source_fetched_utc','qa_metadata']
@@ -54,14 +54,24 @@ def export_archive(url,month,destination,sample=False):
     start,end=month_bounds(month)
     db=connect(url)
     try:
-        sql='''SELECT o.*,s.fetched_at,s.source AS source_url FROM observations o LEFT JOIN snapshots s ON s.id=o.snapshot_id
+        description=db.execute('SELECT * FROM observations LIMIT 0').description
+        columns={col[0] for col in description}
+        typed_received=any(col[0]=='received_at' and col[1]==1184 for col in description)
+        fetched="COALESCE(o.received_at,s.fetched_at::timestamptz)" if typed_received else "COALESCE(NULLIF(o.received_at,''),s.fetched_at)" if 'received_at' in columns else 's.fetched_at'
+        sql=f'''SELECT o.*,{fetched} AS fetched_at,s.source AS source_url FROM observations o LEFT JOIN snapshots s ON s.id=o.snapshot_id
                WHERE o.kind IN ('rain-15m','water-summary') AND o.end_at>=? AND o.end_at<? ORDER BY o.station,o.end_at,o.kind'''
         if not url.startswith('sqlite:'):sql=sql.replace('?','%s')
         cursor=db.execute(sql,(start,end))
         catalogue=station_catalogue();groups={};stations={}
+        if has_table(db,'stations'):
+            for raw in db.execute('SELECT * FROM stations'):
+                s=dict(raw);meta=json.loads(s['metadata'])
+                catalogue[s['station']]={'station_id':s['station'],'name':s['name'],'latitude':s['latitude'] if s['latitude'] is not None else '',
+                    'longitude':s['longitude'] if s['longitude'] is not None else '', 'coordinate_source':s['coordinate_source'],
+                    'coordinate_date':meta.get('coordinateDate',''),'group':s['station_group'],'basin_id':meta.get('basin_id','unassigned')}
         while batch:=cursor.fetchmany(1000):
             for raw in batch:
-                row=dict(raw);sid=row['station'];payload=json.loads(row['payload']);meta=payload.get('metadata',{})
+                row={k:v.isoformat() if isinstance(v,datetime) else v for k,v in dict(raw).items()};sid=row['station'];payload=json.loads(row['payload']);meta=payload.get('metadata',{})
                 station=catalogue.get(sid,{'station_id':sid,'name':meta.get('name',''),
                     'latitude':'','longitude':'','coordinate_source':'','coordinate_date':'','group':meta.get('group',''),'basin_id':'unassigned'})
                 station={**station,'basin_id':basin_for(station,row['source_url'])}

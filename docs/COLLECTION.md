@@ -1,3 +1,5 @@
+> **Current production collector:** the compact observation-only workflow replaces the original capture-retention approach below. See [COMPACT_HISTORY.md](COMPACT_HISTORY.md) for current sources, migration and deployment. Historical capture/recovery commands below are legacy development instructions, not ongoing collection.
+
 # Permanent storm records
 
 The web viewer currently uses replaceable caches, not a permanent historical

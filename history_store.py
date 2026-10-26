@@ -16,7 +16,7 @@ def now():
     return datetime.now(timezone.utc).isoformat()
 
 def utc(value):
-    date = datetime.fromisoformat(value.replace('Z', '+00:00'))
+    date = value if isinstance(value,datetime) else datetime.fromisoformat(value.replace('Z', '+00:00'))
     if date.utcoffset() is None:
         raise ValueError('An explicit observation timezone is required.')
     return date.astimezone(timezone.utc).isoformat()
@@ -25,7 +25,7 @@ def packed(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
 
 class Store:
-    def __init__(self, url):
+    def __init__(self, url, compact=False):
         self.postgres = url.startswith(('postgres://', 'postgresql://'))
         if self.postgres:
             import psycopg
@@ -37,6 +37,7 @@ class Store:
                 Path(path).parent.mkdir(parents=True, exist_ok=True)
             self.db = sqlite3.connect(path)
             self.db.row_factory = sqlite3.Row
+        normalised=self.postgres and bool(self.db.execute("SELECT to_regclass('history_readings') AS relation").fetchone()['relation'])
         for sql in (
             '''CREATE TABLE IF NOT EXISTS snapshots (
                 id TEXT PRIMARY KEY, source TEXT NOT NULL, kind TEXT NOT NULL,
@@ -59,13 +60,22 @@ class Store:
             '''CREATE TABLE IF NOT EXISTS event_imports (
                 id TEXT PRIMARY KEY, completed_at TEXT NOT NULL, report TEXT NOT NULL)''',
         ):
+            if normalised and ('CREATE TABLE IF NOT EXISTS observations' in sql or 'CREATE INDEX IF NOT EXISTS observation_lookup' in sql):continue
             self.execute(sql)
         self.db.commit()
+        self.normalised=normalised
+        self.compact = compact or bool(self.execute("SELECT id FROM event_imports WHERE id='history-compact-v1'").fetchone())
+        if self.compact:
+            from compact_history import ensure_tables
+            ensure_tables(self)
 
     def execute(self, sql, args=()):
         return self.db.execute(sql.replace('?', '%s') if self.postgres else sql, args)
 
     def snapshot(self, raw, source, kind, issued_at, fetched_at=None):
+        if self.compact:
+            from compact_history import source_receipt
+            return source_receipt(self, raw, source, kind, issued_at, fetched_at)
         identity = hashlib.sha256(kind.encode() + b'\0' + raw).hexdigest()
         if self.execute('SELECT id FROM snapshots WHERE id=?', (identity,)).fetchone():
             return identity, False
@@ -76,6 +86,9 @@ class Store:
 
     def observation(self, snapshot, station, metric, end, duration, value,
                     kind, issued, datum='', quality='', metadata=None):
+        if self.compact:
+            from compact_history import save_observation
+            return save_observation(self, snapshot, station, metric, end, duration, value, kind, issued, datum, quality, metadata)
         end, issued = utc(end), utc(issued)
         # Feed kind distinguishes inferred summary times from exact history times.
         identity = hashlib.sha256(packed([station, metric, end, duration, datum, kind]).encode()).hexdigest()
@@ -98,7 +111,7 @@ class Store:
         revision = hashlib.sha256((identity + snapshot + payload).encode()).hexdigest()
         self.execute('INSERT INTO revisions VALUES(?,?,?,?,?) ON CONFLICT(id) DO NOTHING',
                      (revision, identity, snapshot, payload, now()))
-        self.execute('''INSERT INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+        self.execute('''INSERT INTO observations (id,station,metric,end_at,duration_seconds,datum,value,quality,kind,issued_at,snapshot_id,payload) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(id) DO UPDATE SET value=excluded.value, quality=excluded.quality,
             issued_at=excluded.issued_at, snapshot_id=excluded.snapshot_id, payload=excluded.payload''',
             (identity, station, metric, end, duration, datum, value, quality, kind, issued, snapshot, payload))
@@ -120,6 +133,10 @@ class Store:
         self.execute('UPDATE runs SET finished_at=?, status=?, details=? WHERE id=?',
                      (now(), status, packed(details), identity))
         self.db.commit()
+
+    def rollback(self):
+        self.db.rollback()
+        self._dimension_cache={}
 
     def close(self):
         self.db.close()

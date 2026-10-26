@@ -1,0 +1,59 @@
+"""Optional real PostgreSQL migration check; creates its own disposable local test DB."""
+import json
+import os
+import unittest
+import uuid
+from unittest.mock import patch
+from urllib.parse import urlsplit,urlunsplit
+
+from history_store import Store
+from compact_history import migrate,reclaim_space
+import archive_service as api
+
+@unittest.skipUnless(os.environ.get('TEST_POSTGRES_URL'),'Set TEST_POSTGRES_URL to an isolated local PostgreSQL server.')
+class TypedPostgresTests(unittest.TestCase):
+    def test_migration_reopen_real_writes_and_legacy_readers(self):
+        import psycopg
+        from psycopg import sql
+        from test_bom_hcs import HEADER,ROWS
+        parsed=urlsplit(os.environ['TEST_POSTGRES_URL'])
+        self.assertIn(parsed.hostname,('localhost','127.0.0.1'),'Integration test only accepts local test servers.')
+        name='rainfall_archive_test_'+uuid.uuid4().hex
+        admin=psycopg.connect(os.environ['TEST_POSTGRES_URL'],autocommit=True)
+        admin.execute(sql.SQL('CREATE DATABASE {}').format(sql.Identifier(name)))
+        url=urlunsplit(parsed._replace(path='/'+name))
+        store=None
+        try:
+            store=Store(url);issued='2026-10-22T01:00:00+00:00'
+            raw=b'# HEADER: File Generation Date: '+issued.encode()+b'\n'+HEADER+ROWS
+            snap,_=store.snapshot(raw,'ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_test.hcs','rain-15m',issued)
+            store.observation(snap,'bom:540668','rainfall',issued,900,0,'rain-15m',issued,quality='3')
+            water,_=store.snapshot(b'water fixture','https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html','water-summary',issued)
+            store.observation(water,'bom:540111','water-level',issued,0,-0.2,'water-summary',issued,datum='AHD',metadata={'name':'Mitchelton','group':'Brisbane','timeBasis':'Inferred'})
+            store.observation(water,'bom:540668','rainfall',issued,10800,99,'rain-3h',issued)
+            store.db.commit();store.close();store=Store(url,compact=True)
+            cleanup=migrate(store)
+            self.assertEqual(cleanup['original_verified']['records'],2)
+            self.assertEqual(cleanup['recovered_statewide_readings'],2)
+            self.assertEqual(cleanup['retained']['records'],4)
+            reclaim_space(store);store.close();store=Store(url)
+            self.assertTrue(store.normalised)
+            snap,_=store.snapshot(b'new update','ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65900_new.hcs','rain-15m','2026-10-22T02:00:00Z')
+            self.assertFalse(store.observation(snap,'bom:540668','rainfall',issued,900,0,'rain-15m','2026-10-22T02:00:00Z',quality='3'))
+            self.assertTrue(store.observation(snap,'bom:540668','rainfall',issued,900,2,'rain-15m','2026-10-22T02:00:00Z',quality='3'))
+            self.assertFalse(store.observation(snap,'bom:540668','rainfall',issued,900,9,'rain-15m','2026-10-22T01:30:00Z',quality='3'))
+            store.db.commit()
+            self.assertTrue(store.observation(snap,'bom:999997','rainfall',issued,900,1,'rain-15m','2026-10-22T02:00:00Z'))
+            store.rollback()
+            self.assertTrue(store.observation(snap,'bom:999997','rainfall',issued,900,1,'rain-15m','2026-10-22T02:00:00Z'))
+            store.db.commit()
+            with patch.dict(os.environ,{'HISTORY_DATABASE_URL':url}):
+                api.CACHE.clear();extent=api.rainfall_extent();self.assertEqual(extent['lastEnd'],issued)
+                frame=api.rainfall_frame(issued,15);self.assertTrue(frame['available'])
+                goolman=next(s for s in frame['stations'] if s['stationNumber']=='540668');self.assertEqual(goolman['depth'],2)
+                status=api.archive_status();self.assertTrue(status['available'])
+                level=next(r for r in status['rows'] if r['kind']=='water-summary')
+                self.assertEqual(json.loads(level['payload'])['metadata']['name'],'Mitchelton')
+        finally:
+            if store:store.close()
+            admin.execute(sql.SQL('DROP DATABASE {} WITH (FORCE)').format(sql.Identifier(name)));admin.close();api.CACHE.clear()

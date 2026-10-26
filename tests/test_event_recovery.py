@@ -74,7 +74,7 @@ class RecoveryTests(unittest.TestCase):
             unpack(json.dumps(seal(self.payload,self.key)).encode(),self.key)
         self.assertEqual(self.store.execute('SELECT COUNT(*) AS n FROM observations').fetchone()['n'],0)
 
-    def test_import_failure_does_not_prevent_normal_collection(self):
+    def test_obsolete_event_key_does_not_reactivate_imports_in_compact_collector(self):
         database=Path(self.temp.name)/'collector.sqlite'
         def collect(store):
             store.status('rain-15m','2026-10-22T06:00:00+00:00','ok',{'test':True})
@@ -82,15 +82,15 @@ class RecoveryTests(unittest.TestCase):
             return {},[]
         with patch.dict(os.environ,{'EVENT_IMPORT_KEY':'private test key'}), \
              patch('sys.argv',['collector.py','--database',str(database),'--once']), \
-             patch('event_recovery.recover_event',side_effect=ValueError('invalid key')), \
+             patch('event_recovery.recover_event',side_effect=ValueError('invalid key')) as old_import, \
              patch('collector.collect',side_effect=collect) as live,patch('builtins.print') as output:
-            self.assertEqual(collector.main(),1)
-            live.assert_called_once()
+            self.assertEqual(collector.main(),0)
+            live.assert_called_once();old_import.assert_not_called()
             self.assertNotIn('private test key',str(output.call_args_list))
         store=Store(str(database))
         try:
             self.assertEqual(store.execute('SELECT status FROM source_status').fetchone()['status'],'ok')
-            self.assertEqual(store.execute('SELECT status FROM runs').fetchone()['status'],'failed')
+            self.assertEqual(store.execute('SELECT status FROM runs').fetchone()['status'],'ok')
         finally:store.close()
 
 if __name__=='__main__':unittest.main()

@@ -31,7 +31,7 @@ def issue_time(doc):
 def number(raw):
     return float(raw) if re.fullmatch(r'-?\d+(?:\.\d+)?',raw) else None
 
-def summary(html):
+def summary(html,source=SOURCE):
     doc=LinkedTables();doc.feed(html)
     issue,_=issue_time(doc)
     stations=[];warnings=[];seen=set()
@@ -71,7 +71,7 @@ def summary(html):
                              'tendency':row[5] or 'Not supplied','crossing':row[6] or None,
                              'classification':classification,'classificationText':row[7] or 'Not supplied','historyPath':path})
     if not stations:raise ValueError('No river stations found in BoM bulletin.')
-    return {'source':SOURCE,'issuedAt':issue.isoformat(),'stations':stations,'warnings':warnings,
+    return {'source':source,'issuedAt':issue.isoformat(),'stations':stations,'warnings':warnings,
             'timeNote':'Summary dates inferred from issue time and weekday within the preceding seven days; full timestamps are supplied by gauge history tables.'}
 
 def history(html,station_id):

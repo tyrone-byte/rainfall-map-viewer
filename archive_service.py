@@ -34,7 +34,12 @@ def connect(url):
 def query(db, sql, args=()):
     if not isinstance(db, sqlite3.Connection):
         sql = sql.replace('?', '%s')
-    return [dict(row) for row in db.execute(sql, args)]
+    return [{key:value.isoformat() if isinstance(value,datetime) else value for key,value in dict(row).items()} for row in db.execute(sql,args)]
+
+def has_table(db,name):
+    if isinstance(db,sqlite3.Connection):
+        return bool(query(db,"SELECT name FROM sqlite_master WHERE type='table' AND name=?",(name,)))
+    return bool(query(db,'SELECT to_regclass(?) AS relation',(name,))[0]['relation'])
 
 def read_archive(key, reader):
     url = os.environ.get('HISTORY_DATABASE_URL') or os.environ.get('DATABASE_URL')
@@ -151,12 +156,28 @@ def rainfall_series(gauge_id,requested=None):
 
 def archive_status():
     def read(db):
-        rows = query(db, '''SELECT * FROM (
-            SELECT station, kind, end_at, value, payload,
-                MAX(CASE WHEN value IS NOT NULL THEN end_at END) OVER (PARTITION BY station,kind) AS last_valid,
-                ROW_NUMBER() OVER (PARTITION BY station,kind ORDER BY end_at DESC,issued_at DESC,id DESC) AS position
-            FROM observations WHERE kind IN ('rain-15m','water-summary')
-        ) ranked WHERE position=1''')
+        if has_table(db,'history_readings'):
+            rows=query(db,"""SELECT g.station,k.kind,r.end_at,r.value,
+                jsonb_build_object('metadata',r.qa_metadata::jsonb)::text AS payload,good.last_valid
+                FROM history_gauges g CROSS JOIN history_kinds k
+                JOIN LATERAL (SELECT * FROM history_readings WHERE gauge_id=g.id AND kind_id=k.id
+                    ORDER BY end_at DESC,issued_at DESC,id DESC LIMIT 1) r ON true
+                LEFT JOIN LATERAL (SELECT end_at AS last_valid FROM history_readings
+                    WHERE gauge_id=g.id AND kind_id=k.id AND value IS NOT NULL ORDER BY end_at DESC LIMIT 1) good ON true""")
+        else:
+            rows = query(db, '''SELECT * FROM (
+                SELECT station, kind, end_at, value, payload,
+                    MAX(CASE WHEN value IS NOT NULL THEN end_at END) OVER (PARTITION BY station,kind) AS last_valid,
+                    ROW_NUMBER() OVER (PARTITION BY station,kind ORDER BY end_at DESC,issued_at DESC,id DESC) AS position
+                FROM observations WHERE kind IN ('rain-15m','water-summary')
+            ) ranked WHERE position=1''')
+        if has_table(db,'stations'):
+            registry={s['station']:s for s in query(db,'SELECT station,name,station_group,metadata FROM stations')}
+            for row in rows:
+                station=registry.get(row['station'])
+                if station:
+                    payload=json.loads(row['payload']);payload.setdefault('metadata',{}).update(name=station['name'],group=station['station_group'],stationType=json.loads(station['metadata']).get('stationType','Not supplied'))
+                    row['payload']=json.dumps(payload)
         return {'rows': rows, 'sources': query(db, 'SELECT source,checked_at,issued_at,status FROM source_status'),
                 'runs': query(db, 'SELECT started_at,finished_at,status FROM runs ORDER BY started_at DESC LIMIT 1')}
     return read_archive('status', read)
@@ -208,7 +229,7 @@ def report(archive, bulletin=None, current=None, suspect=60, out=360):
     inventory = {}
     for identity, record in water_rows.items():
         metadata = json.loads(record['payload']).get('metadata', {})
-        inventory[identity] = {'name': metadata.get('name', identity), 'group': metadata.get('group', 'Not supplied')}
+        inventory[identity] = {'name': metadata.get('name', identity), 'group': metadata.get('group', 'Not supplied'),'stationType':metadata.get('stationType','Not supplied')}
     if bulletin:
         for station in bulletin['stations']:
             identity = 'bom:'+station['stationNumber'] if station['stationNumber'] else station['id']

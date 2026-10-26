@@ -65,3 +65,7 @@ files or credentials. Format version 2 replaces the earlier coordinate-grid samp
 The local exporter still buffers partitions in memory: production monthly jobs
 need bounded-memory output and independent archive storage before retention can
 be enabled. A multi-month archive viewer remains a separate next step.
+
+The exporter also supports the compact observation database described in
+[COMPACT_HISTORY.md](../COMPACT_HISTORY.md). The downloadable event sample remains
+a sample of the preserved local data; it has not been replaced with live data.

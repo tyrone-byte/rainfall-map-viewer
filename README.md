@@ -163,3 +163,10 @@ The **Collect ARR IFD pilot** GitHub Actions workflow is manual only, with read-
 - The target list covers the 181 confidently mapped rainfall coordinates from the captured bulletin. Unsupported/missing coordinates are excluded; coincident coordinates share a download. This is a capped pilot, not an enabled all-gauge batch.
 
 No pilot has been launched by preparing these files. Actual ARR access from a GitHub runner still needs testing. Review the pilot outcome and ARR usage guidance before enabling any broader collection.
+
+### Observation storage update
+
+The compact collector and verified cleanup are documented in
+[COMPACT_HISTORY.md](docs/COMPACT_HISTORY.md). Deploy the web reader first, then
+rebuild/run the collector. Viewer grouping changes and automatic three-month
+retention are separate next steps.
