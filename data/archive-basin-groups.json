@@ -1,0 +1,126 @@
+{
+  "source": "https://www.bom.gov.au/qld/flood/rain_river.shtml",
+  "verifiedOn": "2026-10-26",
+  "groups": [
+    {
+      "id": "gold-coast-logan",
+      "label": "Gold Coast streams, Nerang, Coomera, Pimpama, Logan-Albert",
+      "rainfall_bulletins": [
+        "IDQ60335",
+        "IDQ60347",
+        "IDQ60359"
+      ],
+      "water_bulletin": "IDQ60285"
+    },
+    {
+      "id": "brisbane-bremer-pine-caboolture",
+      "label": "Brisbane, Bremer, Ipswich Cks, Brisbane Cks, Pine, Caboolture",
+      "rainfall_bulletins": [
+        "IDQ60336",
+        "IDQ60348",
+        "IDQ60360"
+      ],
+      "water_bulletin": "IDQ60286"
+    },
+    {
+      "id": "sunshine-coast-mary",
+      "label": "Coochin Ck, Mooloolah, Maroochy, Noosa, Mary",
+      "rainfall_bulletins": [
+        "IDQ60337",
+        "IDQ60349",
+        "IDQ60361"
+      ],
+      "water_bulletin": "IDQ60287"
+    },
+    {
+      "id": "burnett-kolan",
+      "label": "Burrum, Cherwell, Burnett, Kolan",
+      "rainfall_bulletins": [
+        "IDQ60338",
+        "IDQ60350",
+        "IDQ60362"
+      ],
+      "water_bulletin": "IDQ60288"
+    },
+    {
+      "id": "fitzroy",
+      "label": "Baffle, Boyne, Calliope, Dawson, Mackenzie, Fitzroy",
+      "rainfall_bulletins": [
+        "IDQ60339",
+        "IDQ60351",
+        "IDQ60363"
+      ],
+      "water_bulletin": "IDQ60289"
+    },
+    {
+      "id": "burdekin-whitsunday-townsville",
+      "label": "Pioneer, Proserpine, Don, Burdekin, Haughton, Ross, Bohle, Black",
+      "rainfall_bulletins": [
+        "IDQ60340",
+        "IDQ60352",
+        "IDQ60364"
+      ],
+      "water_bulletin": "IDQ60290"
+    },
+    {
+      "id": "north-tropical-coast",
+      "label": "Herbert, Tully, Johnstone, Mulgrave-Russell, Barron, Daintree",
+      "rainfall_bulletins": [
+        "IDQ60341",
+        "IDQ60353",
+        "IDQ60365"
+      ],
+      "water_bulletin": "IDQ60291"
+    },
+    {
+      "id": "border-rivers-moonie",
+      "label": "Macintyre, Dumaresq, Weir, Moonie",
+      "rainfall_bulletins": [
+        "IDQ60342",
+        "IDQ60354",
+        "IDQ60366"
+      ],
+      "water_bulletin": "IDQ60292"
+    },
+    {
+      "id": "condamine-balonne",
+      "label": "Condamine, Balonne, Maranoa, Wallam, Mungallala",
+      "rainfall_bulletins": [
+        "IDQ60343",
+        "IDQ60355",
+        "IDQ60367"
+      ],
+      "water_bulletin": "IDQ60293"
+    },
+    {
+      "id": "warrego-paroo-bulloo",
+      "label": "Warrego, Paroo, Bulloo",
+      "rainfall_bulletins": [
+        "IDQ60344",
+        "IDQ60356",
+        "IDQ60368"
+      ],
+      "water_bulletin": "IDQ60294"
+    },
+    {
+      "id": "cooper-diamantina-georgina",
+      "label": "Thomson, Barcoo, Cooper, Diamantina, Georgina",
+      "rainfall_bulletins": [
+        "IDQ60345",
+        "IDQ60357",
+        "IDQ60369"
+      ],
+      "water_bulletin": "IDQ60295"
+    },
+    {
+      "id": "gulf-cape",
+      "label": "Gulf and Cape Rivers",
+      "rainfall_bulletins": [
+        "IDQ60346",
+        "IDQ60358",
+        "IDQ60372"
+      ],
+      "water_bulletin": "IDQ60296"
+    }
+  ]
+}

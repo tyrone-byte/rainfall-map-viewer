@@ -1,21 +1,29 @@
 {
   "verified": true,
-  "records": 11813,
-  "compressed_bytes": 100520,
+  "format_version": 2,
+  "records": 5316,
+  "compressed_bytes": 40112,
   "by_source": {
     "IDQ65900": 4946,
-    "IDQ60336": 2880,
-    "IDQ60348": 3210,
-    "IDQ65389": 407,
     "IDQ60286": 370
   },
-  "scope": "Preserved October 2026 event sample, not full production history",
+  "observation_files": [
+    "brisbane-bremer-pine-caboolture/rainfall-15min.csv",
+    "brisbane-bremer-pine-caboolture/water-level.csv"
+  ],
+  "scope": "Partial preserved October 2026 event sample; not full production history",
+  "excluded_sources": [
+    "rain-1h",
+    "rain-3h",
+    "water-history"
+  ],
   "checks": [
     "Read-only source access",
     "CSV SHA-256 checksums",
     "Per-file row and numeric counts",
     "Per-file decimal value sums",
     "Duplicate observation identities",
-    "Total records match source database"
+    "Selected record counts and decimal sums match source database",
+    "No recurring estimate column"
   ]
 }
