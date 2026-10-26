@@ -27,3 +27,11 @@ Group links retain selected basin, rainfall duration, ending time and gauge.
 Within-group catchment filtering, duration controls and independent pane
 scrolling remain available. Queries for selected groups read only the relevant
 station identities. This change does not alter the separate water-level page.
+
+Compact PostgreSQL history reads use `history_readings` directly. Time bounds
+use two ordered index reads; map totals and gauge series fetch only the needed
+periods. Station labels are read separately from the small station-ID catalogue,
+without joining the observation query to the compatibility view. This is a
+reader-only change; collection and stored readings are unchanged. Failed reads
+log only an error category and SQLSTATE, and are cached for three seconds rather
+than a minute. The UI distinguishes a query timeout from an empty archive.

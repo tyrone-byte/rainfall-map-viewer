@@ -57,6 +57,10 @@ class TypedPostgresTests(unittest.TestCase):
             with patch.dict(os.environ,{'HISTORY_DATABASE_URL':url}):
                 api.CACHE.clear();extent=api.rainfall_extent();self.assertEqual(extent['lastEnd'],issued)
                 frame=api.rainfall_frame(issued,15);self.assertTrue(frame['available'])
+                basin=api.rainfall_frame(issued,15,'brisbane-bremer-pine-caboolture');self.assertTrue(basin['available'])
+                self.assertTrue(all(s['basinId']=='brisbane-bremer-pine-caboolture' for s in basin['stations']))
+                series=api.rainfall_series('Ipswich/Brisbane Creeks:goolman:1',issued)
+                self.assertTrue(series['available']);self.assertEqual(series['stations'][0]['values'][-1],2)
                 goolman=next(s for s in frame['stations'] if s['stationNumber']=='540668');self.assertEqual(goolman['depth'],2)
                 status=api.archive_status();self.assertTrue(status['available'])
                 level=next(r for r in status['rows'] if r['kind']=='water-summary')

@@ -12,6 +12,20 @@ from history_store import Store
 NOW = datetime(2026,10,22,6,0,tzinfo=timezone.utc)
 
 class ArchiveReportTests(unittest.TestCase):
+    def test_timeout_reports_category_without_exposing_exception_details(self):
+        import io
+        from contextlib import redirect_stdout
+        class QueryCanceled(Exception):sqlstate='57014'
+        service.CACHE.clear()
+        output=io.StringIO()
+        with patch.dict(os.environ,{'HISTORY_DATABASE_URL':'postgresql://private-password'}),patch.object(service,'connect',side_effect=QueryCanceled('secret-url')),redirect_stdout(output):
+            result=service.read_archive('rainfall-extent',lambda db:None)
+        self.assertEqual(result,{'available':False,'reason':'query-timeout'})
+        self.assertIn('57014',output.getvalue())
+        self.assertNotIn('secret-url',output.getvalue())
+        self.assertNotIn('private-password',output.getvalue())
+        service.CACHE.clear()
+
     def test_age_boundaries_missing_zero_and_collection_failure(self):
         def at(minutes): return (NOW-timedelta(minutes=minutes)).isoformat()
         for minutes, status in [(59,'current'),(60,'suspect'),(359,'suspect'),(360,'out')]:

@@ -128,7 +128,8 @@ async function refresh(){
  $('refresh').disabled=true;
  try{
   const response=await fetch('/api/archive-rainfall/extent',{cache:'no-store'});if(!response.ok)throw new Error('Could not read archive.');
-  const result=await response.json();if(!result.available||!result.lastEnd)throw new Error('Saved rainfall archive is unavailable or empty. The live rainfall bulletin remains available.');
+  const result=await response.json();if(!result.available)throw new Error(result.reason==='query-timeout'?'The saved rainfall query took too long. Please try Refresh saved data.':'Could not read the saved rainfall database. Please try Refresh saved data.');
+  if(!result.lastEnd)throw new Error('No quarter-hour rainfall readings are available in the connected archive.');
   extent=result;if(follow||!targetEnd)targetEnd=extent.lastEnd;
   const time=Date.parse(targetEnd);if(!Number.isFinite(time)||time<Date.parse(extent.firstEnd)||time>Date.parse(extent.lastEnd)){targetEnd=extent.lastEnd;follow=true;}
   controlTime();freshness();await loadFrame();

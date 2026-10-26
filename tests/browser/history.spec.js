@@ -59,7 +59,7 @@ test('chart interval groups bars independently of map totals and native IFD, wit
 });
 test('unavailable archive never falls back to unlabelled coarse values',async({page})=>{
  await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{available:false,reason:'not-connected'}}));
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#notice')).toContainText('unavailable or empty');
+ await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#notice')).toContainText('Could not read the saved rainfall database');
  await expect(page.locator('#ending')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
  await expect(page.locator('#freshness')).toContainText('Archive unavailable');
 });

@@ -47,7 +47,7 @@ def read_archive(key, reader):
         return {'available': False, 'reason': 'not-connected'}
     with LOCK:
         cached = CACHE.get(key)
-        if cached and cached[0] == url and time.monotonic()-cached[1] < 60:
+        if cached and cached[0] == url and time.monotonic()-cached[1] < (60 if cached[2].get('available') else 3):
             return cached[2]
         try:
             db = connect(url)
@@ -55,9 +55,12 @@ def read_archive(key, reader):
                 result = {'available': True, **reader(db)}
             finally:
                 db.close()
-        except Exception:
-            # A connection failure must never expose a database URL or password.
-            result = {'available': False, 'reason': 'unavailable'}
+        except Exception as error:
+            # Log categories only: exception messages may contain credentials.
+            code=getattr(error,'sqlstate',None)
+            reason='query-timeout' if code=='57014' else 'unavailable'
+            print(json.dumps({'archiveRead':{'key':key,'errorType':type(error).__name__,'sqlstate':code}}),flush=True)
+            result = {'available': False, 'reason': reason}
         CACHE[key] = (url, time.monotonic(), result)
         if len(CACHE) > 128:
             oldest = min(CACHE, key=lambda item:CACHE[item][1])
@@ -68,8 +71,18 @@ ACCUMULATION_MINUTES = (15,30,60,180,360,720,1440)
 
 def rainfall_extent():
     def read(db):
-        extent = query(db, '''SELECT MIN(end_at) AS first, MAX(end_at) AS last FROM observations
-            WHERE kind='rain-15m' AND duration_seconds=900''')[0]
+        if has_table(db,'history_readings'):
+            # Two bounded index reads avoid aggregating the multi-join compatibility
+            # view across every retained reading on the small production database.
+            kind=query(db,"SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900")
+            bounds=[]
+            for direction in ('ASC','DESC'):
+                rows=query(db,f'SELECT end_at FROM history_readings WHERE kind_id=? ORDER BY end_at {direction} LIMIT 1',(kind[0]['id'],)) if kind else []
+                bounds.append(rows[0]['end_at'] if rows else None)
+            extent={'first':bounds[0],'last':bounds[1]}
+        else:
+            extent = query(db, '''SELECT MIN(end_at) AS first, MAX(end_at) AS last FROM observations
+                WHERE kind='rain-15m' AND duration_seconds=900''')[0]
         sources = query(db, "SELECT checked_at,issued_at,status FROM source_status WHERE source='rain-15m'")
         return {'firstEnd':extent['first'], 'lastEnd':extent['last'],
                 'source':sources[0] if sources else None}
@@ -107,9 +120,20 @@ def rainfall_frame(requested=None, minutes=180, basin=None):
     def read(db):
         start=(date(end)-timedelta(minutes=minutes)).isoformat()
         station_filter=' AND station IN ('+','.join('?' for _ in identities)+')' if basin and identities else ' AND 1=0' if basin else ''
-        rows=query(db, """SELECT station,end_at,value FROM observations WHERE kind='rain-15m'
-            AND duration_seconds=900 AND end_at>? AND end_at<=?"""+station_filter+' ORDER BY station,end_at',
-            (start,end,*identities) if basin and identities else (start,end))
+        args=(start,end,*identities) if basin and identities else (start,end)
+        if has_table(db,'history_readings'):
+            gauges=query(db,'SELECT id,station FROM history_gauges')
+            names={g['id']:g['station'] for g in gauges}
+            gauge_ids=[g['id'] for g in gauges if g['station'] in identities]
+            gauge_filter=' AND gauge_id IN ('+','.join('?' for _ in gauge_ids)+')' if basin and gauge_ids else ' AND 1=0' if basin else ''
+            rows=query(db,"""SELECT gauge_id,end_at,value FROM history_readings
+                WHERE kind_id=(SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900)
+                AND end_at>? AND end_at<=?"""+gauge_filter+' ORDER BY gauge_id,end_at',
+                (start,end,*gauge_ids) if basin and gauge_ids else (start,end))
+            for row in rows:row['station']=names[row.pop('gauge_id')]
+        else:
+            rows=query(db, """SELECT station,end_at,value FROM observations WHERE kind='rain-15m'
+                AND duration_seconds=900 AND end_at>? AND end_at<=?"""+station_filter+' ORDER BY station,end_at',args)
         grouped={}
         for row in rows:grouped.setdefault(row['station'],[]).append(row)
         totals={}
@@ -134,9 +158,15 @@ def rainfall_series(gauge_id,requested=None):
     if end is None:return {'available':True,'reason':'no-observations','periods':[]}
     def read(db):
         end_date=date(end);start=end_date-timedelta(hours=24)
-        rows=query(db, '''SELECT end_at,value FROM observations WHERE station=? AND kind='rain-15m'
-            AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY end_at''',
-            ('bom:'+gauge['stationNumber'],start.isoformat(),end))
+        args=('bom:'+gauge['stationNumber'],start.isoformat(),end)
+        if has_table(db,'history_readings'):
+            rows=query(db,"""SELECT end_at,value FROM history_readings
+                WHERE gauge_id=(SELECT id FROM history_gauges WHERE station=?)
+                AND kind_id=(SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900)
+                AND end_at>? AND end_at<=? ORDER BY end_at""",args)
+        else:
+            rows=query(db, '''SELECT end_at,value FROM observations WHERE station=? AND kind='rain-15m'
+                AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY end_at''',args)
         by_end={}
         for row in rows:
             time_value=date(row['end_at'])
