@@ -40,6 +40,19 @@ class HistoricalRainTests(unittest.TestCase):
         earlier=next(s for s in api.rainfall_frame((END-timedelta(minutes=15)).isoformat(),30)['stations'] if s['id']==GOOLMAN)
         self.assertEqual(earlier['depth'],5)
 
+    def test_basin_filter_is_authoritative_and_keeps_unreported_gauges(self):
+        groups=api.rainfall_groups()['groups']
+        self.assertEqual(len(groups),12)
+        brisbane=api.rainfall_frame(minutes=60,basin='brisbane-bremer-pine-caboolture')
+        self.assertTrue(all(s['basinId']=='brisbane-bremer-pine-caboolture' for s in brisbane['stations']))
+        self.assertEqual(next(s for s in brisbane['stations'] if s['id']==GOOLMAN)['depth'],9)
+        gold=api.rainfall_frame(minutes=60,basin='gold-coast-logan')
+        self.assertGreater(len(gold['stations']),0)
+        self.assertTrue(all(s['basinId']=='gold-coast-logan' for s in gold['stations']))
+        self.assertTrue(all(s['depth'] is None for s in gold['stations']))
+        self.assertNotIn(GOOLMAN,{s['id'] for s in gold['stations']})
+        with self.assertRaises(ValueError):api.rainfall_frame(basin='invented')
+
     def test_native_series_fills_only_missing_slots_with_null_not_estimates(self):
         data=api.rainfall_series(GOOLMAN)
         self.assertEqual(len(data['periods']),96)

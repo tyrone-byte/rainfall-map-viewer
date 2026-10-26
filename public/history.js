@@ -9,6 +9,7 @@ const colours={missing:'#88969c',...Object.fromEntries(bands.map(b=>[b.id,b.colo
 let thresholds=[5,15,30,40,50,80,130,180,200];
 const band=value=>value===null?'missing':bands[thresholds.findIndex(limit=>value<=limit)===-1?9:thresholds.findIndex(limit=>value<=limit)].id;
 let data=null,selected=null,frame=null,extent=null,chart=null,chartMinutes=15,follow=true,targetEnd=null,loadVersion=0,detailVersion=0,selectionTimer,frameController,detailController;
+let basinId=null,basinGroups=[];
 const params=new URLSearchParams(location.search);
 if(params.get('end')){targetEnd=params.get('end');follow=false;}
 if(['15','30','60','180','360','720','1440'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
@@ -48,12 +49,12 @@ function freshness(){
  $('newest').textContent=`Newest saved end: ${date(extent.lastEnd)} AEST`;
 }
 function saveURL(){
- try{const q=new URLSearchParams();if(!follow)q.set('end',targetEnd);q.set('minutes',frame.minutes);if(selected)q.set('gauge',selected);history.replaceState(null,'',`/history?${q}`);}catch(_){}
+ try{const q=new URLSearchParams();if(basinId)q.set('basin',basinId);if(!follow)q.set('end',targetEnd);q.set('minutes',frame?.minutes||$('accumulation').value);if(selected)q.set('gauge',selected);history.replaceState(null,'',`/history?${q}`);}catch(_){}
 }
 function draw(){
- if(!frame)return;
+ if(!frame||!basinId)return;
  const term=$('search').value.toLowerCase(),group=$('group').value;
- const rows=frame.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.depth===null&&b.depth!==null?1:b.depth===null&&a.depth!==null?-1:(b.depth??0)-(a.depth??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id));
+ const rows=frame.stations.filter(s=>(!s.basinId||s.basinId===basinId)&&(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.depth===null&&b.depth!==null?1:b.depth===null&&a.depth!==null?-1:(b.depth??0)-(a.depth??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id));
  const sidebar=document.querySelector('.sidebar'),listScroll=sidebar.scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();let mapped=0;
  for(const station of rows){
   const colour=colours[band(station.depth)],button=node('button',undefined,'station'+(station.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=colour;
@@ -109,20 +110,21 @@ function renderChart(station,minutes){
  chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:`${duration(minutes)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:`${duration(minutes)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
 }
 async function loadFrame(){
- if(!extent?.lastEnd)return;
+ if(!extent?.lastEnd||!basinId)return;
  const version=++loadVersion;detailVersion++;detailController?.abort();frameController?.abort();frameController=new AbortController();
  $('loading').textContent='Loading selection… Existing map shows the previous completed selection.';
  try{
-  const response=await fetch(`/api/archive-rainfall/frame?end=${encodeURIComponent(targetEnd)}&minutes=${$('accumulation').value}`,{signal:frameController.signal,cache:'no-store'});
+  const response=await fetch(`/api/archive-rainfall/frame?end=${encodeURIComponent(targetEnd)}&minutes=${$('accumulation').value}&basin=${encodeURIComponent(basinId)}`,{signal:frameController.signal,cache:'no-store'});
   if(!response.ok)throw new Error('Choose a saved quarter-hour ending time.');const result=await response.json();if(version!==loadVersion)return;
   if(!result.available||!result.stations?.length)throw new Error('The saved rainfall archive is unavailable.');
   frame=result;data=null;
-  const group=$('group').value;$('group').replaceChildren(new Option('All groups',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
+  const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
   $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;$('legendTitle').textContent=`Rainfall · mm / ${duration(frame.minutes)}`;
   $('loading').textContent='';notice('');draw();if(initialFit){fit();initialFit=false;}if(selected)choose(selected,false);saveURL();freshness();
  }catch(error){if(error.name!=='AbortError'&&version===loadVersion){$('detail').inert=false;$('detail').setAttribute('aria-busy','false');$('loading').textContent='Selection not loaded.';notice(`${error.message} ${frame?'The map still shows its earlier labelled window.':'No historical observations are displayed.'}`);}}
 }
 async function refresh(){
+ if(!basinId)return;
  $('refresh').disabled=true;
  try{
   const response=await fetch('/api/archive-rainfall/extent',{cache:'no-store'});if(!response.ok)throw new Error('Could not read archive.');
@@ -140,4 +142,34 @@ $('latest').onclick=()=>{follow=true;targetEnd=extent.lastEnd;controlTime();clea
 $('accumulation').onchange=()=>{controlTime();clearTimeout(selectionTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
 for(const id of ['search','group'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
 $('thresholds').onsubmit=event=>{event.preventDefault();const values=thresholds.map((_,i)=>Number($(`t${i+1}`).value));if(values.some(v=>!Number.isFinite(v)||v<0)||values.some((v,i)=>i>0&&v<=values[i-1])){$('thresholdError').textContent='Enter increasing non-negative limits.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();};
-displayLimits();legend();refresh();setInterval(refresh,60000);
+function resetSelection(){
+ loadVersion++;detailVersion++;clearTimeout(selectionTimer);frameController?.abort();detailController?.abort();
+ selected=null;frame=null;data=null;clearIfdChart();chart?.destroy();chart=null;layer.clearLayers();markers.clear();
+ $('stations').replaceChildren();$('detail').replaceChildren(node('div','Select a rainfall gauge to see its saved rainfall and IFD comparison.','empty'));
+ $('detail').inert=false;$('detail').removeAttribute('style');$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));
+ document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;
+}
+async function openBasin(id,gauge=null){
+ const basin=basinGroups.find(g=>g.id===id);if(!basin)return;
+ resetSelection();selected=gauge;basinId=id;initialFit=true;
+ $('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=basin.label;
+ $('count').textContent='Loading this group…';$('period').textContent='Loading saved observations';
+ map.invalidateSize();saveURL();await refresh();
+}
+$('changeBasin').onclick=()=>{
+ resetSelection();basinId=null;$('historyWorkspace').hidden=true;$('groupPicker').hidden=false;notice('');
+ $('loading').textContent='';$('refresh').disabled=true;$('freshness').textContent='Choose a rainfall group';history.replaceState(null,'','/history');$('groupTitle').setAttribute('tabindex','-1');$('groupTitle').focus();
+};
+async function loadGroups(){
+ try{
+  const response=await fetch('/api/archive-rainfall/groups',{cache:'no-store'});if(!response.ok)throw new Error();
+  basinGroups=(await response.json()).groups;
+  $('basinGroups').replaceChildren(...basinGroups.map(group=>{
+   const button=node('button',undefined,'basin-choice'),label=node('span');button.dataset.basin=group.id;
+   label.append(node('strong',group.label),node('small',`${group.gaugeCount} gauges`));button.append(label,node('span','→'));button.onclick=()=>openBasin(group.id);return button;
+  }));
+  const requested=basinGroups.find(g=>g.id===params.get('basin'));
+  if(requested)await openBasin(requested.id,params.get('gauge'));
+ }catch(_){$('basinGroups').replaceChildren(node('p','Could not load basin groups. Please refresh to try again.'));}
+}
+displayLimits();legend();loadGroups();setInterval(refresh,60000);

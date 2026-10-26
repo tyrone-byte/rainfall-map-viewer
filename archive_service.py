@@ -85,49 +85,43 @@ def selected_end(requested, extent):
         raise ValueError('The selected time is outside the saved quarter-hour archive.')
     return end.isoformat()
 
-def rainfall_inventory():
-    gauges = json.loads((ROOT/'data/archive-stations.json').read_text())['gauges']
-    catalogue = json.loads((ROOT/'data/stations.json').read_text())
-    from rainfall import key
-    result=[]
-    for gauge in gauges:
-        sid = gauge['live_map_station_id']
-        coordinates = None
-        if sid and gauge['live_map_lat'] and gauge['live_map_lon']:
-            lat,lon=float(gauge['live_map_lat']),float(gauge['live_map_lon'])
-            if -29<=lat<=-25 and 151<=lon<=154:
-                coordinates={'lat':lat,'lon':lon,'stationNumber':sid,
-                    'source':'https://reg.bom.gov.au/qld/flood/brisbane.shtml'}
-        # Saved IFD references may use the older catalogue point for the same ID.
-        reference=catalogue.get(key(gauge['gauge']))
-        ifd_key = f"{reference['lat']:.6f},{reference['lon']:.6f}" if reference and sid and reference.get('stationNumber')==sid else None
-        result.append({'id':gauge['gauge_row_id'],'name':gauge['gauge'],'group':gauge['group'],
-            'stationNumber':sid or None,'coordinates':coordinates,'ifdLocationKey':ifd_key})
-    return result
+def rainfall_groups():
+    catalogue=json.loads((ROOT/'data/rainfall-groups.json').read_text())
+    return {'groups':[{**group,'gaugeCount':sum(s['basinId']==group['id'] for s in catalogue['stations'])}
+                      for group in catalogue['groups']]}
 
-def rainfall_frame(requested=None, minutes=180):
+def rainfall_inventory():
+    return json.loads((ROOT/'data/rainfall-groups.json').read_text())['stations']
+
+def rainfall_frame(requested=None, minutes=180, basin=None):
+    if basin and basin not in {g["id"] for g in rainfall_groups()["groups"]}:
+        raise ValueError("Unknown basin group.")
     if minutes not in ACCUMULATION_MINUTES:
         raise ValueError('Unsupported accumulation period.')
     extent=rainfall_extent()
     if not extent['available']:return extent
     end=selected_end(requested,extent)
     if end is None:return {'available':True, 'reason':'no-observations', 'stations':[]}
+    inventory=[g for g in rainfall_inventory() if not basin or g['basinId']==basin]
+    identities=sorted({'bom:'+g['stationNumber'] for g in inventory if g['stationNumber']})
     def read(db):
         start=(date(end)-timedelta(minutes=minutes)).isoformat()
-        rows=query(db, '''SELECT station,end_at,value FROM observations WHERE kind='rain-15m'
-            AND duration_seconds=900 AND end_at>? AND end_at<=? ORDER BY station,end_at''',(start,end))
+        station_filter=' AND station IN ('+','.join('?' for _ in identities)+')' if basin and identities else ' AND 1=0' if basin else ''
+        rows=query(db, """SELECT station,end_at,value FROM observations WHERE kind='rain-15m'
+            AND duration_seconds=900 AND end_at>? AND end_at<=?"""+station_filter+' ORDER BY station,end_at',
+            (start,end,*identities) if basin and identities else (start,end))
         grouped={}
         for row in rows:grouped.setdefault(row['station'],[]).append(row)
         totals={}
         stations=[]
-        for gauge in rainfall_inventory():
+        for gauge in inventory:
             sid=gauge['stationNumber']
             if sid not in totals:
                 totals[sid]=aggregate(grouped.get('bom:'+sid,[]) if sid else [],end,minutes)
             stations.append({**gauge,**totals[sid],
                 'coverageStatus':'identity-unresolved' if not sid else 'complete' if totals[sid]['complete'] else 'incomplete'})
         return {'start':start,'end':end,'minutes':minutes,'stations':stations}
-    result=read_archive(f'rainfall-frame:{end}:{minutes}',read)
+    result=read_archive(f'rainfall-frame:{end}:{minutes}:{basin or "all"}',read)
     return {**result,'extent':extent}
 
 def rainfall_series(gauge_id,requested=None):

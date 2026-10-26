@@ -89,13 +89,16 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/archive-rainfall/groups':
+            self.diagnostic_response(archive_service.rainfall_groups())
+            return
         if path in ('/api/archive-rainfall/extent','/api/archive-rainfall/frame','/api/archive-rainfall/series'):
             params=parse_qs(urlsplit(self.path).query)
             try:
                 if path.endswith('/extent'):
                     payload=archive_service.rainfall_extent()
                 elif path.endswith('/frame'):
-                    payload=archive_service.rainfall_frame(params.get('end',[None])[0],int(params.get('minutes',['180'])[0]))
+                    payload=archive_service.rainfall_frame(params.get('end',[None])[0],int(params.get('minutes',['180'])[0]),params.get('basin',[None])[0])
                 else:
                     payload=archive_service.rainfall_series(params.get('gauge',[''])[0],params.get('end',[None])[0])
             except (ValueError,OverflowError):
