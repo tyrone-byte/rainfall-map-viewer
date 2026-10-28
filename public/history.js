@@ -14,7 +14,7 @@ const params=new URLSearchParams(location.search);
 if(params.get('end')){targetEnd=params.get('end');follow=false;}
 if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 selected=params.get('gauge');
-const map=L.map('map').setView([-27.25,152.75],9);
+const map=L.map('map',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tapHold:false}).setView([-27.25,152.75],9);
 let initialFit=!SharedMapView.attach(map);
 MapBackgrounds.attach(map,$('background'));
 const layer=L.layerGroup().addTo(map),markers=new Map();
@@ -44,7 +44,7 @@ function freshness(){
  const checkedAge=extent.source?.checked_at?(Date.now()-Date.parse(extent.source.checked_at))/60000:Infinity;
  const stale=age>60||age< -5||checkedAge>30||extent.source?.status!=='ok';
  $('freshness').className='badge'+(stale?' stale':'');
- $('freshness').textContent=stale?'● Archive stale / check collector':follow?'● Latest saved observations':'● Historical selection';
+ $('freshness').textContent=stale?'● Archive stale / check collector':follow?'● Latest saved observations':'● Selected time';
  $('newest').textContent=`Newest saved end: ${date(extent.lastEnd)} AEST`;
 }
 function saveURL(){
@@ -60,7 +60,7 @@ function draw(){
   button.append(dot,node('span',mm(station.depth),'reading'),document.createTextNode(station.name),node('small',`${station.group} · ${station.validBlocks}/${station.expectedBlocks} quarter-hours`));
   if(!station.coordinates)button.append(node('span','Identity / location unresolved · not plotted','unmapped'));
   button.onclick=()=>choose(station.id,true);$('stations').append(button);
-  if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${station.name} · ${mm(station.depth)} / ${duration(frame.minutes)}`));marker.on('click',()=>choose(station.id,false));markers.set(station.id,marker);}
+  if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);const tooltip=node('div',undefined,'gauge-tooltip');tooltip.append(node('strong',station.name),node('div',mm(station.depth)));marker.bindTooltip(tooltip);marker.on('click',()=>choose(station.id,false));markers.set(station.id,marker);}
  }
  sidebar.scrollTop=listScroll;
  $('count').textContent=`${rows.length} gauges · ${mapped} mapped · ${rows.filter(s=>s.complete).length} complete`;
@@ -91,8 +91,6 @@ function renderDetail(station,series){
  const valid=series.values.slice(-96).filter(v=>v!==null),complete=valid.length===96;
  const metrics=node('div',undefined,'metrics');
  for(const [value,label] of [[mm(station.depth),`Selected ${duration(frame.minutes)} total`],[complete?mm(valid.reduce((a,b)=>a+b,0)):'Incomplete','24-hour total ending at selected time']]){const metric=node('div',undefined,'metric');metric.append(node('strong',value),node('span',label));metrics.append(metric);}host.append(metrics);
- host.append(node('p',`${date(frame.start)} – ${date(frame.end)} AEST · ${station.validBlocks}/${station.expectedBlocks} required quarter-hours present.`,'history-coverage'));
- host.append(node('p',`The chart covers the selected ${duration(frame.minutes)} ending at ${date(frame.end)} AEST, matching the map window. Missing observations remain gaps. Chart interval groups bars only; the IFD comparison independently uses the preceding 24 hours.`,'history-window'));
  const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';const intervals=[15,30,60,180,360,720,1440].filter(m=>m<=frame.minutes&&frame.minutes%m===0);
  if(!intervals.includes(chartMinutes))chartMinutes=intervals.at(-1);
  for(const m of intervals)select.append(new Option(duration(m),m));select.value=chartMinutes;label.append(select);controls.append(label);host.append(controls);
@@ -120,7 +118,7 @@ async function loadFrame(){
   const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
   $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;$('legendTitle').textContent=`Rainfall · mm / ${duration(frame.minutes)}`;
   $('loading').textContent='';notice('');draw();if(initialFit){fit();initialFit=false;}if(selected)choose(selected,false);saveURL();freshness();
- }catch(error){if(error.name!=='AbortError'&&version===loadVersion){$('detail').inert=false;$('detail').setAttribute('aria-busy','false');$('loading').textContent='Selection not loaded.';notice(`${error.message} ${frame?'The map still shows its earlier labelled window.':'No historical observations are displayed.'}`);}}
+ }catch(error){if(error.name!=='AbortError'&&version===loadVersion){$('detail').inert=false;$('detail').setAttribute('aria-busy','false');$('loading').textContent='Selection not loaded.';notice(`${error.message} ${frame?'The map still shows its earlier labelled window.':'No saved observations are displayed.'}`);}}
 }
 async function refresh(){
  if(!basinId)return;

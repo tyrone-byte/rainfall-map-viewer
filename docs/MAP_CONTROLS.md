@@ -36,7 +36,7 @@ communications or gauge failure.
 
 ## Backgrounds
 
-Both history views offer Street (OpenStreetMap), Greyscale (CARTO light tiles,
+Both history views offer Street (OpenStreetMap), Greyscale (the same no-key OpenStreetMap tiles,
 with a greyscale filter applied to tiles only), and Satellite + labels (Esri
 World Imagery and World Boundaries and Places). Provider credits remain visible.
 Switching backgrounds never fits, pans, zooms or recolours gauge observations.
@@ -69,3 +69,22 @@ The original rainfall-bulletin and live water pages are removed from navigation.
 redirect to `/water-history`. Old dedicated frontend scripts/tests are removed.
 Shared parsers, source APIs, collection and one-time migrations remain for the
 separate maintenance review after field validation, as previously agreed.
+
+
+## Compact labels and scrolling
+
+Visible viewer names are Rainfall and Water levels; the existing URLs remain
+stable for bookmarks. Water hover text contains station, level/datum and concise
+movement/rate only, with no date range or tidal-adjustment note. Shaded coverage
+and movement boxes above the charts are removed. Optional measured endpoint
+notes remain in a collapsed Data notes section below the water plot.
+
+Mouse-wheel/trackpad scrolling moves the page/pane rather than zooming either
+map. Deliberate +/− and double-click zoom remain available. On touch devices,
+one-finger gestures scroll the page by default; pinch zoom remains enabled.
+Tap Move map to enable one-finger map panning, then Finish moving to return to
+page scrolling. No gestures resample, modify or discard observations.
+
+The previous CARTO greyscale endpoint is no longer requested. Greyscale needs
+no API key or provider account; it has the same tile source as the existing
+street map. The filter applies only to the tiles, preserving gauge colours.

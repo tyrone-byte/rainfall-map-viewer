@@ -101,9 +101,9 @@ test('late window response cannot replace a newer ending-time selection',async({
 test('history and water pages preserve the same geographic viewport',async({page})=>{
  await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
  await page.evaluate(()=>map.setView([-27.15,152.95],10,{animate:false}));
- await page.getByRole('link',{name:'Water history',exact:true}).click();await expect(page.locator('.basin-choice')).toHaveCount(2);
+ await page.getByRole('link',{name:'Water levels',exact:true}).click();await expect(page.locator('.basin-choice')).toHaveCount(2);
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.15,5);
- await page.getByRole('link',{name:'Rainfall history',exact:true}).click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
+ await page.getByRole('link',{name:'Rainfall',exact:true}).click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
  expect(await page.evaluate(()=>markers.size)).toBe(0);
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lng)).toBeCloseTo(152.95,5);
 });
@@ -232,6 +232,6 @@ test('seven-day rainfall uses a seven-day chart while IFD remains limited to 24 
 
 test('obsolete bulletin URLs redirect to history pages and their navigation is removed',async({page})=>{
  await mock(page);await page.goto('/');await expect(page).toHaveURL(/\/history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
- await expect(page.getByRole('link',{name:'Rainfall bulletin',exact:true})).toHaveCount(0);await expect(page.getByRole('link',{name:'Water levels',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('link',{name:'Rainfall bulletin',exact:true})).toHaveCount(0);await expect(page.locator('.page-tabs a[href="/water"]')).toHaveCount(0);
  await page.goto('/water');await expect(page).toHaveURL(/\/water-history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
 });

@@ -64,11 +64,47 @@ test('map controls change water colours, comparison, background and seven-day du
  await page.locator('#colourMode').selectOption('rate');expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#ed8b36');
  await page.locator('#colourMode').selectOption('age');expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#36a48c');await expect(page.locator('#comparison')).toBeDisabled();
  await page.locator('#colourMode').selectOption('trend');await page.locator('#comparison').selectOption('15');await expect.poll(()=>requests.at(-1).comparison).toBe(15);
- await page.locator('#background').selectOption('grey');expect(await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;})).toEqual([expect.stringContaining('cartocdn')]);
+ await page.locator('#background').selectOption('grey');expect(await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;})).toEqual([expect.stringContaining('openstreetmap')]);
  await page.locator('#background').selectOption('hybrid');const urls=await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;});expect(urls).toHaveLength(2);expect(urls[0]).toContain('World_Imagery');
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.2,5);
  await page.locator('#accumulation').selectOption('10080');await expect(page.locator('#period')).toContainText('7 days');
  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
  expect(await page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c).options.scales.x.max-Chart.getChart(c).options.scales.x.min)).toBe(7*86400000);
  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
+});
+
+test('short labels, compact hover and page scrolling over the map keep plots accessible',async({page})=>{
+ await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
+ await expect(page.locator('h1')).toContainText('Water levels');await expect(page.getByRole('link',{name:'Rainfall',exact:true})).toBeVisible();
+ const content=await page.evaluate(()=>markers.get('540111').getTooltip().getContent().textContent);
+ expect(content).toContain('Rising');expect(content).toContain('+0.400 m/h');expect(content).not.toContain('AEST');expect(content).not.toContain('tidal');
+ await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
+ await expect(page.locator('.history-coverage,.movement-summary')).toHaveCount(0);await expect(page.locator('.plot-notes')).not.toHaveAttribute('open','');
+ await page.locator('#map').hover();const zoom=await page.evaluate(()=>map.getZoom());const before=await page.locator('.workspace').evaluate(el=>el.scrollTop);
+ await page.mouse.wheel(0,400);await expect.poll(()=>page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeGreaterThan(before);
+ expect(await page.evaluate(()=>map.getZoom())).toBe(zoom);
+ await page.locator('.leaflet-control-zoom-in').click();await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBe(zoom+1);
+ await page.locator('#background').selectOption('grey');expect(await page.locator('.map-grey-tiles').evaluate(el=>getComputedStyle(el).filter)).toBe('grayscale(1)');
+});
+
+test.describe('phone navigation',()=>{
+ test.use({isMobile:true,hasTouch:true,viewport:{width:390,height:844}});
+ test('one-finger page scroll works over the map unless Move map is explicitly enabled',async({page})=>{
+  await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
+  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
+  expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);expect(await page.evaluate(()=>map.touchZoom.enabled())).toBe(true);
+  await page.locator('#map').scrollIntoViewIfNeeded();const before=await page.evaluate(()=>scrollY),box=await page.locator('#map').boundingBox(),x=box.x+box.width/2,y=box.y+box.height/2;
+  const client=await page.context().newCDPSession(page);
+  await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+  for(let i=1;i<=6;i++){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y-i*25}]});await page.waitForTimeout(20);}
+  await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before);
+  await page.getByRole('button',{name:'Move map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(true);
+  await page.getByRole('button',{name:'Finish moving',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
+  await page.locator('#map').scrollIntoViewIfNeeded();const pinchBox=await page.locator('#map').boundingBox(),px=pinchBox.x+pinchBox.width/2,py=pinchBox.y+pinchBox.height/2,zoom=await page.evaluate(()=>map.getZoom());
+  await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:px-30,y:py,id:1},{x:px+30,y:py,id:2}]});
+  for(const spread of [40,50,60]){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:px-spread,y:py,id:1},{x:px+spread,y:py,id:2}]});await page.waitForTimeout(30);}
+  await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(zoom);
+
+ });
 });

@@ -3,7 +3,7 @@
 A Queensland prototype using saved BoM observations, Leaflet and Chart.js, with
 plain HTML/CSS/JavaScript, a small Python server and PostgreSQL history storage.
 
-The home page opens **Rainfall history** (`/history`); **Water history**
+The home page opens **Rainfall** (`/history`); **Water levels**
 (`/water-history`) and **Gauge status** are the other views. Select a BoM basin
 before gauges appear. The old bulletin pages have been retired; `/water` redirects
 to water history. History durations extend to seven days. Missing readings remain

@@ -14,7 +14,7 @@ let showRecordedPoints=false;
 let basin=null,groups=[],extent=null,frame=null,selected=null,chart=null,end=params.get('end'),follow=!end,version=0,detailVersion=0,controller,detailController,fitPending=true,refreshVersion=0;
 if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 $('ending').step='60';
-const map=L.map('map').setView([-27.25,152.75],9);SharedMapView.attach(map);
+const map=L.map('map',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tapHold:false}).setView([-27.25,152.75],9);SharedMapView.attach(map);
 MapBackgrounds.attach(map,$('background'));
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function notice(text){$('notice').hidden=!text;$('notice').textContent=text||'';}
@@ -30,7 +30,7 @@ function controls(){
  $('latest').setAttribute('aria-pressed',String(follow));
  $('newest').textContent=`Newest saved observation: ${date(extent.lastEnd)} AEST`;
  const stale=Date.now()-Date.parse(extent.lastEnd)>3600000||extent.source?.status!=='ok'||!extent.source?.checked_at||Date.now()-Date.parse(extent.source.checked_at)>1800000;
- $('freshness').className='badge'+(stale?' stale':'');$('freshness').textContent=stale?'● Saved data stale / check collector':follow?'● Latest saved observations':'● Historical selection';
+ $('freshness').className='badge'+(stale?' stale':'');$('freshness').textContent=stale?'● Saved data stale / check collector':follow?'● Latest saved observations':'● Selected time';
 }
 function clearDetail(){detailVersion++;detailController?.abort();selected=null;chart?.destroy();chart=null;$('detail').replaceChildren(node('p','Select a water-level gauge to see its saved hydrograph.','empty'));}
 function draw(){
@@ -43,7 +43,7 @@ function draw(){
   button.append(dot,node('span',level(s.level),'reading'),document.createTextNode(s.name),node('small',`${s.group} · ${s.datum}`),node('small',s.observedAt?`${date(s.observedAt)} AEST · ${s.status==='current'?'under 60 min old':s.status==='suspect'?'60 min–6 h old':s.status==='out'?'6+ h old':'missing level'}`:'No observation in this window'));
   if(!s.coordinates)button.append(node('span','Location unresolved · not plotted','unmapped'));
   button.onclick=()=>choose(s.id,true);$('stations').append(button);
-  if(s.coordinates){const marker=L.circleMarker([s.coordinates.lat,s.coordinates.lon],{radius:selected===s.id?10:7,color:'#fff',weight:2,fillColor:pointColour(s),fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${s.name} · ${level(s.level)} ${s.datum} · ${movementText(s)}`));marker.on('click',()=>choose(s.id,false));markers.set(s.id,marker);}
+  if(s.coordinates){const marker=L.circleMarker([s.coordinates.lat,s.coordinates.lon],{radius:selected===s.id?10:7,color:'#fff',weight:2,fillColor:pointColour(s),fillOpacity:.94}).addTo(layer);const tooltip=node('div',undefined,'gauge-tooltip');tooltip.append(node('strong',s.name),node('div',`${level(s.level)} ${s.datum} · ${movementText(s)}`));marker.bindTooltip(tooltip);marker.on('click',()=>choose(s.id,false));markers.set(s.id,marker);}
  }
  document.querySelector('.sidebar').scrollTop=scroll;$('count').textContent=`${rows.length} gauges · ${markers.size} mapped · ${rows.filter(s=>s.level!==null).length} with readings`;
  if(selected&&!rows.some(s=>s.id===selected))clearDetail();
@@ -60,7 +60,8 @@ function appendBomLinks(host,station){
   if(station.membershipSource){const link=node('a','Open BoM group bulletin');link.href=station.membershipSource;link.target='_blank';link.rel='noopener';links.append(link);}
  }
  populate(station);
- host.append(links,node('p','BoM links open their currently available record, which may cover a different period from your historical selection.','muted'));
+ host.append(links);
+ links.title='BoM shows its current available record, which may cover different dates from your selection.';
  if(!station.plotPath&&station.membershipSource){
   fetch(`/api/archive-water/links?gauge=${encodeURIComponent(station.id)}&basin=${encodeURIComponent(station.basinId)}`,{cache:'no-store'})
    .then(response=>response.ok?response.json():null).then(result=>{if(result?.available&&links.isConnected)populate(result);}).catch(()=>{});
@@ -73,8 +74,7 @@ async function choose(id,pan=false){
  try{
   const response=await fetch(`/api/archive-water/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(frame.end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error();const result=await response.json();if(token!==detailVersion||frameVersion!==version)return;if(!result.available)throw new Error();
-  chart?.destroy();chart=null;const host=$('detail');host.replaceChildren(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name),node('h3',`${level(station.level)} · ${station.datum}`),node('p',`Last observation in selected window: ${station.observedAt?date(station.observedAt)+' AEST':'none'}`,'muted'),node('p',`${date(result.start)} – ${date(result.end)} AEST · ${result.observations.length} saved readings. Actual observation times; no readings added or accumulated. Heights use each gauge’s own datum.`,'history-coverage'));
-  host.append(node('p',movementText(station),'movement-summary'));
+  chart?.destroy();chart=null;const host=$('detail');host.replaceChildren(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name),node('h3',`${level(station.level)} · ${station.datum}`),node('p',`Last observation: ${station.observedAt?date(station.observedAt)+' AEST':'none in this window'}`,'muted'));
   appendBomLinks(host,station);
   if(!result.observations.length){host.append(node('p','No saved observations in this window.'));return;}
   const plotControls=node('div',undefined,'water-plot-controls'),pointsLabel=node('label'),points=node('input');points.type='checkbox';points.id='showRecordedPoints';points.checked=showRecordedPoints;pointsLabel.append(points,document.createTextNode('Show recorded points'));plotControls.append(pointsLabel);host.append(plotControls);
@@ -83,7 +83,10 @@ async function choose(id,pan=false){
   const datums=[...new Set(result.observations.map(o=>o.datum))];
   const datasets=datums.map((datum,index)=>({label:`Gauge height · m ${datum}`,data:result.observations.map(o=>({x:Date.parse(o.time),y:o.datum===datum?o.level:null})),borderColor:['#228d85','#7350a0','#b06c28'][index%3],borderWidth:2,pointRadius:showRecordedPoints?3:0,pointHitRadius:7,spanGaps:false,tension:0,segment:{borderDash:ctx=>ctx.p1.parsed.x-ctx.p0.parsed.x>3600000?[6,5]:undefined}}));
   chart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{tooltip:{callbacks:{title:items=>observationDate(items[0].parsed.x)+' AEST'}}},scales:{x:{type:'linear',min:Date.parse(result.start),max:Date.parse(result.end),ticks:{maxTicksLimit:8,callback:value=>date(value)},title:{display:true,text:'Observation time · Brisbane AEST'}},y:{title:{display:true,text:'Gauge height · metres (see datum in legend)'}}}}});
-  host.append(node('p','Lines connect recorded values; dashed segments indicate more than 60 minutes between readings. They do not add observations or imply a communications fault; some gauges report only when levels change. Missing levels and datum changes break the line. Turn on recorded points to see each saved measurement, including isolated readings. Age flags are measured relative to your selected ending time, not today. AHD and local gauge heights are not interchangeable.','muted'));
+  const notes=node('details',undefined,'plot-notes');notes.append(node('summary','Data notes'));
+  notes.append(node('p',`${result.observations.length} saved readings · ${date(result.start)} – ${date(result.end)} AEST. Lines connect recorded values; dashed segments indicate gaps over 60 minutes, not a communications fault. Missing values and datum changes break the line. No readings are created or accumulated. AHD and local gauge heights are not interchangeable.`,'muted'));
+  if(Number.isFinite(station.ratePerHour))notes.append(node('p',`Measured comparison: ${observationDate(station.movementStartAt)} – ${observationDate(station.movementEndAt)} AEST · ${station.levelChange.toFixed(3)} m · ${station.ratePerHour.toFixed(3)} m/h. No tidal adjustment.`,'muted'));
+  host.append(notes);
  }catch(error){if(error.name!=='AbortError'&&token===detailVersion){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved water levels. Please try again.'));appendBomLinks($('detail'),station);}}
 }
 async function loadFrame(){
@@ -102,7 +105,7 @@ async function refresh(){
   if(!result.available||!result.lastEnd)throw new Error();extent=result;
   if(follow||!end||!Number.isFinite(Date.parse(end))||Date.parse(end)<Date.parse(extent.firstEnd)||Date.parse(end)>Date.parse(extent.lastEnd)){end=extent.lastEnd;follow=true;}
   controls();await loadFrame();
- }catch(_){if(token===refreshVersion){notice('Could not read saved water-level history. Please try Refresh saved data.');$('freshness').textContent='● Archive unavailable';}}
+ }catch(_){if(token===refreshVersion){notice('Could not read saved water-level data. Please try Refresh saved data.');$('freshness').textContent='● Archive unavailable';}}
  finally{if(token===refreshVersion)$('refresh').disabled=false;}
 }
 async function openBasin(id,gauge=null){
@@ -124,9 +127,9 @@ function pointColour(station){
  const rate=station.ratePerHour;return rate<=.1?'#36a46d':rate<=.3?'#e9c345':rate<=.6?'#ed8b36':'#d94843';
 }
 function movementText(station){
- if(!Number.isFinite(station.ratePerHour))return `No suitable measured-point comparison for ${duration(station.comparisonMinutes||frame?.comparisonMinutes||Number($('comparison').value))}.`;
- const sign=station.ratePerHour>0?'+':'';
- return `${station.direction[0].toUpperCase()+station.direction.slice(1)} · ${sign}${station.levelChange.toFixed(3)} m · ${sign}${station.ratePerHour.toFixed(3)} m/h · ${observationDate(station.movementStartAt)} – ${observationDate(station.movementEndAt)} AEST. No tidal adjustment.`;
+ if(!Number.isFinite(station.ratePerHour))return 'Change unavailable';
+ const direction={rising:'Rising',falling:'Falling',steady:'Steady'}[station.direction]||'Change';
+ return `${direction} · ${station.ratePerHour>0?'+':''}${station.ratePerHour.toFixed(3)} m/h`;
 }
 function legend(){
  const comparison=frame?.comparisonMinutes||Number($('comparison').value),mode=$('colourMode').value;$('comparison').disabled=mode==='age';
@@ -134,7 +137,7 @@ function legend(){
  const entries=mode==='age'?[['#36a48c','Under 60 min'],['#e9b43d','60 min–6 h'],['#88969c','6+ h / missing']]:mode==='trend'?[['#d94843','Rising'],['#2c64cc','Falling'],['#36a48c','Steady'],['#88969c','Insufficient data']]:[['#36a46d','Rise ≤0.10 m/h'],['#e9c345','>0.10–0.30'],['#ed8b36','>0.30–0.60'],['#d94843','>0.60 m/h'],['#2c64cc','Falling'],['#36a48c','Steady'],['#88969c','Insufficient data']];
  $('legend').replaceChildren(...entries.map(([colour,label])=>{const entry=node('span'),dot=node('i',undefined,'dot');dot.style.background=colour;entry.append(dot,label);return entry;}));
 }
-$('colourMode').onchange=()=>{legend();draw();if(frame)saveURL();const line=document.querySelector('.movement-summary');if(line&&selected)line.textContent=movementText(frame.stations.find(s=>s.id===selected));};
+$('colourMode').onchange=()=>{legend();draw();if(frame)saveURL();};
 $('comparison').onchange=()=>{legend();if(basin)loadFrame();};
 legend();
 (async()=>{try{const response=await fetch('/api/archive-rainfall/groups');if(!response.ok)throw new Error();groups=(await response.json()).groups;$('basinGroups').replaceChildren(...groups.map(g=>{const button=node('button',undefined,'basin-choice');button.dataset.basin=g.id;button.append(node('strong',g.label),node('span','→'));button.onclick=()=>openBasin(g.id);return button;}));if(groups.some(g=>g.id===params.get('basin')))openBasin(params.get('basin'),params.get('gauge'));}catch(_){$('basinGroups').textContent='Could not load groups. Please refresh.';}})();
