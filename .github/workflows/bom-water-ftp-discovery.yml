@@ -1,0 +1,31 @@
+name: Check BoM water-level FTP products
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - tools/discover_water_ftp.py
+      - .github/workflows/bom-water-ftp-discovery.yml
+permissions:
+  contents: read
+concurrency:
+  group: bom-water-ftp-discovery
+  cancel-in-progress: false
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: List once and sample at most two water-level files
+        run: python tools/discover_water_ftp.py
+      - name: Keep samples and Mulgowie coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bom-water-ftp-discovery
+          path: .cache/water-ftp-discovery/
+          retention-days: 14
