@@ -17,7 +17,7 @@ def build():
         bulletin=water.summary(raw.decode('utf-8',errors='replace'),source)
         for s in bulletin['stations']:
             if not s['stationNumber']:continue
-            stations.append({'id':s['stationNumber'],'stationNumber':s['stationNumber'],'name':s['name'],'group':s['group'],'basinId':group['id'],'coordinates':coordinates.get(s['stationNumber']),'membershipSource':source})
+            stations.append({'id':s['stationNumber'],'stationNumber':s['stationNumber'],'name':s['name'],'group':s['group'],'basinId':group['id'],'coordinates':coordinates.get(s['stationNumber']),'membershipSource':source,'historyPath':s.get('historyPath'),'plotPath':s.get('plotPath')})
         print(group['id'],len(bulletin['stations']),flush=True)
     (ROOT/'data/water-groups.json').write_text(json.dumps({'verifiedAt':datetime.now(timezone.utc).isoformat(),'groups':groups,'stations':stations},indent=2)+'\n')
 if __name__=='__main__':build()

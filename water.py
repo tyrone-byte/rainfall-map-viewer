@@ -51,6 +51,8 @@ def summary(html,source=SOURCE):
             paths=[p for p in doc.row_links.get(id(row),[]) if re.fullmatch(r'/fwo/IDQ\d+/IDQ\d+\.\d{6}\.tbl\.shtml',p)]
             path=paths[0] if len(paths)==1 else None
             station_id=re.search(r'\.(\d{6})\.tbl',path)[1] if path else None
+            plot_paths=[p for p in doc.row_links.get(id(row),[]) if station_id and re.fullmatch(r'/fwo/IDQ\d+/IDQ\d+\.'+station_id+r'\.plt\.shtml',p)]
+            plot_path=plot_paths[0] if len(plot_paths)==1 else None
             identity=station_id or f'unlinked-{len(stations)}'
             if identity in seen:
                 raise ValueError('Duplicate river station identifier.')
@@ -69,7 +71,7 @@ def summary(html,source=SOURCE):
             stations.append({'id':identity,'stationNumber':station_id,'name':row[0],'group':group,'stationType':row[1],
                              'observedAt':observed,'reportedTime':raw_time,'level':level,'datum':row[4] or 'Unspecified',
                              'tendency':row[5] or 'Not supplied','crossing':row[6] or None,
-                             'classification':classification,'classificationText':row[7] or 'Not supplied','historyPath':path})
+                             'classification':classification,'classificationText':row[7] or 'Not supplied','historyPath':path,'plotPath':plot_path})
     if not stations:raise ValueError('No river stations found in BoM bulletin.')
     return {'source':source,'issuedAt':issue.isoformat(),'stations':stations,'warnings':warnings,
             'timeNote':'Summary dates inferred from issue time and weekday within the preceding seven days; full timestamps are supplied by gauge history tables.'}

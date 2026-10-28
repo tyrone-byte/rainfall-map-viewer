@@ -30,3 +30,5 @@
 .basin-stats{white-space:pre-line;line-height:1.6}.basin-highlight{color:#167563!important;font-weight:700}
 
 .water-plot-controls{margin:12px 0}.water-plot-controls label{display:flex;align-items:center;gap:9px;cursor:pointer}.water-plot-controls input{width:auto;margin:0;accent-color:#228d85}
+
+.bom-check-links{display:flex;flex-wrap:wrap;gap:10px 18px;margin:14px 0}.bom-check-links a{font-weight:600}

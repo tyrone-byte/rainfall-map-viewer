@@ -72,3 +72,14 @@ assertions. Flood classifications have not been archived, so none are inferred.
 The independent sidebar/workspace scrolling follows rainfall history.
 
 Long intervals between saved water observations are not a communications heartbeat or proof of failure. Gauges may report on level changes or remain dry. Points represent saved observations, not every collector poll. Gauge-specific reporting expectations are not currently known.
+
+
+Water history includes official BoM plot and table links where the bulletin's
+actual links have been recorded. The initial verified link set covers the 233
+Brisbane bulletin entries, including Mulgowie 040835. Other basins retain a link
+to their official group bulletin until metadata is refreshed; link paths are not
+guessed. The manual water catalogue builder now retains both plot and table
+paths from BoM. External pages show their current available history, not
+necessarily the viewer's historical selection. These links do not change the
+collector source or import additional observations. Water collection currently
+uses regional web summaries; station-table FTP availability has not been verified.

@@ -6,7 +6,7 @@ async function mock(page){
  await page.route('**/api/archive-water/extent',r=>r.fulfill({json:{available:true,firstEnd:'2026-10-25T00:00:00+00:00',lastEnd:end,source:{status:'ok',checked_at:end}}}));
  await page.route('**/api/archive-water/frame?*',r=>{
   const q=new URL(r.request().url()).searchParams,minutes=Number(q.get('minutes')),ending=q.get('end');requests.push({minutes,end:ending});
-  return r.fulfill({json:{available:true,end:ending,start:new Date(Date.parse(ending)-minutes*60000).toISOString(),minutes,stations:[{id:'540111',name:'Test river',group:'Brisbane',basinId:basin,coordinates:{lat:-27.4,lon:153},level:0,datum:'AHD',observedAt:ending,ageMinutes:0,status:'current'},{id:'540112',name:'No readings',group:'Brisbane',basinId:basin,coordinates:null,level:null,datum:'Unspecified',observedAt:null,ageMinutes:null,status:'missing'}]}});
+  return r.fulfill({json:{available:true,end:ending,start:new Date(Date.parse(ending)-minutes*60000).toISOString(),minutes,stations:[{id:'540111',historyPath:'/fwo/IDQ65389/IDQ65389.540111.tbl.shtml',plotPath:'/fwo/IDQ65389/IDQ65389.540111.plt.shtml',membershipSource:'https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html',name:'Test river',group:'Brisbane',basinId:basin,coordinates:{lat:-27.4,lon:153},level:0,datum:'AHD',observedAt:ending,ageMinutes:0,status:'current'},{id:'540112',name:'No readings',group:'Brisbane',basinId:basin,coordinates:null,level:null,datum:'Unspecified',observedAt:null,ageMinutes:null,status:'missing'}]}});
  });
  await page.route('**/api/archive-water/series?*',r=>{
   const q=new URL(r.request().url()).searchParams,minutes=Number(q.get('minutes')),ending=q.get('end'),start=new Date(Date.parse(ending)-minutes*60000).toISOString();
@@ -19,6 +19,8 @@ test('saved water levels require a basin and duration bounds map, graph and time
  await page.locator('.basin-choice').click();await expect(page.locator('#count')).toContainText('2 gauges');
  await expect(page.locator('#accumulation')).toHaveValue('1440');await expect(page.locator('.station').filter({hasText:'Test river'})).toContainText('0.00 m');
  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
+ await expect(page.getByRole('link',{name:'Open BoM plot',exact:true})).toHaveAttribute('href','https://reg.bom.gov.au/fwo/IDQ65389/IDQ65389.540111.plt.shtml');
+ await expect(page.getByRole('link',{name:'Open BoM observation table',exact:true})).toHaveAttribute('target','_blank');
  await page.screenshot({path:'.cache/screenshots/water-history-preview.png',fullPage:true});
  await page.locator('#accumulation').selectOption('180');await expect(page.locator('#period')).toContainText('3 hours');
  await expect.poll(()=>page.locator('#waterHistoryChart').evaluate(c=>{const chart=Chart.getChart(c);return chart?chart.options.scales.x.max-chart.options.scales.x.min:null;})).toBe(3*3600000);

@@ -46,6 +46,15 @@ function draw(){
  if(selected&&!rows.some(s=>s.id===selected))clearDetail();
 }
 function fit(){const bounds=L.latLngBounds([...markers.values()].map(m=>m.getLatLng()));if(bounds.isValid())map.fitBounds(bounds.pad(.08),{maxZoom:12,animate:false});}
+function appendBomLinks(host,station){
+ const links=node('div',undefined,'bom-check-links');
+ for(const [path,label] of [[station.plotPath,'Open BoM plot'],[station.historyPath,'Open BoM observation table']]){
+  if(!path||!/^\/fwo\/IDQ\d+\/IDQ\d+\.\d{6}\.(?:plt|tbl)\.shtml$/.test(path)||!path.includes(`.${station.id}.`))continue;
+  const link=node('a',label);link.href='https://reg.bom.gov.au'+path;link.target='_blank';link.rel='noopener';links.append(link);
+ }
+ if(station.membershipSource){const link=node('a','Open BoM group bulletin');link.href=station.membershipSource;link.target='_blank';link.rel='noopener';links.append(link);}
+ if(links.childElementCount){host.append(links,node('p','BoM links open their currently available record, which may cover a different period from your historical selection.','muted'));}
+}
 async function choose(id,pan=false){
  const station=frame?.stations.find(s=>s.id===id);if(!station)return;selected=id;draw();saveURL();
  if(pan&&station.coordinates)map.setView([station.coordinates.lat,station.coordinates.lon],12);
@@ -54,6 +63,7 @@ async function choose(id,pan=false){
   const response=await fetch(`/api/archive-water/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(frame.end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error();const result=await response.json();if(token!==detailVersion||frameVersion!==version)return;if(!result.available)throw new Error();
   chart?.destroy();chart=null;const host=$('detail');host.replaceChildren(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name),node('h3',`${level(station.level)} · ${station.datum}`),node('p',`Last observation in selected window: ${station.observedAt?date(station.observedAt)+' AEST':'none'}`,'muted'),node('p',`${date(result.start)} – ${date(result.end)} AEST · ${result.observations.length} saved readings. Actual observation times; no readings added or accumulated. Heights use each gauge’s own datum.`,'history-coverage'));
+  appendBomLinks(host,station);
   if(!result.observations.length){host.append(node('p','No saved observations in this window.'));return;}
   const plotControls=node('div',undefined,'water-plot-controls'),pointsLabel=node('label'),points=node('input');points.type='checkbox';points.id='showRecordedPoints';points.checked=showRecordedPoints;pointsLabel.append(points,document.createTextNode('Show recorded points'));plotControls.append(pointsLabel);host.append(plotControls);
   points.onchange=()=>{showRecordedPoints=points.checked;if(chart){for(const dataset of chart.data.datasets)dataset.pointRadius=showRecordedPoints?3:0;chart.update('none');}};
@@ -62,7 +72,7 @@ async function choose(id,pan=false){
   const datasets=datums.map((datum,index)=>({label:`Gauge height · m ${datum}`,data:result.observations.map(o=>({x:Date.parse(o.time),y:o.datum===datum?o.level:null})),borderColor:['#228d85','#7350a0','#b06c28'][index%3],borderWidth:2,pointRadius:showRecordedPoints?3:0,pointHitRadius:7,spanGaps:false,tension:0,segment:{borderDash:ctx=>ctx.p1.parsed.x-ctx.p0.parsed.x>3600000?[6,5]:undefined}}));
   chart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{tooltip:{callbacks:{title:items=>date(items[0].parsed.x)+' AEST'}}},scales:{x:{type:'linear',min:Date.parse(result.start),max:Date.parse(result.end),ticks:{maxTicksLimit:8,callback:value=>date(value)},title:{display:true,text:'Observation time · Brisbane AEST'}},y:{title:{display:true,text:'Gauge height · metres (see datum in legend)'}}}}});
   host.append(node('p','Lines connect recorded values; dashed segments indicate more than 60 minutes between readings. They do not add observations or imply a communications fault; some gauges report only when levels change. Missing levels and datum changes break the line. Turn on recorded points to see each saved measurement, including isolated readings. Age flags are measured relative to your selected ending time, not today. AHD and local gauge heights are not interchangeable.','muted'));
- }catch(error){if(error.name!=='AbortError'&&token===detailVersion){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved water levels. Please try again.'));}}
+ }catch(error){if(error.name!=='AbortError'&&token===detailVersion){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved water levels. Please try again.'));appendBomLinks($('detail'),station);}}
 }
 async function loadFrame(){
  if(!basin||!extent?.lastEnd)return;const token=++version;detailVersion++;detailController?.abort();controller?.abort();controller=new AbortController();$('loading').textContent='Loading selection…';

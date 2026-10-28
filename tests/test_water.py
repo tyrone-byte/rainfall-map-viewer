@@ -15,6 +15,9 @@ class WaterParserTests(unittest.TestCase):
         self.assertEqual(station['stationNumber'],'540111');self.assertEqual(station['level'],31.66)
         self.assertEqual(station['datum'],'AHD');self.assertEqual(station['classification'],'below')
         self.assertEqual(station['observedAt'],'2026-10-22T10:14:00+10:00')
+        mulgowie=next(s for s in data['stations'] if s['stationNumber']=='040835')
+        self.assertEqual(mulgowie['plotPath'],'/fwo/IDQ65389/IDQ65389.040835.plt.shtml')
+        self.assertEqual(mulgowie['historyPath'],'/fwo/IDQ65389/IDQ65389.040835.tbl.shtml')
         coords=json.loads(Path('data/water-stations.json').read_text());self.assertIn(station['id'],coords)
     def test_missing_and_negative_levels(self):
         html=Path('tests/fixtures/water-summary.html').read_text()

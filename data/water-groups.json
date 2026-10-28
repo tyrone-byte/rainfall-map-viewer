@@ -1865,7 +1865,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540111.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540111.plt.shtml"
     },
     {
       "id": "540478",
@@ -1882,7 +1884,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540478.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540478.plt.shtml"
     },
     {
       "id": "540548",
@@ -1899,7 +1903,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540548.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540548.plt.shtml"
     },
     {
       "id": "540469",
@@ -1916,7 +1922,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540469.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540469.plt.shtml"
     },
     {
       "id": "540468",
@@ -1933,7 +1941,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540468.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540468.plt.shtml"
     },
     {
       "id": "540431",
@@ -1950,7 +1960,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540431.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540431.plt.shtml"
     },
     {
       "id": "540120",
@@ -1967,7 +1979,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540120.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540120.plt.shtml"
     },
     {
       "id": "540636",
@@ -1984,7 +1998,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540636.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540636.plt.shtml"
     },
     {
       "id": "540121",
@@ -2001,7 +2017,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540121.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540121.plt.shtml"
     },
     {
       "id": "540113",
@@ -2018,7 +2036,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540113.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540113.plt.shtml"
     },
     {
       "id": "540122",
@@ -2035,7 +2055,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540122.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540122.plt.shtml"
     },
     {
       "id": "540124",
@@ -2052,7 +2074,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540124.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540124.plt.shtml"
     },
     {
       "id": "540808",
@@ -2069,7 +2093,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540808.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540808.plt.shtml"
     },
     {
       "id": "540248",
@@ -2086,7 +2112,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540248.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540248.plt.shtml"
     },
     {
       "id": "540666",
@@ -2103,7 +2131,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540666.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540666.plt.shtml"
     },
     {
       "id": "540727",
@@ -2120,7 +2150,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540727.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540727.plt.shtml"
     },
     {
       "id": "040873",
@@ -2137,7 +2169,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040873.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040873.plt.shtml"
     },
     {
       "id": "040872",
@@ -2154,7 +2188,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040872.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040872.plt.shtml"
     },
     {
       "id": "040875",
@@ -2171,7 +2207,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040875.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040875.plt.shtml"
     },
     {
       "id": "540664",
@@ -2188,7 +2226,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540664.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540664.plt.shtml"
     },
     {
       "id": "540807",
@@ -2205,7 +2245,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540807.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540807.plt.shtml"
     },
     {
       "id": "540672",
@@ -2222,7 +2264,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540672.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540672.plt.shtml"
     },
     {
       "id": "540824",
@@ -2231,7 +2275,9 @@
       "group": "Ipswich/Brisbane Creeks",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540824.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540824.plt.shtml"
     },
     {
       "id": "540825",
@@ -2240,7 +2286,9 @@
       "group": "Ipswich/Brisbane Creeks",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540825.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540825.plt.shtml"
     },
     {
       "id": "540501",
@@ -2257,7 +2305,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540501.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540501.plt.shtml"
     },
     {
       "id": "040985",
@@ -2274,7 +2324,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040985.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040985.plt.shtml"
     },
     {
       "id": "540728",
@@ -2291,7 +2343,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540728.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540728.plt.shtml"
     },
     {
       "id": "040874",
@@ -2308,7 +2362,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040874.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040874.plt.shtml"
     },
     {
       "id": "540378",
@@ -2325,7 +2381,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540378.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540378.plt.shtml"
     },
     {
       "id": "540097",
@@ -2342,7 +2400,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540097.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540097.plt.shtml"
     },
     {
       "id": "540646",
@@ -2359,7 +2419,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540646.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540646.plt.shtml"
     },
     {
       "id": "040788",
@@ -2376,7 +2438,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040788.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040788.plt.shtml"
     },
     {
       "id": "040796",
@@ -2393,7 +2457,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040796.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040796.plt.shtml"
     },
     {
       "id": "540805",
@@ -2410,7 +2476,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540805.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540805.plt.shtml"
     },
     {
       "id": "040789",
@@ -2427,7 +2495,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040789.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040789.plt.shtml"
     },
     {
       "id": "540535",
@@ -2444,7 +2514,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540535.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540535.plt.shtml"
     },
     {
       "id": "040791",
@@ -2461,7 +2533,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040791.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040791.plt.shtml"
     },
     {
       "id": "540432",
@@ -2478,7 +2552,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540432.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540432.plt.shtml"
     },
     {
       "id": "540071",
@@ -2495,7 +2571,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540071.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540071.plt.shtml"
     },
     {
       "id": "540433",
@@ -2512,7 +2590,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540433.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540433.plt.shtml"
     },
     {
       "id": "540274",
@@ -2529,7 +2609,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540274.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540274.plt.shtml"
     },
     {
       "id": "540134",
@@ -2546,7 +2628,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540134.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540134.plt.shtml"
     },
     {
       "id": "540822",
@@ -2555,7 +2639,9 @@
       "group": "Ipswich/Brisbane Creeks",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540822.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540822.plt.shtml"
     },
     {
       "id": "540132",
@@ -2572,7 +2658,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540132.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540132.plt.shtml"
     },
     {
       "id": "540127",
@@ -2589,7 +2677,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540127.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540127.plt.shtml"
     },
     {
       "id": "540126",
@@ -2606,7 +2696,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540126.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540126.plt.shtml"
     },
     {
       "id": "540128",
@@ -2623,7 +2715,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540128.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540128.plt.shtml"
     },
     {
       "id": "540129",
@@ -2640,7 +2734,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540129.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540129.plt.shtml"
     },
     {
       "id": "540296",
@@ -2657,7 +2753,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540296.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540296.plt.shtml"
     },
     {
       "id": "540609",
@@ -2674,7 +2772,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540609.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540609.plt.shtml"
     },
     {
       "id": "540107",
@@ -2691,7 +2791,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540107.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540107.plt.shtml"
     },
     {
       "id": "540061",
@@ -2708,7 +2810,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540061.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540061.plt.shtml"
     },
     {
       "id": "040813",
@@ -2725,7 +2829,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040813.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040813.plt.shtml"
     },
     {
       "id": "540604",
@@ -2742,7 +2848,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540604.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540604.plt.shtml"
     },
     {
       "id": "540119",
@@ -2759,7 +2867,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540119.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540119.plt.shtml"
     },
     {
       "id": "540784",
@@ -2776,7 +2886,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540784.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540784.plt.shtml"
     },
     {
       "id": "540804",
@@ -2793,7 +2905,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540804.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540804.plt.shtml"
     },
     {
       "id": "540799",
@@ -2810,7 +2924,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540799.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540799.plt.shtml"
     },
     {
       "id": "540118",
@@ -2827,7 +2943,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540118.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540118.plt.shtml"
     },
     {
       "id": "540130",
@@ -2844,7 +2962,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540130.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540130.plt.shtml"
     },
     {
       "id": "540286",
@@ -2861,7 +2981,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540286.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540286.plt.shtml"
     },
     {
       "id": "540279",
@@ -2878,7 +3000,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540279.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540279.plt.shtml"
     },
     {
       "id": "540278",
@@ -2895,7 +3019,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540278.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540278.plt.shtml"
     },
     {
       "id": "540444",
@@ -2912,7 +3038,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540444.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540444.plt.shtml"
     },
     {
       "id": "540739",
@@ -2929,7 +3057,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540739.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540739.plt.shtml"
     },
     {
       "id": "540416",
@@ -2946,7 +3076,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540416.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540416.plt.shtml"
     },
     {
       "id": "540205",
@@ -2963,7 +3095,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540205.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540205.plt.shtml"
     },
     {
       "id": "540398",
@@ -2980,7 +3114,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540398.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540398.plt.shtml"
     },
     {
       "id": "540794",
@@ -2997,7 +3133,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540794.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540794.plt.shtml"
     },
     {
       "id": "540415",
@@ -3014,7 +3152,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540415.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540415.plt.shtml"
     },
     {
       "id": "540625",
@@ -3031,7 +3171,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540625.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540625.plt.shtml"
     },
     {
       "id": "540826",
@@ -3040,7 +3182,9 @@
       "group": "Pine/Caboolture",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540826.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540826.plt.shtml"
     },
     {
       "id": "540628",
@@ -3057,7 +3201,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540628.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540628.plt.shtml"
     },
     {
       "id": "540442",
@@ -3074,7 +3220,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540442.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540442.plt.shtml"
     },
     {
       "id": "540484",
@@ -3091,7 +3239,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540484.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540484.plt.shtml"
     },
     {
       "id": "540483",
@@ -3108,7 +3258,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540483.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540483.plt.shtml"
     },
     {
       "id": "540277",
@@ -3125,7 +3277,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540277.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540277.plt.shtml"
     },
     {
       "id": "540605",
@@ -3142,7 +3296,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540605.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540605.plt.shtml"
     },
     {
       "id": "540204",
@@ -3159,7 +3315,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540204.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540204.plt.shtml"
     },
     {
       "id": "540412",
@@ -3176,7 +3334,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540412.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540412.plt.shtml"
     },
     {
       "id": "540562",
@@ -3193,7 +3353,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540562.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540562.plt.shtml"
     },
     {
       "id": "540439",
@@ -3210,7 +3372,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540439.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540439.plt.shtml"
     },
     {
       "id": "540413",
@@ -3227,7 +3391,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540413.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540413.plt.shtml"
     },
     {
       "id": "540417",
@@ -3244,7 +3410,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540417.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540417.plt.shtml"
     },
     {
       "id": "540658",
@@ -3261,7 +3429,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540658.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540658.plt.shtml"
     },
     {
       "id": "540445",
@@ -3278,7 +3448,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540445.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540445.plt.shtml"
     },
     {
       "id": "540741",
@@ -3295,7 +3467,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540741.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540741.plt.shtml"
     },
     {
       "id": "540659",
@@ -3312,7 +3486,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540659.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540659.plt.shtml"
     },
     {
       "id": "540762",
@@ -3329,7 +3505,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540762.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540762.plt.shtml"
     },
     {
       "id": "540730",
@@ -3346,7 +3524,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540730.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540730.plt.shtml"
     },
     {
       "id": "540508",
@@ -3363,7 +3543,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540508.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540508.plt.shtml"
     },
     {
       "id": "540245",
@@ -3380,7 +3562,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540245.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540245.plt.shtml"
     },
     {
       "id": "540619",
@@ -3397,7 +3581,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540619.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540619.plt.shtml"
     },
     {
       "id": "540242",
@@ -3414,7 +3600,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540242.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540242.plt.shtml"
     },
     {
       "id": "540771",
@@ -3431,7 +3619,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540771.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540771.plt.shtml"
     },
     {
       "id": "540623",
@@ -3448,7 +3638,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540623.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540623.plt.shtml"
     },
     {
       "id": "540357",
@@ -3465,7 +3657,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540357.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540357.plt.shtml"
     },
     {
       "id": "540244",
@@ -3482,7 +3676,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540244.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540244.plt.shtml"
     },
     {
       "id": "540793",
@@ -3499,7 +3695,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540793.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540793.plt.shtml"
     },
     {
       "id": "540243",
@@ -3516,7 +3714,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540243.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540243.plt.shtml"
     },
     {
       "id": "540660",
@@ -3533,7 +3733,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540660.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540660.plt.shtml"
     },
     {
       "id": "540542",
@@ -3550,7 +3752,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540542.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540542.plt.shtml"
     },
     {
       "id": "540557",
@@ -3567,7 +3771,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540557.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540557.plt.shtml"
     },
     {
       "id": "540736",
@@ -3584,7 +3790,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540736.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540736.plt.shtml"
     },
     {
       "id": "540773",
@@ -3601,7 +3809,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540773.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540773.plt.shtml"
     },
     {
       "id": "540561",
@@ -3618,7 +3828,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540561.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540561.plt.shtml"
     },
     {
       "id": "540624",
@@ -3635,7 +3847,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540624.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540624.plt.shtml"
     },
     {
       "id": "540627",
@@ -3652,7 +3866,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540627.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540627.plt.shtml"
     },
     {
       "id": "540558",
@@ -3669,7 +3885,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540558.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540558.plt.shtml"
     },
     {
       "id": "540740",
@@ -3686,7 +3904,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540740.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540740.plt.shtml"
     },
     {
       "id": "540496",
@@ -3703,7 +3923,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540496.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540496.plt.shtml"
     },
     {
       "id": "540543",
@@ -3720,7 +3942,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540543.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540543.plt.shtml"
     },
     {
       "id": "540635",
@@ -3737,7 +3961,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540635.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540635.plt.shtml"
     },
     {
       "id": "540059",
@@ -3754,7 +3980,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540059.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540059.plt.shtml"
     },
     {
       "id": "540338",
@@ -3771,7 +3999,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540338.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540338.plt.shtml"
     },
     {
       "id": "540373",
@@ -3788,7 +4018,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540373.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540373.plt.shtml"
     },
     {
       "id": "040820",
@@ -3805,7 +4037,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040820.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040820.plt.shtml"
     },
     {
       "id": "540769",
@@ -3822,7 +4056,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540769.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540769.plt.shtml"
     },
     {
       "id": "540768",
@@ -3839,7 +4075,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540768.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540768.plt.shtml"
     },
     {
       "id": "540146",
@@ -3856,7 +4094,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540146.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540146.plt.shtml"
     },
     {
       "id": "540261",
@@ -3873,7 +4113,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540261.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540261.plt.shtml"
     },
     {
       "id": "040387",
@@ -3890,7 +4132,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040387.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040387.plt.shtml"
     },
     {
       "id": "540188",
@@ -3907,7 +4151,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540188.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540188.plt.shtml"
     },
     {
       "id": "540141",
@@ -3924,7 +4170,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540141.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540141.plt.shtml"
     },
     {
       "id": "540446",
@@ -3941,7 +4189,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540446.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540446.plt.shtml"
     },
     {
       "id": "540139",
@@ -3958,7 +4208,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540139.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540139.plt.shtml"
     },
     {
       "id": "540298",
@@ -3975,7 +4227,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540298.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540298.plt.shtml"
     },
     {
       "id": "540276",
@@ -3992,7 +4246,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540276.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540276.plt.shtml"
     },
     {
       "id": "540272",
@@ -4009,7 +4265,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540272.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540272.plt.shtml"
     },
     {
       "id": "540750",
@@ -4026,7 +4284,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540750.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540750.plt.shtml"
     },
     {
       "id": "540142",
@@ -4043,7 +4303,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540142.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540142.plt.shtml"
     },
     {
       "id": "540148",
@@ -4060,7 +4322,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540148.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540148.plt.shtml"
     },
     {
       "id": "540560",
@@ -4077,7 +4341,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540560.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540560.plt.shtml"
     },
     {
       "id": "540441",
@@ -4094,7 +4360,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540441.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540441.plt.shtml"
     },
     {
       "id": "540260",
@@ -4111,7 +4379,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540260.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540260.plt.shtml"
     },
     {
       "id": "540177",
@@ -4128,7 +4398,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540177.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540177.plt.shtml"
     },
     {
       "id": "540178",
@@ -4145,7 +4417,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540178.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540178.plt.shtml"
     },
     {
       "id": "540155",
@@ -4162,7 +4436,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540155.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540155.plt.shtml"
     },
     {
       "id": "540527",
@@ -4179,7 +4455,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540527.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540527.plt.shtml"
     },
     {
       "id": "540566",
@@ -4196,7 +4474,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540566.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540566.plt.shtml"
     },
     {
       "id": "540143",
@@ -4213,7 +4493,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540143.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540143.plt.shtml"
     },
     {
       "id": "540405",
@@ -4230,7 +4512,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540405.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540405.plt.shtml"
     },
     {
       "id": "540829",
@@ -4239,7 +4523,9 @@
       "group": "Lower Brisbane",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540829.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540829.plt.shtml"
     },
     {
       "id": "540386",
@@ -4256,7 +4542,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540386.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540386.plt.shtml"
     },
     {
       "id": "540406",
@@ -4273,7 +4561,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540406.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540406.plt.shtml"
     },
     {
       "id": "540568",
@@ -4290,7 +4580,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540568.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540568.plt.shtml"
     },
     {
       "id": "540152",
@@ -4307,7 +4599,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540152.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540152.plt.shtml"
     },
     {
       "id": "540156",
@@ -4324,7 +4618,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540156.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540156.plt.shtml"
     },
     {
       "id": "040444",
@@ -4341,7 +4637,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040444.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040444.plt.shtml"
     },
     {
       "id": "540567",
@@ -4358,7 +4656,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540567.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540567.plt.shtml"
     },
     {
       "id": "540680",
@@ -4375,7 +4675,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540680.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540680.plt.shtml"
     },
     {
       "id": "540719",
@@ -4392,7 +4694,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540719.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540719.plt.shtml"
     },
     {
       "id": "540720",
@@ -4409,7 +4713,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540720.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540720.plt.shtml"
     },
     {
       "id": "540516",
@@ -4418,7 +4724,9 @@
       "group": "Lower Brisbane",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540516.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540516.plt.shtml"
     },
     {
       "id": "540789",
@@ -4435,7 +4743,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540789.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540789.plt.shtml"
     },
     {
       "id": "040751",
@@ -4452,7 +4762,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040751.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040751.plt.shtml"
     },
     {
       "id": "040835",
@@ -4469,7 +4781,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040835.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040835.plt.shtml"
     },
     {
       "id": "540723",
@@ -4486,7 +4800,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540723.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540723.plt.shtml"
     },
     {
       "id": "540722",
@@ -4503,7 +4819,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540722.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540722.plt.shtml"
     },
     {
       "id": "040716",
@@ -4520,7 +4838,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040716.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040716.plt.shtml"
     },
     {
       "id": "540721",
@@ -4537,7 +4857,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540721.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540721.plt.shtml"
     },
     {
       "id": "540158",
@@ -4554,7 +4876,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540158.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540158.plt.shtml"
     },
     {
       "id": "540563",
@@ -4571,7 +4895,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540563.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540563.plt.shtml"
     },
     {
       "id": "540529",
@@ -4588,7 +4914,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540529.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540529.plt.shtml"
     },
     {
       "id": "540546",
@@ -4605,7 +4933,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540546.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540546.plt.shtml"
     },
     {
       "id": "540149",
@@ -4622,7 +4952,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540149.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540149.plt.shtml"
     },
     {
       "id": "540174",
@@ -4639,7 +4971,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540174.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540174.plt.shtml"
     },
     {
       "id": "040817",
@@ -4656,7 +4990,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040817.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040817.plt.shtml"
     },
     {
       "id": "540547",
@@ -4673,7 +5009,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540547.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540547.plt.shtml"
     },
     {
       "id": "540701",
@@ -4690,7 +5028,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540701.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540701.plt.shtml"
     },
     {
       "id": "540153",
@@ -4707,7 +5047,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540153.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540153.plt.shtml"
     },
     {
       "id": "040441",
@@ -4724,7 +5066,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040441.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040441.plt.shtml"
     },
     {
       "id": "540183",
@@ -4741,7 +5085,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540183.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540183.plt.shtml"
     },
     {
       "id": "540182",
@@ -4758,7 +5104,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540182.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540182.plt.shtml"
     },
     {
       "id": "540150",
@@ -4775,7 +5123,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540150.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540150.plt.shtml"
     },
     {
       "id": "540312",
@@ -4792,7 +5142,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540312.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540312.plt.shtml"
     },
     {
       "id": "540503",
@@ -4809,7 +5161,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540503.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540503.plt.shtml"
     },
     {
       "id": "540257",
@@ -4826,7 +5180,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540257.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540257.plt.shtml"
     },
     {
       "id": "540606",
@@ -4843,7 +5199,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540606.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540606.plt.shtml"
     },
     {
       "id": "540256",
@@ -4860,7 +5218,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540256.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540256.plt.shtml"
     },
     {
       "id": "540199",
@@ -4877,7 +5237,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540199.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540199.plt.shtml"
     },
     {
       "id": "540063",
@@ -4894,7 +5256,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540063.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540063.plt.shtml"
     },
     {
       "id": "540157",
@@ -4911,7 +5275,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540157.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540157.plt.shtml"
     },
     {
       "id": "040702",
@@ -4928,7 +5294,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040702.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040702.plt.shtml"
     },
     {
       "id": "540574",
@@ -4945,7 +5313,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540574.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540574.plt.shtml"
     },
     {
       "id": "540314",
@@ -4962,7 +5332,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540314.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540314.plt.shtml"
     },
     {
       "id": "540317",
@@ -4979,7 +5351,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540317.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540317.plt.shtml"
     },
     {
       "id": "540806",
@@ -4996,7 +5370,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540806.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540806.plt.shtml"
     },
     {
       "id": "540064",
@@ -5013,7 +5389,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540064.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540064.plt.shtml"
     },
     {
       "id": "540194",
@@ -5030,7 +5408,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540194.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540194.plt.shtml"
     },
     {
       "id": "540313",
@@ -5047,7 +5427,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540313.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540313.plt.shtml"
     },
     {
       "id": "540388",
@@ -5064,7 +5446,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540388.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540388.plt.shtml"
     },
     {
       "id": "540669",
@@ -5081,7 +5465,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540669.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540669.plt.shtml"
     },
     {
       "id": "540147",
@@ -5098,7 +5484,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540147.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540147.plt.shtml"
     },
     {
       "id": "540504",
@@ -5115,7 +5503,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540504.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540504.plt.shtml"
     },
     {
       "id": "040838",
@@ -5132,7 +5522,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040838.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040838.plt.shtml"
     },
     {
       "id": "540549",
@@ -5149,7 +5541,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540549.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540549.plt.shtml"
     },
     {
       "id": "540474",
@@ -5166,7 +5560,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540474.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540474.plt.shtml"
     },
     {
       "id": "540513",
@@ -5183,7 +5579,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540513.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540513.plt.shtml"
     },
     {
       "id": "540058",
@@ -5200,7 +5598,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540058.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540058.plt.shtml"
     },
     {
       "id": "540151",
@@ -5217,7 +5617,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540151.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540151.plt.shtml"
     },
     {
       "id": "540057",
@@ -5234,7 +5636,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540057.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540057.plt.shtml"
     },
     {
       "id": "040440",
@@ -5251,7 +5655,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040440.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040440.plt.shtml"
     },
     {
       "id": "540754",
@@ -5268,7 +5674,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540754.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540754.plt.shtml"
     },
     {
       "id": "540387",
@@ -5285,7 +5693,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540387.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540387.plt.shtml"
     },
     {
       "id": "540195",
@@ -5302,7 +5712,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540195.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540195.plt.shtml"
     },
     {
       "id": "540316",
@@ -5319,7 +5731,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540316.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540316.plt.shtml"
     },
     {
       "id": "140024",
@@ -5328,7 +5742,9 @@
       "group": "Lower Brisbane",
       "basinId": "brisbane-bremer-pine-caboolture",
       "coordinates": null,
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.140024.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.140024.plt.shtml"
     },
     {
       "id": "540180",
@@ -5345,7 +5761,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540180.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540180.plt.shtml"
     },
     {
       "id": "040816",
@@ -5362,7 +5780,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040816.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040816.plt.shtml"
     },
     {
       "id": "540065",
@@ -5379,7 +5799,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540065.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540065.plt.shtml"
     },
     {
       "id": "540062",
@@ -5396,7 +5818,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540062.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540062.plt.shtml"
     },
     {
       "id": "540216",
@@ -5413,7 +5837,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540216.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540216.plt.shtml"
     },
     {
       "id": "040836",
@@ -5430,7 +5856,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040836.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040836.plt.shtml"
     },
     {
       "id": "540795",
@@ -5447,7 +5875,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540795.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540795.plt.shtml"
     },
     {
       "id": "540250",
@@ -5464,7 +5894,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540250.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540250.plt.shtml"
     },
     {
       "id": "040831",
@@ -5481,7 +5913,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040831.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040831.plt.shtml"
     },
     {
       "id": "540661",
@@ -5498,7 +5932,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540661.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540661.plt.shtml"
     },
     {
       "id": "040812",
@@ -5515,7 +5951,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040812.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040812.plt.shtml"
     },
     {
       "id": "540201",
@@ -5532,7 +5970,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540201.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540201.plt.shtml"
     },
     {
       "id": "540670",
@@ -5549,7 +5989,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540670.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540670.plt.shtml"
     },
     {
       "id": "540682",
@@ -5566,7 +6008,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540682.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540682.plt.shtml"
     },
     {
       "id": "540192",
@@ -5583,7 +6027,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540192.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540192.plt.shtml"
     },
     {
       "id": "040713",
@@ -5600,7 +6046,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040713.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040713.plt.shtml"
     },
     {
       "id": "140004",
@@ -5617,7 +6065,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.140004.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.140004.plt.shtml"
     },
     {
       "id": "540702",
@@ -5634,7 +6084,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540702.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540702.plt.shtml"
     },
     {
       "id": "540683",
@@ -5651,7 +6103,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540683.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540683.plt.shtml"
     },
     {
       "id": "540684",
@@ -5668,7 +6122,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540684.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540684.plt.shtml"
     },
     {
       "id": "540198",
@@ -5685,7 +6141,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540198.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540198.plt.shtml"
     },
     {
       "id": "540685",
@@ -5702,7 +6160,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540685.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540685.plt.shtml"
     },
     {
       "id": "540495",
@@ -5719,7 +6179,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540495.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540495.plt.shtml"
     },
     {
       "id": "040647",
@@ -5736,7 +6198,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.040647.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.040647.plt.shtml"
     },
     {
       "id": "540249",
@@ -5753,7 +6217,9 @@
         "catalogueDate": "2022-01-05",
         "method": "Exact BoM station number"
       },
-      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html"
+      "membershipSource": "https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html",
+      "historyPath": "/fwo/IDQ65389/IDQ65389.540249.tbl.shtml",
+      "plotPath": "/fwo/IDQ65389/IDQ65389.540249.plt.shtml"
     },
     {
       "id": "540403",
