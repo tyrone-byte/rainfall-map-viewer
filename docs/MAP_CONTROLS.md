@@ -74,8 +74,10 @@ separate maintenance review after field validation, as previously agreed.
 ## Compact labels and scrolling
 
 Visible viewer names are Rainfall and Water levels; the existing URLs remain
-stable for bookmarks. Water hover text contains station, level/datum and concise
-movement/rate only, with no date range or tidal-adjustment note. Shaded coverage
+stable for bookmarks. Both map hovers use one horizontal row: station name and measured value only
+(level/datum for water, selected rainfall total for rain), with no rate, date
+range or tidal-adjustment note. Long names may ellipsize on a narrow screen;
+the full name remains in the gauge list and selected detail. Shaded coverage
 and movement boxes above the charts are removed. Optional measured endpoint
 notes remain in a collapsed Data notes section below the water plot.
 
@@ -88,3 +90,29 @@ page scrolling. No gestures resample, modify or discard observations.
 The previous CARTO greyscale endpoint is no longer requested. Greyscale needs
 no API key or provider account; it has the same tile source as the existing
 street map. The filter applies only to the tiles, preserving gauge colours.
+
+
+## Hybrid transparency and group priority
+
+Both satellite imagery and its label overlay use 70% opacity (30% transparency).
+Gauge-marker opacity is unchanged. Street and greyscale backgrounds remain opaque.
+
+Both group-selection pages use the latest saved 24-hour rainfall statistics to
+order their groups: highest complete single-gauge rainfall total first, then the
+percentage of complete gauges recording rain, then wet-gauge count, then original
+BoM order for a full tie. This does not sum depths across gauges or estimate rain
+coverage as geographic land area. Groups with no complete gauge totals come last.
+If statistics cannot be read, the original BoM ordering is restored. The rainfall
+landing page retains its labelled coverage counts and peak-total statistics.
+
+
+## Phone page order
+
+At widths up to 850 px the same time-control elements move above the map rather
+than being duplicated. Page order is time controls, map, selected-gauge plots,
+then station search and list. The gauge list uses natural page scrolling instead
+of a nested capped scroll area. Find gauge and Back to map links provide quick
+navigation. An explicit gauge selection brings its loaded plot into view; routine
+refreshes and time changes do not force-scroll. Wider screens restore the original
+sidebar and independent plot-pane layout. Existing control values and handlers
+survive viewport changes. No bottom tabs or hidden phone panels are used.

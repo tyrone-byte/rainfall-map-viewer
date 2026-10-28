@@ -16,6 +16,7 @@ if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(para
 selected=params.get('gauge');
 const map=L.map('map',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tapHold:false}).setView([-27.25,152.75],9);
 let initialFit=!SharedMapView.attach(map);
+MobileViewer.attach(map);
 MapBackgrounds.attach(map,$('background'));
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function legend(){
@@ -59,8 +60,8 @@ function draw(){
   const colour=colours[band(station.depth)],button=node('button',undefined,'station'+(station.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=colour;
   button.append(dot,node('span',mm(station.depth),'reading'),document.createTextNode(station.name),node('small',`${station.group} · ${station.validBlocks}/${station.expectedBlocks} quarter-hours`));
   if(!station.coordinates)button.append(node('span','Identity / location unresolved · not plotted','unmapped'));
-  button.onclick=()=>choose(station.id,true);$('stations').append(button);
-  if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);const tooltip=node('div',undefined,'gauge-tooltip');tooltip.append(node('strong',station.name),node('div',mm(station.depth)));marker.bindTooltip(tooltip);marker.on('click',()=>choose(station.id,false));markers.set(station.id,marker);}
+  button.onclick=()=>choose(station.id,true,true);$('stations').append(button);
+  if(station.coordinates){mapped++;const c=station.coordinates,marker=L.circleMarker([c.lat,c.lon],{radius:station.id===selected?10:7,color:station.id===selected?'#123e46':'#fff',weight:2,fillColor:colour,fillOpacity:.94}).addTo(layer);const tooltip=node('div',undefined,'gauge-tooltip');tooltip.append(node('strong',station.name),node('div',mm(station.depth)));marker.bindTooltip(tooltip);marker.on('click',()=>choose(station.id,false,true));markers.set(station.id,marker);}
  }
  sidebar.scrollTop=listScroll;
  $('count').textContent=`${rows.length} gauges · ${mapped} mapped · ${rows.filter(s=>s.complete).length} complete`;
@@ -68,10 +69,10 @@ function draw(){
  if(selected&&!rows.some(s=>s.id===selected)){selected=null;detailVersion++;detailController?.abort();data=null;clearIfdChart();chart?.destroy();chart=null;$('detail').replaceChildren(node('p','Select a gauge within these filters.','muted'));}
 }
 function fit(){const bounds=L.latLngBounds([...markers.values()].map(m=>m.getLatLng()));if(bounds.isValid())map.fitBounds(bounds.pad(.08),{maxZoom:12,animate:false});}
-async function choose(id,pan=false){
+async function choose(id,pan=false,reveal=false){
  if(!frame)return;
  const station=frame.stations.find(s=>s.id===id);if(!station)return;
- selected=id;draw();saveURL();if(pan&&station.coordinates)map.setView([station.coordinates.lat,station.coordinates.lon],12);
+ selected=id;draw();saveURL();if(reveal)MobileViewer.showPlot();if(pan&&station.coordinates)map.setView([station.coordinates.lat,station.coordinates.lon],12);
  const version=++detailVersion,frameVersion=loadVersion,end=frame.end;
  detailController?.abort();detailController=new AbortController();data=null;
  $('detail').style.minHeight=`${$('detail').offsetHeight}px`;$('detail').setAttribute('aria-busy','true');$('detail').inert=true;
@@ -80,9 +81,9 @@ async function choose(id,pan=false){
   const response=await fetch(`/api/archive-rainfall/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error('Could not read this gauge.');
   const result=await response.json();if(version!==detailVersion||frameVersion!==loadVersion)return;
-  if(!result.available||!result.periods?.length){$('detail').replaceChildren(node('h2',station.name),node('p',result.reason==='identity-unresolved'?'No confident station identity is assigned. Saved quarter-hours cannot be shown for this gauge.':'Saved gauge observations are unavailable.'));return;}
-  data=result;renderDetail(station,result.stations[0]);$('detail').setAttribute('aria-busy','false');
- }catch(error){if(error.name!=='AbortError'&&version===detailVersion)$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved observations. No rainfall has been estimated.'));}
+  if(!result.available||!result.periods?.length){$('detail').replaceChildren(node('h2',station.name),node('p',result.reason==='identity-unresolved'?'No confident station identity is assigned. Saved quarter-hours cannot be shown for this gauge.':'Saved gauge observations are unavailable.'));if(reveal)MobileViewer.showPlot($('detail'));return;}
+  data=result;renderDetail(station,result.stations[0]);$('detail').setAttribute('aria-busy','false');if(reveal)MobileViewer.showPlot($('detail'));
+ }catch(error){if(error.name!=='AbortError'&&version===detailVersion){$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved observations. No rainfall has been estimated.'));if(reveal)MobileViewer.showPlot($('detail'));}}
  finally{if(version===detailVersion){$('detail').setAttribute('aria-busy','false');$('detail').inert=false;}}
 }
 function renderDetail(station,series){
@@ -177,7 +178,8 @@ async function loadGroupStats(){
  try{
   const response=await fetch('/api/archive-rainfall/group-stats',{cache:'no-store'});if(!response.ok)throw new Error();
   const result=await response.json();if(!result.available||!result.groups)throw new Error();
-  $('groupStatsTime').textContent=`Latest saved 24 hours ending ${date(result.end)} AEST. Wet = greater than 0 mm. Percentages describe gauges with complete records, not land area.`;
+  $('groupStatsTime').textContent=`Latest saved 24 hours ending ${date(result.end)} AEST. Highest gauge total first, then wet-gauge coverage. Wet = greater than 0 mm. Percentages describe gauges with complete records, not land area.`;
+  RainfallGroupPriority.apply($('basinGroups'),result.groups);
   const available=result.groups.filter(g=>g.completeGauges>0),max=Math.max(...available.map(g=>g.maxDepth)),widespread=Math.max(...available.map(g=>g.wetPercent));
   for(const group of result.groups){
    const label=document.querySelector(`[data-basin="${group.id}"] > span`);if(!label)continue;label.querySelectorAll('.basin-stats,.basin-highlight').forEach(n=>n.remove());
@@ -185,5 +187,5 @@ async function loadGroupStats(){
    if(group.completeGauges&&group.maxDepth===max&&max>0)label.append(node('small','● Highest gauge rainfall','basin-highlight'));
    if(group.completeGauges&&group.wetPercent===widespread&&widespread>0)label.append(node('small','● Most widespread among complete gauges','basin-highlight'));
   }
- }catch(_){$('groupStatsTime').textContent='Rainfall summaries unavailable. You can still select a group.';}
+ }catch(_){window.RainfallGroupPriority?.apply($('basinGroups'),[]);$('basinGroups').querySelectorAll('.basin-stats,.basin-highlight').forEach(n=>n.remove());$('groupStatsTime').textContent='Rainfall summaries unavailable. Groups are listed in BoM order.';}
 }

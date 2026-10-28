@@ -235,3 +235,31 @@ test('obsolete bulletin URLs redirect to history pages and their navigation is r
  await expect(page.getByRole('link',{name:'Rainfall bulletin',exact:true})).toHaveCount(0);await expect(page.locator('.page-tabs a[href="/water"]')).toHaveCount(0);
  await page.goto('/water');await expect(page).toHaveURL(/\/water-history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
 });
+
+test('both landing pages prioritise peak gauge rainfall then wet-gauge coverage and put incomplete groups last',async({page})=>{
+ await mock(page);
+ const ids=['fitzroy','brisbane-bremer-pine-caboolture','gold-coast-logan','sunshine-coast-mary'];
+ await page.route('**/api/archive-rainfall/groups',r=>r.fulfill({json:{groups:ids.map(id=>({id,label:id,gaugeCount:10}))}}));
+ const depths=[null,100,200,200],wet=[null,100,20,80];
+ await page.route('**/api/archive-rainfall/group-stats',r=>r.fulfill({json:{available:true,end:last,groups:ids.map((id,i)=>({id,maxDepth:depths[i],wetPercent:wet[i],wetGauges:i?wet[i]/10:0,knownGauges:10,completeGauges:i?10:0,maxStation:'Test gauge'}))}}));
+ for(const path of ['/history','/water-history']){
+  await page.goto(path);await expect(page.locator('.basin-choice').first()).toHaveAttribute('data-basin','sunshine-coast-mary');
+  expect(await page.locator('.basin-choice').evaluateAll(buttons=>buttons.map(b=>b.dataset.basin))).toEqual([ids[3],ids[2],ids[1],ids[0]]);
+ }
+});
+
+test('rainfall hover keeps its name and selected rainfall depth on one horizontal line',async({page})=>{
+ await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
+ const result=await page.evaluate(()=>{const marker=markers.get('a');marker.openTooltip();const el=marker.getTooltip().getContent(),name=el.querySelector('strong').getBoundingClientRect(),value=el.querySelector('div').getBoundingClientRect();return {text:el.textContent,nameTop:name.top,valueTop:value.top,height:el.getBoundingClientRect().height};});
+ expect(result.text).toContain('Alpha gauge');expect(result.text).toContain('50.0 mm');expect(Math.abs(result.nameTop-result.valueTop)).toBeLessThan(1);expect(result.height).toBeLessThan(25);
+});
+
+test('phone layout puts time first, map and plots next, and gauge list last without duplicate controls',async({page})=>{
+ await mock(page);await page.setViewportSize({width:390,height:844});await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
+ expect(await page.locator('main').evaluate(el=>[...el.children].map(child=>child.classList.contains('time-controls')?'time':child.classList.contains('workspace')?'plots':'gauges'))).toEqual(['time','plots','gauges']);
+ await expect(page.locator('#accumulation')).toHaveCount(1);await expect(page.getByRole('link',{name:'Jump to station search and gauges'})).toBeVisible();
+ await page.getByRole('link',{name:'Jump to station search and gauges'}).click();await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
+ await expect.poll(()=>page.locator('#detail').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(100);
+ await page.setViewportSize({width:1440,height:1000});await expect(page.locator('.sidebar>.time-controls')).toHaveCount(1);await expect(page.locator('#accumulation')).toHaveCount(1);
+ await page.locator('#accumulation').selectOption('60');await expect(page.locator('#period')).toContainText('1 hour');
+});

@@ -37,6 +37,15 @@
 
 .map-grey-tiles{filter:grayscale(1)}
 
-.gauge-tooltip{max-width:270px;white-space:normal;overflow-wrap:anywhere}.gauge-tooltip strong{display:block}.plot-notes{margin-top:14px;font-size:12px}.plot-notes summary{color:#56736b}.plot-notes p{margin-top:8px}.map-pan-control button{min-height:40px;padding:7px 9px;border:0;border-radius:3px;font-size:12px;max-width:125px}.map-pan-control button[aria-pressed=true]{background:#e1f0ed}
+.gauge-tooltip{display:flex;align-items:center;gap:8px;max-width:min(460px,calc(100vw - 60px));white-space:nowrap;overflow-wrap:normal}.gauge-tooltip strong{display:inline-block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gauge-tooltip>div{flex:none;white-space:nowrap}.plot-notes{margin-top:14px;font-size:12px}.plot-notes summary{color:#56736b}.plot-notes p{margin-top:8px}.map-pan-control button{min-height:40px;padding:7px 9px;border:0;border-radius:3px;font-size:12px;max-width:125px}.map-pan-control button[aria-pressed=true]{background:#e1f0ed}
 
-@media(max-width:600px){.gauge-tooltip{max-width:170px}}
+.mobile-jump-link{display:none}
+@media(max-width:850px){
+ main{display:flex;flex-direction:column}
+ main>.time-controls{order:0;margin:0;width:100%}
+ main>.workspace{order:1;width:100%;min-width:0}
+ main>.sidebar{order:2;width:100%;max-height:none;overflow:visible}
+ .mobile-jump-link{display:inline-block;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none;font-weight:600;font-size:12px}
+ .filters>.mobile-jump-link{margin-bottom:10px}
+ #viewerGauges,#detail,#map{scroll-margin-top:12px}
+}

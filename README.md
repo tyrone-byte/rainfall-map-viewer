@@ -17,7 +17,9 @@ and [compact history](docs/COMPACT_HISTORY.md). The viewer requires its configur
 Water markers can show rising/falling, measured rate of rise, or observation age.
 Rate display bands are prototype settings, not warning thresholds; tidal effects
 are not removed. Street, greyscale and satellite-with-labels backgrounds are
-available on both history maps. Names and coordinates are stored separately from
+available on both viewers. On phones the page order is time controls, map,
+plots, then station search/list, with jump links between map and gauges.
+Names and coordinates are stored separately from
 observations; unresolved coordinates are never invented.
 
 ## Open it as a website

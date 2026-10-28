@@ -66,6 +66,7 @@ test('map controls change water colours, comparison, background and seven-day du
  await page.locator('#colourMode').selectOption('trend');await page.locator('#comparison').selectOption('15');await expect.poll(()=>requests.at(-1).comparison).toBe(15);
  await page.locator('#background').selectOption('grey');expect(await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;})).toEqual([expect.stringContaining('openstreetmap')]);
  await page.locator('#background').selectOption('hybrid');const urls=await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;});expect(urls).toHaveLength(2);expect(urls[0]).toContain('World_Imagery');
+ const opacity=await page.evaluate(()=>{const result=[];map.eachLayer(l=>{if(l._url)result.push(l.options.opacity);});return result;});expect(opacity).toEqual([.7,.7]);
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.2,5);
  await page.locator('#accumulation').selectOption('10080');await expect(page.locator('#period')).toContainText('7 days');
  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
@@ -77,7 +78,9 @@ test('short labels, compact hover and page scrolling over the map keep plots acc
  await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
  await expect(page.locator('h1')).toContainText('Water levels');await expect(page.getByRole('link',{name:'Rainfall',exact:true})).toBeVisible();
  const content=await page.evaluate(()=>markers.get('540111').getTooltip().getContent().textContent);
- expect(content).toContain('Rising');expect(content).toContain('+0.400 m/h');expect(content).not.toContain('AEST');expect(content).not.toContain('tidal');
+ expect(content).toContain('0.00 m AHD');expect(content).not.toContain('Rising');expect(content).not.toContain('m/h');expect(content).not.toContain('AEST');expect(content).not.toContain('tidal');
+ const alignment=await page.evaluate(()=>{const marker=markers.get('540111');marker.openTooltip();const el=marker.getTooltip().getContent(),name=el.querySelector('strong').getBoundingClientRect(),value=el.querySelector('div').getBoundingClientRect();return {nameTop:name.top,valueTop:value.top,height:el.getBoundingClientRect().height};});
+ expect(Math.abs(alignment.nameTop-alignment.valueTop)).toBeLessThan(1);expect(alignment.height).toBeLessThan(25);
  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
  await expect(page.locator('.history-coverage,.movement-summary')).toHaveCount(0);await expect(page.locator('.plot-notes')).not.toHaveAttribute('open','');
  await page.locator('#map').hover();const zoom=await page.evaluate(()=>map.getZoom());const before=await page.locator('.workspace').evaluate(el=>el.scrollTop);
