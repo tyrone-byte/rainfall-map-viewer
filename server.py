@@ -193,7 +193,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            pages = {'/history/':'history.html','/water-history/':'water-history.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
+            pages = {'/dams':'dams.html','/dams/':'dams.html','/history/':'history.html','/water-history/':'water-history.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
             base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'history.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():

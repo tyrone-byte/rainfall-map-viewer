@@ -166,3 +166,7 @@ The compact collector and verified cleanup are documented in
 [COMPACT_HISTORY.md](docs/COMPACT_HISTORY.md). Deploy the web reader first, then
 rebuild/run the collector. Viewer grouping changes and automatic three-month
 retention are separate next steps.
+
+### GaugeView Dams
+
+The initial `/dams` viewer combines nearby rainfall and water levels around 49 supplied Seqwater/Sunwater assets. Owner and catchment area are retained; actual catchment boundaries are pending. Search circles represent proximity only. See [dam data and limitations](docs/dams/README.md). Rebuild its static catalogue with `python tools/build_dam_catalogue.py` after verified inventory updates. No collector changes are required.
