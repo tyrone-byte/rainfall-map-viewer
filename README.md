@@ -1,26 +1,24 @@
 # Rainfall Atlas — Southeast Queensland
 
-A working prototype using **real Bureau of Meteorology IDQ60348 observations**, Leaflet, Chart.js and OpenStreetMap. Plain HTML/CSS/JavaScript, a small Python server, and a separate station coordinate file. Live bulletin views require no database, authentication, or API key.
+A Queensland prototype using saved BoM observations, Leaflet and Chart.js, with
+plain HTML/CSS/JavaScript, a small Python server and PostgreSQL history storage.
 
-An optional, separate [permanent observation collector](docs/COLLECTION.md) is
-prepared for PostgreSQL and a scheduled job is not activated by deploying the
-viewer. Archive views require the web service's own database connection.
+The home page opens **Rainfall history** (`/history`); **Water history**
+(`/water-history`) and **Gauge status** are the other views. Select a BoM basin
+before gauges appear. The old bulletin pages have been retired; `/water` redirects
+to water history. History durations extend to seven days. Missing readings remain
+missing, and the rainfall IFD comparison remains bounded to the preceding 24 hours.
 
-Before purchasing collection hosting, use the [BoM FTP connection test](docs/BOM_CONNECTION_TEST.md)
-on the existing free Render service at `/diagnostics/bom`. It requires one explicit
-button click and does not create paid resources.
+The collector stores IDQ65900 quarter-hour rainfall and all available river-height
+observations from IDQ65911/IDQ65910. See [water FTP collection](docs/WATER_FTP_COLLECTION.md)
+and [compact history](docs/COMPACT_HISTORY.md). The viewer requires its configured
+`HISTORY_DATABASE_URL` (or `DATABASE_URL`); collection runs independently of visitors.
 
-The [gauge-status report and saved 15-minute totals](docs/GAUGE_STATUS.md) read
-the collector archive when `HISTORY_DATABASE_URL` is configured on the web service.
-Report age limits default to 60 minutes / 6 hours; no rapid-change alarms are used.
-
-The [historical rainfall view](docs/HISTORICAL_RAINFALL.md) at `/history` adds a
-quarter-hour time slider, selectable rolling accumulations, independent chart
-grouping and an IFD comparison from saved 15-minute observations. It reuses the
-web service's existing archive connection. The original bulletin remains at `/`.
-
-[Morning-event recovery](docs/EVENT_RECOVERY.md) is prepared as an opt-in import
-inside the collector. Preparing the package does not backfill the hosted database.
+Water markers can show rising/falling, measured rate of rise, or observation age.
+Rate display bands are prototype settings, not warning thresholds; tidal effects
+are not removed. Street, greyscale and satellite-with-labels backgrounds are
+available on both history maps. Names and coordinates are stored separately from
+observations; unresolved coordinates are never invented.
 
 ## Open it as a website
 
@@ -31,7 +29,7 @@ The included `render.yaml` and `Dockerfile` prepare this app for Render hosting.
 3. Review the proposed free web service and choose **Deploy Blueprint**. Do not select a paid plan unless you want one.
 4. When deployment finishes, open the website address Render displays. That is the link to use on your computer or phone.
 
-The free service may sleep when unused, so the first visit may take a while. Its local rainfall cache is temporary and can disappear on restart; the app fetches the real BoM bulletin again. No credentials or database are required. Automatic deployment is disabled in the blueprint so later GitHub changes do not automatically publish. Render must be able to reach BoM. The container listens on Render's assigned `PORT` and all network interfaces.
+The free service may sleep when unused, so the first visit may take a while. History remains in the configured persistent database; the web service uses its internal connection URL. Automatic deployment is disabled in the blueprint so later GitHub changes do not automatically publish. Render must be able to reach BoM. The container listens on Render's assigned `PORT` and all network interfaces.
 
 The hosting files are prepared here; that does not mean a Render account, deployment or public URL has been created. The app itself has passed local backend and browser tests. A local container-build attempt could not finish because its build network could not reach package repositories, so the container build and Render deployment still need validation.
 
@@ -112,36 +110,32 @@ To refresh coordinates, download the official section1/2/3 catalogues as `bom-ra
 
 ## IFD comparison
 
-Selecting a gauge displays the supplied Brisbane 2030 design depth curves (50%, 20%, 10%, 5%, 2%, 1%, 0.1% AEP) from 5 minutes through 24 hours, with observed accumulation points from 3 hours onwards. The horizontal axis uses a logarithmic duration scale; the vertical axis shows depth in mm. This is a depth–duration comparison, not a reconstructed sub-hourly intensity record.
+Selecting a saved rainfall gauge displays its hyetograph and design-depth
+comparison. The IFD calculation uses the preceding 24 hours of complete observed
+15-minute blocks, independently of the map/chart duration (which can be seven
+days). “Ending at selected time” and “Wettest windows in preceding 24 hours”
+remain available. Missing blocks leave gaps; no return period is assigned to an
+event. The default reference is the supplied Brisbane 2030 table; saved local
+ARR tables require explicit scenario selection as described below.
 
-- **Ending at latest observation** sums consecutive blocks backwards from the bulletin’s last completed block.
-- **Wettest available window** searches all complete block-aligned windows for each duration independently. Points can have different start/end times, shown in tooltips. It cannot find a peak window offset from the 3-hour block boundaries.
-- Missing or discontinuous blocks invalidate a window. The wettest mode warns when excluded windows mean the actual peak is unknown. No gap is filled with zero.
-- A table compares 3-, 6-, 12- and 24-hour observed depths with exact 10%, 1% and 0.1% AEP values from the supplied table. No return period or station AEP is inferred.
-- Only the current bulletin window is used; no persistent observation history has been added.
-- The supplied Brisbane 2030 reference is contextual for other gauge locations and is not automatically valid local design rainfall or an official warning threshold. Short-duration reference curves are shown, but no observed rainfall is invented below 3 hours.
+## Historical water levels and map controls
 
-`npm test` includes Node.js regression tests for these calculations. Browser checks include both modes, missing windows, malformed references and mobile layouts.
+`/water-history` reads the FTP observations stored by the collector. Select a
+BoM basin, duration, ending time and gauge. Original timestamps, AHD/LGH datums,
+missing values and negative heights are preserved. Recorded points can be turned
+on; dashed segments indicate observation gaps without fabricating measurements.
+Official BoM plot/table links allow comparison with the current source record.
 
-## Water levels page
+Controls above the map select rising/falling, rate of rise or observation-age
+colours, and a separate change-comparison period. Street, greyscale and satellite
+with labels are available on both history maps. See [MAP_CONTROLS.md](docs/MAP_CONTROLS.md)
+for definitions, display bands and missing-data handling. Background changes do
+not alter zoom or observations. Browser storage remembers the background choice;
+map position is shared between views, and selecting a new basin fits its gauges.
 
-Use the **Rainfall / Water levels** navigation tabs to switch between separate dashboards. `/water` uses BoM IDQ60286 for Brisbane, Pine, Caboolture and tributaries. Selecting a point or station fetches its linked official observation table and plots a water-level hydrograph, with 3-hour, 6-hour, 12-hour, 24-hour, 72-hour and 7-day windows ending at the latest available report.
-
-- Gauge coordinates in `data/water-stations.json` are imported by exact station number from the official BoM section 3 river catalogue dated 5 January 2022, independently of rainfall names and rainfall updates. The captured bulletin has 233 gauges; 226 have catalogue matches and 7 remain explicitly unresolved.
-- Markers and default ranking use BoM's **reported flood classification**, not the raw numerical height. Colours are below flood level (teal), minor (yellow), moderate (orange), major (red), and missing level/unsupplied classification (grey). Unknown classification never means safe or below flood level.
-- Heights preserve their stated AHD or LGH datum, including negative and missing values. Raw heights from different stations must not be ranked as if they were comparable water depths.
-- Flood classification reference lines are shown only when explicitly supplied by the gauge's history page and matching the bulletin datum. They are not invented or transferred from a nearby station. Tendency is the source's reported tendency, not a calculated forecast.
-- Source observation times are preserved, including irregular sampling and duplicate timestamps. Missing values and intervals over six hours break the plotted line. The recent table shows up to 100 readings in the selected window, newest first; the chart includes all reported readings in that window.
-- Bulletin weekday/time dates are inferred from the issue time within the preceding seven days. Raw reported times remain visible. The history table supplies full observation dates. Observations older than three hours are flagged separately from bulletin freshness.
-- Current bulletin and history snapshots are labelled separately, since BoM can update them at different times. Refreshes occur every five minutes, with history fetched on selection. Failed refreshes retain only genuine previous data with a warning; first-load failures show no invented series.
-- History requests accept only station IDs present in the summary and use the bulletin's validated BoM history paths. No arbitrary URL fetching is exposed.
-- This does not provide predictions, discharge, rainfall-to-river modelling, or operational warning decisions. Follow official warnings and agency guidance.
-
-`water.py` parses the two river formats; `water_service.py` fetches and caches them; `public/water.html` and `public/water.js` provide the dashboard. The Docker image includes both new Python modules. Real captured fixtures and browser regression checks cover station identity, datums, missing/negative heights, failed histories, navigation and selection races.
-
-## Shared map viewport
-
-Panning or zooming either dashboard saves its map centre and zoom for this browser tab. Switching between Rainfall and Water levels, or reloading, restores that viewport. Automatic data refreshes do not refit the map. **Fit gauges** still deliberately fits the currently visible gauges. A new tab with no saved viewport uses the normal initial fit. Browser storage is optional: blocked or corrupt storage never prevents either dashboard from loading.
+The former `/` bulletin and `/water` live pages have been retired and redirect
+to the corresponding saved-history views. Their dedicated frontend scripts and
+obsolete browser tests have been removed; collector/migration code is unchanged.
 
 ## Local ARR 2030 IFD datasets and manual collection pilot
 

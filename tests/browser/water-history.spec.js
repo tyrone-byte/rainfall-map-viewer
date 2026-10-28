@@ -5,8 +5,8 @@ async function mock(page){
  await page.route('**/api/archive-rainfall/groups',r=>r.fulfill({json:{groups:[{id:basin,label:'Brisbane basin',gaugeCount:2}]}}));
  await page.route('**/api/archive-water/extent',r=>r.fulfill({json:{available:true,firstEnd:'2026-10-25T00:00:00+00:00',lastEnd:end,source:{status:'ok',checked_at:end}}}));
  await page.route('**/api/archive-water/frame?*',r=>{
-  const q=new URL(r.request().url()).searchParams,minutes=Number(q.get('minutes')),ending=q.get('end');requests.push({minutes,end:ending});
-  return r.fulfill({json:{available:true,end:ending,start:new Date(Date.parse(ending)-minutes*60000).toISOString(),minutes,stations:[{id:'540111',historyPath:'/fwo/IDQ65389/IDQ65389.540111.tbl.shtml',plotPath:'/fwo/IDQ65389/IDQ65389.540111.plt.shtml',membershipSource:'https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html',name:'Test river',group:'Brisbane',basinId:basin,coordinates:{lat:-27.4,lon:153},level:0,datum:'AHD',observedAt:ending,ageMinutes:0,status:'current'},{id:'540112',name:'No readings',group:'Brisbane',basinId:basin,coordinates:null,level:null,datum:'Unspecified',observedAt:null,ageMinutes:null,status:'missing'}]}});
+  const q=new URL(r.request().url()).searchParams,minutes=Number(q.get('minutes')),ending=q.get('end');requests.push({minutes,end:ending,comparison:Number(q.get('comparison')||60)});
+  return r.fulfill({json:{available:true,end:ending,start:new Date(Date.parse(ending)-minutes*60000).toISOString(),minutes,comparisonMinutes:Number(q.get('comparison')||60),stations:[{id:'540111',historyPath:'/fwo/IDQ65389/IDQ65389.540111.tbl.shtml',plotPath:'/fwo/IDQ65389/IDQ65389.540111.plt.shtml',membershipSource:'https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60286.html',name:'Test river',group:'Brisbane',basinId:basin,coordinates:{lat:-27.4,lon:153},direction:'rising',ratePerHour:.4,levelChange:.4,movementStartAt:new Date(Date.parse(ending)-3600000).toISOString(),movementEndAt:ending,level:0,datum:'AHD',observedAt:ending,ageMinutes:0,status:'current'},{id:'540112',name:'No readings',group:'Brisbane',basinId:basin,coordinates:null,level:null,datum:'Unspecified',observedAt:null,ageMinutes:null,status:'missing'}]}});
  });
  await page.route('**/api/archive-water/series?*',r=>{
   const q=new URL(r.request().url()).searchParams,minutes=Number(q.get('minutes')),ending=q.get('end'),start=new Date(Date.parse(ending)-minutes*60000).toISOString();
@@ -55,4 +55,20 @@ test('water plots default to lines, distinguish long gaps and retain point prefe
  await page.locator('#accumulation').selectOption('180');await expect(page.locator('#period')).toContainText('3 hours');
  await expect(toggle).toBeChecked();await expect.poll(()=>page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].pointRadius)).toBe(3);
  await toggle.uncheck();expect(await page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c).data.datasets[0].pointRadius)).toBe(0);
+});
+
+test('map controls change water colours, comparison, background and seven-day duration without moving the map',async({page})=>{
+ const requests=await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
+ await page.evaluate(()=>map.setView([-27.2,152.9],10,{animate:false}));
+ expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#d94843');
+ await page.locator('#colourMode').selectOption('rate');expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#ed8b36');
+ await page.locator('#colourMode').selectOption('age');expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#36a48c');await expect(page.locator('#comparison')).toBeDisabled();
+ await page.locator('#colourMode').selectOption('trend');await page.locator('#comparison').selectOption('15');await expect.poll(()=>requests.at(-1).comparison).toBe(15);
+ await page.locator('#background').selectOption('grey');expect(await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;})).toEqual([expect.stringContaining('cartocdn')]);
+ await page.locator('#background').selectOption('hybrid');const urls=await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;});expect(urls).toHaveLength(2);expect(urls[0]).toContain('World_Imagery');
+ expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.2,5);
+ await page.locator('#accumulation').selectOption('10080');await expect(page.locator('#period')).toContainText('7 days');
+ await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
+ expect(await page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c).options.scales.x.max-Chart.getChart(c).options.scales.x.min)).toBe(7*86400000);
+ await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
 });

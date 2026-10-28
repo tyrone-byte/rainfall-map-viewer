@@ -55,7 +55,8 @@ function renderIfd(station){
  const control=node('div',undefined,'ifd-controls'),label=node('label','Observed accumulation'),select=node('select');select.id='ifdMode';
  select.append(new Option(data.periodMinutes===15?'Ending at selected time':'Ending at latest observation','latest'),new Option('Wettest windows in preceding 24 hours','wettest'));select.value=ifdMode;
  select.onchange=()=>{ifdMode=select.value;renderIfd(station);};label.append(select);control.append(label);host.append(control);
- const points=RainfallIFD.accumulations(station.values,data.periods,ifdMode,blockMinutes);
+ const recentValues=blockMinutes===15?station.values.slice(-96):station.values,recentPeriods=blockMinutes===15?data.periods.slice(-96):data.periods;
+ const points=RainfallIFD.accumulations(recentValues,recentPeriods,ifdMode,blockMinutes);
  const hasGaps=points.some(p=>p.validWindows<p.possibleWindows);
  host.append(node('p',ifdMode==='latest'?`Accumulations ending ${date(data.periods.at(-1).end)} AEST. Only consecutive, complete ${blockLabel} blocks are summed.`:`Each duration uses its wettest complete window within the 24 hours preceding the selected ending time. Durations may have different ending times. Only windows aligned to the ${blockLabel} observation blocks can be assessed.`,'ifd-explanation'));
  if(hasGaps)host.append(node('p',ifdMode==='latest'?'Missing observations leave gaps in the observed comparison.':'Incomplete windows excluded. With missing data, the true wettest accumulation may be higher than the available result.','unmapped'));

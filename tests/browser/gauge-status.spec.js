@@ -24,16 +24,3 @@ test('missing archive is clearly distinguished from gauge failures',async({page}
   await expect(page.locator('#collector')).toContainText('unavailable');
   await expect(page.locator('#rows')).toContainText('Unverified');
 });
-test('rainfall selection displays incomplete saved totals and aligned QA separately',async({page})=>{
-  const base=Date.parse('2026-10-22T06:00:00Z');
-  const periods=Array.from({length:8},(_,i)=>({start:new Date(base-(8-i)*10800000).toISOString(),end:new Date(base-(7-i)*10800000).toISOString()}));
-  await page.route('**/api/rainfall',route=>route.fulfill({json:{issuedAt:'2026-10-22T06:00:00Z',fetchedAt:'2026-10-22T06:00:00Z',warnings:[],refreshError:null,periods,stations:[{id:'test:fixture:1',name:'Test-only fixture gauge',group:'Test group',values:Array(8).fill(0),coordinates:null,coordinateStatus:'Test-only fixture'}]}}));
-  await page.route('**/api/rainfall-history?*',route=>route.fulfill({json:{available:true,end:'2026-10-22T06:00:00Z',totals:[{minutes:60,depth:0,complete:true,validBlocks:4,expectedBlocks:4},{minutes:180,depth:null,complete:false,validBlocks:11,expectedBlocks:12}],qa:[{minutes:60,end:'2026-10-22T06:00:00Z',assessment:'match',difference:0}]}}));
-  await page.goto('/');await expect(page.locator('#count')).toContainText('gauges');
-  await page.locator('.station').first().click();
-  const archive=page.locator('.archived-rainfall');
-  await expect(archive).toContainText('Incomplete');await expect(archive).toContainText('0.0');
-  await expect(archive).toContainText('11/12');
-  await archive.getByText('QA comparison with BoM hourly / 3-hour bulletins').click();
-  await expect(archive).toContainText('Match within 0.1 mm');
-});

@@ -1,7 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id);
 const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
-const duration=m=>m<60?`${m} minutes`:`${m/60} ${m===60?'hour':'hours'}`;
+const duration=m=>m>=2880?`${m/1440} days`:m<60?`${m} minutes`:`${m/60} ${m===60?'hour':'hours'}`;
 const mm=value=>value===null?'Incomplete':`${value.toFixed(1)} mm`;
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 const bands=[['green','Green','#36a46d'],['yellow','Yellow','#e9c345'],['orange','Orange','#ed8b36'],['red','Red','#d94843'],['crimson','Crimson','#a71930'],['magenta','Magenta','#cc358c'],['purple','Purple','#863ab5'],['indigo','Indigo','#56339c'],['blue','Blue','#2c64cc'],['navy','Navy','#122e67']].map(([id,name,colour])=>({id,name,colour}));
@@ -12,12 +12,11 @@ let data=null,selected=null,frame=null,extent=null,chart=null,chartMinutes=15,fo
 let basinId=null,basinGroups=[];
 const params=new URLSearchParams(location.search);
 if(params.get('end')){targetEnd=params.get('end');follow=false;}
-if(['15','30','60','180','360','720','1440'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
+if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 selected=params.get('gauge');
 const map=L.map('map').setView([-27.25,152.75],9);
 let initialFit=!SharedMapView.attach(map);
-const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-tiles.on('tileerror',()=>{$('tileStatus').hidden=false;});
+MapBackgrounds.attach(map,$('background'));
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function legend(){
  const entries=[{id:'missing',name:'Grey',label:'Incomplete'},...bands.map((b,i)=>({...b,label:i===0?`0–${thresholds[0]}`:i===9?`>${thresholds[8]}`:`>${thresholds[i-1]}–${thresholds[i]}`}))];
@@ -78,7 +77,7 @@ async function choose(id,pan=false){
  $('detail').style.minHeight=`${$('detail').offsetHeight}px`;$('detail').setAttribute('aria-busy','true');$('detail').inert=true;
  if(!chart)$('detail').replaceChildren(node('h2',station.name),node('p','Loading saved quarter-hours…','muted'));
  try{
-  const response=await fetch(`/api/archive-rainfall/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(end)}`,{signal:detailController.signal,cache:'no-store'});
+  const response=await fetch(`/api/archive-rainfall/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error('Could not read this gauge.');
   const result=await response.json();if(version!==detailVersion||frameVersion!==loadVersion)return;
   if(!result.available||!result.periods?.length){$('detail').replaceChildren(node('h2',station.name),node('p',result.reason==='identity-unresolved'?'No confident station identity is assigned. Saved quarter-hours cannot be shown for this gauge.':'Saved gauge observations are unavailable.'));return;}
@@ -89,12 +88,12 @@ async function choose(id,pan=false){
 function renderDetail(station,series){
  clearIfdChart();chart?.destroy();chart=null;
  const host=$('detail');host.replaceChildren();host.append(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name));
- const valid=series.values.filter(v=>v!==null),complete=valid.length===96;
+ const valid=series.values.slice(-96).filter(v=>v!==null),complete=valid.length===96;
  const metrics=node('div',undefined,'metrics');
  for(const [value,label] of [[mm(station.depth),`Selected ${duration(frame.minutes)} total`],[complete?mm(valid.reduce((a,b)=>a+b,0)):'Incomplete','24-hour total ending at selected time']]){const metric=node('div',undefined,'metric');metric.append(node('strong',value),node('span',label));metrics.append(metric);}host.append(metrics);
  host.append(node('p',`${date(frame.start)} – ${date(frame.end)} AEST · ${station.validBlocks}/${station.expectedBlocks} required quarter-hours present.`,'history-coverage'));
  host.append(node('p',`The chart covers the selected ${duration(frame.minutes)} ending at ${date(frame.end)} AEST, matching the map window. Missing observations remain gaps. Chart interval groups bars only; the IFD comparison independently uses the preceding 24 hours.`,'history-window'));
- const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';const intervals=[15,30,60,180].filter(m=>m<=frame.minutes&&frame.minutes%m===0);
+ const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';const intervals=[15,30,60,180,360,720,1440].filter(m=>m<=frame.minutes&&frame.minutes%m===0);
  if(!intervals.includes(chartMinutes))chartMinutes=intervals.at(-1);
  for(const m of intervals)select.append(new Option(duration(m),m));select.value=chartMinutes;label.append(select);controls.append(label);host.append(controls);
  const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='hyetograph';canvas.setAttribute('role','img');wrap.append(canvas);host.append(wrap);

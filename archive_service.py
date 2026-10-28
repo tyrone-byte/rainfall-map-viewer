@@ -67,7 +67,7 @@ def read_archive(key, reader):
             del CACHE[oldest]
         return result
 
-ACCUMULATION_MINUTES = (15,30,60,180,360,720,1440)
+ACCUMULATION_MINUTES = (15,30,60,180,360,720,1440,2880,4320,10080)
 
 def rainfall_extent():
     def read(db):
@@ -120,23 +120,33 @@ def rainfall_frame(requested=None, minutes=1440, basin=None):
     def read(db):
         start=(date(end)-timedelta(minutes=minutes)).isoformat()
         station_filter=' AND station IN ('+','.join('?' for _ in identities)+')' if basin and identities else ' AND 1=0' if basin else ''
+        totals={}
+        if minutes>1440 and not isinstance(db,sqlite3.Connection):db.execute('SET LOCAL statement_timeout=20000')
         args=(start,end,*identities) if basin and identities else (start,end)
         if has_table(db,'history_readings'):
             gauges=query(db,'SELECT id,station FROM history_gauges')
             names={g['id']:g['station'] for g in gauges}
             gauge_ids=[g['id'] for g in gauges if g['station'] in identities]
             gauge_filter=' AND gauge_id IN ('+','.join('?' for _ in gauge_ids)+')' if basin and gauge_ids else ' AND 1=0' if basin else ''
-            rows=query(db,"""SELECT gauge_id,end_at,value FROM history_readings
-                WHERE kind_id=(SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900)
-                AND end_at>? AND end_at<=?"""+gauge_filter+' ORDER BY gauge_id,end_at',
+            grouped_totals=query(db,"""SELECT gauge_id,COUNT(*) AS records,
+                COUNT(DISTINCT end_at) AS distinct_times,
+                COUNT(*) FILTER (WHERE value IS NOT NULL AND value>=0) AS valid,
+                SUM(CASE WHEN value>=0 THEN value::numeric END) AS depth
+                FROM history_readings WHERE kind_id=(SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900)
+                AND end_at>? AND end_at<=? AND MOD(EXTRACT(EPOCH FROM end_at),900)=0"""+gauge_filter+' GROUP BY gauge_id',
                 (start,end,*gauge_ids) if basin and gauge_ids else (start,end))
-            for row in rows:row['station']=names[row.pop('gauge_id')]
+            for row in grouped_totals:
+                if row['records']!=row['distinct_times']:raise ValueError('Duplicate quarter-hours require investigation.')
+                complete=row['valid']==minutes//15
+                totals[names[row['gauge_id']].removeprefix('bom:')]={'minutes':minutes,'start':start,'end':end,
+                    'depth':float(row['depth']) if complete else None,'complete':complete,
+                    'expectedBlocks':minutes//15,'validBlocks':row['valid']}
+            rows=[]
         else:
             rows=query(db, """SELECT station,end_at,value FROM observations WHERE kind='rain-15m'
                 AND duration_seconds=900 AND end_at>? AND end_at<=?"""+station_filter+' ORDER BY station,end_at',args)
         grouped={}
         for row in rows:grouped.setdefault(row['station'],[]).append(row)
-        totals={}
         stations=[]
         for gauge in inventory:
             sid=gauge['stationNumber']
@@ -148,7 +158,9 @@ def rainfall_frame(requested=None, minutes=1440, basin=None):
     result=read_archive(f'rainfall-frame:{end}:{minutes}:{basin or "all"}',read)
     return {**result,'extent':extent}
 
-def rainfall_series(gauge_id,requested=None):
+def rainfall_series(gauge_id,requested=None,minutes=1440):
+    if minutes not in ACCUMULATION_MINUTES:raise ValueError("Unsupported history duration.")
+    hours=max(24,minutes/60)
     gauge=next((g for g in rainfall_inventory() if g['id']==gauge_id),None)
     if gauge is None or not gauge['stationNumber']:
         return {'available':False,'reason':'identity-unresolved'}
@@ -157,7 +169,8 @@ def rainfall_series(gauge_id,requested=None):
     end=selected_end(requested,extent)
     if end is None:return {'available':True,'reason':'no-observations','periods':[]}
     def read(db):
-        end_date=date(end);start=end_date-timedelta(hours=24)
+        end_date=date(end);start=end_date-timedelta(hours=hours)
+        if minutes>1440 and not isinstance(db,sqlite3.Connection):db.execute("SET LOCAL statement_timeout=20000")
         args=('bom:'+gauge['stationNumber'],start.isoformat(),end)
         if has_table(db,'history_readings'):
             rows=query(db,"""SELECT end_at,value FROM history_readings
@@ -173,10 +186,10 @@ def rainfall_series(gauge_id,requested=None):
             if time_value in by_end:raise ValueError('Duplicate quarter-hours require investigation.')
             by_end[time_value]=row['value']
         periods=[{'start':(start+timedelta(minutes=15*i)).isoformat(),
-                  'end':(start+timedelta(minutes=15*(i+1))).isoformat()} for i in range(96)]
+                  'end':(start+timedelta(minutes=15*(i+1))).isoformat()} for i in range(int(hours*4))]
         values=[by_end.get(date(period['end'])) for period in periods]
         return {'end':end,'periodMinutes':15,'periods':periods,'stations':[{**gauge,'values':values}]}
-    return read_archive(f'rainfall-series:{gauge_id}:{end}',read)
+    return read_archive(f'rainfall-series:{gauge_id}:{end}:{minutes}',read)
 
 def archive_status():
     def read(db):
@@ -402,21 +415,47 @@ def water_rows(db,start,end,station_ids,latest=False):
     return list({r['station']:r for r in rows}.values()) if latest else rows
 
 
-def water_frame(requested=None,minutes=1440,basin=None):
+def water_movement(latest,rows,end,minutes=60):
+    result={'direction':'unavailable','ratePerHour':None,'levelChange':None,
+            'movementStartAt':None,'movementEndAt':None,'comparisonMinutes':minutes}
+    if not latest or latest['value'] is None:return result
+    last=date(latest['end_at'])
+    if date(end)-last>timedelta(minutes=minutes):return result
+    target=last-timedelta(minutes=minutes)
+    candidates=[r for r in rows if target-timedelta(minutes=15)<=date(r['end_at'])<=target]
+    if not candidates:return result
+    base=max(candidates,key=lambda r:date(r['end_at']))
+    if base['value'] is None or base['datum']!=latest['datum']:return result
+    if any(r['datum']!=latest['datum'] for r in rows if date(base['end_at'])<=date(r['end_at'])<=last):return result
+    elapsed=(last-date(base['end_at'])).total_seconds()/3600
+    if elapsed<=0:return result
+    delta=round(latest['value']-base['value'],9)
+    return {**result,'direction':'rising' if delta>0 else 'falling' if delta<0 else 'steady',
+            'ratePerHour':delta/elapsed,'levelChange':delta,
+            'movementStartAt':base['end_at'],'movementEndAt':latest['end_at']}
+
+
+def water_frame(requested=None,minutes=1440,basin=None,comparison_minutes=60):
+    if comparison_minutes not in (15,30,60,180):raise ValueError("Unsupported comparison period.")
     if basin not in {g['id'] for g in rainfall_groups()['groups']}:raise ValueError('Choose a basin group.')
     extent,start,end=water_window(requested,minutes)
     if not end:return extent
     inventory=[g for g in water_inventory() if g['basinId']==basin]
     def read(db):
-        rows=water_rows(db,start,end,{'bom:'+g['id'] for g in inventory},latest=True)
+        if minutes>1440 and not isinstance(db,sqlite3.Connection):db.execute('SET LOCAL statement_timeout=20000')
+        identities={'bom:'+g['id'] for g in inventory}
+        rows=water_rows(db,start,end,identities,latest=True)
+        movement_start=(date(end)-timedelta(minutes=comparison_minutes*2+15)).isoformat()
+        changes={}
+        for row in water_rows(db,movement_start,end,identities):changes.setdefault(row['station'],[]).append(row)
         latest={r['station']:r for r in rows}
         stations=[]
         for gauge in inventory:
             r=latest.get('bom:'+gauge['id']);age=(date(end)-date(r['end_at'])).total_seconds()/60 if r else None
             state='missing' if not r or r['value'] is None else 'out' if age>=360 else 'suspect' if age>=60 else 'current'
-            stations.append({**gauge,'level':r['value'] if r else None,'datum':r['datum'] if r else 'Unspecified','observedAt':r['end_at'] if r else None,'ageMinutes':age,'status':state})
-        return {'start':start,'end':end,'minutes':minutes,'stations':stations,'extent':extent}
-    return read_archive(f'water-frame:{basin}:{end}:{minutes}',read)
+            stations.append({**gauge,'level':r['value'] if r else None,'datum':r['datum'] if r else 'Unspecified','observedAt':r['end_at'] if r else None,'ageMinutes':age,'status':state,**water_movement(r,changes.get('bom:'+gauge['id'],[]),end,comparison_minutes)})
+        return {'start':start,'end':end,'minutes':minutes,'stations':stations,'extent':extent,'comparisonMinutes':comparison_minutes}
+    return read_archive(f'water-frame:{basin}:{end}:{minutes}:{comparison_minutes}',read)
 
 
 def water_series(gauge_id,requested=None,minutes=1440):
@@ -425,6 +464,7 @@ def water_series(gauge_id,requested=None,minutes=1440):
     extent,start,end=water_window(requested,minutes)
     if not end:return extent
     def read(db):
+        if minutes>1440 and not isinstance(db,sqlite3.Connection):db.execute('SET LOCAL statement_timeout=20000')
         rows=water_rows(db,start,end,{'bom:'+gauge_id})
         return {'start':start,'end':end,'minutes':minutes,'station':gauge,'observations':[{'time':r['end_at'],'level':r['value'],'datum':r['datum']} for r in rows]}
     return read_archive(f'water-series:{gauge_id}:{end}:{minutes}',read)

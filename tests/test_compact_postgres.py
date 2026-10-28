@@ -87,6 +87,21 @@ class TypedPostgresTests(unittest.TestCase):
                 api.CACHE.clear()
                 actual=api.water_series('040835',minutes=1440)
                 self.assertEqual([r['level'] for r in actual['observations']],[2.561,2.552,2.549])
+                water_frame=api.water_frame(minutes=10080,basin='brisbane-bremer-pine-caboolture')
+                moving=next(g for g in water_frame['stations'] if g['id']=='040835')
+                self.assertEqual(moving['direction'],'falling')
+                self.assertAlmostEqual(moving['ratePerHour'],-.0096)
+            from datetime import datetime,timedelta
+            end_time=datetime.fromisoformat(issued)
+            for i in range(1,672):
+                store.observation(snap,'bom:540668','rainfall',(end_time-timedelta(minutes=15*i)).isoformat(),900,.1,'rain-15m','2026-10-22T04:00:00Z')
+            store.db.commit()
+            with patch.dict(os.environ,{'HISTORY_DATABASE_URL':url}):
+                api.CACHE.clear();week=api.rainfall_frame(issued,10080,'brisbane-bremer-pine-caboolture')
+                gauge=next(g for g in week['stations'] if g['stationNumber']=='540668')
+                self.assertEqual(gauge['depth'],69.1);self.assertEqual(gauge['validBlocks'],672)
+                self.assertEqual(len(api.rainfall_series('Ipswich/Brisbane Creeks:goolman:1',issued,10080)['periods']),672)
+
 
         finally:
             if store:store.close()

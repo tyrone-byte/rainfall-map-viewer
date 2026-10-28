@@ -4,19 +4,21 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefi
 const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
 const observationDate=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
 const localInput=iso=>new Date(Date.parse(iso)+36000000).toISOString().slice(0,16);
-const duration=m=>m<60?`${m} minutes`:`${m/60} ${m===60?'hour':'hours'}`;
+const duration=m=>m>=2880?`${m/1440} days`:m<60?`${m} minutes`:`${m/60} ${m===60?'hour':'hours'}`;
 const level=v=>v===null?'No reading':`${v.toFixed(2)} m`;
 const colours={current:'#36a48c',suspect:'#e9b43d',out:'#88969c',missing:'#88969c'};
 const params=new URLSearchParams(location.search);
+if(['trend','rate','age'].includes(params.get('colours')))$('colourMode').value=params.get('colours');
+if(['15','30','60','180'].includes(params.get('comparison')))$('comparison').value=params.get('comparison');
 let showRecordedPoints=false;
 let basin=null,groups=[],extent=null,frame=null,selected=null,chart=null,end=params.get('end'),follow=!end,version=0,detailVersion=0,controller,detailController,fitPending=true,refreshVersion=0;
-if(['15','30','60','180','360','720','1440'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
+if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 $('ending').step='60';
 const map=L.map('map').setView([-27.25,152.75],9);SharedMapView.attach(map);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap contributors'}).on('tileerror',()=>{$('tileStatus').hidden=false;}).addTo(map);
+MapBackgrounds.attach(map,$('background'));
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function notice(text){$('notice').hidden=!text;$('notice').textContent=text||'';}
-function saveURL(){const q=new URLSearchParams({basin,minutes:$('accumulation').value});if(!follow)q.set('end',end);if(selected)q.set('gauge',selected);history.replaceState(null,'',`/water-history?${q}`);}
+function saveURL(){const q=new URLSearchParams({basin,minutes:$('accumulation').value,colours:$('colourMode').value,comparison:$('comparison').value});if(!follow)q.set('end',end);if(selected)q.set('gauge',selected);history.replaceState(null,'',`/water-history?${q}`);}
 function controls(){
  if(!extent?.lastEnd)return;
  const minutes=Number($('accumulation').value),time=Date.parse(end);
@@ -37,11 +39,11 @@ function draw(){
  const rows=frame.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.name.localeCompare(b.name));
  const scroll=document.querySelector('.sidebar').scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();
  for(const s of rows){
-  const button=node('button',undefined,'station'+(s.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=colours[s.status];
+  const button=node('button',undefined,'station'+(s.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=pointColour(s);
   button.append(dot,node('span',level(s.level),'reading'),document.createTextNode(s.name),node('small',`${s.group} · ${s.datum}`),node('small',s.observedAt?`${date(s.observedAt)} AEST · ${s.status==='current'?'under 60 min old':s.status==='suspect'?'60 min–6 h old':s.status==='out'?'6+ h old':'missing level'}`:'No observation in this window'));
   if(!s.coordinates)button.append(node('span','Location unresolved · not plotted','unmapped'));
   button.onclick=()=>choose(s.id,true);$('stations').append(button);
-  if(s.coordinates){const marker=L.circleMarker([s.coordinates.lat,s.coordinates.lon],{radius:selected===s.id?10:7,color:'#fff',weight:2,fillColor:colours[s.status],fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${s.name} · ${level(s.level)} ${s.datum}`));marker.on('click',()=>choose(s.id,false));markers.set(s.id,marker);}
+  if(s.coordinates){const marker=L.circleMarker([s.coordinates.lat,s.coordinates.lon],{radius:selected===s.id?10:7,color:'#fff',weight:2,fillColor:pointColour(s),fillOpacity:.94}).addTo(layer);marker.bindTooltip(node('span',`${s.name} · ${level(s.level)} ${s.datum} · ${movementText(s)}`));marker.on('click',()=>choose(s.id,false));markers.set(s.id,marker);}
  }
  document.querySelector('.sidebar').scrollTop=scroll;$('count').textContent=`${rows.length} gauges · ${markers.size} mapped · ${rows.filter(s=>s.level!==null).length} with readings`;
  if(selected&&!rows.some(s=>s.id===selected))clearDetail();
@@ -72,6 +74,7 @@ async function choose(id,pan=false){
   const response=await fetch(`/api/archive-water/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(frame.end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error();const result=await response.json();if(token!==detailVersion||frameVersion!==version)return;if(!result.available)throw new Error();
   chart?.destroy();chart=null;const host=$('detail');host.replaceChildren(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name),node('h3',`${level(station.level)} · ${station.datum}`),node('p',`Last observation in selected window: ${station.observedAt?date(station.observedAt)+' AEST':'none'}`,'muted'),node('p',`${date(result.start)} – ${date(result.end)} AEST · ${result.observations.length} saved readings. Actual observation times; no readings added or accumulated. Heights use each gauge’s own datum.`,'history-coverage'));
+  host.append(node('p',movementText(station),'movement-summary'));
   appendBomLinks(host,station);
   if(!result.observations.length){host.append(node('p','No saved observations in this window.'));return;}
   const plotControls=node('div',undefined,'water-plot-controls'),pointsLabel=node('label'),points=node('input');points.type='checkbox';points.id='showRecordedPoints';points.checked=showRecordedPoints;pointsLabel.append(points,document.createTextNode('Show recorded points'));plotControls.append(pointsLabel);host.append(plotControls);
@@ -86,8 +89,8 @@ async function choose(id,pan=false){
 async function loadFrame(){
  if(!basin||!extent?.lastEnd)return;const token=++version;detailVersion++;detailController?.abort();controller?.abort();controller=new AbortController();$('loading').textContent='Loading selection…';
  try{
-  const response=await fetch(`/api/archive-water/frame?basin=${encodeURIComponent(basin)}&end=${encodeURIComponent(end)}&minutes=${$('accumulation').value}`,{signal:controller.signal,cache:'no-store'});if(!response.ok)throw new Error();const result=await response.json();if(token!==version)return;if(!result.available)throw new Error();
-  frame=result;const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
+  const response=await fetch(`/api/archive-water/frame?basin=${encodeURIComponent(basin)}&end=${encodeURIComponent(end)}&minutes=${$('accumulation').value}&comparison=${$('comparison').value}`,{signal:controller.signal,cache:'no-store'});if(!response.ok)throw new Error();const result=await response.json();if(token!==version)return;if(!result.available)throw new Error();
+  frame=result;legend();const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
   $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;draw();if(fitPending){fit();fitPending=false;}if(selected)choose(selected);saveURL();notice('');
  }catch(error){if(error.name!=='AbortError'&&token===version)notice('Could not load this saved selection. Any displayed map retains its earlier labelled time window.');}
  finally{if(token===version)$('loading').textContent='';}
@@ -112,6 +115,27 @@ $('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!
 $('previous').onclick=()=>selectTime(new Date(Date.parse(end)-Number($('accumulation').value)*60000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(end)+Number($('accumulation').value)*60000).toISOString());
 $('latest').onclick=()=>{follow=true;end=extent.lastEnd;controls();loadFrame();};$('accumulation').onchange=()=>{controls();loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
 for(const id of ['search','group'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
-for(const [colour,label] of [['#36a48c','Under 60 min'],['#e9b43d','60 min–6 h'],['#88969c','6+ h / missing']]){const entry=node('span'),dot=node('i',undefined,'dot');dot.style.background=colour;entry.append(dot,label);$('legend').append(entry);}
+function pointColour(station){
+ const mode=$('colourMode').value;if(mode==='age')return colours[station.status];
+ if(!Number.isFinite(station.ratePerHour))return '#88969c';
+ if(station.direction==='falling')return '#2c64cc';
+ if(station.direction==='steady')return '#36a48c';
+ if(mode==='trend')return '#d94843';
+ const rate=station.ratePerHour;return rate<=.1?'#36a46d':rate<=.3?'#e9c345':rate<=.6?'#ed8b36':'#d94843';
+}
+function movementText(station){
+ if(!Number.isFinite(station.ratePerHour))return `No suitable measured-point comparison for ${duration(station.comparisonMinutes||frame?.comparisonMinutes||Number($('comparison').value))}.`;
+ const sign=station.ratePerHour>0?'+':'';
+ return `${station.direction[0].toUpperCase()+station.direction.slice(1)} · ${sign}${station.levelChange.toFixed(3)} m · ${sign}${station.ratePerHour.toFixed(3)} m/h · ${observationDate(station.movementStartAt)} – ${observationDate(station.movementEndAt)} AEST. No tidal adjustment.`;
+}
+function legend(){
+ const comparison=frame?.comparisonMinutes||Number($('comparison').value),mode=$('colourMode').value;$('comparison').disabled=mode==='age';
+ $('legendTitle').textContent=mode==='age'?'Observation age at selected ending time':`${mode==='trend'?'Measured level change':'Rate of rise / fall'} · ${duration(comparison)} comparison`;
+ const entries=mode==='age'?[['#36a48c','Under 60 min'],['#e9b43d','60 min–6 h'],['#88969c','6+ h / missing']]:mode==='trend'?[['#d94843','Rising'],['#2c64cc','Falling'],['#36a48c','Steady'],['#88969c','Insufficient data']]:[['#36a46d','Rise ≤0.10 m/h'],['#e9c345','>0.10–0.30'],['#ed8b36','>0.30–0.60'],['#d94843','>0.60 m/h'],['#2c64cc','Falling'],['#36a48c','Steady'],['#88969c','Insufficient data']];
+ $('legend').replaceChildren(...entries.map(([colour,label])=>{const entry=node('span'),dot=node('i',undefined,'dot');dot.style.background=colour;entry.append(dot,label);return entry;}));
+}
+$('colourMode').onchange=()=>{legend();draw();if(frame)saveURL();const line=document.querySelector('.movement-summary');if(line&&selected)line.textContent=movementText(frame.stations.find(s=>s.id===selected));};
+$('comparison').onchange=()=>{legend();if(basin)loadFrame();};
+legend();
 (async()=>{try{const response=await fetch('/api/archive-rainfall/groups');if(!response.ok)throw new Error();groups=(await response.json()).groups;$('basinGroups').replaceChildren(...groups.map(g=>{const button=node('button',undefined,'basin-choice');button.dataset.basin=g.id;button.append(node('strong',g.label),node('span','→'));button.onclick=()=>openBasin(g.id);return button;}));if(groups.some(g=>g.id===params.get('basin')))openBasin(params.get('basin'),params.get('gauge'));}catch(_){$('basinGroups').textContent='Could not load groups. Please refresh.';}})();
 setInterval(refresh,60000);

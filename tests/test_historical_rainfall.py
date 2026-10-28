@@ -53,6 +53,15 @@ class HistoricalRainTests(unittest.TestCase):
         self.assertNotIn(GOOLMAN,{s['id'] for s in gold['stations']})
         with self.assertRaises(ValueError):api.rainfall_frame(basin='invented')
 
+    def test_seven_days_returns_672_quarters_without_changing_missing_data(self):
+        series=api.rainfall_series(GOOLMAN,minutes=10080)
+        self.assertEqual(len(series['periods']),672)
+        self.assertEqual(series['stations'][0]['values'][-4:],[4,3,2,0])
+        self.assertEqual(api.date(series['periods'][-1]['end'])-api.date(series['periods'][0]['start']),timedelta(days=7))
+        frame=api.rainfall_frame(minutes=10080,basin='brisbane-bremer-pine-caboolture')
+        gauge=next(g for g in frame['stations'] if g['id']==GOOLMAN)
+        self.assertIsNone(gauge['depth']);self.assertEqual(gauge['expectedBlocks'],672)
+
     def test_native_series_fills_only_missing_slots_with_null_not_estimates(self):
         data=api.rainfall_series(GOOLMAN)
         self.assertEqual(len(data['periods']),96)

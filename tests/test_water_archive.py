@@ -51,6 +51,24 @@ class WaterArchiveTests(unittest.TestCase):
         series=api.water_series(self.id,minutes=180)
         self.assertEqual([o['datum'] for o in series['observations']],['AHD','LGH','AHD','AHD'])
 
+    def test_measured_change_uses_actual_elapsed_time_and_rejects_datum_changes(self):
+        def row(age,value,datum='AHD'):
+            return {'end_at':(END-timedelta(minutes=age)).isoformat(),'value':value,'datum':datum}
+        latest=row(0,2)
+        result=api.water_movement(latest,[row(75,1.5),row(20,1.8),latest],END.isoformat(),60)
+        self.assertEqual(result['direction'],'rising');self.assertEqual(result['ratePerHour'],.4)
+        self.assertEqual(api.water_movement(latest,[row(90,1)],END.isoformat(),60)['direction'],'unavailable')
+        self.assertEqual(api.water_movement(latest,[row(60,1),row(30,1,'LGH')],END.isoformat(),60)['direction'],'unavailable')
+        self.assertEqual(api.water_movement(row(0,0),[row(60,1)],END.isoformat(),60)['direction'],'falling')
+        self.assertEqual(api.water_movement(row(0,0),[row(60,0)],END.isoformat(),60)['direction'],'steady')
+        self.assertEqual(api.water_movement(row(120,2),[row(180,1)],END.isoformat(),60)['direction'],'unavailable')
+        self.assertEqual(api.water_movement(row(0,None),[row(60,1)],END.isoformat(),60)['direction'],'unavailable')
+
+    def test_seven_day_water_window_preserves_full_observations(self):
+        result=api.water_series(self.id,minutes=10080)
+        self.assertEqual(len(result['observations']),3)
+        self.assertEqual(api.date(result['end'])-api.date(result['start']),timedelta(days=7))
+
     def test_group_stats_deduplicate_gauges_and_exclude_incomplete_records(self):
         sid,_=self.store.snapshot(b'rain','fixture','rain-15m',END.isoformat())
         for i in range(96):

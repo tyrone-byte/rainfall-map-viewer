@@ -14,10 +14,10 @@ async function mock(page){
   return route.fulfill({json:{available:true,end,start:stations[0].start,minutes,stations,extent:metadata}});
  });
  await page.route('**/api/archive-rainfall/series?*',route=>{
-  const url=new URL(route.request().url()),end=url.searchParams.get('end'),id=url.searchParams.get('gauge'),base=Date.parse(end);
-  const periods=Array.from({length:96},(_,i)=>({start:new Date(base-(96-i)*900000).toISOString(),end:new Date(base-(95-i)*900000).toISOString()}));
+  const url=new URL(route.request().url()),end=url.searchParams.get('end'),id=url.searchParams.get('gauge'),base=Date.parse(end),blocks=Math.max(96,Number(url.searchParams.get('minutes')||1440)/15);
+  const periods=Array.from({length:blocks},(_,i)=>({start:new Date(base-(blocks-i)*900000).toISOString(),end:new Date(base-(blocks-1-i)*900000).toISOString()}));
   const station=gauge(id,id==='a'?'Alpha gauge':'Beta gauge',1,15,end);
-  return route.fulfill({json:{available:true,end,periodMinutes:15,periods,stations:[{...station,values:Array(96).fill(1)}]}});
+  return route.fulfill({json:{available:true,end,periodMinutes:15,periods,stations:[{...station,values:Array(blocks).fill(1)}]}});
  });
  return requests;
 }
@@ -101,7 +101,7 @@ test('late window response cannot replace a newer ending-time selection',async({
 test('history and water pages preserve the same geographic viewport',async({page})=>{
  await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
  await page.evaluate(()=>map.setView([-27.15,152.95],10,{animate:false}));
- await page.getByRole('link',{name:'Water levels',exact:true}).click();await expect(page.locator('#count')).toContainText('gauges ·');
+ await page.getByRole('link',{name:'Water history',exact:true}).click();await expect(page.locator('.basin-choice')).toHaveCount(2);
  expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.15,5);
  await page.getByRole('link',{name:'Rainfall history',exact:true}).click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
  expect(await page.evaluate(()=>markers.size)).toBe(0);
@@ -218,4 +218,20 @@ test('group rainfall summaries disclose coverage and opening a group defaults to
  await page.locator('[data-basin="brisbane-bremer-pine-caboolture"]').click();
  await expect(page.locator('#accumulation')).toHaveValue('1440');
  await expect.poll(()=>requests.at(-1)?.minutes).toBe(1440);
+});
+
+test('seven-day rainfall uses a seven-day chart while IFD remains limited to 24 hours',async({page})=>{
+ await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
+ await page.locator('#accumulation').selectOption('10080');await expect(page.locator('#period')).toContainText('7 days');
+ await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
+ expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.length)).toBe(672);
+ await expect(page.locator('#ifdChart')).toBeVisible();
+ expect(await page.locator('#ifdChart').evaluate(c=>Math.max(...Chart.getChart(c).data.datasets[0].data.map(p=>p.x)))).toBe(1440);
+ await page.locator('#chartInterval').selectOption('1440');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(7).fill(96));
+});
+
+test('obsolete bulletin URLs redirect to history pages and their navigation is removed',async({page})=>{
+ await mock(page);await page.goto('/');await expect(page).toHaveURL(/\/history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
+ await expect(page.getByRole('link',{name:'Rainfall bulletin',exact:true})).toHaveCount(0);await expect(page.getByRole('link',{name:'Water levels',exact:true})).toHaveCount(0);
+ await page.goto('/water');await expect(page).toHaveURL(/\/water-history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
 });
