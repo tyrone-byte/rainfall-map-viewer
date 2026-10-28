@@ -44,6 +44,20 @@ class WaterParserTests(unittest.TestCase):
     def test_history_url_input_cannot_target_arbitrary_sites(self):
         with self.assertRaises(ValueError):water_service.history('https://example.com')
 
+    def test_unknown_basin_links_are_resolved_as_metadata_only_and_cached(self):
+        from subprocess import CompletedProcess
+        gauges=json.loads(Path('data/water-groups.json').read_text())['stations']
+        gauge=next(s for s in gauges if not s.get('plotPath'))
+        parsed={'stations':[{'stationNumber':gauge['id'],'plotPath':'/fwo/IDQ65389/IDQ65389.'+gauge['id']+'.plt.shtml','historyPath':'/fwo/IDQ65389/IDQ65389.'+gauge['id']+'.tbl.shtml'}]}
+        water_service.LINK_CACHE.clear()
+        with patch('water_service.subprocess.run',return_value=CompletedProcess([],0,b'<test>',b'')) as fetch,patch('water_service.water.summary',return_value=parsed):
+            first=water_service.gauge_links(gauge['id'],gauge['basinId'])
+            self.assertTrue(first['available']);self.assertNotIn('level',first)
+            self.assertEqual(water_service.gauge_links(gauge['id'],gauge['basinId']),first)
+            self.assertEqual(fetch.call_count,1)
+        with self.assertRaises(ValueError):water_service.gauge_links('https://example.com')
+        water_service.LINK_CACHE.clear()
+
     def test_thresholds_with_a_different_datum_are_never_used(self):
         bulletin=water.summary(Path('tests/fixtures/water-summary.html').read_text())
         bulletin['refreshError']=None

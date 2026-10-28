@@ -95,7 +95,8 @@ class Handler(SimpleHTTPRequestHandler):
         if path.startswith('/api/archive-water/'):
             params=parse_qs(urlsplit(self.path).query)
             try:
-                if path.endswith('/extent'):payload=archive_service.water_extent()
+                if path.endswith('/links'):payload=water_service.gauge_links(params.get('gauge',[''])[0],params.get('basin',[None])[0])
+                elif path.endswith('/extent'):payload=archive_service.water_extent()
                 elif path.endswith('/frame'):payload=archive_service.water_frame(params.get('end',[None])[0],int(params.get('minutes',['1440'])[0]),params.get('basin',[None])[0])
                 elif path.endswith('/series'):payload=archive_service.water_series(params.get('gauge',[''])[0],params.get('end',[None])[0],int(params.get('minutes',['1440'])[0]))
                 else:self.send_error(404);return

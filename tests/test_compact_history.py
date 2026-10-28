@@ -158,19 +158,21 @@ class CompactHistoryTests(unittest.TestCase):
         self.assertEqual(self.store.execute('SELECT COUNT(*) AS n FROM snapshots').fetchone()['n'],1)
         self.assertLessEqual(self.store.execute('SELECT COUNT(*) AS n FROM feed_receipts').fetchone()['n'],24)
         with self.assertRaises(ValueError):self.store.observation('s','bom:test','rainfall',issued,900,3,'rain-15m',issued,metadata={'estimated':True})
-    def test_compact_collector_only_polls_rainfall_and_twelve_water_summaries(self):
+    def test_compact_collector_polls_ftp_only_and_reuses_one_listing(self):
         from test_bom_hcs import HEADER,ROWS
         self.enable();migrate(self.store)
         issued=datetime.now(timezone.utc).isoformat()
         hcs=b'# HEADER: File Generation Date: '+issued.encode()+b'\n'+HEADER+ROWS
-        name='IDQ65900_20261022002300.hcs'
+        water=Path('tests/fixtures/water-ftp.hcs').read_bytes()
+        import re
+        water=re.sub(rb'(# HEADER: File Generation Date: )[^\r\n]+',lambda m:m[1]+issued.encode(),water)
+        names=['IDQ65900_20261028040000.hcs','IDQ65911_20261028040000.hcs','IDQ65910_20261028040000.hcs']
         def response(url,listing=False):
-            if listing:return (name+'\n').encode()
-            if url.endswith('.hcs'):return hcs
-            return json.dumps({'issuedAt':issued,'stations':[],'warnings':[]}).encode()
+            if listing:return ('\n'.join(names)+'\n').encode()
+            self.assertTrue(url.startswith('ftp://'))
+            return hcs if 'IDQ65900' in url else water
         with patch('collector.fetch',side_effect=response) as fetch,patch('collector.time.sleep'):
             results,errors=collect(self.store)
             self.assertEqual(errors,[]);self.assertEqual(set(results),{'rain-15m','water-summary'})
-            self.assertEqual(fetch.call_count,14)
-            self.assertFalse(any('IDQ603' in c.args[0] for c in fetch.call_args_list))
-            fetch.reset_mock();collect(self.store);self.assertEqual(fetch.call_count,13)
+            self.assertEqual(fetch.call_count,4)
+            fetch.reset_mock();collect(self.store);self.assertEqual(fetch.call_count,1)

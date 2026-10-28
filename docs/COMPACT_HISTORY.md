@@ -1,3 +1,5 @@
+> Water collection update: [WATER_FTP_COLLECTION.md](WATER_FTP_COLLECTION.md) supersedes the web-water sources below. The collector now retains all available FTP river-height observations and performs the explicitly requested one-time removal of old web water history after a validated FTP start. Rainfall collection is unchanged.
+
 # Our observation history: compact storage and one-time cleanup
 
 The deployed collector now uses compact storage. Normal collection keeps only:

@@ -17,6 +17,7 @@ from functools import lru_cache
 import rainfall
 import water
 from bom_hcs import parse_hcs
+from bom_water_hcs import parse_water_hcs
 from history_store import Store, now, utc
 from bom_source import BASE, PRODUCTS, fetch
 
@@ -37,6 +38,11 @@ def station_definitions():
     for s in json.loads((ROOT/'data/archive-stations.json').read_text())['gauges']:
         if s['live_map_station_id']:
             result[s['live_map_station_id']]={'name':s['gauge'],'coordinates':{'lat':float(s['live_map_lat']),'lon':float(s['live_map_lon']),'source':'https://reg.bom.gov.au/qld/flood/brisbane.shtml'},'group':s['group'],'metadata':{'coordinateDate':'2026-10-22','basin_id':'brisbane-bremer-pine-caboolture'}}
+    water_path=ROOT/'data/water-groups.json'
+    if water_path.exists():
+        for s in json.loads(water_path.read_text())['stations']:
+            result.setdefault(s['id'],{})
+            result[s['id']].update(name=s['name'],group=s['group'],coordinates=s['coordinates'],metadata={'basin_id':s['basinId']})
     return result
 
 @lru_cache(maxsize=1)
@@ -59,6 +65,8 @@ def register_station(store,sid,name='',group='',source='',station_type=''):
 def ingest(store, raw, source, kind=None, update_status=True, fetched_at=None):
     """Validate a complete source before archiving its normalized observations."""
     mapping = targets()
+    if kind=='water-ftp' or re.search(r'IDQ6591[01](?:_|\.)',source):
+        return ingest_water_ftp(store,raw,source,update_status,fetched_at)
     if kind == 'rain-15m' or source.endswith('.hcs'):
         data = parse_hcs(raw); kind = 'rain-15m'
         issued = data['headers']['File Generation Date']
@@ -86,6 +94,10 @@ def ingest(store, raw, source, kind=None, update_status=True, fetched_at=None):
         issued = data['issuedAt']
     if store.compact and kind not in ('rain-15m','water-summary'):
         raise ValueError('This collector saves only quarter-hour rainfall and water summaries.')
+    if store.compact and kind=='water-summary':
+        from water_ftp_cutover import MARKER
+        if store.execute('SELECT id FROM event_imports WHERE id=?',(MARKER,)).fetchone():
+            raise ValueError('Web water imports are disabled after the FTP cutover.')
     snapshot, fresh = store.snapshot(raw, source, kind, issued, fetched_at=fetched_at)
     count = 0
     if fresh:
@@ -137,11 +149,66 @@ def ingest(store, raw, source, kind=None, update_status=True, fetched_at=None):
     store.db.commit()
     return count
 
+def ingest_water_ftp(store,raw,source,update_status=True,fetched_at=None):
+    """Append every genuine available water observation at its explicit timestamp.
+
+    Both products use the existing water series; overlaps deduplicate by station,
+    timestamp and datum. Superseded summary observations are cleared by the validated one-time cutover.
+    """
+    parsed=parse_water_hcs(raw);issued=parsed['issuedAt']
+    snapshot,fresh=store.snapshot(raw,source,'water-summary',issued,fetched_at=fetched_at)
+    count=0
+    if fresh:
+        known={r['station'] for r in store.execute("SELECT station FROM stations")} if store.compact else set()
+        registered=set()
+        for o in sorted(parsed['observations'],key=lambda o:o['time']):
+            station='bom:'+o['stationId']
+            if o['value'] is None and station not in known:continue
+            if o['stationId'] not in registered and store.compact:
+                register_station(store,o['stationId']);registered.add(o['stationId']);known.add(station)
+            count+=store.observation(snapshot,station,'water-level',o['time'],0,o['value'],'water-summary',issued,
+                datum=o['datum'],quality=o['quality'],metadata={'timeBasis':'Explicit HCS timestamp','comment':o['comment']})
+    if update_status:store.status('water-summary',issued,'ok',{'source':'water-ftp','newOrChangedObservations':count,'allAvailableObservations':True})
+    store.db.commit();return count
+
+
+def collect_water_ftp(store,listing):
+    count=0;errors=[];issues=[]
+    for product in ('IDQ65911','IDQ65910'):
+        try:
+            if listing is None:raise ValueError('FTP listing unavailable.')
+            names=sorted({n.strip() for n in listing if re.fullmatch(product+r'_\d{14}\.hcs',n.strip())})
+            if not names:raise ValueError('No water FTP files listed.')
+            for name in names[-12:]:
+                source=BASE+name
+                if store.execute('SELECT source FROM feed_receipts WHERE source=?',(source,)).fetchone():continue
+                try:count+=ingest_water_ftp(store,fetch(source),source,update_status=False)
+                except Exception as error:
+                    store.rollback();errors.append({'source':'water-ftp','product':product,'file':name,'error':type(error).__name__})
+                time.sleep(2)
+            latest=store.execute('SELECT issued_at FROM snapshots WHERE source=?',(product,)).fetchone()
+            if not latest or (datetime.now(timezone.utc)-datetime.fromisoformat(latest['issued_at'])).total_seconds()>(5400 if product=='IDQ65911' else 3600):raise ValueError('Water FTP product stale or unavailable.')
+            issues.append(latest['issued_at'])
+        except Exception as error:
+            store.rollback();errors.append({'source':'water-ftp','product':product,'error':type(error).__name__})
+    if not errors and len(issues)==2:
+        try:
+            from water_ftp_cutover import cutover
+            cutover(store)
+        except Exception as error:
+            store.rollback();errors.append({'source':'water-ftp','stage':'cutover','error':type(error).__name__})
+    store.status('water-summary',max(issues) if issues else None,'failed' if errors else 'ok',
+        {'source':'water-ftp','products':['IDQ65911','IDQ65910'],'newOrChangedObservations':count,'allAvailableObservations':True,'errors':errors})
+    store.db.commit();return count,errors
+
+
 def collect(store):
     results, errors = {}, []
+    listing=None
     # Exact product, newest retained window only. Timestamped files are immutable.
     try:
-        names = sorted({n.strip() for n in fetch(BASE, True).decode().splitlines()
+        listing=fetch(BASE, True).decode().splitlines()
+        names = sorted({n.strip() for n in listing
                         if re.fullmatch(r'IDQ65900_\d{14}\.hcs', n.strip())})
         if not names:
             raise ValueError('No supported IDQ65900 files in the FTP listing.')
@@ -168,7 +235,12 @@ def collect(store):
         errors.append({'source': 'rain-15m', 'error': type(error).__name__})
         store.status('rain-15m', None, 'failed', {'errorType': type(error).__name__})
         store.db.commit()
-    products=[(f'IDQ{n}','water-summary') for n in range(60285,60297)] if store.compact else list(zip(PRODUCTS, ('rain-3h','rain-1h','water-summary'),strict=True))
+    if store.compact:
+        water_count,water_errors=collect_water_ftp(store,listing)
+        results['water-summary']=water_count
+        errors.extend(water_errors)
+        return results,errors
+    products= list(zip(PRODUCTS, ('rain-3h','rain-1h','water-summary'),strict=True))
     water_issues=[];water_errors=[]
     for product, kind in products:
         source = f'https://reg.bom.gov.au/cgi-bin/wrap_fwo.pl?{product}.html'

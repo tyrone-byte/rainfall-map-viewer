@@ -2,6 +2,7 @@
 const $=id=>document.getElementById(id);
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
+const observationDate=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
 const localInput=iso=>new Date(Date.parse(iso)+36000000).toISOString().slice(0,16);
 const duration=m=>m<60?`${m} minutes`:`${m/60} ${m===60?'hour':'hours'}`;
 const level=v=>v===null?'No reading':`${v.toFixed(2)} m`;
@@ -48,12 +49,20 @@ function draw(){
 function fit(){const bounds=L.latLngBounds([...markers.values()].map(m=>m.getLatLng()));if(bounds.isValid())map.fitBounds(bounds.pad(.08),{maxZoom:12,animate:false});}
 function appendBomLinks(host,station){
  const links=node('div',undefined,'bom-check-links');
- for(const [path,label] of [[station.plotPath,'Open BoM plot'],[station.historyPath,'Open BoM observation table']]){
-  if(!path||!/^\/fwo\/IDQ\d+\/IDQ\d+\.\d{6}\.(?:plt|tbl)\.shtml$/.test(path)||!path.includes(`.${station.id}.`))continue;
-  const link=node('a',label);link.href='https://reg.bom.gov.au'+path;link.target='_blank';link.rel='noopener';links.append(link);
+ function populate(source){
+  links.replaceChildren();
+  for(const [path,label] of [[source.plotPath,'Open BoM plot'],[source.historyPath,'Open BoM observation table']]){
+   if(!path||!/^\/fwo\/IDQ\d+\/IDQ\d+\.\d{6}\.(?:plt|tbl)\.shtml$/.test(path)||!path.includes(`.${station.id}.`))continue;
+   const link=node('a',label);link.href='https://reg.bom.gov.au'+path;link.target='_blank';link.rel='noopener';links.append(link);
+  }
+  if(station.membershipSource){const link=node('a','Open BoM group bulletin');link.href=station.membershipSource;link.target='_blank';link.rel='noopener';links.append(link);}
  }
- if(station.membershipSource){const link=node('a','Open BoM group bulletin');link.href=station.membershipSource;link.target='_blank';link.rel='noopener';links.append(link);}
- if(links.childElementCount){host.append(links,node('p','BoM links open their currently available record, which may cover a different period from your historical selection.','muted'));}
+ populate(station);
+ host.append(links,node('p','BoM links open their currently available record, which may cover a different period from your historical selection.','muted'));
+ if(!station.plotPath&&station.membershipSource){
+  fetch(`/api/archive-water/links?gauge=${encodeURIComponent(station.id)}&basin=${encodeURIComponent(station.basinId)}`,{cache:'no-store'})
+   .then(response=>response.ok?response.json():null).then(result=>{if(result?.available&&links.isConnected)populate(result);}).catch(()=>{});
+ }
 }
 async function choose(id,pan=false){
  const station=frame?.stations.find(s=>s.id===id);if(!station)return;selected=id;draw();saveURL();
@@ -70,7 +79,7 @@ async function choose(id,pan=false){
   const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='waterHistoryChart';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${station.name}: saved water levels over the selected duration`);wrap.append(canvas);host.append(wrap);
   const datums=[...new Set(result.observations.map(o=>o.datum))];
   const datasets=datums.map((datum,index)=>({label:`Gauge height · m ${datum}`,data:result.observations.map(o=>({x:Date.parse(o.time),y:o.datum===datum?o.level:null})),borderColor:['#228d85','#7350a0','#b06c28'][index%3],borderWidth:2,pointRadius:showRecordedPoints?3:0,pointHitRadius:7,spanGaps:false,tension:0,segment:{borderDash:ctx=>ctx.p1.parsed.x-ctx.p0.parsed.x>3600000?[6,5]:undefined}}));
-  chart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{tooltip:{callbacks:{title:items=>date(items[0].parsed.x)+' AEST'}}},scales:{x:{type:'linear',min:Date.parse(result.start),max:Date.parse(result.end),ticks:{maxTicksLimit:8,callback:value=>date(value)},title:{display:true,text:'Observation time · Brisbane AEST'}},y:{title:{display:true,text:'Gauge height · metres (see datum in legend)'}}}}});
+  chart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{tooltip:{callbacks:{title:items=>observationDate(items[0].parsed.x)+' AEST'}}},scales:{x:{type:'linear',min:Date.parse(result.start),max:Date.parse(result.end),ticks:{maxTicksLimit:8,callback:value=>date(value)},title:{display:true,text:'Observation time · Brisbane AEST'}},y:{title:{display:true,text:'Gauge height · metres (see datum in legend)'}}}}});
   host.append(node('p','Lines connect recorded values; dashed segments indicate more than 60 minutes between readings. They do not add observations or imply a communications fault; some gauges report only when levels change. Missing levels and datum changes break the line. Turn on recorded points to see each saved measurement, including isolated readings. Age flags are measured relative to your selected ending time, not today. AHD and local gauge heights are not interchangeable.','muted'));
  }catch(error){if(error.name!=='AbortError'&&token===detailVersion){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved water levels. Please try again.'));appendBomLinks($('detail'),station);}}
 }

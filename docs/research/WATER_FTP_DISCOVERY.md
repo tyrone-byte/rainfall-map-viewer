@@ -1,3 +1,5 @@
+> Samples are now verified and the collector implementation is documented in [WATER_FTP_COLLECTION.md](../WATER_FTP_COLLECTION.md). This page describes the earlier discovery-only step.
+
 # Water-level FTP candidates
 
 The preserved official BoM product catalogue in

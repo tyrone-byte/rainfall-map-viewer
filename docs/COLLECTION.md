@@ -1,3 +1,5 @@
+> Current water FTP source and deployment: [WATER_FTP_COLLECTION.md](WATER_FTP_COLLECTION.md). The historical instructions below describe earlier development stages.
+
 > **Current production collector:** the compact observation-only workflow replaces the original capture-retention approach below. See [COMPACT_HISTORY.md](COMPACT_HISTORY.md) for current sources, migration and deployment. Historical capture/recovery commands below are legacy development instructions, not ongoing collection.
 
 # Permanent storm records

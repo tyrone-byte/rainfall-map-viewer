@@ -73,6 +73,21 @@ class TypedPostgresTests(unittest.TestCase):
                 status=api.archive_status();self.assertTrue(status['available'])
                 level=next(r for r in status['rows'] if r['kind']=='water-summary')
                 self.assertEqual(json.loads(level['payload'])['metadata']['name'],'Mitchelton')
+            from collector import ingest_water_ftp
+            from water_ftp_cutover import cutover
+            raw_water=__import__('pathlib').Path('tests/fixtures/water-ftp.hcs').read_bytes()
+            rain_before=store.execute('SELECT COUNT(*) AS n FROM history_readings WHERE kind_id=1').fetchone()['n']
+            self.assertEqual(ingest_water_ftp(store,raw_water,'ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65911_test.hcs'),10)
+            self.assertEqual(ingest_water_ftp(store,raw_water,'ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ65910_test.hcs'),0)
+            switched=cutover(store)
+            self.assertEqual(switched['removedWebWaterReadings'],1)
+            self.assertEqual(switched['retainedNumericFTPReadings'],10)
+            self.assertEqual(store.execute('SELECT COUNT(*) AS n FROM history_readings WHERE kind_id=1').fetchone()['n'],rain_before)
+            with patch.dict(os.environ,{'HISTORY_DATABASE_URL':url}):
+                api.CACHE.clear()
+                actual=api.water_series('040835',minutes=1440)
+                self.assertEqual([r['level'] for r in actual['observations']],[2.561,2.552,2.549])
+
         finally:
             if store:store.close()
             admin.execute(sql.SQL('DROP DATABASE {} WITH (FORCE)').format(sql.Identifier(name)));admin.close();api.CACHE.clear()

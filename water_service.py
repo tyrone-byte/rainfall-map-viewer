@@ -56,3 +56,26 @@ def history(station_id,refresh=False):
         data['thresholds']=[]
     data['summaryRefreshError']=bulletin['refreshError']
     return data
+
+# Station hyperlinks only: website levels are never imported by this lookup.
+LINK_CACHE={}
+def gauge_links(station_id,basin=None):
+    import time
+    if not re.fullmatch(r'\d{6}',station_id):raise ValueError('Invalid station ID.')
+    stations=json.loads((ROOT/'data/water-groups.json').read_text())['stations']
+    gauge=next((s for s in stations if s['id']==station_id and (not basin or s['basinId']==basin)),None)
+    if not gauge:raise ValueError('Station not in catalogue.')
+    source=gauge['membershipSource']
+    if gauge.get('plotPath') and gauge.get('historyPath'):
+        return {'available':True,**{k:gauge.get(k) for k in ('plotPath','historyPath','membershipSource')}}
+    with LOCK:
+        cached=LINK_CACHE.get(source)
+        if not cached or time.monotonic()-cached[0]>(86400 if cached[1] else 60):
+            try:
+                response=subprocess.run(['curl','--fail','--location','--silent','--show-error','--max-time','25','--max-filesize','4000000',source],capture_output=True,check=True)
+                parsed=water.summary(response.stdout.decode('utf-8',errors='replace'),source)
+                links={s['stationNumber']:{k:s.get(k) for k in ('plotPath','historyPath')} for s in parsed['stations'] if s['stationNumber']}
+                LINK_CACHE[source]=(time.monotonic(),links)
+            except (subprocess.SubprocessError,ValueError,UnicodeError,OSError):LINK_CACHE[source]=(time.monotonic(),{})
+        links=LINK_CACHE[source][1].get(station_id,{})
+    return {'available':bool(links.get('plotPath')),'membershipSource':source,**links}

@@ -1,3 +1,5 @@
+> Water data-source update: see [WATER_FTP_COLLECTION.md](WATER_FTP_COLLECTION.md). New water history uses all available FTP observations; the sparse former web-water history is removed once both feeds have been collected successfully. Website access is now only for official hyperlink metadata.
+
 # Rainfall history basin selection
 
 The history page opens with the 12 groups from BoM's Queensland rainfall and
