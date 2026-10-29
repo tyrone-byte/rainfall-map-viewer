@@ -2,7 +2,6 @@
 const $=id=>document.getElementById(id);
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
-const observationDate=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
 const localInput=iso=>new Date(Date.parse(iso)+36000000).toISOString().slice(0,16);
 const duration=m=>m>=2880?`${m/1440} days`:m<60?`${m} minutes`:`${m/60} ${m===60?'hour':'hours'}`;
 const level=v=>v===null?'No reading':`${v.toFixed(2)} m`;
@@ -74,19 +73,9 @@ async function choose(id,pan=false,reveal=false){
  try{
   const response=await fetch(`/api/archive-water/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(frame.end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
   if(!response.ok)throw new Error();const result=await response.json();if(token!==detailVersion||frameVersion!==version)return;if(!result.available)throw new Error();
-  chart?.destroy();chart=null;const host=$('detail');host.replaceChildren(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name),node('h3',`${level(station.level)} · ${station.datum}`),node('p',`Last observation: ${station.observedAt?date(station.observedAt)+' AEST':'none in this window'}`,'muted'));
-  appendBomLinks(host,station);
-  if(!result.observations.length){host.append(node('p','No saved observations in this window.'));if(reveal)MobileViewer.showPlot(host);return;}
-  const plotControls=node('div',undefined,'water-plot-controls'),pointsLabel=node('label'),points=node('input');points.type='checkbox';points.id='showRecordedPoints';points.checked=showRecordedPoints;pointsLabel.append(points,document.createTextNode('Show recorded points'));plotControls.append(pointsLabel);host.append(plotControls);
-  points.onchange=()=>{showRecordedPoints=points.checked;if(chart){for(const dataset of chart.data.datasets)dataset.pointRadius=showRecordedPoints?3:0;chart.update('none');}};
-  const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='waterHistoryChart';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${station.name}: saved water levels over the selected duration`);wrap.append(canvas);host.append(wrap);
-  const datums=[...new Set(result.observations.map(o=>o.datum))];
-  const datasets=datums.map((datum,index)=>({label:`Gauge height · m ${datum}`,data:result.observations.map(o=>({x:Date.parse(o.time),y:o.datum===datum?o.level:null})),borderColor:['#228d85','#7350a0','#b06c28'][index%3],borderWidth:2,pointRadius:showRecordedPoints?3:0,pointHitRadius:7,spanGaps:false,tension:0,segment:{borderDash:ctx=>ctx.p1.parsed.x-ctx.p0.parsed.x>3600000?[6,5]:undefined}}));
-  chart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{tooltip:{callbacks:{title:items=>observationDate(items[0].parsed.x)+' AEST'}}},scales:{x:{type:'linear',min:Date.parse(result.start),max:Date.parse(result.end),ticks:{maxTicksLimit:8,callback:value=>date(value)},title:{display:true,text:'Observation time · Brisbane AEST'}},y:{title:{display:true,text:'Gauge height · metres (see datum in legend)'}}}}});
-  const notes=node('details',undefined,'plot-notes');notes.append(node('summary','Data notes'));
-  notes.append(node('p',`${result.observations.length} saved readings · ${date(result.start)} – ${date(result.end)} AEST. Lines connect recorded values; dashed segments indicate gaps over 60 minutes, not a communications fault. Missing values and datum changes break the line. No readings are created or accumulated. AHD and local gauge heights are not interchangeable.`,'muted'));
-  if(Number.isFinite(station.ratePerHour))notes.append(node('p',`Measured comparison: ${observationDate(station.movementStartAt)} – ${observationDate(station.movementEndAt)} AEST · ${station.levelChange.toFixed(3)} m · ${station.ratePerHour.toFixed(3)} m/h. No tidal adjustment.`,'muted'));
-  host.append(notes);if(reveal)MobileViewer.showPlot(host);
+  chart?.destroy();const host=$('detail');
+  chart=GaugePlots.water(host,station,result,{showPoints:showRecordedPoints,onPoints:value=>{showRecordedPoints=value;},links:appendBomLinks});
+  if(reveal)MobileViewer.showPlot(host);
  }catch(error){if(error.name!=='AbortError'&&token===detailVersion){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved water levels. Please try again.'));appendBomLinks($('detail'),station);if(reveal)MobileViewer.showPlot($('detail'));}}
 }
 async function loadFrame(){

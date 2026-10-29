@@ -1,4 +1,9 @@
 'use strict';
+window.GaugeIFD={create(){
+let data=null,selected=null;
+const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
+const mm=v=>v===null?'Incomplete':`${v.toFixed(1)} mm`;
 let ifdReference=null,ifdReferenceError=null,ifdChart=null,ifdMode='latest';
 let ifdIndex=null,ifdIndexError=null;
 const ifdLocationFiles=new Map(),ifdSelections=new Map();
@@ -84,3 +89,9 @@ function renderIfd(station){
 fetch('/reference/brisbane-ifd-2030.csv').then(response=>{if(!response.ok)throw new Error('IFD reference is unavailable.');return response.text();}).then(csv=>{ifdReference=RainfallIFD.parseReference(csv);}).catch(error=>{ifdReferenceError=error.message;}).finally(()=>{if(typeof data!=='undefined'&&data&&selected){const s=data.stations.find(s=>s.id===selected);if(s)renderIfd(s);}});
 
 fetch('/reference/local-ifd-index.json').then(r=>{if(!r.ok)throw new Error('Local IFD index unavailable.');return r.json();}).then(index=>{if(!index.locations||index.schemaVersion!==1)throw new Error('Local IFD index format not recognised.');ifdIndex=index;}).catch(error=>{ifdIndexError=error.message;}).finally(redrawSelectedIfd);
+
+return {render(result,station){data=result;selected=station.id;renderIfd(station);},clear(){clearIfdChart();data=null;selected=null;}};
+}};
+let sharedIfdView;
+function renderIfd(station){sharedIfdView??=GaugeIFD.create();sharedIfdView.render(data,station);}
+function clearIfdChart(){sharedIfdView?.clear();}

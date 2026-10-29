@@ -10,7 +10,7 @@
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
  const waterwayLabels=L.layerGroup().addTo(map),damNameLabels=L.layerGroup().addTo(map);
- let watercourseFeatures=[],stations=[],selectedGauge=null;
+ let watercourseFeatures=[],stations=[],selectedGauge=null,showRecordedPoints=false,rainChartMinutes=15,ifdView=null,follow=true;
  let catalogue, boundaryIndex, chosen=null, nearest=null, boundary=null, row=null, chart=null, ending=null;
  let selectionVersion=0, loadVersion=0, detailVersion=0, controller, detailController;
  // Keep zoom operations anchored to the selected dam, including zoom-at-pointer.
@@ -28,7 +28,7 @@
   const response=await fetch(url,{signal}); if(!response.ok) throw Error('Request failed');
   const data=await response.json(); if(data.available===false) throw Error('Saved observations unavailable'); return data;
  }
- function clearPlot() { detailVersion++; detailController?.abort(); chart?.destroy(); chart=null; $('plot').replaceChildren(el('h2','Nearest water-level gauge'),el('p','Choose a dam to view its nearest mapped gauge.')); }
+ function clearPlot() { ifdView?.clear();detailVersion++; detailController?.abort(); chart?.destroy(); chart=null; $('plot').replaceChildren(el('h2','Nearest water-level gauge'),el('p','Choose a dam to view its nearest mapped gauge.')); }
  function options() {
   const keep=$('dam').value;
   $('dam').replaceChildren(new Option('Choose a dam…',''),...catalogue.dams.filter(d=>!$('owner').value||d.owner===$('owner').value).map(d=>new Option(d.name,d.id)));
@@ -173,7 +173,7 @@
    if(version!==loadVersion)return;
    const waterExtent=results[0].status==='fulfilled'?results[0].value:null,rainExtent=results[1].status==='fulfilled'?results[1].value:null;
    const latestSource=waterExtent?.lastEnd||rainExtent?.lastEnd;if(!latestSource)throw Error();
-   const latest=Math.floor(Date.parse(latestSource)/60000)*60000,requested=$('ending').value?Date.parse($('ending').value+'+10:00'):latest;
+   const latest=Date.parse(latestSource),requested=follow?latest:Date.parse(ending||latestSource);
    ending=new Date(Math.min(requested,latest)).toISOString();$('ending').value=local(ending);drawRainGauge();
    const minutes=Number($('duration').value),quarter=Math.floor(Date.parse(ending)/900000)*900000;
    const rainTime=rainExtent?.lastEnd?Math.min(quarter,Date.parse(rainExtent.lastEnd)):null;
@@ -201,19 +201,18 @@
   }catch(error){if(version===loadVersion&&error.name!=='AbortError')$('status').textContent='Saved observations could not be loaded. Try Update observations.';}
  }
  async function plotRain(station,reveal){
-  const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();chart?.destroy();chart=null;
+  const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();ifdView?.clear();chart?.destroy();chart=null;
   const minutes=Number($('duration').value),end=station.frameEnd;
-  $('plot').replaceChildren(el('h2',station.name),el('p',stationValue(station)));
-  const link=el('a','Open full rainfall viewer'),query=new URLSearchParams({basin:station.basinId,gauge:station.id,minutes});if(end)query.set('end',end);link.href='/history?'+query;link.target='_blank';link.rel='noopener';$('plot').append(link);
-  const message=el('p',end?`Recorded 15-minute rainfall ending ${date(end)} AEST. Missing periods remain gaps.`:'No saved rainfall time range is available for this selection.');$('plot').append(message);
+  $('plot').replaceChildren(el('h2',station.name));
+  const message=el('p',end?'Loading saved quarter-hours…':'No saved rainfall time range is available for this selection.');$('plot').append(message);
   if(!end)return;
   try{
-   const data=await json(`/api/archive-rainfall/series?gauge=${encodeURIComponent(station.id)}&end=${encodeURIComponent(end)}&minutes=${minutes}`,detailController.signal);
+   const result=await json(`/api/archive-rainfall/series?gauge=${encodeURIComponent(station.id)}&end=${encodeURIComponent(end)}&minutes=${minutes}`,detailController.signal);
    if(version!==detailVersion||frameVersion!==loadVersion)return;
-   const periods=(data.periods||[]).slice(-minutes/15),depths=(data.stations?.[0]?.values||[]).slice(-minutes/15);
-   if(!depths.some(d=>Number.isFinite(d))){message.textContent='No numeric rainfall observations in the selected window.';return;}
-   const host=el('div');host.className='chart';const canvas=el('canvas');canvas.setAttribute('aria-label',`${station.name} recorded rainfall`);canvas.setAttribute('role','img');host.append(canvas);$('plot').append(host);
-   chart=new Chart(canvas,{type:'bar',data:{datasets:[{label:'15-minute rainfall · mm',data:periods.map((p,i)=>({x:Date.parse(p.end),y:depths[i]??null})),backgroundColor:'#36a46d'}]},options:{animation:false,maintainAspectRatio:false,scales:{x:{type:'linear',min:Date.parse(end)-minutes*60000,max:Date.parse(end),ticks:{maxTicksLimit:6,callback:t=>date(t)}},y:{beginAtZero:true}},plugins:{tooltip:{callbacks:{title:items=>date(items[0].parsed.x)+' AEST'}}}}});
+   if(!result.periods?.length||!result.stations?.length){message.textContent='Saved gauge observations are unavailable.';return;}
+   const series={...station,...result.stations[0]},data={...result,periodMinutes:result.periodMinutes||15,stations:[series]};
+   chart=GaugePlots.rainfall($('plot'),station,series,data,minutes,{interval:rainChartMinutes,onInterval:value=>{rainChartMinutes=value;},renderIfd:()=>{ifdView??=GaugeIFD.create();ifdView.render(data,series);}});
+   const link=el('a','Open full rainfall viewer'),query=new URLSearchParams({basin:station.basinId,gauge:station.id,minutes,end});link.href='/history?'+query;link.target='_blank';link.rel='noopener';$('plot').append(link);
    if(reveal&&matchMedia('(max-width:850px)').matches)$('plot').scrollIntoView({block:'start'});
   }catch(error){if(version===detailVersion&&error.name!=='AbortError')message.textContent='Could not load this gauge’s rainfall observations. Try Update observations.';}
  }
@@ -232,27 +231,24 @@
   if(!station.plotPath)json(`/api/archive-water/links?gauge=${encodeURIComponent(station.id)}&basin=${encodeURIComponent(station.basinId)}`).then(result=>{if(links.isConnected)populate(result);}).catch(()=>{});
  }
  async function plot(station,reveal) {
-  const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();chart?.destroy();chart=null;
-  $('plot').replaceChildren(el('h2',station.name),el('p',value(station)));appendBomLinks($('plot'),station);
-  const full=el('a','Open full water-level viewer');full.href=`/water-history?basin=${encodeURIComponent(station.basinId)}&gauge=${encodeURIComponent(station.id)}&minutes=${$('duration').value}&end=${encodeURIComponent(ending)}`;full.target='_blank';full.rel='noopener';$('plot').append(full);
-  const message=el('p','Loading recorded observations…');$('plot').append(message);
+  const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();ifdView?.clear();chart?.destroy();chart=null;
+  $('plot').replaceChildren(el('h2',station.name),el('p','Loading recorded observations…'));
+  const addLinks=(host,gauge)=>{
+   appendBomLinks(host,gauge);
+   const full=el('a','Open full water-level viewer');full.href=`/water-history?basin=${encodeURIComponent(gauge.basinId)}&gauge=${encodeURIComponent(gauge.id)}&minutes=${$('duration').value}&end=${encodeURIComponent(ending)}`;full.target='_blank';full.rel='noopener';host.append(full);
+  };
   try {
    const minutes=Number($('duration').value),data=await json(`/api/archive-water/series?gauge=${encodeURIComponent(station.id)}&end=${encodeURIComponent(ending)}&minutes=${minutes}`,detailController.signal);
    if(version!==detailVersion||frameVersion!==loadVersion)return;
-   const points=data.observations||[],values=[];let previous=null;
-   for(const point of points){if(previous&&(Date.parse(point.time)-Date.parse(previous.time)>3600000||point.datum!==previous.datum))values.push({x:(Date.parse(point.time)+Date.parse(previous.time))/2,y:null});values.push({x:Date.parse(point.time),y:point.datum===station.datum?point.level:null});previous=point;}
-   message.textContent=`Recorded water levels · ${station.datum}. Missing readings, datum changes and gaps over 60 minutes break the line.`;
-   if(!values.some(p=>p.y!==null)){message.textContent='No numeric observations for this gauge and datum in the selected window.';return;}
-   const host=el('div');host.className='chart';const canvas=el('canvas');canvas.setAttribute('aria-label',`${station.name} recorded water levels`);canvas.setAttribute('role','img');host.append(canvas);$('plot').append(host);
-   chart=new Chart(canvas,{type:'line',data:{datasets:[{label:`Water level · m ${station.datum}`,data:values,borderColor:'#229887',pointRadius:2,spanGaps:false}]},options:{animation:false,maintainAspectRatio:false,scales:{x:{type:'linear',min:Date.parse(ending)-minutes*60000,max:Date.parse(ending),ticks:{maxTicksLimit:6,callback:t=>date(t)}}},plugins:{tooltip:{callbacks:{title:items=>date(items[0].parsed.x)+' AEST'}}}}});
+   chart=GaugePlots.water($('plot'),station,data,{showPoints:showRecordedPoints,onPoints:value=>{showRecordedPoints=value;},links:addLinks});
    if(reveal&&matchMedia('(max-width:850px)').matches)$('plot').scrollIntoView({block:'start'});
-  }catch(error){if(version===detailVersion&&error.name!=='AbortError')message.textContent='Could not load this gauge’s recorded observations. Try Update observations.';}
+  }catch(error){if(version===detailVersion&&error.name!=='AbortError'){$('plot').replaceChildren(el('h2',station.name),el('p','Could not load saved water levels. Please try again.'));addLinks($('plot'),station);}}
  }
  for(const id of ['showRain','showWater'])$(id).onchange=draw;
- $('owner').onchange=options;$('dam').onchange=()=>selectDam($('dam').value);$('fit').onclick=fit;$('apply').onclick=load;$('duration').onchange=load;$('ending').onchange=load;
+ $('owner').onchange=options;$('dam').onchange=()=>selectDam($('dam').value);$('fit').onclick=fit;$('apply').onclick=load;$('duration').onchange=load;$('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!Number.isFinite(time)){$('status').textContent='Choose a valid ending time in Brisbane AEST.';return;}ending=new Date(time).toISOString();follow=false;load();};
  $('streams').onchange=()=>{if($('streams').checked)streamsLayer.addTo(map);else map.removeLayer(streamsLayer);labelWaterways();};
- $('latest').onclick=()=>{$('ending').value='';load();};
- for(const [id,sign] of [['previous',-1],['next',1]])$(id).onclick=()=>{if(!ending)return;$('ending').value=local(new Date(Date.parse(ending)+sign*Number($('duration').value)*60000).toISOString());load();};
+ $('latest').onclick=()=>{follow=true;load();};
+ for(const [id,sign] of [['previous',-1],['next',1]])$(id).onclick=()=>{if(!ending)return;ending=new Date(Date.parse(ending)+sign*Number($('duration').value)*60000).toISOString();follow=false;$('ending').value=local(ending);load();};
  Promise.all([json('/dams-catalogue.json'),json('/dam-boundaries.json').catch(()=>({dams:{},unavailable:true}))]).then(([data,index])=>{
   catalogue=data;boundaryIndex=index;options();
   for(const dam of data.dams)L.marker([dam.lat,dam.lon]).addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});

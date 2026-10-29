@@ -87,25 +87,8 @@ async function choose(id,pan=false,reveal=false){
  finally{if(version===detailVersion){$('detail').setAttribute('aria-busy','false');$('detail').inert=false;}}
 }
 function renderDetail(station,series){
- clearIfdChart();chart?.destroy();chart=null;
- const host=$('detail');host.replaceChildren();host.append(node('span',station.group.toUpperCase(),'eyebrow'),node('h2',station.name));
- const valid=series.values.slice(-96).filter(v=>v!==null),complete=valid.length===96;
- const metrics=node('div',undefined,'metrics');
- for(const [value,label] of [[mm(station.depth),`Selected ${duration(frame.minutes)} total`],[complete?mm(valid.reduce((a,b)=>a+b,0)):'Incomplete','24-hour total ending at selected time']]){const metric=node('div',undefined,'metric');metric.append(node('strong',value),node('span',label));metrics.append(metric);}host.append(metrics);
- const controls=node('div',undefined,'history-chart-controls'),label=node('label','Chart interval'),select=node('select');select.id='chartInterval';const intervals=[15,30,60,180,360,720,1440].filter(m=>m<=frame.minutes&&frame.minutes%m===0);
- if(!intervals.includes(chartMinutes))chartMinutes=intervals.at(-1);
- for(const m of intervals)select.append(new Option(duration(m),m));select.value=chartMinutes;label.append(select);controls.append(label);host.append(controls);
- const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='hyetograph';canvas.setAttribute('role','img');wrap.append(canvas);host.append(wrap);
- select.onchange=()=>{chartMinutes=Number(select.value);renderChart(series,chartMinutes);};renderChart(series,chartMinutes);
- const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';host.append(comparison);renderIfd(series);
- if(station.coordinates){const p=node('p',undefined,'detail-source'),link=node('a',`BoM station ${station.stationNumber} · audited map coordinates`);link.href=station.coordinates.source;link.target='_blank';link.rel='noopener';p.append(link);host.append(p);}
-}
-function renderChart(station,minutes){
- if(!data)return;
- const step=minutes/15,periods=[],values=[],first=data.periods.length-frame.minutes/15;
- for(let i=first;i<data.periods.length;i+=step){const chunk=station.values.slice(i,i+step);periods.push({start:data.periods[i].start,end:data.periods[i+step-1].end});values.push(chunk.length===step&&chunk.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0)?chunk.reduce((a,b)=>a+b,0):null);}
- chart?.destroy();const canvas=$('hyetograph');canvas.setAttribute('aria-label',`${station.name}: saved rainfall in chronological ${duration(minutes)} bars, in millimetres.`);
- chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:`${duration(minutes)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:`${duration(minutes)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
+ clearIfdChart();chart?.destroy();
+ chart=GaugePlots.rainfall($('detail'),station,series,data,frame.minutes,{interval:chartMinutes,onInterval:value=>{chartMinutes=value;},renderIfd:()=>renderIfd(series)});
 }
 async function loadFrame(){
  if(!extent?.lastEnd||!basinId)return;
