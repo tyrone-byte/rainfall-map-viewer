@@ -35,3 +35,12 @@ test('time controls request both layers at the same AEST ending and duration',as
 test('shipped catalogue retains owners, hectares and source coordinates without invented boundaries',async({request})=>{
  const response=await request.get('/dams-catalogue.json');expect(response.ok()).toBe(true);const d=await response.json();expect(d.dams).toHaveLength(49);expect(d.dams.filter(x=>x.owner==='Seqwater')).toHaveLength(25);expect(d.dams.filter(x=>x.owner==='Sunwater')).toHaveLength(24);expect(d.dams.every(x=>x.catchmentBoundary===null&&Number.isFinite(x.lat)&&Number.isFinite(x.lon))).toBe(true);expect(d.dams.find(x=>x.name==='Wivenhoe Dam').catchmentAreaHa).toBe(702000);
 });
+test('desktop wheel scrolling over the dam map reaches the gauge list and footer',async({page})=>{
+ await mock(page);await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');await expect(page.locator('#status')).toContainText('1 rainfall');
+ await expect(page.locator('.dam-square')).toHaveCount(1);await expect(page.locator('.dam-square')).toHaveCSS('transform','none');
+ await page.locator('#map').scrollIntoViewIfNeeded();const box=await page.locator('#map').boundingBox();const before=await page.evaluate(()=>scrollY);
+ await page.mouse.move(box.x+box.width/2,Math.max(10,Math.min(box.y+box.height/2,900)));await page.mouse.wheel(0,700);
+ await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before);
+ await page.locator('#gaugeList').scrollIntoViewIfNeeded();await expect(page.locator('#gauges button').first()).toBeInViewport();
+ await page.locator('footer').scrollIntoViewIfNeeded();await expect(page.locator('footer')).toBeInViewport();
+});

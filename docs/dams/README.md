@@ -16,7 +16,7 @@ Research attempts against Queensland spatial services/open data, Seqwater, Sunwa
 
 ## Observed context
 
-Only basin frames containing mapped gauges inside the chosen proximity radius are requested, at most two concurrently. Rainfall and water appear together with distinct circle/diamond symbols and independently selectable visibility. Rain colours use selected duration depth, with incomplete records grey. Water colour uses the existing measured 60-minute movement comparison (no interpolation). These are display colours, not official thresholds. Other dams remain on the map for context.
+Only basin frames containing mapped gauges inside the chosen proximity radius are requested, at most two concurrently. Rainfall and water appear together with distinct circle/square symbols and independently selectable visibility. Rain colours use selected duration depth, with incomplete records grey. Water colour uses the existing measured 60-minute movement comparison (no interpolation). These are display colours, not official thresholds. Other dams remain on the map for context.
 
 Ending time is shared in Brisbane AEST, aligned to quarter hours, and bounded by the latest common available rainfall/water extent; if one extent is unavailable the other remains usable. Frame requests are cancellable and stale responses ignored. One failed basin does not discard successful results. Radius changes fit the map; duration/ending changes preserve its position. Successful frame queries use existing server caches.
 
@@ -25,3 +25,5 @@ Gauge charts use measured observations only. Rain charts show 15-minute bars, mi
 ## Next work
 
 Obtain and verify true contributing boundaries, including source/version/licence/CRS and transfer context. Then replace proximity-based selection with verified catchment membership while preserving optional nearby/downstream context. Dam-specific official information links and reliable timestamped owner storage feeds can follow. Gauge-specific IFD acquisition is separate work, not included in this initial Dams page.
+
+The Dams page uses a single document scrollbar on desktop and phone, overriding the shared history stylesheet's fixed-height desktop pane layout. Scrolling over the map scrolls the page rather than zooming it.
