@@ -1,0 +1,382 @@
+[
+  {
+    "dam": "Atkinson Dam",
+    "boundary": "Lockyer Creek",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 45,
+    "waterGauges": 31
+  },
+  {
+    "dam": "Baroon Pocket Dam",
+    "boundary": "Obi Obi Creek",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 4,
+    "waterGauges": 2
+  },
+  {
+    "dam": "Bill Gunn Dam",
+    "boundary": "Lockyer Creek",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 45,
+    "waterGauges": 31
+  },
+  {
+    "dam": "Bjelke-Petersen Dam",
+    "boundary": "J",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 5,
+    "waterGauges": 9
+  },
+  {
+    "dam": "Boondooma Dam",
+    "boundary": "K",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 1,
+    "waterGauges": 4
+  },
+  {
+    "dam": "Borumba Dam",
+    "boundary": "Yabba Creek",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 4,
+    "waterGauges": 3
+  },
+  {
+    "dam": "Bromelton Off-Stream Storage",
+    "boundary": "Logan River",
+    "plan": "Logan Basin",
+    "containingFeatures": 1,
+    "rainGauges": 20,
+    "waterGauges": 32
+  },
+  {
+    "dam": "Burdekin Falls Dam",
+    "boundary": null
+  },
+  {
+    "dam": "Callide Dam",
+    "boundary": "Lower Dawson",
+    "plan": "Fitzroy Basin",
+    "containingFeatures": 1,
+    "rainGauges": 47,
+    "waterGauges": 47
+  },
+  {
+    "dam": "Cania Dam",
+    "boundary": "R",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 4,
+    "waterGauges": 8
+  },
+  {
+    "dam": "Cedar Pocket Dam",
+    "boundary": "Deep Creek",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 1,
+    "waterGauges": 2
+  },
+  {
+    "dam": "Clarendon Dam",
+    "boundary": "Lockyer Creek",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 45,
+    "waterGauges": 31
+  },
+  {
+    "dam": "Coolmunda Dam",
+    "boundary": "Border Rivers Catchment",
+    "plan": "Border Rivers and Moonie",
+    "containingFeatures": 1,
+    "rainGauges": 41,
+    "waterGauges": 49
+  },
+  {
+    "dam": "Cooloolabin Dam",
+    "boundary": "Maroochy River",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 25,
+    "waterGauges": 20
+  },
+  {
+    "dam": "EJ Beardmore Dam",
+    "boundary": null
+  },
+  {
+    "dam": "Enoggera Dam",
+    "boundary": "Lower Brisbane River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 53,
+    "waterGauges": 53
+  },
+  {
+    "dam": "Eungella Dam",
+    "boundary": "Broken (D)",
+    "plan": "Burdekin Basin",
+    "containingFeatures": 1,
+    "rainGauges": 8,
+    "waterGauges": 4
+  },
+  {
+    "dam": "Ewen Maddock Dam",
+    "boundary": "Mooloolah River",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 11,
+    "waterGauges": 9
+  },
+  {
+    "dam": "Fairbairn Dam",
+    "boundary": "Nogoa",
+    "plan": "Fitzroy Basin",
+    "containingFeatures": 1,
+    "rainGauges": 38,
+    "waterGauges": 21
+  },
+  {
+    "dam": "Fred Haigh Dam",
+    "boundary": "A",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 6,
+    "waterGauges": 12
+  },
+  {
+    "dam": "Glenlyon Dam",
+    "boundary": "Border Rivers Catchment",
+    "plan": "Border Rivers and Moonie",
+    "containingFeatures": 1,
+    "rainGauges": 41,
+    "waterGauges": 49
+  },
+  {
+    "dam": "Gold Creek Dam",
+    "boundary": "Lower Brisbane River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 53,
+    "waterGauges": 53
+  },
+  {
+    "dam": "Hinze Dam",
+    "boundary": "Lower Nerang River",
+    "plan": "Gold Coast",
+    "containingFeatures": 1,
+    "rainGauges": 7,
+    "waterGauges": 9
+  },
+  {
+    "dam": "Isis Balancing Storage",
+    "boundary": "D",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 0,
+    "waterGauges": 1
+  },
+  {
+    "dam": "Julius Dam",
+    "boundary": "Upper Leichhardt River Subcatchment Area",
+    "plan": "Gulf",
+    "containingFeatures": 2,
+    "rainGauges": 1,
+    "waterGauges": 3
+  },
+  {
+    "dam": "Kinchant Dam",
+    "boundary": "11",
+    "plan": "Pioneer Valley",
+    "containingFeatures": 1,
+    "rainGauges": 0,
+    "waterGauges": 0
+  },
+  {
+    "dam": "Kroombit Dam",
+    "boundary": "Lower Dawson",
+    "plan": "Fitzroy Basin",
+    "containingFeatures": 1,
+    "rainGauges": 47,
+    "waterGauges": 47
+  },
+  {
+    "dam": "Lake MacDonald Dam",
+    "boundary": "Six Mile Creek",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 3,
+    "waterGauges": 9
+  },
+  {
+    "dam": "Lake Manchester Dam",
+    "boundary": "Central Brisbane River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 17,
+    "waterGauges": 15
+  },
+  {
+    "dam": "Leslie Dam",
+    "boundary": null
+  },
+  {
+    "dam": "Leslie Harrison Dam",
+    "boundary": "Redlands subcatchments",
+    "plan": "Logan Basin",
+    "containingFeatures": 1,
+    "rainGauges": 9,
+    "waterGauges": 3
+  },
+  {
+    "dam": "Little Nerang Dam",
+    "boundary": "Upper Nerang River",
+    "plan": "Gold Coast",
+    "containingFeatures": 1,
+    "rainGauges": 3,
+    "waterGauges": 3
+  },
+  {
+    "dam": "Maroon Dam",
+    "boundary": "Burnett Creek",
+    "plan": "Logan Basin",
+    "containingFeatures": 1,
+    "rainGauges": 4,
+    "waterGauges": 3
+  },
+  {
+    "dam": "Moogerah Dam",
+    "boundary": "Bremer River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 42,
+    "waterGauges": 44
+  },
+  {
+    "dam": "Moura Offstream Storage",
+    "boundary": "Lower Dawson",
+    "plan": "Fitzroy Basin",
+    "containingFeatures": 1,
+    "rainGauges": 47,
+    "waterGauges": 47
+  },
+  {
+    "dam": "North Pine Dam",
+    "boundary": "Pine River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 39,
+    "waterGauges": 25
+  },
+  {
+    "dam": "Paradise Dam",
+    "boundary": "G",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 12,
+    "waterGauges": 7
+  },
+  {
+    "dam": "Peter Faust Dam",
+    "boundary": "Proserpine River",
+    "plan": "Whitsunday",
+    "containingFeatures": 1,
+    "rainGauges": 4,
+    "waterGauges": 5
+  },
+  {
+    "dam": "Poona Dam",
+    "boundary": "Maroochy River",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 25,
+    "waterGauges": 20
+  },
+  {
+    "dam": "Sideling Creek Dam",
+    "boundary": "Pine River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 39,
+    "waterGauges": 25
+  },
+  {
+    "dam": "Somerset Dam",
+    "boundary": "Central Brisbane River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 17,
+    "waterGauges": 15
+  },
+  {
+    "dam": "Teemburra Dam",
+    "boundary": "1",
+    "plan": "Pioneer Valley",
+    "containingFeatures": 1,
+    "rainGauges": 4,
+    "waterGauges": 4
+  },
+  {
+    "dam": "Tinaroo Falls Dam",
+    "boundary": "C",
+    "plan": "Barron",
+    "containingFeatures": 1,
+    "rainGauges": 5,
+    "waterGauges": 7
+  },
+  {
+    "dam": "Wappa Dam",
+    "boundary": "Maroochy River",
+    "plan": "Mary Basin",
+    "containingFeatures": 1,
+    "rainGauges": 25,
+    "waterGauges": 20
+  },
+  {
+    "dam": "West Barron Balancing Storage",
+    "boundary": "E",
+    "plan": "Barron",
+    "containingFeatures": 1,
+    "rainGauges": 0,
+    "waterGauges": 0
+  },
+  {
+    "dam": "Wivenhoe Dam",
+    "boundary": "Central Brisbane River",
+    "plan": "Moreton",
+    "containingFeatures": 1,
+    "rainGauges": 17,
+    "waterGauges": 15
+  },
+  {
+    "dam": "Woongarra Balancing Storage",
+    "boundary": "C",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 8,
+    "waterGauges": 13
+  },
+  {
+    "dam": "Wuruma Dam",
+    "boundary": "S",
+    "plan": "Burnett Basin",
+    "containingFeatures": 1,
+    "rainGauges": 2,
+    "waterGauges": 2
+  },
+  {
+    "dam": "Wyaralong Dam",
+    "boundary": "Teviot Brook",
+    "plan": "Logan Basin",
+    "containingFeatures": 1,
+    "rainGauges": 8,
+    "waterGauges": 7
+  }
+]

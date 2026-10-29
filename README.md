@@ -169,4 +169,4 @@ retention are separate next steps.
 
 ### GaugeView Dams
 
-The initial `/dams` viewer combines nearby rainfall and water levels around 49 supplied Seqwater/Sunwater assets. Owner and catchment area are retained; actual catchment boundaries are pending. Search circles represent proximity only. See [dam data and limitations](docs/dams/README.md). Rebuild its static catalogue with `python tools/build_dam_catalogue.py` after verified inventory updates. No collector changes are required.
+The `/dams` viewer combines rainfall and water levels inside the supplied water-plan boundary containing each selected Seqwater/Sunwater asset. 46 of 49 assets have a match; unmatched assets show no gauges. These are administrative planning areas, not verified upstream dam catchments. Owner and supplied catchment area are retained. See [dam data and limitations](docs/dams/README.md). Rebuild its static catalogue with `python tools/build_dam_catalogue.py` after verified inventory updates. No collector changes are required.

@@ -3,15 +3,17 @@ const end='2026-10-29T00:00:00Z',coords={lat:-27.4,lon:152.6},basinId='brisbane-
 async function mock(page){
  const gauge={id:'r1',name:'Catchment rain',basinId,coordinates:coords};
  await page.route('**/dams-catalogue.json',r=>r.fulfill({json:{dams:[{id:'wivenhoe',name:'Wivenhoe Dam',owner:'Seqwater',lat:-27.39306,lon:152.60417,catchmentAreaHa:702000,catchmentBoundary:null},{id:'other',name:'Other Dam',owner:'Sunwater',lat:-20,lon:148,catchmentAreaHa:100}],rain:[gauge],water:[{...gauge,id:'w1',name:'Nearby river'}]}}));
+ await page.route('**/dam-boundaries.json',r=>r.fulfill({json:{dams:{wivenhoe:{id:'test-boundary',title:'Central Brisbane River',waterplan:'Moreton',gauges:{rain:['r1'],water:['w1']}},other:null}}}));
+ await page.route('**/dam-boundaries/test-boundary.geojson',r=>r.fulfill({json:{type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:[[[152.5,-27.5],[152.7,-27.5],[152.7,-27.3],[152.5,-27.3],[152.5,-27.5]]]}}}));
  await page.route('**/api/archive-*/extent',r=>r.fulfill({json:{available:true,lastEnd:end}}));
- await page.route('**/api/archive-*/frame?*',r=>{const water=r.request().url().includes('archive-water');return r.fulfill({json:{available:true,stations:[water?{...gauge,id:'w1',name:'Nearby river',level:2.5,datum:'LGH',direction:'rising'}:{...gauge,depth:15,complete:true}]}});});
+ await page.route('**/api/archive-*/frame?*',r=>{const water=r.request().url().includes('archive-water');return r.fulfill({json:{available:true,stations:[water?{...gauge,id:'w1',name:'Nearby river',level:2.5,datum:'LGH',direction:'rising'}:{...gauge,depth:15,complete:true},{...gauge,id:'outside',name:'Outside planning boundary',depth:100,complete:true}]}});});
  await page.route('**/api/archive-*/series?*',r=>{const water=r.request().url().includes('archive-water');return r.fulfill({json:water?{available:true,observations:[{time:'2026-10-28T23:00:00Z',level:2.4,datum:'LGH'},{time:end,level:2.5,datum:'LGH'}]}:{available:true,periods:[{end}],stations:[{values:[15]}]}});});
 }
 test('dam owner, combined observations, independent layers and measured plots',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await mock(page);await page.goto('/dams');
  await page.locator('#dam').selectOption('wivenhoe');await expect(page.locator('#status')).toContainText('1 rainfall · 1 water');
  await expect(page.locator('#damInfo')).toContainText('Owner: Seqwater');await expect(page.locator('#damInfo')).toContainText('7,020 km²');
- await expect(page.locator('#boundaryNote')).toContainText('proximity only');
+ await expect(page.locator('#boundaryNote')).toContainText('Central Brisbane River');
  await page.getByRole('button',{name:/Rain · Catchment rain/}).click();await expect(page.locator('#plot canvas')).toBeVisible();
  await expect(page.locator('#plot a')).toHaveAttribute('href',/history\?basin=.*gauge=r1/);
  await page.locator('#rain').uncheck();await expect(page.locator('#gauges button')).toHaveCount(1);
@@ -43,4 +45,15 @@ test('desktop wheel scrolling over the dam map reaches the gauge list and footer
  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before);
  await page.locator('#gaugeList').scrollIntoViewIfNeeded();await expect(page.locator('#gauges button').first()).toBeInViewport();
  await page.locator('footer').scrollIntoViewIfNeeded();await expect(page.locator('footer')).toBeInViewport();
+});
+test('water-plan membership excludes outside gauges and unmatched dams do not load observations',async({page})=>{
+ await mock(page);await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');await expect(page.locator('#status')).toContainText('1 rainfall · 1 water');await expect(page.locator('#gauges')).not.toContainText('Outside planning boundary');await expect(page.locator('#map path.leaflet-interactive')).toHaveCount(1);
+ await page.locator('#dam').selectOption('other');await expect(page.locator('#boundaryNote')).toContainText('No containing water-plan boundary');await expect(page.locator('#gauges button')).toHaveCount(0);await expect(page.locator('#apply')).toBeDisabled();
+});
+test('supplied boundaries map 46 dams while keeping true dam catchments unassigned',async({request})=>{
+ const index=await (await request.get('/dam-boundaries.json')).json();expect(index.sourceFeatures).toBe(187);expect(Object.values(index.dams).filter(Boolean)).toHaveLength(46);expect(index.dams['burdekin-falls-dam']).toBeNull();expect(index.dams['ej-beardmore-dam']).toBeNull();expect(index.dams['leslie-dam']).toBeNull();expect(index.dams['wivenhoe-dam'].title).toBe('Central Brisbane River');expect(index.dams['julius-dam'].feature).toBe('Subcatchment Area');
+ const feature=await (await request.get(`/dam-boundaries/${index.dams['wivenhoe-dam'].id}.geojson`)).json();expect(['Polygon','MultiPolygon']).toContain(feature.geometry.type);
+});
+test('missing boundary index keeps dams available without reverting to radius gauges',async({page})=>{
+ await mock(page);await page.route('**/dam-boundaries.json',r=>r.fulfill({status:503,body:'unavailable'}));let frames=0;page.on('request',r=>{if(r.url().includes('/frame?'))frames++;});await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');await expect(page.locator('#damName')).toHaveText('Wivenhoe Dam');await expect(page.locator('#boundaryNote')).toContainText('boundaries could not be loaded');await expect(page.locator('#gauges button')).toHaveCount(0);expect(frames).toBe(0);
 });
