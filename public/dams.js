@@ -5,14 +5,25 @@
  const date = t => new Date(t).toLocaleString('en-AU', {timeZone:'Australia/Brisbane',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
  const local = t => new Date(Date.parse(t)+36000000).toISOString().slice(0,16);
  const number = v => Number.isFinite(v) ? v.toLocaleString('en-AU') : 'Not supplied';
- const map = L.map('map', {scrollWheelZoom:false}).setView([-23,147],5);
+ const map = L.map('map', {scrollWheelZoom:false,touchZoom:'center'}).setView([-23,147],5);
  SharedMapView.attach(map); MapBackgrounds.attach(map,$('background'));
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
- const waterwayLabels=L.layerGroup().addTo(map);
+ const waterwayLabels=L.layerGroup().addTo(map),damNameLabels=L.layerGroup().addTo(map);
  let watercourseFeatures=[],stations=[],selectedGauge=null;
  let catalogue, boundaryIndex, chosen=null, nearest=null, boundary=null, row=null, chart=null, ending=null;
  let selectionVersion=0, loadVersion=0, detailVersion=0, controller, detailController;
+ // Keep zoom operations anchored to the selected dam, including zoom-at-pointer.
+ const originalSetView=map.setView;
+ map.setView=function(center,zoom,options){
+  if(chosen&&zoom!==undefined&&zoom!==this.getZoom())center=[chosen.lat,chosen.lon];
+  return originalSetView.call(this,center,zoom,options);
+ };
+ // Touch pinch can finish through Leaflet's animation path rather than setView.
+ map.on('zoomend',()=>{
+  if(chosen&&map.distance(map.getCenter(),[chosen.lat,chosen.lon])>.1)
+   originalSetView.call(map,[chosen.lat,chosen.lon],map.getZoom(),{animate:false,reset:true});
+ });
  async function json(url,signal) {
   const response=await fetch(url,{signal}); if(!response.ok) throw Error('Request failed');
   const data=await response.json(); if(data.available===false) throw Error('Saved observations unavailable'); return data;
@@ -25,17 +36,22 @@
  }
  function reset() {
   chosen=null; nearest=null; boundary=null; row=null;stations=[];selectedGauge=null; selectionVersion++; loadVersion++; controller?.abort();
-  clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[]; $('gauges').replaceChildren();
+  clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[];labelWaterways(); $('gauges').replaceChildren();
   $('damName').textContent='Choose a dam to begin'; $('damInfo').replaceChildren(); $('gaugeNote').textContent='';
   $('boundaryNote').textContent='The water-plan boundary and named watercourses provide geographic context.';
   $('streamStatus').textContent=''; $('status').textContent='Choose a dam to load its nearest water-level gauge.';
   for(const id of ['apply','latest','previous','next']) $(id).disabled=true;
  }
  function fit() {
-  if(!chosen) return;
-  const bounds=L.featureGroup(areaLayer.getLayers()).getBounds(); bounds.extend([chosen.lat,chosen.lon]);
-  if(nearest) bounds.extend([nearest.coordinates.lat,nearest.coordinates.lon]);
-  map.fitBounds(bounds.pad(.08),{padding:[20,20],maxZoom:13,animate:false});
+  if(!chosen)return;
+  const bounds=L.featureGroup(areaLayer.getLayers()).getBounds();bounds.extend([chosen.lat,chosen.lon]);
+  if(nearest)bounds.extend([nearest.coordinates.lat,nearest.coordinates.lon]);
+  const center=L.latLng(chosen.lat,chosen.lon),p=map.project(center,0);
+  const corners=[map.project(bounds.getSouthWest(),0),map.project(bounds.getNorthEast(),0)];
+  const span=L.point(Math.max(...corners.map(c=>Math.abs(c.x-p.x))),Math.max(...corners.map(c=>Math.abs(c.y-p.y))));
+  const symmetric=L.latLngBounds(map.unproject(p.subtract(span),0),map.unproject(p.add(span),0));
+  const zoom=Math.min(13,map.getBoundsZoom(symmetric.pad(.08),false,L.point(40,40)));
+  map.setView(center,zoom,{animate:false,reset:true});
  }
  function metric(label,value) { const item=el('div'); item.append(el('dt',label),el('dd',value)); $('damInfo').append(item); }
  function selectDam(id) {
@@ -78,9 +94,24 @@
   link.href='/history?'+query;$('gauges').append(link);
  }
  function labelWaterways() {
-  waterwayLabels.clearLayers();
-  if(!chosen||!$('streams').checked||map.getZoom()<11)return;
-  const size=map.getSize(),byName=new Map();
+  waterwayLabels.clearLayers();damNameLabels.clearLayers();
+  const zoom=map.getZoom();if(zoom<11)return;
+  const size=map.getSize(),occupied=[],limit=size.x<600?6:12;
+  const fits=box=>box.left>=2&&box.right<=size.x-2&&box.top>=2&&box.bottom<=size.y-2&&!occupied.some(b=>box.left<b.right&&box.right>b.left&&box.top<b.bottom&&box.bottom>b.top);
+  // Dam labels use the earlier zoom threshold, in neutral text beside their pins.
+  const dams=[...(catalogue?.dams||[])].sort((a,b)=>(b.id===chosen?.id)-(a.id===chosen?.id));
+  for(const dam of dams){
+   const p=map.latLngToContainerPoint([dam.lat,dam.lon]),width=Math.min(180,dam.name.length*6.5+14);
+   if(p.x<0||p.y<0||p.x>size.x||p.y>size.y)continue;
+   const boxes=[{left:p.x+14,right:p.x+14+width,top:p.y-12,bottom:p.y+10},{left:p.x-width-14,right:p.x-14,top:p.y-12,bottom:p.y+10}];
+   const box=boxes.find(fits);if(!box)continue;
+   const text=el('span',dam.name);text.className='dam-name-label';
+   L.marker(map.containerPointToLatLng([box.left,box.top]),{interactive:false,keyboard:false,zIndexOffset:-100,icon:L.divIcon({html:text,className:'dam-name-label-anchor',iconSize:[width,22],iconAnchor:[0,0]})}).addTo(damNameLabels);
+   occupied.push(box);if(occupied.length>=limit)break;
+  }
+  // Streams need a closer view, enough visible line for the name, and a local tangent.
+  if(!chosen||!$('streams').checked||zoom<13)return;
+  const byName=new Map();
   for(const feature of watercourseFeatures){
    const geometry=feature.geometry;
    const lines=geometry.type==='LineString'?[geometry.coordinates]:geometry.type==='MultiLineString'?geometry.coordinates:[];
@@ -89,27 +120,28 @@
     for(let i=1;i<line.length;i++){
      const a=map.latLngToContainerPoint([line[i-1][1],line[i-1][0]]),b=map.latLngToContainerPoint([line[i][1],line[i][0]]);
      const mid=a.add(b).divideBy(2),distance=a.distanceTo(b);
-     if(mid.x<10||mid.y<12||mid.x>size.x-10||mid.y>size.y-12)continue;
-     segments.push({mid,distance});length+=distance;
+     if(!distance||mid.x<10||mid.y<12||mid.x>size.x-10||mid.y>size.y-12)continue;
+     segments.push({a,b,distance});length+=distance;
     }
-    if(length<80)continue;
-    let walked=0,anchor;
-    for(const segment of segments){walked+=segment.distance;if(walked>=length/2){anchor=segment.mid;break;}}
-    const name=feature.properties.name;
-    if(!anchor||byName.get(name)?.length>=length)continue;
-    byName.set(name,{name,length,anchor});
+    const name=feature.properties.name,width=Math.min(180,name.length*6.5+14);
+    if(length<Math.max(80,width+16))continue;
+    function along(distance){let walked=0;for(const segment of segments){if(walked+segment.distance>=distance)return segment.a.add(segment.b.subtract(segment.a).multiplyBy((distance-walked)/segment.distance));walked+=segment.distance;}return segments.at(-1).b;}
+    const anchor=along(length/2),before=along(Math.max(0,length/2-35)),after=along(Math.min(length,length/2+35));
+    let angle=Math.atan2(after.y-before.y,after.x-before.x)*180/Math.PI;
+    if(angle>90)angle-=180;if(angle< -90)angle+=180;
+    if(byName.get(name)?.length>=length)continue;
+    byName.set(name,{name,length,anchor,angle,width});
    }
   }
-  const occupied=[];
+  let count=0;
   for(const candidate of [...byName.values()].sort((a,b)=>b.length-a.length)){
-   const width=Math.min(180,candidate.name.length*6.5+14),p=candidate.anchor;
-   const box={left:p.x-width/2-8,right:p.x+width/2+8,top:p.y-16,bottom:p.y+16};
-   if(box.left<0||box.right>size.x||box.top<0||box.bottom>size.y)continue;
-   if(occupied.some(b=>box.left<b.right&&box.right>b.left&&box.top<b.bottom&&box.bottom>b.top))continue;
-   const text=el('span',candidate.name);text.className='waterway-label';
-   L.marker(map.containerPointToLatLng(p),{interactive:false,keyboard:false,zIndexOffset:-200,
-    icon:L.divIcon({html:text,className:'waterway-label-anchor',iconSize:[width,20],iconAnchor:[width/2,10]})}).addTo(waterwayLabels);
-   occupied.push(box);if(occupied.length>=(size.x<600?6:12))break;
+   const {width,angle,anchor:p}=candidate,radians=angle*Math.PI/180;
+   const w=Math.abs(width*Math.cos(radians))+Math.abs(20*Math.sin(radians)),h=Math.abs(width*Math.sin(radians))+Math.abs(20*Math.cos(radians));
+   const box={left:p.x-w/2-8,right:p.x+w/2+8,top:p.y-h/2-6,bottom:p.y+h/2+6};
+   if(!fits(box))continue;
+   const text=el('span',candidate.name);text.className='waterway-label';text.style.transform=`rotate(${angle.toFixed(1)}deg)`;
+   L.marker(map.containerPointToLatLng(p),{interactive:false,keyboard:false,zIndexOffset:-200,icon:L.divIcon({html:text,className:'waterway-label-anchor',iconSize:[width,20],iconAnchor:[width/2,10]})}).addTo(waterwayLabels);
+   occupied.push(box);if(++count>=limit)break;
   }
  }
  map.on('zoomend moveend resize',labelWaterways);
@@ -224,6 +256,7 @@
  Promise.all([json('/dams-catalogue.json'),json('/dam-boundaries.json').catch(()=>({dams:{},unavailable:true}))]).then(([data,index])=>{
   catalogue=data;boundaryIndex=index;options();
   for(const dam of data.dams)L.marker([dam.lat,dam.lon]).addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});
+  labelWaterways();
   $('status').textContent=`${data.dams.length} dams and storages. Choose a dam from the list or map.`;
  }).catch(()=>{$('status').textContent='Dam catalogue could not be loaded. Please refresh.';});
 })();

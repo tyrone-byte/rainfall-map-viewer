@@ -1,0 +1,15 @@
+{
+  "somerset-dam": {
+    "originalCoordinates": {
+      "lat": -27.11556,
+      "lon": 152.55667
+    },
+    "coordinates": {
+      "lat": -27.115388375,
+      "lon": 152.556927099
+    },
+    "distanceMetres": 31.7,
+    "reason": "User-requested map adjustment just inside Stanley River water-plan subcatchment; not a surveyed coordinate correction",
+    "requestedOn": "2026-10-29"
+  }
+}

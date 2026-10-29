@@ -11,6 +11,7 @@ SOURCE = ROOT / 'docs/dams/supplied-dam-inventory.csv'
 def build():
     with SOURCE.open(encoding='utf-8-sig', newline='') as stream:
         rows = list(csv.DictReader(stream))
+    adjustments = json.loads((ROOT / 'data/dams/location-adjustments.json').read_text())
     dams = []
     for row in rows:
         lat = float(row['Latitude coordinate'])
@@ -26,6 +27,14 @@ def build():
                          surfaceAreaFSL=float(row['Surface area @ FSL']) if row['Surface area @ FSL'] else None,
                          fullSupplyVolume=float(row['Full Supply Volume']) if row['Full Supply Volume'] else None,
                          surfaceAreaUnit="ha", fullSupplyVolumeUnit="ML"))
+    for dam in dams:
+        if dam['id'] in adjustments:
+            adjustment = adjustments[dam['id']]
+            if adjustment['originalCoordinates'] != dict(lat=dam['lat'], lon=dam['lon']):
+                raise ValueError('Review location adjustment after source-coordinate change')
+            dam['originalCoordinates'] = dict(lat=dam['lat'], lon=dam['lon'])
+            dam.update(adjustment['coordinates'])
+            dam['locationAdjustment'] = adjustment
     if len({d['id'] for d in dams}) != len(dams):
         raise ValueError('Duplicate dam identifier')
     catalogue = dict(source=str(SOURCE.relative_to(ROOT)),

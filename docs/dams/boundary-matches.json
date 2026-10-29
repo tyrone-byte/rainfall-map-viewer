@@ -309,11 +309,11 @@
   },
   {
     "dam": "Somerset Dam",
-    "boundary": "Central Brisbane River",
+    "boundary": "Stanley River",
     "plan": "Moreton",
     "containingFeatures": 1,
-    "rainGauges": 17,
-    "waterGauges": 15
+    "rainGauges": 13,
+    "waterGauges": 3
   },
   {
     "dam": "Teemburra Dam",

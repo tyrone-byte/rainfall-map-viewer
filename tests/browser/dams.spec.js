@@ -52,7 +52,9 @@ test('waterway labels appear when zoomed in, deduplicate names and follow layer 
  for(let i=0;i<4;i++){await page.locator('.leaflet-control-zoom-out').click();await page.waitForTimeout(300);}
  await expect(page.locator('.waterway-label')).toHaveCount(0);
  for(let i=0;i<5;i++){await page.locator('.leaflet-control-zoom-in').click();await page.waitForTimeout(300);}
- await expect(page.locator('.waterway-label')).toHaveCount(1);await expect(page.locator('.waterway-label')).toHaveText('Brisbane River');
+ await expect(page.locator('.waterway-label')).toHaveCount(0);await expect(page.locator('.dam-name-label').first()).toBeVisible();await expect(page.locator('.dam-name-label').first()).toHaveCSS('color','rgb(74, 74, 74)');
+ for(let i=0;i<2;i++){await page.locator('.leaflet-control-zoom-in').click();await page.waitForTimeout(300);}
+ await expect(page.locator('.waterway-label')).toHaveCount(1);await expect(page.locator('.waterway-label')).toHaveText('Brisbane River');await expect(page.locator('.waterway-label')).toHaveCSS('color','rgb(36, 92, 131)');expect(await page.locator('.waterway-label').evaluate(n=>getComputedStyle(n).transform)).not.toBe('none');
  await page.locator('#streams').uncheck();await expect(page.locator('.waterway-label')).toHaveCount(0);await page.locator('#streams').check();await expect(page.locator('.waterway-label')).toHaveCount(1);
 });
 test('rainfall navigation rounds water time down to a measured quarter-hour',async({page})=>{
@@ -65,4 +67,31 @@ test('area gauges are clickable map points without a gauge list; selected rain p
  await page.locator('#duration').selectOption('180');await expect(page.locator('#plot canvas')).toBeVisible();await expect(page.locator('#plot h2')).toHaveText('Nearest rainfall station');
  await page.locator('#showWater').check();await page.locator('[data-gauge="water:inside-water"]').click({force:true});await expect(page.locator('#plot h2')).toHaveText('Other water inside area');await expect(page.locator('#plot canvas')).toHaveAttribute('aria-label',/recorded water levels/);
  await expect(page.locator('#gauges')).not.toContainText('Other water inside area');await expect(page.locator('#gauges')).not.toContainText('TW');await expect(page.locator('#gauges button')).toHaveCount(0);
+});
+test('zoom buttons and off-centre double click stay centred on the selected dam',async({page})=>{
+ await mock(page);await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');await expect(page.locator('#plot canvas')).toBeVisible();
+ const view=()=>page.evaluate(()=>JSON.parse(sessionStorage.getItem('rainfall-atlas.map-view.v1')));
+ const centered=async()=>{const saved=await view();expect(saved.lat).toBeCloseTo(-27.39306,5);expect(saved.lng).toBeCloseTo(152.60417,5);};
+ await centered();await page.locator('.leaflet-control-zoom-in').click();await page.waitForTimeout(300);await centered();await page.locator('.leaflet-control-zoom-out').click();await page.waitForTimeout(300);await centered();
+ await page.locator('#map').scrollIntoViewIfNeeded();const box=await page.locator('#map').boundingBox();await page.mouse.dblclick(box.x+box.width*.7,box.y+box.height*.35);await page.waitForTimeout(300);await centered();
+ // Deliberate panning remains available, but the next zoom returns to the dam.
+ await page.mouse.move(box.x+box.width*.65,box.y+box.height*.7);await page.mouse.down();await page.mouse.move(box.x+box.width*.65+80,box.y+box.height*.7+40,{steps:10});await page.mouse.up();await page.waitForTimeout(300);
+ await page.locator('.leaflet-control-zoom-in').click();await page.waitForTimeout(300);await centered();
+});
+test('Somerset adjustment is traceable and selects the Stanley River context',async({request})=>{
+ const data=await(await request.get('/dams-catalogue.json')).json(),dam=data.dams.find(d=>d.id==='somerset-dam');
+ expect(dam.originalCoordinates).toEqual({lat:-27.11556,lon:152.55667});expect(dam.locationAdjustment.distanceMetres).toBeLessThan(35);expect(dam.nearestWaterGauge.id).toBe('040820');
+ const boundaries=await(await request.get('/dam-boundaries.json')).json();expect(boundaries.dams['somerset-dam'].title).toBe('Stanley River');expect(boundaries.dams['wivenhoe-dam'].title).toBe('Central Brisbane River');
+ const streams=await(await request.get('/dam-watercourses/somerset-dam.geojson')).json();expect(streams.features.some(f=>f.properties.name==='Stanley River')).toBe(true);
+});
+test.describe('dam phone zoom',()=>{
+ test.use({isMobile:true,hasTouch:true,viewport:{width:390,height:844}});
+ test('off-centre touch pinch finishes centred on the dam',async({page})=>{
+  await mock(page);await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');await expect(page.locator('#plot canvas')).toBeVisible();await page.locator('#map').scrollIntoViewIfNeeded();
+  const view=()=>page.evaluate(()=>JSON.parse(sessionStorage.getItem('rainfall-atlas.map-view.v1'))),before=await view(),box=await page.locator('#map').boundingBox(),x=box.x+box.width*.65,y=box.y+box.height*.45;
+  const client=await page.context().newCDPSession(page);await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-25,y,id:1},{x:x+25,y,id:2}]});
+  for(const spread of [35,45,55]){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-spread,y,id:1},{x:x+spread,y,id:2}]});await page.waitForTimeout(30);}
+  await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(async()=>(await view()).zoom).toBeGreaterThan(before.zoom);await page.waitForTimeout(300);
+  const after=await view();expect(after.lat).toBeCloseTo(-27.39306,5);expect(after.lng).toBeCloseTo(152.60417,5);
+ });
 });
