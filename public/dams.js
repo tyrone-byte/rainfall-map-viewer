@@ -91,7 +91,7 @@
   const query=new URLSearchParams({basin:gauge.basinId,gauge:gauge.id,minutes:$('duration').value});
   // Water readings can fall between rainfall's measured quarter-hour boundaries.
   if(ending)query.set('end',new Date(Math.floor(Date.parse(ending)/900000)*900000).toISOString());
-  link.href='/history?'+query;$('gauges').append(link);
+  link.href='/history?'+query;link.target='_blank';link.rel='noopener';$('gauges').append(link);
  }
  function labelWaterways() {
   waterwayLabels.clearLayers();damNameLabels.clearLayers();
@@ -204,7 +204,7 @@
   const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();chart?.destroy();chart=null;
   const minutes=Number($('duration').value),end=station.frameEnd;
   $('plot').replaceChildren(el('h2',station.name),el('p',stationValue(station)));
-  const link=el('a','Open full rainfall viewer'),query=new URLSearchParams({basin:station.basinId,gauge:station.id,minutes});if(end)query.set('end',end);link.href='/history?'+query;$('plot').append(link);
+  const link=el('a','Open full rainfall viewer'),query=new URLSearchParams({basin:station.basinId,gauge:station.id,minutes});if(end)query.set('end',end);link.href='/history?'+query;link.target='_blank';link.rel='noopener';$('plot').append(link);
   const message=el('p',end?`Recorded 15-minute rainfall ending ${date(end)} AEST. Missing periods remain gaps.`:'No saved rainfall time range is available for this selection.');$('plot').append(message);
   if(!end)return;
   try{
@@ -234,7 +234,7 @@
  async function plot(station,reveal) {
   const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();chart?.destroy();chart=null;
   $('plot').replaceChildren(el('h2',station.name),el('p',value(station)));appendBomLinks($('plot'),station);
-  const full=el('a','Open full water-level viewer');full.href=`/water-history?basin=${encodeURIComponent(station.basinId)}&gauge=${encodeURIComponent(station.id)}&minutes=${$('duration').value}&end=${encodeURIComponent(ending)}`;$('plot').append(full);
+  const full=el('a','Open full water-level viewer');full.href=`/water-history?basin=${encodeURIComponent(station.basinId)}&gauge=${encodeURIComponent(station.id)}&minutes=${$('duration').value}&end=${encodeURIComponent(ending)}`;full.target='_blank';full.rel='noopener';$('plot').append(full);
   const message=el('p','Loading recorded observations…');$('plot').append(message);
   try {
    const minutes=Number($('duration').value),data=await json(`/api/archive-water/series?gauge=${encodeURIComponent(station.id)}&end=${encodeURIComponent(ending)}&minutes=${minutes}`,detailController.signal);
