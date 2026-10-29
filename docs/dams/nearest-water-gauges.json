@@ -1,0 +1,394 @@
+[
+  {
+    "dam": "Atkinson Dam",
+    "id": "540547",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Buaraba Ck at Atkinson Dam HG",
+    "distanceKm": 0.157,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Baroon Pocket Dam",
+    "id": "540426",
+    "basinId": "sunshine-coast-mary",
+    "name": "Obi Obi Creek at Baroon Pocket Dam (HG)",
+    "distanceKm": 2.141,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Bill Gunn Dam",
+    "id": "540563",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Lake Dyer at Bill Gunn Dam",
+    "distanceKm": 0.436,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Bjelke-Petersen Dam",
+    "id": "540053",
+    "basinId": "burnett-kolan",
+    "name": "Barker Creek at Bjelke-Petersen Dam (HW)",
+    "distanceKm": 0.175,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Boondooma Dam",
+    "id": "540262",
+    "basinId": "burnett-kolan",
+    "name": "Boyne River at Boondooma Dam (HW)",
+    "distanceKm": 0.187,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Borumba Dam",
+    "id": "540575",
+    "basinId": "sunshine-coast-mary",
+    "name": "Yabba Creek at Borumba Dam (HG)",
+    "distanceKm": 0.146,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Bromelton Off-Stream Storage",
+    "id": "040939",
+    "basinId": "gold-coast-logan",
+    "name": "Logan River at Beaudesert",
+    "distanceKm": 3.972,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Burdekin Falls Dam",
+    "id": "034097",
+    "basinId": "burdekin-whitsunday-townsville",
+    "name": "Burdekin Dam",
+    "distanceKm": 0.291,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Callide Dam",
+    "id": "539071",
+    "basinId": "fitzroy",
+    "name": "Callide Creek at Callide Dam HG",
+    "distanceKm": 0.556,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Cania Dam",
+    "id": "539092",
+    "basinId": "burnett-kolan",
+    "name": "Three Moon Creek at Cania Dam (HW)",
+    "distanceKm": 0.213,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Cedar Pocket Dam",
+    "id": "540476",
+    "basinId": "sunshine-coast-mary",
+    "name": "Deep Creek at Cedar Pocket Dam HG",
+    "distanceKm": 0.028,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Clarendon Dam",
+    "id": "540546",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Lake Clarendon Dam HW",
+    "distanceKm": 1.069,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Coolmunda Dam",
+    "id": "541033",
+    "basinId": "border-rivers-moonie",
+    "name": "Macintyre Brook at Coolmunda Dam HG",
+    "distanceKm": 0.086,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Cooloolabin Dam",
+    "id": "540460",
+    "basinId": "sunshine-coast-mary",
+    "name": "Cooloolabin Dam HW",
+    "distanceKm": 0.006,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "EJ Beardmore Dam",
+    "id": "043103",
+    "basinId": "condamine-balonne",
+    "name": "Balonne River at Beardmore Dam",
+    "distanceKm": 0.188,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Enoggera Dam",
+    "id": "540119",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Enoggera Creek at Enoggera Dam",
+    "distanceKm": 0.119,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Eungella Dam",
+    "id": "533162",
+    "basinId": "burdekin-whitsunday-townsville",
+    "name": "Broken River at Eungella Dam TW",
+    "distanceKm": 0.177,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Ewen Maddock Dam",
+    "id": "540346",
+    "basinId": "sunshine-coast-mary",
+    "name": "Mooloolah River at Ewen Maddock Dam HW",
+    "distanceKm": 0.231,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Fairbairn Dam",
+    "id": "035241",
+    "basinId": "fitzroy",
+    "name": "Nogoa River at Fairbairn Dam",
+    "distanceKm": 0.426,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Fred Haigh Dam",
+    "id": "539113",
+    "basinId": "burnett-kolan",
+    "name": "Kolan River at Fred Haigh Dam TW",
+    "distanceKm": 0.112,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Glenlyon Dam",
+    "id": "541051",
+    "basinId": "border-rivers-moonie",
+    "name": "Pike Creek at Glenlyon Dam HW",
+    "distanceKm": 0.592,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Gold Creek Dam",
+    "id": "540609",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Gold Creek at Gold Ck Reservoir HG",
+    "distanceKm": 0.068,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Hinze Dam",
+    "id": "540610",
+    "basinId": "gold-coast-logan",
+    "name": "Nerang River at Hinze Dam HG",
+    "distanceKm": 0.189,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Isis Balancing Storage",
+    "id": "539061",
+    "basinId": "burnett-kolan",
+    "name": "Gregory River at Burrum Highway",
+    "distanceKm": 6.87,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Julius Dam",
+    "id": "529019",
+    "basinId": "gulf-cape",
+    "name": "Leichhardt River at Julius Dam",
+    "distanceKm": 0.218,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Kinchant Dam",
+    "id": "533124",
+    "basinId": "burdekin-whitsunday-townsville",
+    "name": "North Sandy Creek at Kinchant Dam",
+    "distanceKm": 1.577,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Kroombit Dam",
+    "id": "539112",
+    "basinId": "fitzroy",
+    "name": "Kroombit Creek at Kroombit Dam HG",
+    "distanceKm": 0.12,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Lake MacDonald Dam",
+    "id": "540755",
+    "basinId": "sunshine-coast-mary",
+    "name": "Six Mile Creek at Lake Macdonald (HG)",
+    "distanceKm": 0.138,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Lake Manchester Dam",
+    "id": "540606",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Cabbage Tree Creek at Lake Manchester HG",
+    "distanceKm": 0.03,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Leslie Dam",
+    "id": "541055",
+    "basinId": "condamine-balonne",
+    "name": "Sandy Creek at Leslie Dam HG",
+    "distanceKm": 0.136,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Leslie Harrison Dam",
+    "id": "540384",
+    "basinId": "gold-coast-logan",
+    "name": "Tingalpa Creek at Leslie Harrison Dam",
+    "distanceKm": 0.234,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Little Nerang Dam",
+    "id": "540054",
+    "basinId": "gold-coast-logan",
+    "name": "Little Nerang Creek at Little Nerang Dam",
+    "distanceKm": 0.347,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Maroon Dam",
+    "id": "540591",
+    "basinId": "gold-coast-logan",
+    "name": "Burnett Creek at Maroon Dam TW",
+    "distanceKm": 0.328,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Moogerah Dam",
+    "id": "540474",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Reynolds Creek at Moogerah Dam HG",
+    "distanceKm": 0.22,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Moura Offstream Storage",
+    "id": "039296",
+    "basinId": "fitzroy",
+    "name": "Dawson River at Moura",
+    "distanceKm": 7.346,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "North Pine Dam",
+    "id": "540277",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "North Pine River at North Pine Dam",
+    "distanceKm": 0.434,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Paradise Dam",
+    "id": "539108",
+    "basinId": "burnett-kolan",
+    "name": "Burnett River at Paradise Dam (HW)",
+    "distanceKm": 0.208,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Peter Faust Dam",
+    "id": "533019",
+    "basinId": "burdekin-whitsunday-townsville",
+    "name": "Proserpine River at Peter Faust Dam HW TM",
+    "distanceKm": 0.068,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Poona Dam",
+    "id": "540461",
+    "basinId": "sunshine-coast-mary",
+    "name": "Poona Dam HW",
+    "distanceKm": 0.031,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Sideling Creek Dam",
+    "id": "540605",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Sideling Creek at Lake Kurwongbah HG",
+    "distanceKm": 0.191,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Somerset Dam",
+    "id": "040820",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Stanley River at Somerset Dam",
+    "distanceKm": 0.226,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Teemburra Dam",
+    "id": "533041",
+    "basinId": "burdekin-whitsunday-townsville",
+    "name": "Teemburra Dam",
+    "distanceKm": 0.184,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Tinaroo Falls Dam",
+    "id": "531034",
+    "basinId": "north-tropical-coast",
+    "name": "Barron River at Tinaroo Dam (HW)",
+    "distanceKm": 0.02,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Wappa Dam",
+    "id": "540462",
+    "basinId": "sunshine-coast-mary",
+    "name": "South Maroochy River at Wappa Dam",
+    "distanceKm": 0.014,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "West Barron Balancing Storage",
+    "id": "531080",
+    "basinId": "gulf-cape",
+    "name": "Walsh River at Nullinga",
+    "distanceKm": 11.584,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Wivenhoe Dam",
+    "id": "540177",
+    "basinId": "brisbane-bremer-pine-caboolture",
+    "name": "Brisbane River at Wivenhoe Dam HG",
+    "distanceKm": 0.796,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Woongarra Balancing Storage",
+    "id": "539153",
+    "basinId": "burnett-kolan",
+    "name": "Burnett River at Branyan (Woongarra PS)",
+    "distanceKm": 1.357,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Wuruma Dam",
+    "id": "539074",
+    "basinId": "burnett-kolan",
+    "name": "Nogo River at Wuruma Dam (TW)",
+    "distanceKm": 0.153,
+    "selection": "Nearest mapped station; storage association not verified"
+  },
+  {
+    "dam": "Wyaralong Dam",
+    "id": "540512",
+    "basinId": "gold-coast-logan",
+    "name": "Teviot Brook at Wyaralong Dam",
+    "distanceKm": 0.186,
+    "selection": "Nearest mapped station; storage association not verified"
+  }
+]

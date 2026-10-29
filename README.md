@@ -169,4 +169,4 @@ retention are separate next steps.
 
 ### GaugeView Dams
 
-The `/dams` viewer combines rainfall and water levels inside the supplied water-plan boundary containing each selected Seqwater/Sunwater asset. 46 of 49 assets have a match; unmatched assets show no gauges. These are administrative planning areas, not verified upstream dam catchments. Owner and supplied catchment area are retained. See [dam data and limitations](docs/dams/README.md). Rebuild its static catalogue with `python tools/build_dam_catalogue.py` after verified inventory updates. No collector changes are required.
+The `/dams` viewer shows supplied dam attributes, owner, water-plan context, named rivers/larger creeks and the single nearest mapped water-level station with its distance and BoM links. A nearest station is not a verified storage gauge. See [dam data and limitations](docs/dams/README.md). Rebuild attributes and nearest associations with `python tools/build_dam_catalogue.py`. GIS preparation is offline; no collector or database changes are required.
