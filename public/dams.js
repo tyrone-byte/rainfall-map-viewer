@@ -9,6 +9,8 @@
  SharedMapView.attach(map); MapBackgrounds.attach(map,$('background'));
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
+ const waterwayLabels=L.layerGroup().addTo(map);
+ let watercourseFeatures=[];
  let catalogue, boundaryIndex, chosen=null, nearest=null, boundary=null, row=null, chart=null, ending=null;
  let selectionVersion=0, loadVersion=0, detailVersion=0, controller, detailController;
  async function json(url,signal) {
@@ -23,7 +25,7 @@
  }
  function reset() {
   chosen=null; nearest=null; boundary=null; row=null; selectionVersion++; loadVersion++; controller?.abort();
-  clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers(); $('gauges').replaceChildren();
+  clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[]; $('gauges').replaceChildren();
   $('damName').textContent='Choose a dam to begin'; $('damInfo').replaceChildren(); $('gaugeNote').textContent='';
   $('boundaryNote').textContent='The water-plan boundary and named watercourses provide geographic context.';
   $('streamStatus').textContent=''; $('status').textContent='Choose a dam to load its nearest water-level gauge.';
@@ -41,14 +43,14 @@
   const sequence=++selectionVersion; boundary=boundaryIndex.dams[id]||null;
   nearest=catalogue.water.find(g=>g.id===chosen.nearestWaterGauge?.id&&g.basinId===chosen.nearestWaterGauge?.basinId)||null;
   $('dam').value=id; $('damName').textContent=chosen.name; $('damInfo').replaceChildren();
-  metric('Owner',chosen.owner); metric('Surface area at full supply',`${number(chosen.surfaceAreaFSL)}${chosen.surfaceAreaUnit?' '+chosen.surfaceAreaUnit:''}`);
-  metric('Full supply volume',`${number(chosen.fullSupplyVolume)}${chosen.fullSupplyVolumeUnit?' '+chosen.fullSupplyVolumeUnit:''}`);
-  metric('Supplied catchment area',`${number(chosen.catchmentAreaHa/100)} km²`);
+  metric('Owner',chosen.owner); metric('Assumed surface area at full supply',`${number(chosen.surfaceAreaFSL)}${chosen.surfaceAreaUnit?' '+chosen.surfaceAreaUnit:''}`);
+  metric('Assumed full supply volume',`${number(chosen.fullSupplyVolume)}${chosen.fullSupplyVolumeUnit?' '+chosen.fullSupplyVolumeUnit:''}`);
+  metric('Assumed catchment area',`${number(chosen.catchmentAreaHa/100)} km²`);
   metric('Water-plan subcatchment / catchment',boundary?.title||'No match in supplied extract');
   metric('Water plan',boundary?.waterplan||'Not identified');
   $('gaugeNote').textContent=nearest?`Nearest mapped gauge: ${nearest.name} · ${chosen.nearestWaterGauge.distanceKm.toFixed(2)} km from dam coordinates. Storage-level association not verified.`:'No mapped water-level gauge available.';
   $('boundaryNote').textContent=boundary?`Water-plan area: ${boundary.title} · ${boundary.waterplan}. Geographic context, not a verified upstream dam catchment.`:boundaryIndex.unavailable?'Water-plan boundaries could not be loaded. The nearest gauge remains available.':'No containing water-plan boundary in this extract. The nearest gauge remains available.';
-  areaLayer.clearLayers(); streamsLayer.clearLayers(); fit();
+  areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[];drawRainGauge(); fit();
   for(const key of ['apply','latest','previous','next']) $(key).disabled=!nearest;
   if(boundary) json(`/dam-boundaries/${boundary.id}.geojson`).then(feature=>{
    if(sequence!==selectionVersion)return;
@@ -57,15 +59,63 @@
   $('streamStatus').textContent='Loading named watercourses…';
   json(`/dam-watercourses/${chosen.id}.geojson`).then(data=>{
    if(sequence!==selectionVersion)return;
+   watercourseFeatures=data.features;
    L.geoJSON(data,{style:{color:'#337eae',weight:2,opacity:.8},onEachFeature:(feature,layer)=>layer.bindTooltip(el('span',feature.properties.name))}).addTo(streamsLayer);
+   labelWaterways();
    $('streamStatus').textContent=`${data.features.length} mapped river / larger-creek sections. Unnamed tributaries and gullies omitted.`;
   }).catch(()=>{if(sequence===selectionVersion)$('streamStatus').textContent='Watercourse context could not be loaded. Gauge observations remain available.';});
   load();
  }
+ function drawRainGauge() {
+  $('gauges').replaceChildren();if(!chosen)return;
+  const gauge=chosen.nearestRainGauge;
+  if(!gauge){$('gauges').append(el('p','No mapped rainfall gauge available.'));return;}
+  $('gauges').append(el('p',`${gauge.name} · ${gauge.distanceKm.toFixed(2)} km from dam coordinates`));
+  const link=el('a','Open rainfall gauge');
+  const query=new URLSearchParams({basin:gauge.basinId,gauge:gauge.id,minutes:$('duration').value});
+  // Water readings can fall between rainfall's measured quarter-hour boundaries.
+  if(ending)query.set('end',new Date(Math.floor(Date.parse(ending)/900000)*900000).toISOString());
+  link.href='/history?'+query;$('gauges').append(link);
+ }
+ function labelWaterways() {
+  waterwayLabels.clearLayers();
+  if(!chosen||!$('streams').checked||map.getZoom()<11)return;
+  const size=map.getSize(),byName=new Map();
+  for(const feature of watercourseFeatures){
+   const geometry=feature.geometry;
+   const lines=geometry.type==='LineString'?[geometry.coordinates]:geometry.type==='MultiLineString'?geometry.coordinates:[];
+   for(const line of lines){
+    const segments=[];let length=0;
+    for(let i=1;i<line.length;i++){
+     const a=map.latLngToContainerPoint([line[i-1][1],line[i-1][0]]),b=map.latLngToContainerPoint([line[i][1],line[i][0]]);
+     const mid=a.add(b).divideBy(2),distance=a.distanceTo(b);
+     if(mid.x<10||mid.y<12||mid.x>size.x-10||mid.y>size.y-12)continue;
+     segments.push({mid,distance});length+=distance;
+    }
+    if(length<80)continue;
+    let walked=0,anchor;
+    for(const segment of segments){walked+=segment.distance;if(walked>=length/2){anchor=segment.mid;break;}}
+    const name=feature.properties.name;
+    if(!anchor||byName.get(name)?.length>=length)continue;
+    byName.set(name,{name,length,anchor});
+   }
+  }
+  const occupied=[];
+  for(const candidate of [...byName.values()].sort((a,b)=>b.length-a.length)){
+   const width=Math.min(180,candidate.name.length*6.5+14),p=candidate.anchor;
+   const box={left:p.x-width/2-8,right:p.x+width/2+8,top:p.y-16,bottom:p.y+16};
+   if(box.left<0||box.right>size.x||box.top<0||box.bottom>size.y)continue;
+   if(occupied.some(b=>box.left<b.right&&box.right>b.left&&box.top<b.bottom&&box.bottom>b.top))continue;
+   const text=el('span',candidate.name);text.className='waterway-label';
+   L.marker(map.containerPointToLatLng(p),{interactive:false,keyboard:false,zIndexOffset:-200,
+    icon:L.divIcon({html:text,className:'waterway-label-anchor',iconSize:[width,20],iconAnchor:[width/2,10]})}).addTo(waterwayLabels);
+   occupied.push(box);if(occupied.length>=(size.x<600?6:12))break;
+  }
+ }
+ map.on('zoomend moveend resize',labelWaterways);
  function value(r) {return r.level===null?'No reading':`${r.level.toFixed(2)} m ${r.datum||''}`;}
  function draw() {
-  gaugeLayer.clearLayers(); $('gauges').replaceChildren(); if(!row)return;
-  const button=el('button',`■ ${row.name} · ${value(row)}`); button.onclick=()=>plot(row,true); $('gauges').append(button);
+  gaugeLayer.clearLayers(); drawRainGauge(); if(!row)return;
   const icon=el('div'); icon.className='dam-square'; icon.style.setProperty('--point-colour',{rising:'#d94843',falling:'#2875bb',steady:'#239b88'}[row.direction]||'#88969c');
   L.marker([row.coordinates.lat,row.coordinates.lon],{icon:L.divIcon({html:icon,className:'',iconSize:[14,14],iconAnchor:[7,7]})}).addTo(gaugeLayer).bindTooltip(el('span',`${row.name} · ${value(row)}`)).on('click',()=>plot(row,true));
  }
@@ -78,7 +128,7 @@
    if(!extent.lastEnd)throw Error('No saved water observations');
    const latest=Math.floor(Date.parse(extent.lastEnd)/60000)*60000;
    const requested=$('ending').value?Date.parse($('ending').value+'+10:00'):latest;
-   ending=new Date(Math.min(requested,latest)).toISOString();$('ending').value=local(ending);
+   ending=new Date(Math.min(requested,latest)).toISOString();$('ending').value=local(ending);drawRainGauge();
    const minutes=Number($('duration').value);
    const frame=await json(`/api/archive-water/frame?basin=${encodeURIComponent(nearest.basinId)}&end=${encodeURIComponent(ending)}&minutes=${minutes}`,signal);
    if(version!==loadVersion)return;
@@ -119,7 +169,7 @@
   }catch(error){if(version===detailVersion&&error.name!=='AbortError')message.textContent='Could not load this gauge’s recorded observations. Try Update observations.';}
  }
  $('owner').onchange=options;$('dam').onchange=()=>selectDam($('dam').value);$('fit').onclick=fit;$('apply').onclick=load;$('duration').onchange=load;$('ending').onchange=load;
- $('streams').onchange=()=>{if($('streams').checked)streamsLayer.addTo(map);else map.removeLayer(streamsLayer);};
+ $('streams').onchange=()=>{if($('streams').checked)streamsLayer.addTo(map);else map.removeLayer(streamsLayer);labelWaterways();};
  $('latest').onclick=()=>{$('ending').value='';load();};
  for(const [id,sign] of [['previous',-1],['next',1]])$(id).onclick=()=>{if(!ending)return;$('ending').value=local(new Date(Date.parse(ending)+sign*Number($('duration').value)*60000).toISOString());load();};
  Promise.all([json('/dams-catalogue.json'),json('/dam-boundaries.json').catch(()=>({dams:{},unavailable:true}))]).then(([data,index])=>{

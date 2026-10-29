@@ -50,6 +50,10 @@ def build():
         dam['nearestWaterGauge'] = dict(id=closest['id'], basinId=closest['basinId'],
                                        name=closest['name'], distanceKm=round(distance(dam, closest), 3),
                                        selection='Nearest mapped station; storage association not verified')
+    for dam in dams:
+        closest = min(catalogue['rain'], key=lambda gauge: (distance(dam, gauge), gauge['id']))
+        dam['nearestRainGauge'] = dict(id=closest['id'], basinId=closest['basinId'],
+                                      name=closest['name'], distanceKm=round(distance(dam, closest), 3))
     (ROOT / 'docs/dams/nearest-water-gauges.json').write_text(
         json.dumps([dict(dam=d['name'], **d['nearestWaterGauge']) for d in dams], indent=2) + '\n')
     (ROOT / 'public/dams-catalogue.json').write_text(

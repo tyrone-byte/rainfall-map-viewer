@@ -33,3 +33,11 @@ One water-only basin frame and one station series are queried from existing read
 Measured water levels remain at original observation times. Missing readings, datum changes and gaps over 60 minutes break the line. No interpolated levels, rainfall estimates, runoff, storage response or warnings are generated. Current display colours use the existing measured 60-minute movement comparison. Normal document scrolling works over the map without wheel zoom.
 
 BoM plot/table paths are taken from the station catalogue or existing verified-link API. Paths must match the selected six-digit station ID and expected BoM path pattern; no guessed direct plot URLs. Where a direct link is unavailable the source group bulletin remains available when present. The full Water levels viewer link carries station, basin, ending and duration. Direct BoM links show its current record, potentially different dates from the selected saved window.
+
+## Viewer refinements
+
+The three numeric reference-stat titles are **Assumed surface area at full supply**, **Assumed full supply volume**, and **Assumed catchment area**. Owner and water-plan names retain their descriptive titles.
+
+The card below the automatic water hydrograph lists the **closest rainfall gauge**, its distance to the dam and a link to the Rainfall viewer. This replaces the redundant water-gauge list; the map still shows only the nearest water-level gauge. Rainfall association uses the same geographic distance method and mapped station catalogue, without implying catchment representation. The link carries the duration and selected ending time rounded down to a measured rainfall quarter-hour; Rainfall applies its existing archive-extent checks. No additional rainfall frame/series requests are made on the Dams page.
+
+Watercourse names appear at zoom 11 and above, only for paths with at least 80 screen pixels visible. One label per name is placed on a visible path, with bounding-box overlap checks and a limit of 12 labels (6 on narrow maps). Labels refresh after pan, zoom, resize or dam changes; disabling Named watercourses hides both lines and labels. Labels are noninteractive so scrolling and map interaction remain available. These are names from the uploaded watercourse dataset, not a new stream hierarchy.
