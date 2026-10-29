@@ -10,7 +10,7 @@
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
  const waterwayLabels=L.layerGroup().addTo(map);
- let watercourseFeatures=[];
+ let watercourseFeatures=[],stations=[],selectedGauge=null;
  let catalogue, boundaryIndex, chosen=null, nearest=null, boundary=null, row=null, chart=null, ending=null;
  let selectionVersion=0, loadVersion=0, detailVersion=0, controller, detailController;
  async function json(url,signal) {
@@ -24,7 +24,7 @@
   if([...$('dam').options].some(o=>o.value===keep)) $('dam').value=keep; else reset();
  }
  function reset() {
-  chosen=null; nearest=null; boundary=null; row=null; selectionVersion++; loadVersion++; controller?.abort();
+  chosen=null; nearest=null; boundary=null; row=null;stations=[];selectedGauge=null; selectionVersion++; loadVersion++; controller?.abort();
   clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[]; $('gauges').replaceChildren();
   $('damName').textContent='Choose a dam to begin'; $('damInfo').replaceChildren(); $('gaugeNote').textContent='';
   $('boundaryNote').textContent='The water-plan boundary and named watercourses provide geographic context.';
@@ -40,7 +40,7 @@
  function metric(label,value) { const item=el('div'); item.append(el('dt',label),el('dd',value)); $('damInfo').append(item); }
  function selectDam(id) {
   chosen=catalogue.dams.find(d=>d.id===id); if(!chosen) {reset();return;}
-  const sequence=++selectionVersion; boundary=boundaryIndex.dams[id]||null;
+  const sequence=++selectionVersion; boundary=boundaryIndex.dams[id]||null;selectedGauge=null;
   nearest=catalogue.water.find(g=>g.id===chosen.nearestWaterGauge?.id&&g.basinId===chosen.nearestWaterGauge?.basinId)||null;
   $('dam').value=id; $('damName').textContent=chosen.name; $('damInfo').replaceChildren();
   metric('Owner',chosen.owner); metric('Assumed surface area at full supply',`${number(chosen.surfaceAreaFSL)}${chosen.surfaceAreaUnit?' '+chosen.surfaceAreaUnit:''}`);
@@ -114,28 +114,76 @@
  }
  map.on('zoomend moveend resize',labelWaterways);
  function value(r) {return r.level===null?'No reading':`${r.level.toFixed(2)} m ${r.datum||''}`;}
+ function colour(station) {
+  if(station.kind==='rain')return station.depth===null?'#88969c':station.depth<=5?'#36a46d':station.depth<=30?'#e9c345':station.depth<=80?'#ed8b36':'#d94843';
+  return {rising:'#d94843',falling:'#2875bb',steady:'#239b88'}[station.direction]||'#88969c';
+ }
+ function stationValue(station){return station.kind==='rain'?(station.depth===null?'Incomplete rainfall':`${station.depth.toFixed(1)} mm`):value(station);}
+ function chooseGauge(station,reveal=true){selectedGauge={id:station.id,kind:station.kind};draw();return station.kind==='rain'?plotRain(station,reveal):plot(station,reveal);}
  function draw() {
-  gaugeLayer.clearLayers(); drawRainGauge(); if(!row)return;
-  const icon=el('div'); icon.className='dam-square'; icon.style.setProperty('--point-colour',{rising:'#d94843',falling:'#2875bb',steady:'#239b88'}[row.direction]||'#88969c');
-  L.marker([row.coordinates.lat,row.coordinates.lon],{icon:L.divIcon({html:icon,className:'',iconSize:[14,14],iconAnchor:[7,7]})}).addTo(gaugeLayer).bindTooltip(el('span',`${row.name} · ${value(row)}`)).on('click',()=>plot(row,true));
+  gaugeLayer.clearLayers();drawRainGauge();
+  for(const station of stations){
+   if(!$(station.kind==='rain'?'showRain':'showWater').checked)continue;
+   const active=selectedGauge?.id===station.id&&selectedGauge?.kind===station.kind;
+   let marker;
+   if(station.kind==='rain')marker=L.circleMarker([station.coordinates.lat,station.coordinates.lon],{radius:active?9:6,fillColor:colour(station),color:active?'#183f43':'#fff',weight:2,fillOpacity:.95});
+   else{const icon=el('div');icon.className='dam-square'+(active?' selected':'');icon.style.setProperty('--point-colour',colour(station));
+    marker=L.marker([station.coordinates.lat,station.coordinates.lon],{icon:L.divIcon({html:icon,className:'',iconSize:[14,14],iconAnchor:[7,7]})});}
+   marker.addTo(gaugeLayer).bindTooltip(el('span',`${station.name} · ${stationValue(station)}`)).on('click',()=>chooseGauge(station));
+   marker.getElement()?.setAttribute('data-gauge',station.kind+':'+station.id);
+  }
  }
  async function load() {
-  if(!chosen)return; const version=++loadVersion; controller?.abort(); controller=new AbortController(); const signal=controller.signal;
-  row=null;draw();clearPlot();if(!nearest){$('status').textContent='No mapped water-level gauge available.';return;}
-  $('status').textContent='Loading the nearest gauge’s saved observations…';
-  try {
-   const extent=await json('/api/archive-water/extent',signal);if(version!==loadVersion)return;
-   if(!extent.lastEnd)throw Error('No saved water observations');
-   const latest=Math.floor(Date.parse(extent.lastEnd)/60000)*60000;
-   const requested=$('ending').value?Date.parse($('ending').value+'+10:00'):latest;
-   ending=new Date(Math.min(requested,latest)).toISOString();$('ending').value=local(ending);drawRainGauge();
-   const minutes=Number($('duration').value);
-   const frame=await json(`/api/archive-water/frame?basin=${encodeURIComponent(nearest.basinId)}&end=${encodeURIComponent(ending)}&minutes=${minutes}`,signal);
+  if(!chosen)return;const version=++loadVersion;controller?.abort();controller=new AbortController();const signal=controller.signal;
+  stations=[];draw();clearPlot();$('status').textContent='Loading rainfall and water gauges…';
+  try{
+   const results=await Promise.allSettled(['water','rainfall'].map(kind=>json(`/api/archive-${kind}/extent`,signal)));
    if(version!==loadVersion)return;
-   row=frame.stations.find(s=>s.id===nearest.id)||{...nearest,level:null,datum:'Unspecified',direction:null};draw();
-   $('status').textContent=`Nearest gauge · ${minutes/60} hours ending ${date(ending)} AEST${row.observedAt?' · Last reading '+date(row.observedAt)+' AEST':''}`;
-   await plot(row,false);
-  }catch(error){if(version===loadVersion&&error.name!=='AbortError')$('status').textContent='Saved water observations could not be loaded. Try Update observations.';}
+   const waterExtent=results[0].status==='fulfilled'?results[0].value:null,rainExtent=results[1].status==='fulfilled'?results[1].value:null;
+   const latestSource=waterExtent?.lastEnd||rainExtent?.lastEnd;if(!latestSource)throw Error();
+   const latest=Math.floor(Date.parse(latestSource)/60000)*60000,requested=$('ending').value?Date.parse($('ending').value+'+10:00'):latest;
+   ending=new Date(Math.min(requested,latest)).toISOString();$('ending').value=local(ending);drawRainGauge();
+   const minutes=Number($('duration').value),quarter=Math.floor(Date.parse(ending)/900000)*900000;
+   const rainTime=rainExtent?.lastEnd?Math.min(quarter,Date.parse(rainExtent.lastEnd)):null;
+   const rainEnd=rainTime!==null&&(!rainExtent.firstEnd||rainTime>=Date.parse(rainExtent.firstEnd))?new Date(rainTime).toISOString():null;
+   const requests=[],inventory=[];
+   for(const kind of ['water','rain']){
+    const ids=new Set(boundary?.gauges?.[kind]||[]);if(kind==='water'&&nearest)ids.add(nearest.id);
+    const gauges=catalogue[kind].filter(g=>ids.has(g.id));
+    const frameEnd=kind==='water'?ending:rainEnd;
+    inventory.push(...gauges.map(g=>({...g,kind,frameEnd,level:null,datum:'Unspecified',direction:null,depth:null})));
+    if(!(kind==='water'?waterExtent?.lastEnd:rainEnd))continue;
+    for(const basin of new Set(gauges.map(g=>g.basinId)))requests.push({kind,ids,frameEnd,url:`/api/archive-${kind==='rain'?'rainfall':'water'}/frame?basin=${encodeURIComponent(basin)}&end=${encodeURIComponent(frameEnd)}&minutes=${minutes}`});
+   }
+   const completed=[];
+   for(let i=0;i<requests.length;i+=2){completed.push(...await Promise.allSettled(requests.slice(i,i+2).map(async q=>{
+    const frame=await json(q.url,signal);if(!Array.isArray(frame.stations))throw Error();return frame.stations.filter(s=>q.ids.has(s.id)).map(s=>({...s,kind:q.kind,frameEnd:frame.end||q.frameEnd}));
+   })));if(version!==loadVersion)return;}
+   const byId=new Map(inventory.map(g=>[g.kind+':'+g.id,g]));
+   for(const result of completed)if(result.status==='fulfilled')for(const g of result.value)byId.set(g.kind+':'+g.id,g);
+   stations=[...byId.values()];row=stations.find(g=>g.kind==='water'&&g.id===nearest?.id)||null;
+   const selected=stations.find(g=>g.kind===selectedGauge?.kind&&g.id===selectedGauge?.id)||row;
+   const failed=completed.some(r=>r.status==='rejected')||results.some(r=>r.status==='rejected');
+   $('status').textContent=`${stations.filter(g=>g.kind==='rain').length} rainfall · ${stations.filter(g=>g.kind==='water').length} water gauges · ${minutes/60} hours ending ${date(ending)} AEST.${rainEnd?' Rainfall ending '+date(rainEnd)+' AEST.':''}${failed?' Some observations could not be loaded; grey points may be unavailable.':''}`;
+   if(selected)await chooseGauge(selected,false);else draw();
+  }catch(error){if(version===loadVersion&&error.name!=='AbortError')$('status').textContent='Saved observations could not be loaded. Try Update observations.';}
+ }
+ async function plotRain(station,reveal){
+  const version=++detailVersion,frameVersion=loadVersion;detailController?.abort();detailController=new AbortController();chart?.destroy();chart=null;
+  const minutes=Number($('duration').value),end=station.frameEnd;
+  $('plot').replaceChildren(el('h2',station.name),el('p',stationValue(station)));
+  const link=el('a','Open full rainfall viewer'),query=new URLSearchParams({basin:station.basinId,gauge:station.id,minutes});if(end)query.set('end',end);link.href='/history?'+query;$('plot').append(link);
+  const message=el('p',end?`Recorded 15-minute rainfall ending ${date(end)} AEST. Missing periods remain gaps.`:'No saved rainfall time range is available for this selection.');$('plot').append(message);
+  if(!end)return;
+  try{
+   const data=await json(`/api/archive-rainfall/series?gauge=${encodeURIComponent(station.id)}&end=${encodeURIComponent(end)}&minutes=${minutes}`,detailController.signal);
+   if(version!==detailVersion||frameVersion!==loadVersion)return;
+   const periods=(data.periods||[]).slice(-minutes/15),depths=(data.stations?.[0]?.values||[]).slice(-minutes/15);
+   if(!depths.some(d=>Number.isFinite(d))){message.textContent='No numeric rainfall observations in the selected window.';return;}
+   const host=el('div');host.className='chart';const canvas=el('canvas');canvas.setAttribute('aria-label',`${station.name} recorded rainfall`);canvas.setAttribute('role','img');host.append(canvas);$('plot').append(host);
+   chart=new Chart(canvas,{type:'bar',data:{datasets:[{label:'15-minute rainfall · mm',data:periods.map((p,i)=>({x:Date.parse(p.end),y:depths[i]??null})),backgroundColor:'#36a46d'}]},options:{animation:false,maintainAspectRatio:false,scales:{x:{type:'linear',min:Date.parse(end)-minutes*60000,max:Date.parse(end),ticks:{maxTicksLimit:6,callback:t=>date(t)}},y:{beginAtZero:true}},plugins:{tooltip:{callbacks:{title:items=>date(items[0].parsed.x)+' AEST'}}}}});
+   if(reveal&&matchMedia('(max-width:850px)').matches)$('plot').scrollIntoView({block:'start'});
+  }catch(error){if(version===detailVersion&&error.name!=='AbortError')message.textContent='Could not load this gauge’s rainfall observations. Try Update observations.';}
  }
  function appendBomLinks(host,station) {
   const links=el('div');links.className='bom-check-links';host.append(links);
@@ -168,6 +216,7 @@
    if(reveal&&matchMedia('(max-width:850px)').matches)$('plot').scrollIntoView({block:'start'});
   }catch(error){if(version===detailVersion&&error.name!=='AbortError')message.textContent='Could not load this gauge’s recorded observations. Try Update observations.';}
  }
+ for(const id of ['showRain','showWater'])$(id).onchange=draw;
  $('owner').onchange=options;$('dam').onchange=()=>selectDam($('dam').value);$('fit').onclick=fit;$('apply').onclick=load;$('duration').onchange=load;$('ending').onchange=load;
  $('streams').onchange=()=>{if($('streams').checked)streamsLayer.addTo(map);else map.removeLayer(streamsLayer);labelWaterways();};
  $('latest').onclick=()=>{$('ending').value='';load();};
