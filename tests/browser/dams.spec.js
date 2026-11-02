@@ -3,7 +3,7 @@ const end='2026-10-29T00:00:00Z',coords={lat:-27.4,lon:152.6},basinId='brisbane-
 const gauge={id:'540177',name:'Water at dam TW',basinId,coordinates:coords,level:2.5,datum:'LGH',direction:'rising'};
 async function mock(page){
  const dam={id:'wivenhoe',name:'Wivenhoe Dam',owner:'Seqwater',lat:-27.39306,lon:152.60417,catchmentAreaHa:702000,surfaceAreaFSL:10750,surfaceAreaUnit:'ha',fullSupplyVolume:1165238,fullSupplyVolumeUnit:'ML',catchmentBoundary:null,nearestRainGauge:{id:'rain-a',name:'Nearest rainfall station',basinId,distanceKm:1.25},nearestWaterGauge:{id:gauge.id,basinId,name:gauge.name,distanceKm:.8}};
- await page.route('**/dams-catalogue.json',r=>r.fulfill({json:{dams:[dam,{...dam,id:'other',name:'Other Dam',owner:'Sunwater'}],rain:[{id:'rain-a',name:'Nearest rainfall station',basinId,coordinates:coords}],water:[gauge,{...gauge,id:'inside-water',name:'Other water inside area',coordinates:{lat:-27.42,lon:152.62}}]}}));
+ await page.route('**/dams-catalogue.json',r=>r.fulfill({json:{dams:[dam,{...dam,id:'other',name:'Other Dam',owner:'Sunwater',lat:-27.45,lon:152.65}],rain:[{id:'rain-a',name:'Nearest rainfall station',basinId,coordinates:coords}],water:[gauge,{...gauge,id:'inside-water',name:'Other water inside area',coordinates:{lat:-27.42,lon:152.62}}]}}));
  await page.route('**/dam-boundaries.json',r=>r.fulfill({json:{dams:{wivenhoe:{id:'test-boundary',title:'Central Brisbane River',waterplan:'Moreton',gauges:{rain:['rain-a'],water:['540177','inside-water']}},other:null}}}));
  await page.route('**/dam-boundaries/test-boundary.geojson',r=>r.fulfill({json:{type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:[[[152.5,-27.5],[152.7,-27.5],[152.7,-27.3],[152.5,-27.3],[152.5,-27.5]]]}}}));
  await page.route('**/dam-watercourses/*.geojson',r=>r.fulfill({json:{type:'FeatureCollection',features:[{type:'Feature',properties:{name:'Brisbane River'},geometry:{type:'LineString',coordinates:[[152.55,-27.45],[152.65,-27.35]]}}]}}));
@@ -94,4 +94,23 @@ test.describe('dam phone zoom',()=>{
   await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(async()=>(await view()).zoom).toBeGreaterThan(before.zoom);await page.waitForTimeout(300);
   const after=await view();expect(after.lat).toBeCloseTo(-27.39306,5);expect(after.lng).toBeCloseTo(152.60417,5);
  });
+});
+
+test('dam markers stay subtle until selected, and selection follows the map and list',async({page})=>{
+ await mock(page);await page.goto('/dams');
+ const marker=id=>page.locator(`[data-dam="${id}"]`);
+ await expect(page.locator('.dam-marker')).toHaveCount(2);
+ await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('width','10px');
+ await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
+ await page.locator('#dam').selectOption('wivenhoe');
+ await expect(marker('wivenhoe')).toHaveClass(/is-selected/);
+ await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('width','16px');
+ await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('background-color','rgb(192, 90, 32)');
+ await expect(page.locator('.dam-name-label').filter({hasText:'Wivenhoe Dam'})).toBeVisible();
+ await marker('other').click({force:true});
+ await expect(page.locator('#dam')).toHaveValue('other');
+ await expect(marker('other')).toHaveClass(/is-selected/);
+ await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('width','10px');
+ await page.locator('#dam').selectOption('');
+ await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
 });

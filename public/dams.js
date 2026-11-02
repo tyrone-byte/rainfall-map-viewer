@@ -7,6 +7,7 @@
  const number = v => Number.isFinite(v) ? v.toLocaleString('en-AU') : 'Not supplied';
  const map = L.map('map', {scrollWheelZoom:false,touchZoom:'center'}).setView([-23,147],5);
  SharedMapView.attach(map); MapBackgrounds.attach(map,$('background'));
+ map.createPane('damMarkers').style.zIndex=350;
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
  const waterwayLabels=L.layerGroup().addTo(map),damNameLabels=L.layerGroup().addTo(map);
@@ -34,9 +35,19 @@
   $('dam').replaceChildren(new Option('Choose a dam…',''),...catalogue.dams.filter(d=>!$('owner').value||d.owner===$('owner').value).map(d=>new Option(d.name,d.id)));
   if([...$('dam').options].some(o=>o.value===keep)) $('dam').value=keep; else reset();
  }
+ function drawDams() {
+  damsLayer.clearLayers();
+  for(const dam of catalogue?.dams||[]){
+   const active=dam.id===chosen?.id,icon=el('span');
+   icon.className='dam-marker-dot';
+   const marker=L.marker([dam.lat,dam.lon],{pane:'damMarkers',zIndexOffset:active?100:0,title:dam.name,icon:L.divIcon({html:icon,className:'dam-marker'+(active?' is-selected':''),iconSize:[28,28],iconAnchor:[14,14]})});
+   marker.addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});
+   marker.getElement()?.setAttribute('data-dam',dam.id);
+  }
+ }
  function reset() {
   chosen=null; nearest=null; boundary=null; row=null;stations=[];selectedGauge=null; selectionVersion++; loadVersion++; controller?.abort();
-  clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[];labelWaterways(); $('gauges').replaceChildren();
+  drawDams(); clearPlot(); gaugeLayer.clearLayers(); areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[];labelWaterways(); $('gauges').replaceChildren();
   $('damName').textContent='Choose a dam to begin'; $('damInfo').replaceChildren(); $('gaugeNote').textContent='';
   $('boundaryNote').textContent='The water-plan boundary and named watercourses provide geographic context.';
   $('streamStatus').textContent=''; $('status').textContent='Choose a dam to load its nearest water-level gauge.';
@@ -56,6 +67,7 @@
  function metric(label,value) { const item=el('div'); item.append(el('dt',label),el('dd',value)); $('damInfo').append(item); }
  function selectDam(id) {
   chosen=catalogue.dams.find(d=>d.id===id); if(!chosen) {reset();return;}
+  drawDams(); labelWaterways();
   const sequence=++selectionVersion; boundary=boundaryIndex.dams[id]||null;selectedGauge=null;
   nearest=catalogue.water.find(g=>g.id===chosen.nearestWaterGauge?.id&&g.basinId===chosen.nearestWaterGauge?.basinId)||null;
   $('dam').value=id; $('damName').textContent=chosen.name; $('damInfo').replaceChildren();
@@ -95,12 +107,13 @@
  }
  function labelWaterways() {
   waterwayLabels.clearLayers();damNameLabels.clearLayers();
-  const zoom=map.getZoom();if(zoom<11)return;
+  const zoom=map.getZoom();
   const size=map.getSize(),occupied=[],limit=size.x<600?6:12;
   const fits=box=>box.left>=2&&box.right<=size.x-2&&box.top>=2&&box.bottom<=size.y-2&&!occupied.some(b=>box.left<b.right&&box.right>b.left&&box.top<b.bottom&&box.bottom>b.top);
   // Dam labels use the earlier zoom threshold, in neutral text beside their pins.
   const dams=[...(catalogue?.dams||[])].sort((a,b)=>(b.id===chosen?.id)-(a.id===chosen?.id));
   for(const dam of dams){
+   if(zoom<11&&dam.id!==chosen?.id)continue;
    const p=map.latLngToContainerPoint([dam.lat,dam.lon]),width=Math.min(180,dam.name.length*6.5+14);
    if(p.x<0||p.y<0||p.x>size.x||p.y>size.y)continue;
    const boxes=[{left:p.x+14,right:p.x+14+width,top:p.y-12,bottom:p.y+10},{left:p.x-width-14,right:p.x-14,top:p.y-12,bottom:p.y+10}];
@@ -251,7 +264,7 @@
  for(const [id,sign] of [['previous',-1],['next',1]])$(id).onclick=()=>{if(!ending)return;ending=new Date(Date.parse(ending)+sign*Number($('duration').value)*60000).toISOString();follow=false;$('ending').value=local(ending);load();};
  Promise.all([json('/dams-catalogue.json'),json('/dam-boundaries.json').catch(()=>({dams:{},unavailable:true}))]).then(([data,index])=>{
   catalogue=data;boundaryIndex=index;options();
-  for(const dam of data.dams)L.marker([dam.lat,dam.lon]).addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});
+  drawDams();
   labelWaterways();
   $('status').textContent=`${data.dams.length} dams and storages. Choose a dam from the list or map.`;
  }).catch(()=>{$('status').textContent='Dam catalogue could not be loaded. Please refresh.';});
