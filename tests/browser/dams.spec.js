@@ -19,7 +19,7 @@ test('dam facts, default water hydrograph, closest rain card, BoM plot and named
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await mock(page);let rainQueries=0;page.on('request',r=>{if(r.url().includes('/api/archive-rainfall/'))rainQueries++;});await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');
  await expect(page.locator('#damInfo')).toContainText('Seqwater');for(const label of ['Assumed surface area at full supply','Assumed full supply volume','Assumed catchment area'])await expect(page.locator('#damInfo')).toContainText(label);await expect(page.locator('#damInfo')).not.toContainText('Supplied');await expect(page.locator('#damInfo')).toContainText('10,750 ha');await expect(page.locator('#damInfo')).toContainText('1,165,238 ML');await expect(page.locator('#damInfo')).toContainText('Central Brisbane River');await expect(page.locator('#damInfo')).toContainText('Moreton');
  await expect(page.locator('#gaugeNote')).toContainText('0.80 km');await expect(page.locator('#gaugeNote')).toContainText('not verified');
- await expect(page.locator('#plot canvas').first()).toBeVisible();await expect(page.locator('#gauges')).toContainText('Nearest rainfall station');await expect(page.locator('#gauges')).toContainText('1.25 km');await expect(page.locator('#gauges a')).toHaveAttribute('href',/history\?basin=.*gauge=rain-a/);await expect(page.locator('#gauges')).not.toContainText('Unrelated gauge');await expect(page.locator('.dam-square')).toHaveCount(2);await expect(page.getByRole('link',{name:'Open BoM plot'})).toHaveAttribute('href','https://reg.bom.gov.au/fwo/IDQ65389/IDQ65389.540177.plt.shtml');
+ await expect(page.locator('#plot canvas').first()).toBeVisible();await expect(page.locator('#gauges')).toContainText('Nearest rainfall station');await expect(page.locator('#gauges')).toContainText('1.25 km');await expect(page.locator('#gauges a')).toHaveAttribute('href',/history\?basin=.*gauge=rain-a/);await expect(page.locator('#gauges')).not.toContainText('Unrelated gauge');await expect(page.locator('.water-triangle')).toHaveCount(2);await expect(page.getByRole('link',{name:'Open BoM plot'})).toHaveAttribute('href','https://reg.bom.gov.au/fwo/IDQ65389/IDQ65389.540177.plt.shtml');
  await expect(page.locator('#streamStatus')).toContainText('1 mapped');await page.locator('#streams').uncheck();await page.locator('#streams').check();expect(rainQueries).toBeGreaterThan(0);expect(errors).toEqual([]);
 });
 test('nearest gauge remains available without a matching boundary',async({page})=>{
@@ -100,17 +100,18 @@ test('dam markers stay subtle until selected, and selection follows the map and 
  await mock(page);await page.goto('/dams');
  const marker=id=>page.locator(`[data-dam="${id}"]`);
  await expect(page.locator('.dam-marker')).toHaveCount(2);
- await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('width','10px');
+ await expect(page.locator('.leaflet-damMarkers-pane')).toHaveCSS('z-index','625');
+ await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','10px');
  await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
  await page.locator('#dam').selectOption('wivenhoe');
  await expect(marker('wivenhoe')).toHaveClass(/is-selected/);
- await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('width','16px');
- await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('background-color','rgb(192, 90, 32)');
+ await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','16px');
+ await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('background-color','rgb(192, 90, 32)');
  await expect(page.locator('.dam-name-label').filter({hasText:'Wivenhoe Dam'})).toBeVisible();
- await marker('other').click({force:true});
+ await marker('other').locator('.dam-marker-diamond').click();
  await expect(page.locator('#dam')).toHaveValue('other');
  await expect(marker('other')).toHaveClass(/is-selected/);
- await expect(marker('wivenhoe').locator('.dam-marker-dot')).toHaveCSS('width','10px');
+ await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','10px');
  await page.locator('#dam').selectOption('');
  await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
 });

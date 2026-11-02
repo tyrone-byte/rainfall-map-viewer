@@ -7,7 +7,7 @@
  const number = v => Number.isFinite(v) ? v.toLocaleString('en-AU') : 'Not supplied';
  const map = L.map('map', {scrollWheelZoom:false,touchZoom:'center'}).setView([-23,147],5);
  SharedMapView.attach(map); MapBackgrounds.attach(map,$('background'));
- map.createPane('damMarkers').style.zIndex=350;
+ map.createPane('damMarkers').style.zIndex=625;
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
  const waterwayLabels=L.layerGroup().addTo(map),damNameLabels=L.layerGroup().addTo(map);
@@ -39,7 +39,7 @@
   damsLayer.clearLayers();
   for(const dam of catalogue?.dams||[]){
    const active=dam.id===chosen?.id,icon=el('span');
-   icon.className='dam-marker-dot';
+   icon.className='dam-marker-diamond';
    const marker=L.marker([dam.lat,dam.lon],{pane:'damMarkers',zIndexOffset:active?100:0,title:dam.name,icon:L.divIcon({html:icon,className:'dam-marker'+(active?' is-selected':''),iconSize:[28,28],iconAnchor:[14,14]})});
    marker.addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});
    marker.getElement()?.setAttribute('data-dam',dam.id);
@@ -172,7 +172,7 @@
    const active=selectedGauge?.id===station.id&&selectedGauge?.kind===station.kind;
    let marker;
    if(station.kind==='rain')marker=L.circleMarker([station.coordinates.lat,station.coordinates.lon],{radius:active?9:6,fillColor:colour(station),color:active?'#183f43':'#fff',weight:2,fillOpacity:.95});
-   else{const icon=el('div');icon.className='dam-square'+(active?' selected':'');icon.style.setProperty('--point-colour',colour(station));
+   else{const icon=el('div');icon.className='water-triangle'+(active?' selected':'');icon.style.setProperty('--point-colour',colour(station));
     marker=L.marker([station.coordinates.lat,station.coordinates.lon],{icon:L.divIcon({html:icon,className:'',iconSize:[14,14],iconAnchor:[7,7]})});}
    marker.addTo(gaugeLayer).bindTooltip(el('span',`${station.name} · ${stationValue(station)}`)).on('click',()=>chooseGauge(station));
    marker.getElement()?.setAttribute('data-gauge',station.kind+':'+station.id);
