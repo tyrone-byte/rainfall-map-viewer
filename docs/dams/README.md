@@ -59,3 +59,14 @@ The original Somerset location (-27.11556, 152.55667) is approximately 1.7 m out
 Rainfall uses the selected duration for its hyetograph, with independent chart intervals through one day. Every bar requires all its constituent valid nonnegative quarter-hours; missing is not zero. Selected-duration and 24-hour totals are separate metrics. `public/ifd-view.js` now exports an isolated reusable GaugeIFD view; both pages use the same local dataset/scenario selection, reference fallback labelling, no-marker curves and preceding-24-hour wettest-window logic. Choosing a chart interval does not change IFD calculations. Switching away destroys the IFD chart and clears its observation context so late reference loads cannot revive a previous gauge.
 
 Comparison tests feed the same observations into both viewers and compare chart datasets, multiple datums, long-gap styling, null readings, timestamp seconds, point toggles, chart heights, incomplete rain bars, interval selection and seven-day charts with unchanged 24-hour IFD bounds. No collection or database-writing behavior changes.
+
+## Explicit storage gauge selections
+
+`data/dams/storage-gauge-associations.json` records the user's selected storage
+gauges: Fred Haigh 539207, Eungella 533123, Maroon 540475 and Wuruma 539051.
+The builder validates that each is a unique mapped station and not labelled TW.
+The public catalogue retains the independently computed nearest station and adds
+`storageWaterGauge`. The Dams page prefers this selected gauge for the default
+hydrograph and always includes it among queried/displayed stations. Missing data
+does not cause a silent fallback to tailwater. These selections do not establish
+datum compatibility or activate spillway comparison colours.

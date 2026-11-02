@@ -1,8 +1,9 @@
 const {test,expect}=require('@playwright/test');
 const end='2026-10-29T00:00:00Z',coords={lat:-27.4,lon:152.6},basinId='brisbane-bremer-pine-caboolture';
 const gauge={id:'540177',name:'Water at dam TW',basinId,coordinates:coords,level:2.5,datum:'LGH',direction:'rising'};
-async function mock(page){
+async function mock(page,useStorageGauge=false){
  const dam={id:'wivenhoe',name:'Wivenhoe Dam',owner:'Seqwater',lat:-27.39306,lon:152.60417,catchmentAreaHa:702000,surfaceAreaFSL:10750,surfaceAreaUnit:'ha',fullSupplyVolume:1165238,fullSupplyVolumeUnit:'ML',catchmentBoundary:null,nearestRainGauge:{id:'rain-a',name:'Nearest rainfall station',basinId,distanceKm:1.25},nearestWaterGauge:{id:gauge.id,basinId,name:gauge.name,distanceKm:.8}};
+ if(useStorageGauge)dam.storageWaterGauge={id:'inside-water',basinId,name:'Other water inside area',datumVerified:false};
  await page.route('**/dams-catalogue.json',r=>r.fulfill({json:{dams:[dam,{...dam,id:'other',name:'Other Dam',owner:'Sunwater',lat:-27.45,lon:152.65}],rain:[{id:'rain-a',name:'Nearest rainfall station',basinId,coordinates:coords}],water:[gauge,{...gauge,id:'inside-water',name:'Other water inside area',coordinates:{lat:-27.42,lon:152.62}}]}}));
  await page.route('**/dam-boundaries.json',r=>r.fulfill({json:{dams:{wivenhoe:{id:'test-boundary',title:'Central Brisbane River',waterplan:'Moreton',gauges:{rain:['rain-a'],water:['540177','inside-water']}},other:null}}}));
  await page.route('**/dam-boundaries/test-boundary.geojson',r=>r.fulfill({json:{type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:[[[152.5,-27.5],[152.7,-27.5],[152.7,-27.3],[152.5,-27.3],[152.5,-27.5]]]}}}));
@@ -114,4 +115,21 @@ test('dam markers stay subtle until selected, and selection follows the map and 
  await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','10px');
  await page.locator('#dam').selectOption('');
  await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
+});
+
+test('user-selected storage gauge opens ahead of the geographically nearest station',async({page})=>{
+ await mock(page,true);await page.goto('/dams');await page.locator('#dam').selectOption('wivenhoe');
+ await expect(page.locator('#plot h2')).toHaveText('Other water inside area');
+ await expect(page.locator('#gaugeNote')).toContainText('Selected storage gauge');
+ await expect(page.locator('#gaugeNote')).toContainText('Datum compatibility with spillway crest not yet verified');
+ await page.route('**/api/archive-water/frame?*',r=>r.fulfill({json:{available:true,stations:[gauge]}}));
+ await page.locator('#duration').selectOption('180');
+ await expect(page.locator('#plot h2')).toHaveText('Other water inside area');
+ await expect(page.locator('#plot h3')).toContainText('No reading');
+});
+test('the four supplied dam associations preserve nearest-gauge metadata separately',async({request})=>{
+ const data=await(await request.get('/dams-catalogue.json')).json();
+ for(const [id,station] of Object.entries({'fred-haigh-dam':'539207','eungella-dam':'533123','maroon-dam':'540475','wuruma-dam':'539051'})){
+  const dam=data.dams.find(d=>d.id===id);expect(dam.storageWaterGauge.id).toBe(station);expect(dam.storageWaterGauge.datumVerified).toBe(false);expect(dam.nearestWaterGauge.id).not.toBe(station);
+ }
 });

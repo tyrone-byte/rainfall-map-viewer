@@ -59,6 +59,20 @@ def build():
         dam['nearestWaterGauge'] = dict(id=closest['id'], basinId=closest['basinId'],
                                        name=closest['name'], distanceKm=round(distance(dam, closest), 3),
                                        selection='Nearest mapped station; storage association not verified')
+    associations = json.loads((ROOT / 'data/dams/storage-gauge-associations.json').read_text())
+    if set(associations) - {d['id'] for d in dams}:
+        raise ValueError('Storage-gauge association names an unknown dam')
+    for dam in dams:
+        association = associations.get(dam['id'])
+        if not association:
+            continue
+        matches = [g for g in catalogue['water'] if g['id'] == association['stationId']]
+        if len(matches) != 1 or 'TW' in matches[0]['name'].split():
+            raise ValueError('Review storage-gauge identity for ' + dam['name'])
+        gauge = matches[0]
+        dam['storageWaterGauge'] = dict(id=gauge['id'], basinId=gauge['basinId'],
+                                       name=gauge['name'], distanceKm=round(distance(dam, gauge), 3),
+                                       selection=association['source'], datumVerified=association['datumVerified'])
     for dam in dams:
         closest = min(catalogue['rain'], key=lambda gauge: (distance(dam, gauge), gauge['id']))
         dam['nearestRainGauge'] = dict(id=closest['id'], basinId=closest['basinId'],

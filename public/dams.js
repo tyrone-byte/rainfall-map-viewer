@@ -70,14 +70,15 @@
   chosen=catalogue.dams.find(d=>d.id===id); if(!chosen) {reset();return;}
   drawDams(); labelWaterways();
   const sequence=++selectionVersion; boundary=boundaryIndex.dams[id]||null;selectedGauge=null;
-  nearest=catalogue.water.find(g=>g.id===chosen.nearestWaterGauge?.id&&g.basinId===chosen.nearestWaterGauge?.basinId)||null;
+  const defaultGauge=chosen.storageWaterGauge||chosen.nearestWaterGauge;
+  nearest=catalogue.water.find(g=>g.id===defaultGauge?.id&&g.basinId===defaultGauge?.basinId)||null;
   $('dam').value=id; $('damName').textContent=chosen.name; $('damInfo').replaceChildren();
   metric('Owner',chosen.owner); metric('Assumed surface area at full supply',`${number(chosen.surfaceAreaFSL)}${chosen.surfaceAreaUnit?' '+chosen.surfaceAreaUnit:''}`);
   metric('Assumed full supply volume',`${number(chosen.fullSupplyVolume)}${chosen.fullSupplyVolumeUnit?' '+chosen.fullSupplyVolumeUnit:''}`);
   metric('Assumed catchment area',`${number(chosen.catchmentAreaHa/100)} km²`);
   metric('Water-plan subcatchment / catchment',boundary?.title||'No match in supplied extract');
   metric('Water plan',boundary?.waterplan||'Not identified');
-  $('gaugeNote').textContent=nearest?`Nearest mapped gauge: ${nearest.name} · ${chosen.nearestWaterGauge.distanceKm.toFixed(2)} km from dam coordinates. Storage-level association not verified.`:'No mapped water-level gauge available.';
+  $('gaugeNote').textContent=nearest&&chosen.storageWaterGauge?`Selected storage gauge: ${nearest.name} · User-selected association. Datum compatibility with spillway crest not yet verified.`:nearest?`Nearest mapped gauge: ${nearest.name} · ${chosen.nearestWaterGauge.distanceKm.toFixed(2)} km from dam coordinates. Storage-level association not verified.`:'No mapped water-level gauge available.';
   $('boundaryNote').textContent=boundary?`Water-plan area: ${boundary.title} · ${boundary.waterplan}. Geographic context, not a verified upstream dam catchment.`:boundaryIndex.unavailable?'Water-plan boundaries could not be loaded. The nearest gauge remains available.':'No containing water-plan boundary in this extract. The nearest gauge remains available.';
   areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[];drawRainGauge(); fit();
   for(const key of ['apply','latest','previous','next']) $(key).disabled=!nearest;
