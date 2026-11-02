@@ -17,7 +17,8 @@ and [compact history](docs/COMPACT_HISTORY.md). The viewer requires its configur
 Water gauges use SVG waterline symbols with zoom-dependent sizes. The Water levels
 page retains rising/falling, rate-of-rise and observation-age colour modes.
 The Dams page defaults to rising/falling. These describe measured movement,
-not flood consequence categories. Spillway comparisons are not implemented yet.
+not flood consequence categories. The Dams page also offers a provisional
+44-dam crest comparison with a legend and a downloadable review CSV.
 Tidal effects are not removed. Street, greyscale and satellite-with-labels backgrounds are
 available on both viewers. On phones the page order is time controls, map,
 plots, then station search/list, with jump links between map and gauges.

@@ -14,10 +14,20 @@
   const wrap=node('div',undefined,'chart'),canvas=node('canvas');canvas.id='waterHistoryChart';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${station.name}: saved water levels over the selected duration`);wrap.append(canvas);host.append(wrap);
   const datums=[...new Set(result.observations.map(o=>o.datum))];
   const datasets=datums.map((datum,index)=>({label:`Gauge height · m ${datum}`,data:result.observations.map(o=>({x:Date.parse(o.time),y:o.datum===datum?o.level:null})),borderColor:['#228d85','#7350a0','#b06c28'][index%3],borderWidth:2,pointRadius:showPoints?3:0,pointHitRadius:7,spanGaps:false,tension:0,segment:{borderDash:ctx=>ctx.p1.parsed.x-ctx.p0.parsed.x>3600000?[6,5]:undefined}}));
+  const referenceNotes=[];
+  for(const ref of result.references||[]){
+   const compatible=datums.length===1&&(ref.datum===datums[0]||(ref.kind==='spillway'&&ref.provisional&&!ref.datum&&datums[0]==='AHD'));
+   if(!Number.isFinite(ref.level)||!compatible){referenceNotes.push(`${ref.kind}: reference omitted because datum compatibility is unverified.`);continue;}
+   const provisional=ref.provisional?' · PROVISIONAL TEST'+(!ref.datum?' · datum unverified':''):'';
+   const label=`${ref.kind[0].toUpperCase()+ref.kind.slice(1)} · ${ref.level.toFixed(2)} m ${ref.datum||'datum unverified'}${provisional}`;
+   datasets.push({label,referenceKind:ref.kind,data:[{x:Date.parse(result.start),y:ref.level},{x:Date.parse(result.end),y:ref.level}],borderColor:{minor:'#EAB308',moderate:'#F97316',major:'#EF4444',spillway:'#516b87'}[ref.kind]||'#516b87',borderWidth:1.5,borderDash:[6,4],pointRadius:0,pointHitRadius:0});
+   referenceNotes.push(`${label}. Source: ${ref.source}.`);
+  }
   const chart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{tooltip:{callbacks:{title:items=>preciseDate(items[0].parsed.x)+' AEST'}}},scales:{x:{type:'linear',min:Date.parse(result.start),max:Date.parse(result.end),ticks:{maxTicksLimit:8,callback:value=>date(value)},title:{display:true,text:'Observation time · Brisbane AEST'}},y:{title:{display:true,text:'Gauge height · metres (see datum in legend)'}}}}});
-  points.onchange=()=>{onPoints(points.checked);for(const dataset of chart.data.datasets)dataset.pointRadius=points.checked?3:0;chart.update('none');};
+  points.onchange=()=>{onPoints(points.checked);for(const dataset of chart.data.datasets)if(!dataset.referenceKind)dataset.pointRadius=points.checked?3:0;chart.update('none');};
   const notes=node('details',undefined,'plot-notes');notes.append(node('summary','Data notes'),node('p',`${result.observations.length} saved readings · ${date(result.start)} – ${date(result.end)} AEST. Lines connect recorded values; dashed segments indicate gaps over 60 minutes, not a communications fault. Missing values and datum changes break the line. No readings are created or accumulated. AHD and local gauge heights are not interchangeable.`,'muted'));
   if(Number.isFinite(station.ratePerHour))notes.append(node('p',`Measured comparison: ${preciseDate(station.movementStartAt)} – ${preciseDate(station.movementEndAt)} AEST · ${station.levelChange.toFixed(3)} m · ${station.ratePerHour.toFixed(3)} m/h. No tidal adjustment.`,'muted'));
+  for(const text of referenceNotes)notes.append(node('p',text,'muted'));
   host.append(notes);return chart;
  }
  function rainfall(host,station,series,data,minutes,{interval=15,onInterval=()=>{},renderIfd=()=>{}}={}){

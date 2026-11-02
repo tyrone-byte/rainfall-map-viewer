@@ -1,0 +1,50 @@
+dam,gauge_id,gauge_name,association,crest_m,crest_datum,latest_level_m,reading_datum,observed_at,raw_difference_m,comparison_state,over_10m,review_reason
+Atkinson Dam,540547,Buaraba Ck at Atkinson Dam HG,Provisional test,65.72,UNVERIFIED,,,,,unknown,,History database not-connected
+Baroon Pocket Dam,540426,Obi Obi Creek at Baroon Pocket Dam (HG),Provisional test,217.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Bill Gunn Dam,540563,Lake Dyer at Bill Gunn Dam,Provisional test,110.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Bjelke-Petersen Dam,540053,Barker Creek at Bjelke-Petersen Dam (HW),Provisional test,307.3,UNVERIFIED,,,,,unknown,,History database not-connected
+Boondooma Dam,540262,Boyne River at Boondooma Dam (HW),Provisional test,280.4,UNVERIFIED,,,,,unknown,,History database not-connected
+Borumba Dam,540575,Yabba Creek at Borumba Dam (HG),Provisional test,132.01,UNVERIFIED,,,,,unknown,,History database not-connected
+Bromelton Off-Stream Storage,,,Unresolved,44.65,UNVERIFIED,,,,,unknown,,Unresolved storage gauge
+Burdekin Falls Dam,034097,Burdekin Dam,Provisional test,154.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Callide Dam,539071,Callide Creek at Callide Dam HG,Provisional test,207.57,UNVERIFIED,,,,,unknown,,History database not-connected
+Cania Dam,539092,Three Moon Creek at Cania Dam (HW),Provisional test,331.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Cedar Pocket Dam,540476,Deep Creek at Cedar Pocket Dam HG,Provisional test,101.07,UNVERIFIED,,,,,unknown,,History database not-connected
+Clarendon Dam,540546,Lake Clarendon Dam HW,Provisional test,96.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Coolmunda Dam,541033,Macintyre Brook at Coolmunda Dam HG,Provisional test,304.32,UNVERIFIED,,,,,unknown,,History database not-connected
+Cooloolabin Dam,540460,Cooloolabin Dam HW,Provisional test,195.91,UNVERIFIED,,,,,unknown,,History database not-connected
+EJ Beardmore Dam,043103,Balonne River at Beardmore Dam,Provisional test,201.03,UNVERIFIED,,,,,unknown,,History database not-connected
+Enoggera Dam,540604,Enoggera Creek at Enoggera Dam HG,Provisional test,74.4,UNVERIFIED,,,,,unknown,,History database not-connected
+Eungella Dam,533123,Broken River at Eungella Dam HG,Provisional test,562.71,UNVERIFIED,,,,,unknown,,History database not-connected
+Ewen Maddock Dam,540346,Mooloolah River at Ewen Maddock Dam HW,Provisional test,25.38,UNVERIFIED,,,,,unknown,,History database not-connected
+Fairbairn Dam,035241,Nogoa River at Fairbairn Dam,Provisional test,204.23,UNVERIFIED,,,,,unknown,,History database not-connected
+Fred Haigh Dam,539207,Kolan River at Fred Haigh Dam HW,Provisional test,75.56,UNVERIFIED,,,,,unknown,,History database not-connected
+Glenlyon Dam,541051,Pike Creek at Glenlyon Dam HW,Provisional test,411.73,UNVERIFIED,,,,,unknown,,History database not-connected
+Gold Creek Dam,540609,Gold Creek at Gold Ck Reservoir HG,Provisional test,95.75,UNVERIFIED,,,,,unknown,,History database not-connected
+Hinze Dam,540610,Nerang River at Hinze Dam HG,Provisional test,94.5,AHD,,,,,unknown,,History database not-connected
+Isis Balancing Storage,,,Unresolved,64.2,UNVERIFIED,,,,,unknown,,Unresolved storage gauge
+Julius Dam,529019,Leichhardt River at Julius Dam,Provisional test,223.54,UNVERIFIED,,,,,unknown,,History database not-connected
+Kinchant Dam,533124,North Sandy Creek at Kinchant Dam,Provisional test,58.21,UNVERIFIED,,,,,unknown,,History database not-connected
+Kroombit Dam,539112,Kroombit Creek at Kroombit Dam HG,Provisional test,265.8,UNVERIFIED,,,,,unknown,,History database not-connected
+Lake MacDonald Dam,540755,Six Mile Creek at Lake Macdonald (HG),Provisional test,95.32,UNVERIFIED,,,,,unknown,,History database not-connected
+Lake Manchester Dam,540606,Cabbage Tree Creek at Lake Manchester HG,Provisional test,50.9,UNVERIFIED,,,,,unknown,,History database not-connected
+Leslie Dam,541055,Sandy Creek at Leslie Dam HG,Provisional test,466.31,UNVERIFIED,,,,,unknown,,History database not-connected
+Leslie Harrison Dam,540384,Tingalpa Creek at Leslie Harrison Dam,Provisional test,15.24,UNVERIFIED,,,,,unknown,,History database not-connected
+Little Nerang Dam,540054,Little Nerang Creek at Little Nerang Dam,Provisional test,168.02,UNVERIFIED,,,,,unknown,,History database not-connected
+Maroon Dam,540475,Burnett Creek at Maroon Dam,Provisional test,217.51,UNVERIFIED,,,,,unknown,,History database not-connected
+Moogerah Dam,540474,Reynolds Creek at Moogerah Dam HG,Provisional test,154.81,UNVERIFIED,,,,,unknown,,History database not-connected
+Moura Offstream Storage,,,Unresolved,126.29,UNVERIFIED,,,,,unknown,,Unresolved storage gauge
+North Pine Dam,540277,North Pine River at North Pine Dam,Provisional test,32.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Paradise Dam,539108,Burnett River at Paradise Dam (HW),Provisional test,61.8,UNVERIFIED,,,,,unknown,,History database not-connected
+Peter Faust Dam,533019,Proserpine River at Peter Faust Dam HW TM,Provisional test,85.6,UNVERIFIED,,,,,unknown,,History database not-connected
+Poona Dam,540461,Poona Dam HW,Provisional test,152.7,UNVERIFIED,,,,,unknown,,History database not-connected
+Sideling Creek Dam,540605,Sideling Creek at Lake Kurwongbah HG,Provisional test,20.37,UNVERIFIED,,,,,unknown,,History database not-connected
+Somerset Dam,040820,Stanley River at Somerset Dam,Provisional test,100.45,UNVERIFIED,,,,,unknown,,History database not-connected
+Teemburra Dam,533041,Teemburra Dam,Provisional test,290.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Tinaroo Falls Dam,531034,Barron River at Tinaroo Dam (HW),Provisional test,670.42,UNVERIFIED,,,,,unknown,,History database not-connected
+Wappa Dam,540462,South Maroochy River at Wappa Dam,Provisional test,44.81,UNVERIFIED,,,,,unknown,,History database not-connected
+West Barron Balancing Storage,,,Unresolved,509.6,UNVERIFIED,,,,,unknown,,Unresolved storage gauge
+Wivenhoe Dam,540177,Brisbane River at Wivenhoe Dam HG,Provisional test,57.0,UNVERIFIED,,,,,unknown,,History database not-connected
+Woongarra Balancing Storage,,,Unresolved,35.75,UNVERIFIED,,,,,unknown,,Unresolved storage gauge
+Wuruma Dam,539051,Nogo River at Wuruma Dam (HW),Provisional test,228.29,UNVERIFIED,,,,,unknown,,History database not-connected
+Wyaralong Dam,540512,Teviot Brook at Wyaralong Dam,Provisional test,63.6,UNVERIFIED,,,,,unknown,,History database not-connected

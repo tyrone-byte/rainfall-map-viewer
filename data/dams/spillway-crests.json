@@ -1,0 +1,296 @@
+{
+  "atkinson-dam": {
+    "level": 65.72,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "baroon-pocket-dam": {
+    "level": 217.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "bill-gunn-dam": {
+    "level": 110.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "bjelke-petersen-dam": {
+    "level": 307.3,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "boondooma-dam": {
+    "level": 280.4,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "borumba-dam": {
+    "level": 132.01,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "bromelton-off-stream-storage": {
+    "level": 44.65,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "burdekin-falls-dam": {
+    "level": 154.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "callide-dam": {
+    "level": 207.57,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "cania-dam": {
+    "level": 331.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "cedar-pocket-dam": {
+    "level": 101.07,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "clarendon-dam": {
+    "level": 96.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "coolmunda-dam": {
+    "level": 304.32,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "cooloolabin-dam": {
+    "level": 195.91,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "ej-beardmore-dam": {
+    "level": 201.03,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "enoggera-dam": {
+    "level": 74.4,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "eungella-dam": {
+    "level": 562.71,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "ewen-maddock-dam": {
+    "level": 25.38,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "fairbairn-dam": {
+    "level": 204.23,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "fred-haigh-dam": {
+    "level": 75.56,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "glenlyon-dam": {
+    "level": 411.73,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "gold-creek-dam": {
+    "level": 95.75,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "hinze-dam": {
+    "level": 94.5,
+    "datum": "AHD",
+    "source": "User supplied correction: 94.5 m AHD",
+    "datumVerified": true
+  },
+  "isis-balancing-storage": {
+    "level": 64.2,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "julius-dam": {
+    "level": 223.54,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "kinchant-dam": {
+    "level": 58.21,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "kroombit-dam": {
+    "level": 265.8,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "lake-macdonald-dam": {
+    "level": 95.32,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "lake-manchester-dam": {
+    "level": 50.9,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "leslie-dam": {
+    "level": 466.31,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "leslie-harrison-dam": {
+    "level": 15.24,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "little-nerang-dam": {
+    "level": 168.02,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "maroon-dam": {
+    "level": 217.51,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "moogerah-dam": {
+    "level": 154.81,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "moura-offstream-storage": {
+    "level": 126.29,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "north-pine-dam": {
+    "level": 32.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "paradise-dam": {
+    "level": 61.8,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "peter-faust-dam": {
+    "level": 85.6,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "poona-dam": {
+    "level": 152.7,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "sideling-creek-dam": {
+    "level": 20.37,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "somerset-dam": {
+    "level": 100.45,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "teemburra-dam": {
+    "level": 290.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "tinaroo-falls-dam": {
+    "level": 670.42,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "wappa-dam": {
+    "level": 44.81,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "west-barron-balancing-storage": {
+    "level": 509.6,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "wivenhoe-dam": {
+    "level": 57.0,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "woongarra-balancing-storage": {
+    "level": 35.75,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "wuruma-dam": {
+    "level": 228.29,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  },
+  "wyaralong-dam": {
+    "level": 63.6,
+    "datum": null,
+    "source": "User supplied: Active Dams 3-11-2026 8-47-44 AM.xlsx",
+    "datumVerified": false
+  }
+}

@@ -62,7 +62,9 @@ def build():
     associations = json.loads((ROOT / 'data/dams/storage-gauge-associations.json').read_text())
     if set(associations) - {d['id'] for d in dams}:
         raise ValueError('Storage-gauge association names an unknown dam')
+    crests = json.loads((ROOT / 'data/dams/spillway-crests.json').read_text())
     for dam in dams:
+        dam['spillwayCrest'] = crests.get(dam['id'])
         association = associations.get(dam['id'])
         if not association:
             continue
@@ -72,7 +74,7 @@ def build():
         gauge = matches[0]
         dam['storageWaterGauge'] = dict(id=gauge['id'], basinId=gauge['basinId'],
                                        name=gauge['name'], distanceKm=round(distance(dam, gauge), 3),
-                                       selection=association['source'], datumVerified=association['datumVerified'])
+                                       selection=association['source'], datumVerified=association['datumVerified'], provisional=association.get('provisional', True))
     for dam in dams:
         closest = min(catalogue['rain'], key=lambda gauge: (distance(dam, gauge), gauge['id']))
         dam['nearestRainGauge'] = dict(id=closest['id'], basinId=closest['basinId'],

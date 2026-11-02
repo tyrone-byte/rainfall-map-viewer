@@ -11,12 +11,10 @@ body.dam-page .dam-main{flex:none}
 
 .waterway-label{background:transparent;border-radius:0;padding:0;color:#245c83;font-style:italic;text-shadow:1px 0 #fff,-1px 0 #fff,0 1px #fff,0 -1px #fff;transform-origin:center}.dam-name-label-anchor{pointer-events:none!important}.dam-name-label{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;line-height:22px;font-weight:600;color:#4a4a4a;text-shadow:1px 0 #fff,-1px 0 #fff,0 1px #fff,0 -1px #fff;pointer-events:none}
 
-/* Compact dam diamonds enlarge when selected. */
-.dam-marker{display:flex;align-items:center;justify-content:center;background:transparent;border:0}
-.dam-marker-diamond{display:block;box-sizing:border-box;width:10px;height:10px;transform:rotate(45deg);background:#718b90;border:1px solid #fff;box-shadow:0 1px 2px #0005}
-.dam-marker.is-selected .dam-marker-diamond{width:16px;height:16px;background:#c05a20;border:2px solid #fff;box-shadow:0 0 0 1px #79370f,0 1px 3px #0005}
+/* Dam SVGs stay above gauges; only the visible symbol catches pointer events. */
+.dam-marker{display:flex;align-items:center;justify-content:center;background:transparent;border:0;pointer-events:none!important}
+.dam-symbol{pointer-events:auto;overflow:visible}
+.dam-marker.is-selected .dam-symbol{filter:drop-shadow(0 0 2px #fff)}
 .dam-marker:focus-visible{outline:2px solid #183f43;border-radius:50%}
-
-/* Let nearby gauges receive clicks outside the visible dam diamond. */
-.dam-marker{pointer-events:none!important}
-.dam-marker-diamond{pointer-events:auto}
+.dam-legend{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0;font-size:12px}
+.dam-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}

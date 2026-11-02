@@ -7,7 +7,7 @@ and water cutover behaviour are unchanged.
 
 Water gauges on both `/water-history` and `/dams` use shared native Leaflet SVG
 waterline symbols. Rainfall retains its existing filled circles; dams retain
-foreground diamonds. The comparison period remains independent of chart duration:
+foreground dam-wall SVG symbols. The comparison period remains independent of chart duration:
 15 minutes, 30 minutes, one hour (default), or three hours.
 
 For each gauge at the selected historical ending time:
@@ -43,10 +43,10 @@ and >0.60 red. Falling and steady retain their direction colours. These are
 movement display bands, not warning thresholds. Observation-age mode retains
 current teal, suspect yellow, and out/missing grey.
 
-The next dam-specific enhancement may compare verified storage gauges with
-spillway crests. No spillway values, gauge associations or datum conversions
-are assumed or implemented by this change. A nearby river gauge is not thereby
-treated as a dam storage-level gauge.
+The Dams page now has a separately labelled provisional 44-dam crest test.
+See `docs/dams/README.md` for its associations, crest provenance, datum restrictions,
+grey review states and CSV export. The original nearest-gauge calculation remains
+separate; no local-gauge/AHD datum conversions are invented.
 
 The reusable renderer accepts colour, status, size, trend, selected, id and an
 optional shared SVG renderer. It draws vector paths in a shared SVG layer, not

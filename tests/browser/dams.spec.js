@@ -97,24 +97,19 @@ test.describe('dam phone zoom',()=>{
  });
 });
 
-test('dam markers stay subtle until selected, and selection follows the map and list',async({page})=>{
+test('dam SVG symbols stay grey without compatible readings and selection enlarges the symbol',async({page})=>{
  await mock(page);await page.goto('/dams');
  const marker=id=>page.locator(`[data-dam="${id}"]`);
  await expect(page.locator('.dam-marker')).toHaveCount(2);
  await expect(page.locator('.leaflet-damMarkers-pane')).toHaveCSS('z-index','625');
- await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','10px');
- await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
+ await expect(marker('wivenhoe').locator('.dam-symbol')).toHaveAttribute('data-state','unknown');
  await page.locator('#dam').selectOption('wivenhoe');
  await expect(marker('wivenhoe')).toHaveClass(/is-selected/);
- await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','16px');
- await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('background-color','rgb(192, 90, 32)');
+ const widths=await page.locator('.dam-symbol').evaluateAll(nodes=>nodes.map(n=>Number(n.getAttribute('width'))));
+ expect(Math.max(...widths)-Math.min(...widths)).toBe(3);
  await expect(page.locator('.dam-name-label').filter({hasText:'Wivenhoe Dam'})).toBeVisible();
- await marker('other').locator('.dam-marker-diamond').click();
- await expect(page.locator('#dam')).toHaveValue('other');
- await expect(marker('other')).toHaveClass(/is-selected/);
- await expect(marker('wivenhoe').locator('.dam-marker-diamond')).toHaveCSS('width','10px');
- await page.locator('#dam').selectOption('');
- await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
+ await marker('other').locator('.dam-symbol').click();await expect(page.locator('#dam')).toHaveValue('other');
+ await page.locator('#dam').selectOption('');await expect(page.locator('.dam-marker.is-selected')).toHaveCount(0);
 });
 
 test('user-selected storage gauge opens ahead of the geographically nearest station',async({page})=>{

@@ -98,6 +98,20 @@ class Handler(SimpleHTTPRequestHandler):
         if path == '/api/archive-rainfall/group-stats':
             self.diagnostic_response(archive_service.rainfall_group_stats())
             return
+        if path == '/api/dam-spillway-review.csv':
+            import gauge_references
+            body=gauge_references.review_csv().encode()
+            self.send_response(200)
+            self.send_header('Content-Type','text/csv; charset=utf-8')
+            self.send_header('Content-Disposition','attachment; filename="dam-spillway-review.csv"')
+            self.send_header('Cache-Control','no-store')
+            self.send_header('Content-Length',str(len(body)))
+            self.end_headers();self.wfile.write(body)
+            return
+        if path == '/api/dam-levels':
+            import gauge_references
+            self.diagnostic_response({'rows':gauge_references.review()})
+            return
         if path.startswith('/api/archive-water/'):
             params=parse_qs(urlsplit(self.path).query)
             try:

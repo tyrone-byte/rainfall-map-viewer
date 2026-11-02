@@ -70,3 +70,33 @@ The public catalogue retains the independently computed nearest station and adds
 hydrograph and always includes it among queried/displayed stations. Missing data
 does not cause a silent fallback to tailwater. These selections do not establish
 datum compatibility or activate spillway comparison colours.
+
+## Provisional 44-dam crest test
+
+The owner approved 44 candidate storage-gauge associations for testing. The other
+five storages (Bromelton, Isis, Moura, West Barron and Woongarra) have no assigned
+storage gauge and stay grey. The original geographically nearest station remains
+separate metadata. Missing assigned readings never trigger a tailwater fallback.
+
+`data/dams/spillway-crests.json` preserves all 49 supplied numeric crests. Hinze
+is the user's explicit correction, 94.5 m AHD. The original workbook did not
+specify the datum of the other 48 crests; their datum remains null, not silently
+asserted to be AHD. Values are user supplied, not verified operational thresholds.
+
+The dam-wall SVG uses blue at/below and red above the listed crest only for an
+AHD reading within 10 m of that crest, as a prominently labelled provisional
+numeric test. Unknown crest datums are still flagged as unverified. Local gauge
+heights (LGH), missing/stale readings and differences over 10 m stay grey pending
+review. Above crest does not prove active spilling at a gated dam. Dam symbols
+remain above gauges; selected symbols enlarge and keep their comparison colour.
+
+`/api/dam-spillway-review.csv` exports every dam with its association, listed
+crest/datum, latest saved reading/time/datum, signed raw difference and an
+`over_10m` flag (strictly greater than 10 m in either direction). The raw diagnostic
+difference is retained for mismatched datums but is not treated as a valid
+elevation conversion. A missing reading has blank differences and flags, never
+zero or false. The map legend links the export; `/api/dam-levels` uses the same
+latest-reading lookup for initial icon colours. When a dam is selected, its
+chosen historical frame supplies that dam's comparison instead. The local CSV
+may be unpopulated until connected to history; the deployed export reads the
+deployed database. CSV comparison values do not establish physical spilling.

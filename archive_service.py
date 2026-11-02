@@ -1,5 +1,6 @@
 """Read-only archive access, observation-age report and complete quarter-hour sums."""
 import json
+import gauge_references
 import math
 import os
 import sqlite3
@@ -466,5 +467,5 @@ def water_series(gauge_id,requested=None,minutes=1440):
     def read(db):
         if minutes>1440 and not isinstance(db,sqlite3.Connection):db.execute('SET LOCAL statement_timeout=20000')
         rows=water_rows(db,start,end,{'bom:'+gauge_id})
-        return {'start':start,'end':end,'minutes':minutes,'station':gauge,'observations':[{'time':r['end_at'],'level':r['value'],'datum':r['datum']} for r in rows]}
+        return {'start':start,'end':end,'minutes':minutes,'station':gauge,'references':gauge_references.for_gauge(gauge_id,db),'observations':[{'time':r['end_at'],'level':r['value'],'datum':r['datum']} for r in rows]}
     return read_archive(f'water-series:{gauge_id}:{end}:{minutes}',read)

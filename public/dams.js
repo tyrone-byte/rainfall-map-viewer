@@ -14,6 +14,7 @@
  const waterwayLabels=L.layerGroup().addTo(map),damNameLabels=L.layerGroup().addTo(map);
  let watercourseFeatures=[],stations=[],selectedGauge=null,showRecordedPoints=false,rainChartMinutes=15,ifdView=null,follow=true;
  let catalogue, boundaryIndex, chosen=null, nearest=null, boundary=null, row=null, chart=null, ending=null;
+ let damReadings=new Map();
  let selectionVersion=0, loadVersion=0, detailVersion=0, controller, detailController;
  // Keep zoom operations anchored to the selected dam, including zoom-at-pointer.
  const originalSetView=map.setView;
@@ -39,10 +40,12 @@
  function drawDams() {
   damsLayer.clearLayers();
   for(const dam of catalogue?.dams||[]){
-   const active=dam.id===chosen?.id,icon=el('span');
-   icon.className='dam-marker-diamond';
-   const marker=L.marker([dam.lat,dam.lon],{pane:'damMarkers',zIndexOffset:active?100:0,title:dam.name,icon:L.divIcon({html:icon,className:'dam-marker'+(active?' is-selected':''),iconSize:[28,28],iconAnchor:[14,14]})});
-   marker.addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});
+   const active=dam.id===chosen?.id;
+   const selectedReading=active?stations.find(s=>s.kind==='water'&&s.id===dam.storageWaterGauge?.id):null;
+   const state=DamMarker.state(dam,selectedReading||damReadings.get(dam.id));
+   const size=DamMarker.sizeAtZoom(map.getZoom())+(active?3:0);
+   const marker=L.marker([dam.lat,dam.lon],{pane:'damMarkers',zIndexOffset:active?100:0,title:dam.name,icon:DamMarker.icon({state,size,selected:active})});
+   marker.addTo(damsLayer).bindTooltip(el('span',`${dam.name} · ${state==='above'?'Above listed crest (test)':state==='below'?'Below listed crest (test)':state==='at'?'At listed crest (test)':'No verified comparison'} · ${dam.owner}`)).on('click',()=>{$('owner').value='';options();selectDam(dam.id);});
    marker.getElement()?.setAttribute('data-dam',dam.id);
   }
  }
@@ -73,12 +76,13 @@
   const defaultGauge=chosen.storageWaterGauge||chosen.nearestWaterGauge;
   nearest=catalogue.water.find(g=>g.id===defaultGauge?.id&&g.basinId===defaultGauge?.basinId)||null;
   $('dam').value=id; $('damName').textContent=chosen.name; $('damInfo').replaceChildren();
-  metric('Owner',chosen.owner); metric('Assumed surface area at full supply',`${number(chosen.surfaceAreaFSL)}${chosen.surfaceAreaUnit?' '+chosen.surfaceAreaUnit:''}`);
+  metric('Owner',chosen.owner);
+  if(chosen.spillwayCrest)metric('Listed spillway crest · test',`${number(chosen.spillwayCrest.level)} m ${chosen.spillwayCrest.datum||'(datum unverified)'}`); metric('Assumed surface area at full supply',`${number(chosen.surfaceAreaFSL)}${chosen.surfaceAreaUnit?' '+chosen.surfaceAreaUnit:''}`);
   metric('Assumed full supply volume',`${number(chosen.fullSupplyVolume)}${chosen.fullSupplyVolumeUnit?' '+chosen.fullSupplyVolumeUnit:''}`);
   metric('Assumed catchment area',`${number(chosen.catchmentAreaHa/100)} km²`);
   metric('Water-plan subcatchment / catchment',boundary?.title||'No match in supplied extract');
   metric('Water plan',boundary?.waterplan||'Not identified');
-  $('gaugeNote').textContent=nearest&&chosen.storageWaterGauge?`Selected storage gauge: ${nearest.name} · User-selected association. Datum compatibility with spillway crest not yet verified.`:nearest?`Nearest mapped gauge: ${nearest.name} · ${chosen.nearestWaterGauge.distanceKm.toFixed(2)} km from dam coordinates. Storage-level association not verified.`:'No mapped water-level gauge available.';
+  $('gaugeNote').textContent=nearest&&chosen.storageWaterGauge?`Selected storage gauge: ${nearest.name} · ${chosen.storageWaterGauge.provisional?'Provisional test association':'User-selected association'}. Datum compatibility with spillway crest not yet verified.`:nearest?`Nearest mapped gauge: ${nearest.name} · ${chosen.nearestWaterGauge.distanceKm.toFixed(2)} km from dam coordinates. Storage-level association not verified.`:'No mapped water-level gauge available.';
   $('boundaryNote').textContent=boundary?`Water-plan area: ${boundary.title} · ${boundary.waterplan}. Geographic context, not a verified upstream dam catchment.`:boundaryIndex.unavailable?'Water-plan boundaries could not be loaded. The nearest gauge remains available.':'No containing water-plan boundary in this extract. The nearest gauge remains available.';
   areaLayer.clearLayers(); streamsLayer.clearLayers();waterwayLabels.clearLayers();watercourseFeatures=[];drawRainGauge(); fit();
   for(const key of ['apply','latest','previous','next']) $(key).disabled=!nearest;
@@ -160,6 +164,7 @@
   }
  }
  map.on('zoomend moveend resize',labelWaterways);
+ map.on('zoomend',drawDams);
  function value(r) {return r.level===null?'No reading':`${r.level.toFixed(2)} m ${r.datum||''}`;}
  function colour(station) {
   if(station.kind==='rain')return station.depth===null?'#88969c':station.depth<=5?'#36a46d':station.depth<=30?'#e9c345':station.depth<=80?'#ed8b36':'#d94843';
@@ -168,7 +173,7 @@
  function stationValue(station){return station.kind==='rain'?(station.depth===null?'Incomplete rainfall':`${station.depth.toFixed(1)} mm`):value(station);}
  function chooseGauge(station,reveal=true){selectedGauge={id:station.id,kind:station.kind};draw();return station.kind==='rain'?plotRain(station,reveal):plot(station,reveal);}
  function draw() {
-  gaugeLayer.clearLayers();drawRainGauge();
+  gaugeLayer.clearLayers();drawRainGauge();drawDams();
   for(const station of stations){
    if(!$(station.kind==='rain'?'showRain':'showWater').checked)continue;
    const active=selectedGauge?.id===station.id&&selectedGauge?.kind===station.kind;
@@ -267,6 +272,16 @@
   catalogue=data;boundaryIndex=index;options();
   drawDams();
   labelWaterways();
+  async function refreshDamLevels(){
+   try{const result=await json('/api/dam-levels');
+    damReadings=new Map(result.rows.filter(r=>r.gauge_id).map(r=>{
+     const dam=data.dams.find(d=>d.name===r.dam);
+     const age=r.observed_at?(Date.now()-Date.parse(r.observed_at))/60000:Infinity;
+     return [dam?.id,{level:r.latest_level_m,datum:r.reading_datum,ageMinutes:age}];
+    }));drawDams();
+   }catch(_){damReadings.clear();drawDams();}
+  }
+  refreshDamLevels();setInterval(refreshDamLevels,60000);
   $('status').textContent=`${data.dams.length} dams and storages. Choose a dam from the list or map.`;
  }).catch(()=>{$('status').textContent='Dam catalogue could not be loaded. Please refresh.';});
 })();

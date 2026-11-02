@@ -1,6 +1,266 @@
 {
-  "fred-haigh-dam": {"stationId": "539207", "source": "User-selected: Kolan River at Fred Haigh Dam HW", "datumVerified": false},
-  "eungella-dam": {"stationId": "533123", "source": "User-selected: Broken River at Eungella Dam HG", "datumVerified": false},
-  "maroon-dam": {"stationId": "540475", "source": "User-selected: Burnett Creek at Maroon Dam", "datumVerified": false},
-  "wuruma-dam": {"stationId": "539051", "source": "User-selected: Nogo River at Wuruma Dam (HW)", "datumVerified": false}
+  "atkinson-dam": {
+    "stationId": "540547",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "baroon-pocket-dam": {
+    "stationId": "540426",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "bill-gunn-dam": {
+    "stationId": "540563",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "bjelke-petersen-dam": {
+    "stationId": "540053",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "boondooma-dam": {
+    "stationId": "540262",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "borumba-dam": {
+    "stationId": "540575",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "burdekin-falls-dam": {
+    "stationId": "034097",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "callide-dam": {
+    "stationId": "539071",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "cania-dam": {
+    "stationId": "539092",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "cedar-pocket-dam": {
+    "stationId": "540476",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "clarendon-dam": {
+    "stationId": "540546",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "coolmunda-dam": {
+    "stationId": "541033",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "cooloolabin-dam": {
+    "stationId": "540460",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "ej-beardmore-dam": {
+    "stationId": "043103",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "enoggera-dam": {
+    "stationId": "540604",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "eungella-dam": {
+    "stationId": "533123",
+    "source": "User-selected: Broken River at Eungella Dam HG",
+    "datumVerified": false,
+    "provisional": false
+  },
+  "ewen-maddock-dam": {
+    "stationId": "540346",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "fairbairn-dam": {
+    "stationId": "035241",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "fred-haigh-dam": {
+    "stationId": "539207",
+    "source": "User-selected: Kolan River at Fred Haigh Dam HW",
+    "datumVerified": false,
+    "provisional": false
+  },
+  "glenlyon-dam": {
+    "stationId": "541051",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "gold-creek-dam": {
+    "stationId": "540609",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "hinze-dam": {
+    "stationId": "540610",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "julius-dam": {
+    "stationId": "529019",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "kinchant-dam": {
+    "stationId": "533124",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "kroombit-dam": {
+    "stationId": "539112",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "lake-macdonald-dam": {
+    "stationId": "540755",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "lake-manchester-dam": {
+    "stationId": "540606",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "leslie-dam": {
+    "stationId": "541055",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "leslie-harrison-dam": {
+    "stationId": "540384",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "little-nerang-dam": {
+    "stationId": "540054",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "maroon-dam": {
+    "stationId": "540475",
+    "source": "User-selected: Burnett Creek at Maroon Dam",
+    "datumVerified": false,
+    "provisional": false
+  },
+  "moogerah-dam": {
+    "stationId": "540474",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "north-pine-dam": {
+    "stationId": "540277",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "paradise-dam": {
+    "stationId": "539108",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "peter-faust-dam": {
+    "stationId": "533019",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "poona-dam": {
+    "stationId": "540461",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "sideling-creek-dam": {
+    "stationId": "540605",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "somerset-dam": {
+    "stationId": "040820",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "teemburra-dam": {
+    "stationId": "533041",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "tinaroo-falls-dam": {
+    "stationId": "531034",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "wappa-dam": {
+    "stationId": "540462",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "wivenhoe-dam": {
+    "stationId": "540177",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  },
+  "wuruma-dam": {
+    "stationId": "539051",
+    "source": "User-selected: Nogo River at Wuruma Dam (HW)",
+    "datumVerified": false,
+    "provisional": false
+  },
+  "wyaralong-dam": {
+    "stationId": "540512",
+    "source": "Provisional test association from saved BoM catalogue",
+    "datumVerified": false,
+    "provisional": true
+  }
 }
