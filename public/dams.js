@@ -10,6 +10,7 @@
  map.createPane('damMarkers').style.zIndex=625;
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');
+ const waterRenderer=L.svg({padding:.5});
  const waterwayLabels=L.layerGroup().addTo(map),damNameLabels=L.layerGroup().addTo(map);
  let watercourseFeatures=[],stations=[],selectedGauge=null,showRecordedPoints=false,rainChartMinutes=15,ifdView=null,follow=true;
  let catalogue, boundaryIndex, chosen=null, nearest=null, boundary=null, row=null, chart=null, ending=null;
@@ -172,8 +173,7 @@
    const active=selectedGauge?.id===station.id&&selectedGauge?.kind===station.kind;
    let marker;
    if(station.kind==='rain')marker=L.circleMarker([station.coordinates.lat,station.coordinates.lon],{radius:active?9:6,fillColor:colour(station),color:active?'#183f43':'#fff',weight:2,fillOpacity:.95});
-   else{const icon=el('div');icon.className='water-triangle'+(active?' selected':'');icon.style.setProperty('--point-colour',colour(station));
-    marker=L.marker([station.coordinates.lat,station.coordinates.lon],{icon:L.divIcon({html:icon,className:'',iconSize:[14,14],iconAnchor:[7,7]})});}
+   else marker=WaterGaugeMarker.create([station.coordinates.lat,station.coordinates.lon],{...WaterGaugeStatus.classify(station),id:station.id,selected:active,renderer:waterRenderer});
    marker.addTo(gaugeLayer).bindTooltip(el('span',`${station.name} · ${stationValue(station)}`)).on('click',()=>chooseGauge(station));
    marker.getElement()?.setAttribute('data-gauge',station.kind+':'+station.id);
   }

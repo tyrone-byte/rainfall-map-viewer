@@ -5,9 +5,10 @@ and water cutover behaviour are unchanged.
 
 ## Water movement
 
-Controls above the map select point colours and a separate comparison period:
-15 minutes, 30 minutes, one hour (default), or three hours. Rising/falling is the
-default. The hydrograph duration remains independent, from 15 minutes to seven days.
+Water gauges on both `/water-history` and `/dams` use shared native Leaflet SVG
+waterline symbols. Rainfall retains its existing filled circles; dams retain
+foreground diamonds. The comparison period remains independent of chart duration:
+15 minutes, 30 minutes, one hour (default), or three hours.
 
 For each gauge at the selected historical ending time:
 
@@ -18,7 +19,7 @@ For each gauge at the selected historical ending time:
 3. Find the closest measurement at or before that endpoint minus the comparison
    period, accepting at most 15 extra minutes of lookback. No value is interpolated.
 4. Both measured endpoints must have the same datum, with no intervening datum
-   change. Without suitable endpoints, show grey: insufficient comparison data.
+   change. Without suitable endpoints, movement is unavailable.
 5. Net change is the difference between the measured heights. Rate is net change
    divided by the **actual elapsed hours**, not an assumed nominal interval.
    Full timestamps and signed change/rate are shown when selecting a gauge.
@@ -27,12 +28,33 @@ For each gauge at the selected historical ending time:
 monotonic movement throughout the interval. No tidal identification or adjustment
 is applied. Records are not altered or flagged as faulty because of movement.
 
-Direction colours: rising red, falling blue, steady teal, insufficient data grey.
-Rate colours for positive rates: up to 0.10 m/h green; >0.10–0.30 yellow;
->0.30–0.60 orange; >0.60 red. Falling is blue, steady teal, insufficient data grey.
-These are initial prototype **display bands**, not official warning thresholds.
-Observation-age colours remain available as a diagnostic mode; they do not prove
-communications or gauge failure.
+## Water symbols and classification
+
+`public/water-gauge-status.js` owns classification and configuration, separately
+from `public/water-gauge-marker.js` rendering. No raw height is converted into a
+flood category. The optional `floodStatus` property accepts normal, elevated,
+minor (or watch), moderate, major and extreme. These map to blue `#3B82F6`,
+green `#22C55E`, yellow `#EAB308`, orange `#F97316`, red `#EF4444` and purple
+`#8B5CF6`. The current API does not supply flood categories: fresh readings
+are blue **current/unclassified**, not an assertion that flooding is absent.
+Missing/non-finite levels and stale readings override any category with grey
+`#9CA3AF`. Staleness uses the existing selected-frame age convention (60 minutes),
+not today's wall clock, so browsing historical observations works correctly.
+
+The reusable renderer accepts colour, status, size, trend, selected, id and an
+optional shared SVG renderer. It draws vector paths in a shared SVG layer, not
+HTML station icons. Screen diameter interpolates through 8 px at zoom 6, 12 px
+at zoom 10 and 20 px at zoom 14 (clamped beyond these); at low zoom the wave
+simplifies to a disc. White and dark outlines provide contrast over basemaps.
+Hover adds 2 px to diameter; selection adds an external halo and retains colour.
+Existing hover labels and hydrograph selection remain available at every zoom.
+
+`WaterGaugeStatus.config.trendThresholdPerHour` defaults to null: no trend arrows
+are shown. Only after configuring a non-negative threshold in metres/hour do
+rates strictly exceeding it produce rising/falling arrows; smaller/equal rates
+produce steady. Missing rates produce no arrow. No significance threshold or
+station-specific flood thresholds have been invented. Arrows are omitted at the
+smallest sizes. The comparison control still sets the measured rate's period.
 
 ## Backgrounds
 

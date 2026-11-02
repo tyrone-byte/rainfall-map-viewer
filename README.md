@@ -14,9 +14,10 @@ observations from IDQ65911/IDQ65910. See [water FTP collection](docs/WATER_FTP_C
 and [compact history](docs/COMPACT_HISTORY.md). The viewer requires its configured
 `HISTORY_DATABASE_URL` (or `DATABASE_URL`); collection runs independently of visitors.
 
-Water markers can show rising/falling, measured rate of rise, or observation age.
-Rate display bands are prototype settings, not warning thresholds; tidal effects
-are not removed. Street, greyscale and satellite-with-labels backgrounds are
+Water gauges use SVG waterline symbols with status colours and zoom-dependent
+sizes. Missing/stale data is grey; current readings without a supplied flood
+category are blue. No flood thresholds or significant-trend threshold are assumed.
+Measured movement remains available in the hydrograph; tidal effects are not removed. Street, greyscale and satellite-with-labels backgrounds are
 available on both viewers. On phones the page order is time controls, map,
 plots, then station search/list, with jump links between map and gauges.
 Names and coordinates are stored separately from

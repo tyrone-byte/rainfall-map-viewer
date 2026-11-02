@@ -57,13 +57,12 @@ test('water plots default to lines, distinguish long gaps and retain point prefe
  await toggle.uncheck();expect(await page.locator('#waterHistoryChart').evaluate(c=>Chart.getChart(c).data.datasets[0].pointRadius)).toBe(0);
 });
 
-test('map controls change water colours, comparison, background and seven-day duration without moving the map',async({page})=>{
+test('map controls preserve status colours, comparison, background and seven-day duration without moving the map',async({page})=>{
  const requests=await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
  await page.evaluate(()=>map.setView([-27.2,152.9],10,{animate:false}));
- expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#d94843');
- await page.locator('#colourMode').selectOption('rate');expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#ed8b36');
- await page.locator('#colourMode').selectOption('age');expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#36a48c');await expect(page.locator('#comparison')).toBeDisabled();
- await page.locator('#colourMode').selectOption('trend');await page.locator('#comparison').selectOption('15');await expect.poll(()=>requests.at(-1).comparison).toBe(15);
+ expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#3B82F6');
+ await expect(page.locator('#legend')).toContainText('Normal / current unclassified');
+ await page.locator('#comparison').selectOption('15');await expect.poll(()=>requests.at(-1).comparison).toBe(15);
  await page.locator('#background').selectOption('grey');expect(await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;})).toEqual([expect.stringContaining('openstreetmap')]);
  await page.locator('#background').selectOption('hybrid');const urls=await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;});expect(urls).toHaveLength(2);expect(urls[0]).toContain('World_Imagery');
  const opacity=await page.evaluate(()=>{const result=[];map.eachLayer(l=>{if(l._url)result.push(l.options.opacity);});return result;});expect(opacity).toEqual([.7,.7]);
@@ -110,4 +109,20 @@ test.describe('phone navigation',()=>{
   await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(zoom);
 
  });
+});
+
+test('SVG water symbols resize with zoom, simplify at low zoom and preserve selection colour',async({page})=>{
+ await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
+ const symbol=page.locator('[data-gauge="water:540111"]');
+ await page.evaluate(()=>map.setView([-27.2,152.9],6,{animate:false}));
+ await expect(symbol).toHaveAttribute('data-size','8');
+ expect(await symbol.evaluate(n=>n.tagName.toLowerCase())).toBe('path');
+ await page.evaluate(()=>map.setZoom(10,{animate:false}));await expect(symbol).toHaveAttribute('data-size','12');
+ await page.evaluate(()=>map.setView(markers.get('540111').getLatLng(),14,{animate:false}));await expect(symbol).toHaveAttribute('data-size','20');
+ await symbol.hover();await expect(symbol).toHaveAttribute('data-size','22');await page.mouse.move(0,0);await expect(symbol).toHaveAttribute('data-size','20');
+ await symbol.click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
+ await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
+ expect(await page.evaluate(()=>markers.get('540111').props.selected)).toBe(true);
+ expect(await page.evaluate(()=>markers.get('540111').props.colour)).toBe('#3B82F6');
+ expect(await page.evaluate(()=>markers.get('540111').props.trend)).toBeNull();
 });
