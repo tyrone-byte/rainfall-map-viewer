@@ -1,17 +1,22 @@
 'use strict';
-// Classification is independent of map rendering. Never derive flood severity from raw height.
+// Display measured movement only. These colours are not flood or consequence categories.
 (function(root){
- const colours={missing:'#9CA3AF',normal:'#3B82F6',elevated:'#22C55E',minor:'#EAB308',moderate:'#F97316',major:'#EF4444',extreme:'#8B5CF6'};
- const config={trendThresholdPerHour:null,staleMinutes:60};
- function classify(station,settings=config){
-  const stale=['missing','stale','suspect','out'].includes(station.status)||station.stale===true||(Number.isFinite(station.ageMinutes)&&station.ageMinutes>=settings.staleMinutes);
-  if(!Number.isFinite(station.level)||stale)return {status:'missing',colour:colours.missing,label:'No / stale data',trend:null};
-  const supplied=station.floodStatus==='watch'?'minor':station.floodStatus;
-  const status=Object.hasOwn(colours,supplied)&&supplied!=='missing'?supplied:'normal';
-  const threshold=settings.trendThresholdPerHour,rate=station.ratePerHour;
+ const colours={missing:'#88969c',rising:'#d94843',falling:'#2c64cc',steady:'#36a48c'};
+ const ageColours={current:'#36a48c',suspect:'#e9b43d',out:colours.missing,missing:colours.missing};
+ const rateBands=[{maximum:.1,colour:'#36a46d'},{maximum:.3,colour:'#e9c345'},{maximum:.6,colour:'#ed8b36'},{maximum:Infinity,colour:colours.rising}];
+ const config={trendThresholdPerHour:null};
+ function classify(station,mode='trend',settings=config){
+  const missing={status:'missing',colour:colours.missing,label:'Insufficient data',trend:null};
+  if(!Number.isFinite(station.level))return missing;
+  if(mode==='age')return {status:station.status||'missing',colour:ageColours[station.status]||colours.missing,label:'Observation age',trend:null};
+  const direction=station.direction,rate=station.ratePerHour;
+  if(!['rising','falling','steady'].includes(direction))return missing;
+  if(mode==='rate'&&!Number.isFinite(rate))return missing;
+  const colour=mode==='rate'&&direction==='rising'?rateBands.find(b=>rate<=b.maximum).colour:colours[direction];
+  const threshold=settings.trendThresholdPerHour;
   const trend=Number.isFinite(threshold)&&threshold>=0&&Number.isFinite(rate)?Math.abs(rate)>threshold?(rate>0?'rising':'falling'):'steady':null;
-  return {status,colour:colours[status],label:supplied===status?status:'Current · flood category unclassified',trend};
+  return {status:direction,colour,label:direction,trend};
  }
- const api={colours,config,classify};root.WaterGaugeStatus=api;
+ const api={colours,ageColours,rateBands,config,classify};root.WaterGaugeStatus=api;
  if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

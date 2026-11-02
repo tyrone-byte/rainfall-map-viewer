@@ -1,20 +1,22 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const {classify,colours,config}=require('../public/water-gauge-status.js');
-test('status palette uses explicit categories and never guesses flood category from height',()=>{
- for(const status of ['normal','elevated','minor','moderate','major','extreme'])assert.equal(classify({level:4,floodStatus:status}).colour,colours[status]);
- assert.equal(classify({level:99,status:'current'}).label,'Current · flood category unclassified');
- assert.equal(classify({level:4,floodStatus:'watch'}).status,'minor');
+test('movement colours ignore absolute heights and supplied consequence categories',()=>{
+ for(const direction of ['rising','falling','steady'])for(const level of [0,99])assert.equal(classify({level,direction,floodStatus:'major'}).colour,colours[direction]);
+ for(const station of [{level:null,direction:'rising'},{level:NaN},{level:3,direction:'unavailable'}])assert.equal(classify(station).status,'missing');
 });
-test('missing and stale data override supplied severity, relative to selected frame',()=>{
- for(const station of [{level:null},{level:NaN},{level:3,status:'suspect'},{level:3,ageMinutes:60},{level:3,status:'out'}])assert.equal(classify({...station,floodStatus:'major'}).status,'missing');
- assert.equal(classify({level:3,ageMinutes:59}).status,'normal');
+test('rate-of-rise bands preserve original boundaries, falling and steady colours',()=>{
+ for(const [rate,colour] of [[.1,'#36a46d'],[.1001,'#e9c345'],[.3,'#e9c345'],[.3001,'#ed8b36'],[.6,'#ed8b36'],[.6001,'#d94843']])assert.equal(classify({level:4,direction:'rising',ratePerHour:rate},'rate').colour,colour);
+ assert.equal(classify({level:4,direction:'falling',ratePerHour:-2},'rate').colour,colours.falling);
+ assert.equal(classify({level:4,direction:'steady',ratePerHour:0},'rate').colour,colours.steady);
+ assert.equal(classify({level:4,direction:'rising'},'rate').status,'missing');
+ assert.equal(classify({level:4,status:'suspect'},'age').colour,'#e9b43d');
 });
-test('trend requires an explicit significance threshold and complete rate',()=>{
- assert.equal(classify({level:3,ratePerHour:2}).trend,null);
+test('optional arrows require a configured significance threshold independently of movement colour',()=>{
+ const station={level:3,direction:'rising',ratePerHour:.1};
+ assert.equal(classify(station).trend,null);
  const settings={...config,trendThresholdPerHour:.1};
- assert.equal(classify({level:3,ratePerHour:.1},settings).trend,'steady');
- assert.equal(classify({level:3,ratePerHour:.11},settings).trend,'rising');
- assert.equal(classify({level:3,ratePerHour:-.11},settings).trend,'falling');
- assert.equal(classify({level:3},settings).trend,null);
+ assert.equal(classify(station,'trend',settings).trend,'steady');
+ assert.equal(classify({...station,ratePerHour:.11},'trend',settings).trend,'rising');
+ assert.equal(classify({...station,ratePerHour:-.11},'trend',settings).trend,'falling');
 });

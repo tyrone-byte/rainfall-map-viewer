@@ -14,10 +14,11 @@ observations from IDQ65911/IDQ65910. See [water FTP collection](docs/WATER_FTP_C
 and [compact history](docs/COMPACT_HISTORY.md). The viewer requires its configured
 `HISTORY_DATABASE_URL` (or `DATABASE_URL`); collection runs independently of visitors.
 
-Water gauges use SVG waterline symbols with status colours and zoom-dependent
-sizes. Missing/stale data is grey; current readings without a supplied flood
-category are blue. No flood thresholds or significant-trend threshold are assumed.
-Measured movement remains available in the hydrograph; tidal effects are not removed. Street, greyscale and satellite-with-labels backgrounds are
+Water gauges use SVG waterline symbols with zoom-dependent sizes. The Water levels
+page retains rising/falling, rate-of-rise and observation-age colour modes.
+The Dams page defaults to rising/falling. These describe measured movement,
+not flood consequence categories. Spillway comparisons are not implemented yet.
+Tidal effects are not removed. Street, greyscale and satellite-with-labels backgrounds are
 available on both viewers. On phones the page order is time controls, map,
 plots, then station search/list, with jump links between map and gauges.
 Names and coordinates are stored separately from

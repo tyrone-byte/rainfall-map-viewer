@@ -30,16 +30,23 @@ is applied. Records are not altered or flagged as faulty because of movement.
 
 ## Water symbols and classification
 
-`public/water-gauge-status.js` owns classification and configuration, separately
-from `public/water-gauge-marker.js` rendering. No raw height is converted into a
-flood category. The optional `floodStatus` property accepts normal, elevated,
-minor (or watch), moderate, major and extreme. These map to blue `#3B82F6`,
-green `#22C55E`, yellow `#EAB308`, orange `#F97316`, red `#EF4444` and purple
-`#8B5CF6`. The current API does not supply flood categories: fresh readings
-are blue **current/unclassified**, not an assertion that flooding is absent.
-Missing/non-finite levels and stale readings override any category with grey
-`#9CA3AF`. Staleness uses the existing selected-frame age convention (60 minutes),
-not today's wall clock, so browsing historical observations works correctly.
+`public/water-gauge-status.js` owns display-colour logic separately from
+`public/water-gauge-marker.js` rendering. The Water levels page defaults to
+rising/falling, with rate-of-rise and observation-age modes retained, including
+bookmarked colour modes and the separate comparison period. The Dams page uses
+rising/falling by default. No gauge is assigned a consequence or flood category.
+
+Direction colours are rising red `#d94843`, falling blue `#2c64cc`, steady teal
+`#36a48c`, and insufficient data grey `#88969c`. Rate-of-rise display bands retain
+the existing boundaries: ≤0.10 m/h green, >0.10–0.30 yellow, >0.30–0.60 orange,
+and >0.60 red. Falling and steady retain their direction colours. These are
+movement display bands, not warning thresholds. Observation-age mode retains
+current teal, suspect yellow, and out/missing grey.
+
+The next dam-specific enhancement may compare verified storage gauges with
+spillway crests. No spillway values, gauge associations or datum conversions
+are assumed or implemented by this change. A nearby river gauge is not thereby
+treated as a dam storage-level gauge.
 
 The reusable renderer accepts colour, status, size, trend, selected, id and an
 optional shared SVG renderer. It draws vector paths in a shared SVG layer, not
