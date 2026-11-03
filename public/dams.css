@@ -16,5 +16,16 @@ body.dam-page .dam-main{flex:none}
 .dam-symbol{pointer-events:auto;overflow:visible}
 .dam-marker.is-selected .dam-symbol{filter:drop-shadow(0 0 2px #fff)}
 .dam-marker:focus-visible{outline:2px solid #183f43;border-radius:50%}
-.dam-legend{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0;font-size:12px}
-.dam-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+/* A collapsible Leaflet control keeps every displayed layer's key on the map. */
+.dam-map-legend{width:265px;max-width:calc(100vw - 80px);border:1px solid #b7c7cb;border-radius:6px;background:#fffffff5;color:#183f43;box-shadow:0 1px 5px #0003;font:12px/1.35 system-ui,sans-serif}
+.dam-map-legend summary{padding:8px 10px;font-weight:700;cursor:pointer;user-select:none}
+.dam-map-legend-content{padding:0 10px 10px;max-height:290px;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+.dam-map-legend section{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.dam-map-legend h3{flex-basis:100%;font-size:12px;margin:0 0 3px;font-weight:700}
+.map-legend-entry{display:inline-flex;align-items:center;gap:5px;min-height:18px}
+.map-legend-entry svg,.map-legend-entry i{flex-shrink:0}
+.legend-rain-circle{display:inline-block;width:12px;height:12px;border:1px solid white;box-shadow:0 0 0 1px #73858b;border-radius:50%;margin:3px}
+.legend-watercourse-line{width:18px;height:0;border-top:2px solid #337eae}
+.legend-boundary-line{width:18px;height:10px;background:#709bb318;border:2px solid #446d85}
+.map-legend-note{margin:8px 0;font-size:11px}
+@media(max-width:600px){.dam-map-legend{width:235px}.dam-map-legend-content{max-height:210px}}

@@ -45,3 +45,24 @@ test('crest CSV has all dams and never manufactures zero readings when database 
  expect(response.headers()['content-type']).toContain('text/csv');
  const csv=await response.text();expect(csv).toContain('over_10m');expect(csv.trim().split('\n')).toHaveLength(50);expect(csv).toContain('Hinze Dam');
 });
+
+test('on-map legend covers dam, rainfall, water and contextual layers and collapses without moving the map',async({page})=>{
+ await page.goto('/dams');const legend=page.getByLabel('Map legend',{exact:true});
+ await expect(page.locator('#map .dam-map-legend')).toHaveCount(1);
+ for(const text of ['Dams · provisional crest comparison','At / below listed crest','Above listed crest','Unresolved / missing / stale / review','Selected dam','Rainfall · selected duration (mm)','≤5','>5–30','>30–80','>80','Incomplete / missing','Water levels · 60-minute change','Rising','Falling','Steady','Insufficient data','Named watercourses','Water-plan boundary'])await expect(legend).toContainText(text);
+ const mapBox=await page.locator('#map').boundingBox(),legendBox=await legend.boundingBox();
+ expect(legendBox.x).toBeGreaterThanOrEqual(mapBox.x);expect(legendBox.y).toBeGreaterThanOrEqual(mapBox.y);expect(legendBox.x+legendBox.width).toBeLessThanOrEqual(mapBox.x+mapBox.width);expect(legendBox.y+legendBox.height).toBeLessThanOrEqual(mapBox.y+mapBox.height);
+ const boundsBefore=await page.locator('.leaflet-map-pane').getAttribute('style');
+ await legend.locator('summary').click();await expect(legend).not.toHaveAttribute('open','');
+ await legend.locator('summary').click();await expect(legend).toHaveAttribute('open','');
+ expect(await page.locator('.leaflet-map-pane').getAttribute('style')).toBe(boundsBefore);
+});
+
+test('phone legend starts compact and expands within the map without horizontal overflow',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/dams');
+ const legend=page.getByLabel('Map legend',{exact:true});await expect(legend).not.toHaveAttribute('open','');
+ await legend.locator('summary').click();await expect(legend).toHaveAttribute('open','');
+ const mapBox=await page.locator('#map').boundingBox(),legendBox=await legend.boundingBox();
+ expect(legendBox.x).toBeGreaterThanOrEqual(mapBox.x);expect(legendBox.x+legendBox.width).toBeLessThanOrEqual(mapBox.x+mapBox.width);expect(legendBox.y).toBeGreaterThanOrEqual(mapBox.y);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
+});

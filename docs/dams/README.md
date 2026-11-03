@@ -100,3 +100,15 @@ latest-reading lookup for initial icon colours. When a dam is selected, its
 chosen historical frame supplies that dam's comparison instead. The local CSV
 may be unpopulated until connected to history; the deployed export reads the
 deployed database. CSV comparison values do not establish physical spilling.
+
+## Complete on-map legend
+
+`public/dam-map-legend.js` adds a collapsible Leaflet control at the bottom right
+of the map. It shows the dam-wall SVG and provisional crest states, selected-dam
+outline, rainfall-circle accumulation bands, waterline-symbol movement colours,
+named-watercourse line and water-plan boundary. Water swatches use the shared
+movement palette. The rainfall key refers to the selected duration in millimetres.
+The crest CSV download remains available inside the legend. Definitions remain
+available when a layer is hidden, so users can identify every selectable layer.
+On phones the control starts collapsed; its expanded contents scroll within the
+map. Click, scroll and keyboard events in the legend do not propagate to the map.
