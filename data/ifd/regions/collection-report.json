@@ -1,0 +1,186 @@
+{
+  "status": "completed",
+  "delaySeconds": 10,
+  "results": [
+    {
+      "regionId": "lga-3960",
+      "name": "Ipswich City",
+      "url": "https://data.arr-software.org/?lat_coord=-27.665564&lon_coord=152.667668&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 1.325,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-3620",
+      "name": "Gympie Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-26.145222&lon_coord=152.467829&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.732,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-4590",
+      "name": "Logan City",
+      "url": "https://data.arr-software.org/?lat_coord=-27.762369&lon_coord=153.040184&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 1.008,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-3610",
+      "name": "Goondiwindi Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-28.374632&lon_coord=150.339055&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 1.329,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-4580",
+      "name": "Lockyer Valley Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-27.642577&lon_coord=152.240555&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.793,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-3430",
+      "name": "Gold Coast City",
+      "url": "https://data.arr-software.org/?lat_coord=-27.976158&lon_coord=153.320973&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.94,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6510",
+      "name": "Scenic Rim Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-28.062283&lon_coord=152.796064&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.69,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-1000",
+      "name": "Brisbane City",
+      "url": "https://data.arr-software.org/?lat_coord=-27.480199&lon_coord=152.985192&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.701,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6250",
+      "name": "Redland City",
+      "url": "https://data.arr-software.org/?lat_coord=-27.550697&lon_coord=153.354811&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.746,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-7310",
+      "name": "Western Downs Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-26.8405&lon_coord=150.347024&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.815,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6910",
+      "name": "Toowoomba Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-27.582019&lon_coord=151.535961&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.675,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6720",
+      "name": "Sunshine Coast Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-26.69914&lon_coord=152.900979&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.72,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-5760",
+      "name": "North Burnett Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-25.354819&lon_coord=151.203708&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.694,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6660",
+      "name": "Southern Downs Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-28.405954&lon_coord=151.885714&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 1.191,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-5010",
+      "name": "Moreton Bay City",
+      "url": "https://data.arr-software.org/?lat_coord=-27.116956&lon_coord=152.886356&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.749,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-5740",
+      "name": "Noosa Shire",
+      "url": "https://data.arr-software.org/?lat_coord=-26.324778&lon_coord=152.945629&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.714,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6630",
+      "name": "South Burnett Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-26.404945&lon_coord=151.646609&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 1.026,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    },
+    {
+      "regionId": "lga-6580",
+      "name": "Somerset Regional",
+      "url": "https://data.arr-software.org/?lat_coord=-27.008286&lon_coord=152.424925&type=json&BoMIFD=1",
+      "httpStatus": 200,
+      "elapsedSeconds": 0.702,
+      "status": "passed",
+      "durations": 25,
+      "probabilities": 13
+    }
+  ]
+}

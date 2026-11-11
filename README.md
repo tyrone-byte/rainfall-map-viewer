@@ -142,9 +142,19 @@ The former `/` bulletin and `/water` live pages have been retired and redirect
 to the corresponding saved-history views. Their dedicated frontend scripts and
 obsolete browser tests have been removed; collector/migration code is unchanged.
 
-## Local ARR 2030 IFD datasets and manual collection pilot
+## Regional default 2030 IFD references
 
-Goolman's user-uploaded ARR JSON has been imported at the verified coordinates `-27.736111, 152.766667`. The normalized local file contains all 12 supplied 2030 tables: three source families and SSP1/SSP2/SSP3/SSP5. No family or scenario is chosen automatically. In the rainfall gauge detail, explicitly choose a **Local dataset and climate scenario**. Other gauges currently show the shared Brisbane reference with an explicit no-local-table notice. A known local-file failure never silently substitutes the Brisbane table.
+Gauges inside the 18 supplied LGA regions now automatically use the region's
+centroid **Default Current (2030) Baseline** from ARR. There are 633 covered
+catalogue entries at 631 distinct coordinates. The comparison names the region
+and centroid and explains that it is an area reference, not a gauge-specific
+IFD. Gauges outside the regions retain the labelled Brisbane fallback; missing
+regional references show an error. See [regional IFD methods, coverage and
+collection](docs/REGIONAL_IFD.md).
+
+## Earlier local ARR 2030 datasets and collection pilot
+
+Goolman's user-uploaded ARR JSON has been imported at the verified coordinates `-27.736111, 152.766667`. The normalized local file contains all 12 supplied 2030 tables: three source families and SSP1/SSP2/SSP3/SSP5. No family or scenario is chosen automatically. This earlier multi-scenario file is retained for traceability. Goolman now uses the Ipswich regional default reference automatically. Any saved local files outside regional coverage retain their explicit scenario selection. A known local-file failure never silently substitutes the Brisbane table.
 
 `data/ifd/index.json` maps exact six-decimal gauge coordinates to files under `data/ifd/locations/`. Each file records coordinates, source request, ARR version, named families/scenarios, units, raw-response SHA-256, import time and acquisition method. Manual uploads have no invented fetch timestamp. Original JSON responses are retained under `data/ifd/raw/` for traceability, excluded from the app image. The public viewer reads saved files only; it never makes ARR requests.
 

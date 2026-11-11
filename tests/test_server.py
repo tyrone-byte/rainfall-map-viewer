@@ -57,7 +57,7 @@ class BrowserCacheTests(unittest.TestCase):
                 self.assertTrue(response.url.endswith('/history'))
                 self.assertNotIn('href="/water"',html)
                 self.assertIn('>Water levels</a>',html)
-                self.assertIn('/ifd-view.js?v=shared-1',html)
+                self.assertIn('/ifd-view.js?v=regional-1',html)
             with urlopen(base+'/history.js?v=shared-plots-1') as response:
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('renderIfd(series)',response.read().decode())

@@ -8,3 +8,8 @@ tests
 tools
 
 data/ifd/raw
+
+data/ifd/regions/raw
+data/ifd/regions/locations
+data/ifd/regions/regions.geojson
+data/ifd/regions/initial_IFD_regions.zip

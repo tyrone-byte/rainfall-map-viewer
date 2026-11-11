@@ -1,0 +1,2008 @@
+id,name,stationNumber,locationKey,regionIds,status
+gold-coast-logan:Tingalpa Creek:mtcottonwest:1,Mt Cotton West,540380,"-27.614722,153.203889",lga-6250,assigned
+gold-coast-logan:Tingalpa Creek:priestdale:1,Priestdale,540381,"-27.608611,153.184167",lga-6250,assigned
+gold-coast-logan:Tingalpa Creek:rochedalesouth:1,Rochedale South,540382,"-27.591667,153.141944",lga-4590,assigned
+gold-coast-logan:Tingalpa Creek:burbank:1,Burbank,540379,"-27.557778,153.158056",lga-1000,assigned
+gold-coast-logan:Tingalpa Creek:leslieharrisondam:1,Leslie Harrison Dam,540384,"-27.528611,153.180000",lga-1000,assigned
+gold-coast-logan:Stradbroke Islands:southstradbroke:1,South Stradbroke,540704,"-27.841944,153.424167",lga-3430,assigned
+gold-coast-logan:Stradbroke Islands:couranpoint:1,Couran Point,540576,"-27.826944,153.408333",lga-3430,assigned
+gold-coast-logan:Stradbroke Islands:minjerribah:1,Minjerribah,540630,"-27.688889,153.420000",lga-6250,assigned
+gold-coast-logan:Stradbroke Islands:dunwichairport:1,Dunwich Airport,540586,"-27.520833,153.423611",lga-6250,assigned
+gold-coast-logan:Stradbroke Islands:horsecrossing:1,Horse Crossing,540592,"-27.495833,153.508333",lga-6250,assigned
+gold-coast-logan:Stradbroke Islands:moretonisland:1,Moreton Island,540593,"-27.155833,153.372500",,outside
+gold-coast-logan:Stradbroke Islands:capemoretonlighthouse:1,Cape Moreton Lighthouse,,,,no-coordinates
+gold-coast-logan:Stradbroke Islands:herringlagoonrd:1,Herring Lagoon Rd,,,,no-coordinates
+gold-coast-logan:Logan-Albert:darlingtonalbertriver:1,Darlington (Albert River),,,,no-coordinates
+gold-coast-logan:Logan-Albert:darlingtonschool:1,Darlington School,540796,"-28.205833,153.040833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:oreillys:1,O'Reillys,040931,"-28.231389,153.135556",lga-6510,assigned
+gold-coast-logan:Logan-Albert:lumeah:1,Lumeah,040936,"-28.061389,153.040833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:nindooinbah:1,Nindooinbah,540559,"-28.006944,153.054722",lga-6510,assigned
+gold-coast-logan:Logan-Albert:nindooinbahdam:1,Nindooinbah Dam,540480,"-27.995556,153.030000",lga-6510,assigned
+gold-coast-logan:Logan-Albert:doublecrossingrd:1,Double Crossing Rd,540715,"-28.036944,153.141667",lga-6510,assigned
+gold-coast-logan:Logan-Albert:benobble:1,Benobble,040937,"-27.997778,153.157500",lga-6510,assigned
+gold-coast-logan:Logan-Albert:bromfleet:1,Bromfleet,040938,"-27.910833,153.104722",lga-4590,assigned
+gold-coast-logan:Logan-Albert:northtamborine:1,North Tamborine,540729,"-27.940000,153.191667",lga-6510,assigned
+gold-coast-logan:Logan-Albert:tamborine:1,Tamborine,540691,"-27.864722,153.121111",lga-4590,assigned
+gold-coast-logan:Logan-Albert:plunkettroadcedarcreek:1,Plunkett Road (Cedar Creek),,,,no-coordinates
+gold-coast-logan:Logan-Albert:wolffdene:1,Wolffdene,040761,"-27.782778,153.188889",lga-4590,assigned
+gold-coast-logan:Logan-Albert:bahrsscrub:1,Bahrs Scrub,540598,"-27.737222,153.189444",lga-4590,assigned
+gold-coast-logan:Logan-Albert:beenleigh:1,Beenleigh,,,,no-coordinates
+gold-coast-logan:Logan-Albert:whiteswamp:1,White Swamp,540707,"-28.266111,152.536944",lga-6510,assigned
+gold-coast-logan:Logan-Albert:upperburnettck:1,Upper Burnett Ck,540580,"-28.275833,152.570833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:maroondaminflow:1,Maroon Dam Inflow,,,,no-coordinates
+gold-coast-logan:Logan-Albert:maroondam:1,Maroon Dam,040677,"-28.175278,152.655833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:mtbarney:1,Mt Barney,540578,"-28.275556,152.740278",lga-6510,assigned
+gold-coast-logan:Logan-Albert:foresthome:1,Forest Home,040832,"-28.203333,152.770000",lga-6510,assigned
+gold-coast-logan:Logan-Albert:palencreek:1,Palen Creek,,,,no-coordinates
+gold-coast-logan:Logan-Albert:wardrd:1,Ward Rd,,,,no-coordinates
+gold-coast-logan:Logan-Albert:rathdowney:1,Rathdowney,,,,no-coordinates
+gold-coast-logan:Logan-Albert:upperrunningck:1,Upper Running Ck,540579,"-28.331389,152.973611",lga-6510,assigned
+gold-coast-logan:Logan-Albert:dieckmansbridge:1,Dieckmans Bridge,040943,"-28.245278,152.890833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:innisplain:1,Innisplain,540797,"-28.170278,152.902778",lga-6510,assigned
+gold-coast-logan:Logan-Albert:tamrookum:1,Tamrookum,540555,"-28.126389,152.936667",lga-6510,assigned
+gold-coast-logan:Logan-Albert:foxley:1,Foxley,040933,"-28.270000,153.026389",lga-6510,assigned
+gold-coast-logan:Logan-Albert:ruddslane:1,Rudds Lane,040944,"-28.169167,152.983333",lga-6510,assigned
+gold-coast-logan:Logan-Albert:tramwaylane:1,Tramway Lane,540402,"-28.149167,152.971667",lga-6510,assigned
+gold-coast-logan:Logan-Albert:knappspeak:1,Knapps Peak,040948,"-28.146111,152.735833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:cannoncove:1,Cannon Cove,040865,"-28.093611,152.715833",lga-6510,assigned
+gold-coast-logan:Logan-Albert:kooralbyn:1,Kooralbyn,040941,"-28.066111,152.853333",lga-6510,assigned
+gold-coast-logan:Logan-Albert:kooralbynbridge:1,Kooralbyn Bridge,540714,"-28.092500,152.851389",lga-6510,assigned
+gold-coast-logan:Logan-Albert:roundmountain:1,Round Mountain,040945,"-28.070833,152.927222",lga-6510,assigned
+gold-coast-logan:Logan-Albert:beaudesertdrumleyst:1,Beaudesert Drumley St,,,,no-coordinates
+gold-coast-logan:Logan-Albert:beaudesert:1,Beaudesert,040939,"-27.968056,152.986111",lga-6510,assigned
+gold-coast-logan:Logan-Albert:bromeltondam:1,Bromelton Dam,540481,"-27.941944,152.959444",lga-6510,assigned
+gold-coast-logan:Logan-Albert:walkerrd:1,Walker Rd,540541,"-27.921111,152.962778",lga-4590,assigned
+gold-coast-logan:Logan-Albert:wilsonspeakteviotbrook:1,Wilsons Peak (Teviot Brook),,,,no-coordinates
+gold-coast-logan:Logan-Albert:wilsonspeak:1,Wilsons Peak,,,,no-coordinates
+gold-coast-logan:Logan-Albert:bryneuryn:1,Bryn Euryn,540582,"-28.235556,152.480000",lga-6660,assigned
+gold-coast-logan:Logan-Albert:croftby:1,Croftby,040947,"-28.148056,152.570000",lga-6510,assigned
+gold-coast-logan:Logan-Albert:mtalford:1,Mt Alford,,,,no-coordinates
+gold-coast-logan:Logan-Albert:harperscrossing:1,Harpers Crossing,540713,"-28.027778,152.657778",lga-6510,assigned
+gold-coast-logan:Logan-Albert:grimseyrd:1,Grimsey Rd,540539,"-28.017778,152.665556",lga-6510,assigned
+gold-coast-logan:Logan-Albert:mtsugarloaf:1,Mt Sugarloaf,540455,"-28.048611,152.712778",lga-6510,assigned
+gold-coast-logan:Logan-Albert:boonahteviotbrook:1,Boonah (Teviot Brook),,,,no-coordinates
+gold-coast-logan:Logan-Albert:coulsoncrossing:1,Coulson Crossing,540510,"-27.951111,152.726389",lga-6510,assigned
+gold-coast-logan:Logan-Albert:coulson:1,Coulson,540509,"-27.954167,152.740000",lga-6510,assigned
+gold-coast-logan:Logan-Albert:wyaralongdam:1,Wyaralong Dam,540512,"-27.909167,152.880556",lga-6510,assigned
+gold-coast-logan:Logan-Albert:romanitevoitbrook:1,Romani (Tevoit Brook),,,,no-coordinates
+gold-coast-logan:Logan-Albert:kilmoylarrd:1,Kilmoylar Rd,540690,"-27.840000,152.934722",lga-4590,assigned
+gold-coast-logan:Logan-Albert:cedargroveweirhg:1,Cedar Grove Weir HG,,,,no-coordinates
+gold-coast-logan:Logan-Albert:yarrahappini:1,Yarrahappini,,,,no-coordinates
+gold-coast-logan:Logan-Albert:jimboombaflagstonecreek:1,Jimboomba (Flagstone Creek),,,,no-coordinates
+gold-coast-logan:Logan-Albert:macleanbridge:1,Maclean Bridge,040935,"-27.786389,153.016111",lga-4590,assigned
+gold-coast-logan:Logan-Albert:loganvillage:1,Logan Village,540596,"-27.771111,153.101944",lga-4590,assigned
+gold-coast-logan:Logan-Albert:lowerquinzehmillerrd:1,Lower Quinzeh (Miller Rd),,,,no-coordinates
+gold-coast-logan:Logan-Albert:parkridgestonycamproad:1,Park Ridge (Stony Camp Road),,,,no-coordinates
+gold-coast-logan:Logan-Albert:schmidtsrd:1,Schmidts Rd,540675,"-27.700000,153.120278",lga-4590,assigned
+gold-coast-logan:Logan-Albert:waterford:1,Waterford,040878,"-27.694722,153.136389",lga-4590,assigned
+gold-coast-logan:Logan-Albert:underwoodmillersrd:1,Underwood (Millers Rd),540233,"-27.611944,153.108056",lga-4590,assigned
+gold-coast-logan:Logan-Albert:slackscreekreservepark:1,Slacks Creek (Reserve Park),,,,no-coordinates
+gold-coast-logan:Logan-Albert:hillcrestwineglass:1,Hillcrest (Wine Glass),540235,"-27.676389,153.030000",lga-4590,assigned
+gold-coast-logan:Logan-Albert:wallerrd:1,Waller Rd,540692,"-27.670000,153.051944",lga-4590,assigned
+gold-coast-logan:Logan-Albert:marsdenfirstave:1,Marsden (First Ave),540078,"-27.668611,153.103056",lga-4590,assigned
+gold-coast-logan:Logan-Albert:begardquarry:1,Bega Rd Quarry,,,,no-coordinates
+gold-coast-logan:Logan-Albert:slackscreekloganleard:1,Slacks Creek (Loganlea Rd),,,,no-coordinates
+gold-coast-logan:Logan-Albert:parklands:1,Parklands,540645,"-27.698889,153.192500",lga-4590,assigned
+gold-coast-logan:Logan-Albert:carbrook:1,Carbrook,540255,"-27.654722,153.231667",lga-4590,assigned
+gold-coast-logan:Logan-Albert:carbrookriedelrd:1,Carbrook (Riedel Rd),,,,no-coordinates
+gold-coast-logan:Nerang:tomewin:1,Tomewin,540354,"-28.240556,153.378333",,outside
+gold-coast-logan:Nerang:upperspringbrook:1,Upper Springbrook,540400,"-28.231389,153.283611",lga-3430,assigned
+gold-coast-logan:Nerang:lowerspringbrook:1,Lower Springbrook,040848,"-28.206944,153.270833",lga-3430,assigned
+gold-coast-logan:Nerang:littlenerangdamlittlenerangcreek:1,Little Nerang Dam (Little Nerang Creek),,,,no-coordinates
+gold-coast-logan:Nerang:tallai:1,Tallai,,,,no-coordinates
+gold-coast-logan:Nerang:numinbahnerangriver:1,Numinbah (Nerang River),,,,no-coordinates
+gold-coast-logan:Nerang:numinbahvalley:1,Numinbah Valley,540438,"-28.149444,153.224167",lga-3430,assigned
+gold-coast-logan:Nerang:hinzedamhg:1,Hinze Dam HG,,,,no-coordinates
+gold-coast-logan:Nerang:clearview:1,Clearview,040846,"-28.001667,153.308333",lga-3430,assigned
+gold-coast-logan:Nerang:molendinar:1,Molendinar,540428,"-27.980000,153.360000",lga-3430,assigned
+gold-coast-logan:Nerang:carrara:1,Carrara,540319,"-28.006389,153.366667",lga-3430,assigned
+gold-coast-logan:Nerang:mtnimmel:1,Mt Nimmel,540353,"-28.154167,153.296667",lga-3430,assigned
+gold-coast-logan:Nerang:neranwood:1,Neranwood,540440,"-28.113333,153.317778",lga-3430,assigned
+gold-coast-logan:Nerang:bonogin:1,Bonogin,540352,"-28.109167,153.363889",lga-3430,assigned
+gold-coast-logan:Nerang:mudgeeraba:1,Mudgeeraba,540254,"-28.084722,153.371667",lga-3430,assigned
+gold-coast-logan:Nerang:worongarycreek:1,Worongary Creek,540597,"-28.058889,153.353889",lga-3430,assigned
+gold-coast-logan:Nerang:boobegancreeklock:1,Boobegan Creek Lock,540253,"-28.038333,153.391667",lga-3430,assigned
+gold-coast-logan:Nerang:evandale:1,Evandale,,,,no-coordinates
+gold-coast-logan:Nerang:biggerackdam:1,Biggera Ck Dam,540360,"-27.948611,153.382778",lga-3430,assigned
+gold-coast-logan:Nerang:loderckdam:1,Loder Ck Dam,540359,"-27.967500,153.386667",lga-3430,assigned
+gold-coast-logan:Nerang:lodercreek:1,Loder Creek,540238,"-27.967500,153.399722",lga-3430,assigned
+gold-coast-logan:Nerang:airsearescue:1,Air Sea Rescue,040881,"-27.952500,153.424167",lga-3430,assigned
+gold-coast-logan:Nerang:goldcoastseaway:1,Gold Coast Seaway,,,,no-coordinates
+gold-coast-logan:Nerang:burleighwaters:1,Burleigh Waters,040981,"-28.079167,153.431944",lga-3430,assigned
+gold-coast-logan:Nerang:uppertallebudgera:1,Upper Tallebudgera,540497,"-28.213333,153.330556",lga-3430,assigned
+gold-coast-logan:Nerang:tallebudgerackdam:1,Tallebudgera Ck Dam,540366,"-28.178889,153.360556",lga-3430,assigned
+gold-coast-logan:Nerang:tallebudgeracreekroad:1,Tallebudgera Creek Road,,,,no-coordinates
+gold-coast-logan:Nerang:coplicksbridge:1,Coplicks Bridge,540320,"-28.138056,153.424444",lga-3430,assigned
+gold-coast-logan:Nerang:oystercreek:1,Oyster Creek,540252,"-28.112778,153.437778",lga-3430,assigned
+gold-coast-logan:Nerang:tallebudgerackmouth:1,Tallebudgera Ck Mouth,540577,"-28.093611,153.460278",lga-3430,assigned
+gold-coast-logan:Nerang:currumbincreek:1,Currumbin Creek,,,,no-coordinates
+gold-coast-logan:Nerang:coolangatta:1,Coolangatta,040717,"-28.168056,153.505278",,outside
+gold-coast-logan:Nerang:bonoginparkmeadowscrt:1,Bonogin (Parkmeadows Crt),,,,no-coordinates
+gold-coast-logan:Nerang:naturalbridge:1,Natural Bridge,,,,no-coordinates
+gold-coast-logan:Nerang:palmbeach:1,Palm Beach,,,,no-coordinates
+gold-coast-logan:Nerang:springbrooknationalpark:1,Springbrook National Park,,,,no-coordinates
+gold-coast-logan:Nerang:schusterparksouthal:1,Schuster Park South Al,,,,no-coordinates
+gold-coast-logan:Nerang:tugun:1,Tugun,,,,no-coordinates
+gold-coast-logan:Nerang:currumbinvalley:1,Currumbin Valley,,,,no-coordinates
+gold-coast-logan:Coomera:binnaburra:1,Binna Burra,040845,"-28.200556,153.187222",lga-6510,assigned
+gold-coast-logan:Coomera:illinbah:1,Illinbah,540584,"-28.160556,153.155833",lga-6510,assigned
+gold-coast-logan:Coomera:tyungun:1,Tyungun,040376,"-28.086667,153.159444",lga-6510,assigned
+gold-coast-logan:Coomera:canungraarmy:1,Canungra Army,540290,"-28.025556,153.192778",lga-6510,assigned
+gold-coast-logan:Coomera:beechmontdnrm:1,Beechmont (DNRM),540230,"-28.124722,153.188889",lga-6510,assigned
+gold-coast-logan:Coomera:beechmont:1,Beechmont,040844,"-28.133333,153.190000",lga-6510,assigned
+gold-coast-logan:Coomera:clagirabard:1,Clagiraba Rd,,,,no-coordinates
+gold-coast-logan:Coomera:mttamborine:1,Mt Tamborine,,,,no-coordinates
+gold-coast-logan:Coomera:wongawallan:1,Wongawallan,,,,no-coordinates
+gold-coast-logan:Coomera:oxenfordweir:1,Oxenford Weir,540292,"-27.898333,153.291389",lga-3430,assigned
+gold-coast-logan:Coomera:pacificpines:1,Pacific Pines,540693,"-27.952778,153.306944",lga-3430,assigned
+gold-coast-logan:Coomera:montereykeys:1,Monterey Keys,540269,"-27.885556,153.338056",lga-3430,assigned
+gold-coast-logan:Coomera:coomerashores:1,Coomera Shores,540293,"-27.847778,153.359444",lga-3430,assigned
+gold-coast-logan:Coomera:coombabahcreek:1,Coombabah Creek,,,,no-coordinates
+gold-coast-logan:Coomera:wongawallan:2,Wongawallan,,,,no-coordinates
+gold-coast-logan:Coomera:canungra:1,Canungra,,,,no-coordinates
+gold-coast-logan:Coomera:laheyslookout:1,Laheys Lookout,040930,"-27.997222,153.182500",lga-6510,assigned
+gold-coast-logan:Pimpama:luscombe:1,Luscombe,040345,"-27.806389,153.207222",lga-3430,assigned
+gold-coast-logan:Pimpama:stewartsrd:1,Stewarts Rd,540377,"-27.788056,153.268889",lga-3430,assigned
+gold-coast-logan:Pimpama:norwell:1,Norwell,540408,"-27.788056,153.313889",lga-3430,assigned
+gold-coast-logan:Pimpama:hothamcreek:1,Hotham Creek,540376,"-27.815556,153.282222",lga-3430,assigned
+gold-coast-logan:Pimpama:kerkinrdpimpamariver:1,Kerkin Rd (Pimpama River),,,,no-coordinates
+gold-coast-logan:Pimpama:steiglitzwharf:1,Steiglitz Wharf,540295,"-27.745278,153.353611",lga-3430,assigned
+gold-coast-logan:Pimpama:willowvale:1,Willow Vale,,,,no-coordinates
+gold-coast-logan:Pimpama:kingsholme:1,Kingsholme,,,,no-coordinates
+Ipswich/Brisbane Creeks:meadowflatrdbridge:1,Meadow Flat Rd Bridge,540806,"-27.736000,152.467000",lga-3960,assigned
+Ipswich/Brisbane Creeks:goolman:1,Goolman,540668,"-27.736100,152.766800",lga-3960,assigned
+Ipswich/Brisbane Creeks:flindersviewashst:1,Flinders View (Ash St),540808,"-27.655000,152.759000",lga-3960,assigned
+Ipswich/Brisbane Creeks:churchill:1,Churchill,540248,"-27.633900,152.754200",lga-3960,assigned
+Ipswich/Brisbane Creeks:lyons:1,Lyons,040793,"-27.763300,152.836700",lga-4590,assigned
+Ipswich/Brisbane Creeks:redbankplains:1,Redbank Plains,540671,"-27.648600,152.864200",lga-3960,assigned
+Ipswich/Brisbane Creeks:springmt:1,Spring Mt,540665,"-27.677200,152.847800",lga-3960,assigned
+Ipswich/Brisbane Creeks:southripleywardsrd:1,South Ripley (Wards Rd),540666,"-27.726400,152.821900",lga-3960,assigned
+Ipswich/Brisbane Creeks:southripleyjamesivorybridge:1,South Ripley (James Ivory Bridge),540727,"-27.692800,152.805000",lga-3960,assigned
+Ipswich/Brisbane Creeks:bundambabarclayst:1,Bundamba (Barclay St),540247,"-27.620300,152.826100",lga-3960,assigned
+Ipswich/Brisbane Creeks:sixmilecreek:1,Six Mile Creek,540664,"-27.640900,152.844400",lga-3960,assigned
+Ipswich/Brisbane Creeks:riverviewconwayst:1,Riverview (Conway St),540807,"-27.607000,152.847000",lga-3960,assigned
+Ipswich/Brisbane Creeks:collingwoodpark:1,Collingwood Park,540672,"-27.620600,152.866700",lga-3960,assigned
+Ipswich/Brisbane Creeks:springfieldlakes:1,Springfield Lakes,540501,"-27.680800,152.897200",lga-3960,assigned
+Ipswich/Brisbane Creeks:bellbirdparkpurserrd:1,Bellbird Park (Purser Rd),040985,"-27.669200,152.873100",lga-3960,assigned
+Ipswich/Brisbane Creeks:bellbirdparkeugenest:1,Bellbird Park (Eugene St),540728,"-27.633300,152.905900",lga-3960,assigned
+Ipswich/Brisbane Creeks:brisbanerd:1,Brisbane Rd,040874,"-27.607800,152.908300",lga-3960,assigned
+Ipswich/Brisbane Creeks:richlandsrichlandsreservoir:1,Richlands (Richlands Reservoir),040785,"-27.601700,152.951100",lga-1000,assigned
+Ipswich/Brisbane Creeks:wacolwacolwwtp:1,Wacol (Wacol WWTP),540098,"-27.579200,152.905300",lga-1000,assigned
+Ipswich/Brisbane Creeks:jingledowns:1,Jingle Downs,040786,"-27.745600,152.908100",lga-4590,assigned
+Ipswich/Brisbane Creeks:greenbankthompsonrd:1,Greenbank (Thompson Rd),040794,"-27.695600,152.933300",lga-4590,assigned
+Ipswich/Brisbane Creeks:forestdalejohnsonrd:1,Forestdale (Johnson Rd),040788,"-27.658300,153.000000",lga-4590,assigned
+Ipswich/Brisbane Creeks:calamvalebeaudesertrd:1,Calamvale (Beaudesert Rd),040784,"-27.615000,153.044400",lga-1000,assigned
+Ipswich/Brisbane Creeks:salisburydulciest:1,Salisbury (Dulcie St),,,,no-coordinates
+Ipswich/Brisbane Creeks:archerfieldairport:1,Archerfield Airport,040211,"-27.571500,153.007100",lga-1000,assigned
+Ipswich/Brisbane Creeks:inaladurackbowlsclub:1,Inala (Durack Bowls Club),540029,"-27.588400,152.987100",lga-1000,assigned
+Ipswich/Brisbane Creeks:forestlakerachelecl:1,Forest Lake (Rachele Cl),540801,"-27.631500,152.953600",lga-1000,assigned
+Ipswich/Brisbane Creeks:corindacorindahighschool:1,Corinda (Corinda High School),540071,"-27.548300,152.986700",lga-1000,assigned
+Ipswich/Brisbane Creeks:rochedalelandfill:1,Rochedale (Landfill),,,,no-coordinates
+Ipswich/Brisbane Creeks:mtgravattgriffithuni:1,Mt Gravatt (Griffith Uni),040790,"-27.544800,153.063700",lga-1000,assigned
+Ipswich/Brisbane Creeks:hollandparkwestjoachimst:1,Holland Park West (Joachim St),540134,"-27.523100,153.054200",lga-1000,assigned
+Ipswich/Brisbane Creeks:eastbrisbanecaswellst:1,East Brisbane (Caswell St),540132,"-27.491100,153.048900",lga-1000,assigned
+Ipswich/Brisbane Creeks:brisbaneraymondpark:1,Brisbane (Raymond Park),040913,"-27.480800,153.038900",lga-1000,assigned
+Ipswich/Brisbane Creeks:eightmileplainsgagarrast:1,Eight Mile Plains (Gagarra St),540125,"-27.584200,153.087500",lga-1000,assigned
+Ipswich/Brisbane Creeks:wishartgreenwoodst:1,Wishart (Greenwood St),540127,"-27.561700,153.103100",lga-1000,assigned
+Ipswich/Brisbane Creeks:mansfieldmerionpl:1,Mansfield (Merion Pl),540126,"-27.530000,153.105000",lga-1000,assigned
+Ipswich/Brisbane Creeks:chandlerbactonrd:1,Chandler (Bacton Rd),540791,"-27.510000,153.154000",lga-1000,assigned
+Ipswich/Brisbane Creeks:bulimbabulimbalibrary:1,Bulimba (Bulimba Library),,,,no-coordinates
+Ipswich/Brisbane Creeks:murarrierosewoodpl:1,Murarrie (Rosewood Pl),540800,"-27.465300,153.094300",lga-1000,assigned
+Ipswich/Brisbane Creeks:carindaleoldclevelandrd:1,Carindale (Old Cleveland Rd),540128,"-27.502800,153.104400",lga-1000,assigned
+Ipswich/Brisbane Creeks:camphilltaranast:1,Camp Hill (Tarana St),540240,"-27.496400,153.072500",lga-1000,assigned
+Ipswich/Brisbane Creeks:hemmantdoughboypde:1,Hemmant (Doughboy Pde),540129,"-27.450300,153.125000",lga-1000,assigned
+Ipswich/Brisbane Creeks:lyttonwwtp:1,Lytton (WWTP),540225,"-27.421100,153.162500",lga-1000,assigned
+Ipswich/Brisbane Creeks:ransomerickerttrd:1,Ransome (Rickertt Rd),,,,no-coordinates
+Ipswich/Brisbane Creeks:manlyharmanrecreserve:1,Manly (Harman Rec Reserve),540282,"-27.462200,153.181100",lga-1000,assigned
+Ipswich/Brisbane Creeks:wynnumbowlsclub:1,Wynnum (Bowls Club),540322,"-27.445300,153.165600",lga-1000,assigned
+Ipswich/Brisbane Creeks:pullenvalepullenvalehall:1,Pullenvale (Pullenvale Hall),540297,"-27.525000,152.885300",lga-1000,assigned
+Ipswich/Brisbane Creeks:kenmorehillschadstonecl:1,Kenmore Hills (Chadstone Cl),,,,no-coordinates
+Ipswich/Brisbane Creeks:goldckreservoirhg:1,Gold Ck Reservoir HG,540609,"-27.460500,152.882100",lga-1000,assigned
+Ipswich/Brisbane Creeks:goldckreservoir:1,Gold Ck Reservoir,540107,"-27.466700,152.883100",lga-1000,assigned
+Ipswich/Brisbane Creeks:chapelhillgreenhillreservoir:1,Chapel Hill (Green Hill Reservoir),540465,"-27.495000,152.957800",lga-1000,assigned
+Ipswich/Brisbane Creeks:toowonganzacpark:1,Toowong (ANZAC Park),540281,"-27.481900,152.978300",lga-1000,assigned
+Ipswich/Brisbane Creeks:rosaliebaroonard:1,Rosalie (Baroona Rd),540785,"-27.465400,152.990500",lga-1000,assigned
+Ipswich/Brisbane Creeks:mtnebothreeways:1,Mt Nebo (Three Ways),540110,"-27.445300,152.825800",lga-1000,assigned
+Ipswich/Brisbane Creeks:enoggeradamhg:1,Enoggera Dam HG,540604,"-27.445500,152.927500",lga-1000,assigned
+Ipswich/Brisbane Creeks:enoggeradam:1,Enoggera Dam,540119,"-27.446900,152.926400",lga-1000,assigned
+Ipswich/Brisbane Creeks:mtcootthaabq2:1,Mt Coot-Tha (ABQ-2),540117,"-27.464700,152.945300",lga-1000,assigned
+Ipswich/Brisbane Creeks:alderleysedgleypark:1,Alderley (Sedgley Park),540239,"-27.423900,153.003100",lga-1000,assigned
+Ipswich/Brisbane Creeks:bowenhillsmaynerailwayyards:1,Bowen Hills (Mayne Railway Yards),540130,"-27.443600,153.032800",lga-1000,assigned
+Ipswich/Brisbane Creeks:eaglefarmbccasphaltplant:1,Eagle Farm (Bcc Asphalt Plant),540803,"-27.439400,153.083600",lga-1000,assigned
+Ipswich/Brisbane Creeks:upperkedronkedronrecreserve:1,Upper Kedron (Kedron Rec Reserve),,,,no-coordinates
+Ipswich/Brisbane Creeks:evertonparkosbornerd:1,Everton Park (Osborne Rd),540111,"-27.404700,152.977500",lga-1000,assigned
+Ipswich/Brisbane Creeks:toombulnudgeerd:1,Toombul (Nudgee Rd),540548,"-27.407000,153.074000",lga-1000,assigned
+Ipswich/Brisbane Creeks:hendraponyclub:1,Hendra (Pony Club),540469,"-27.401900,153.074700",lga-1000,assigned
+Ipswich/Brisbane Creeks:brisbaneaero:1,Brisbane Aero,040842,"-27.391700,153.129200",lga-1000,assigned
+Ipswich/Brisbane Creeks:pinkenbaluggagepointwwtp:1,Pinkenba (Luggage Point WWTP),540372,"-27.382800,153.146400",lga-1000,assigned
+Ipswich/Brisbane Creeks:boondallfranksleemanpark:1,Boondall (Frank Sleeman Park),,,,no-coordinates
+Ipswich/Brisbane Creeks:geebungbrickyardrd:1,Geebung (Brickyard Rd),540120,"-27.383900,153.057800",lga-1000,assigned
+Ipswich/Brisbane Creeks:evertonhillscollinsrd:1,Everton Hills (Collins Rd),540121,"-27.382200,152.978300",lga-5010,assigned
+Ipswich/Brisbane Creeks:aspleyreservoir:1,Aspley (Reservoir),540114,"-27.375600,153.008300",lga-1000,assigned
+Ipswich/Brisbane Creeks:deagonburralongst:1,Deagon (Burralong St),540124,"-27.335800,153.057500",lga-1000,assigned
+Ipswich/Brisbane Creeks:brackenridgereserve:1,Bracken Ridge Reserve,,,,no-coordinates
+Ipswich/Brisbane Creeks:brightonqueenspde:1,Brighton (Queens Pde),540802,"-27.298900,153.055800",lga-1000,assigned
+Ipswich/Brisbane Creeks:springfieldlakeslowleveldam:1,Springfield Lakes Low Level Dam,,,,no-coordinates
+Ipswich/Brisbane Creeks:gordonparkmccordst:1,Gordon Park (McCord St),540478,"-27.417800,153.030800",lga-1000,assigned
+Ipswich/Brisbane Creeks:beattyroadarcherfield:1,Beatty Road (Archerfield),,,,no-coordinates
+Ipswich/Brisbane Creeks:redlandalexandrahills:1,Redland (Alexandra Hills),140007,"-27.543300,153.239400",lga-6250,assigned
+Ipswich/Brisbane Creeks:bundambaschool:1,Bundamba School,040875,"-27.611700,152.806400",lga-3960,assigned
+Pine/Caboolture:mtglorious:1,Mt Glorious,540138,"-27.316700,152.746900",lga-6580,assigned
+Pine/Caboolture:cedarckrd:1,Cedar Ck Rd,540444,"-27.327800,152.864700",lga-5010,assigned
+Pine/Caboolture:mtnebo:1,Mt Nebo,540520,"-27.395500,152.782200",lga-5010,assigned
+Pine/Caboolture:samford:1,Samford,540060,"-27.360800,152.879400",lga-5010,assigned
+Pine/Caboolture:highvaleshowgroundsdrive:1,Highvale (Showgrounds Drive),540655,"-27.371100,152.825000",lga-5010,assigned
+Pine/Caboolture:samfordvalley:1,Samford Valley,540739,"-27.367000,152.876000",lga-5010,assigned
+Pine/Caboolture:samfordvillage:1,Samford Village,540416,"-27.370300,152.888300",lga-5010,assigned
+Pine/Caboolture:clearmountain:1,Clear Mountain,540418,"-27.305600,152.886100",lga-5010,assigned
+Pine/Caboolture:draperscrossingalert:1,Drapers Crossing Alert,540205,"-27.350000,152.916700",lga-5010,assigned
+Pine/Caboolture:eatonshill:1,Eatons Hill,540794,"-27.348600,152.953100",lga-5010,assigned
+Pine/Caboolture:cashscrossing:1,Cash's Crossing,540415,"-27.342800,152.960800",lga-5010,assigned
+Pine/Caboolture:bridgemandownspinnaroocemetery:1,Bridgeman Downs (Pinnaroo Cemetery),540467,"-27.350800,152.990800",lga-1000,assigned
+Pine/Caboolture:strathpinegympierd:1,Strathpine (Gympie Rd),540625,"-27.315600,153.000300",lga-5010,assigned
+Pine/Caboolture:kluverslookout:1,Kluvers Lookout,540168,"-27.206900,152.702800",lga-6580,assigned
+Pine/Caboolture:raynbirdcreek:1,Raynbird Creek,540545,"-27.258000,152.733000",lga-5010,assigned
+Pine/Caboolture:laceyscreek:1,Laceys Creek,540409,"-27.196400,152.750600",lga-5010,assigned
+Pine/Caboolture:dayboroterrorscreek:1,Dayboro (Terrors Creek),540628,"-27.188300,152.826700",lga-5010,assigned
+Pine/Caboolture:dayboro:1,Dayboro,,,,no-coordinates
+Pine/Caboolture:dayborowwtp:1,Dayboro WWTP,540484,"-27.218600,152.840300",lga-5010,assigned
+Pine/Caboolture:mtsamsonrd:1,Mt Samson Rd,540447,"-27.249400,152.837500",lga-5010,assigned
+Pine/Caboolture:kobblecreekladiesrd:1,Kobble Creek (Ladies Rd),540656,"-27.291000,152.830000",lga-5010,assigned
+Pine/Caboolture:northpinedam:1,North Pine Dam,540277,"-27.266700,152.933300",lga-5010,assigned
+Pine/Caboolture:brownscreekrd:1,Browns Creek Rd,,,,no-coordinates
+Pine/Caboolture:lakekurwongbahhg:1,Lake Kurwongbah HG,540605,"-27.257200,152.952800",lga-5010,assigned
+Pine/Caboolture:lakekurwongbah:1,Lake Kurwongbah,540204,"-27.250000,152.950000",lga-5010,assigned
+Pine/Caboolture:youngscrossing:1,Youngs Crossing,540412,"-27.266700,152.954200",lga-5010,assigned
+Pine/Caboolture:lawntontoddsrd:1,Lawnton (Todds Rd),540562,"-27.282500,152.968600",lga-5010,assigned
+Pine/Caboolture:lawnton:1,Lawnton,540439,"-27.275600,152.993600",lga-5010,assigned
+Pine/Caboolture:warner:1,Warner,540651,"-27.307700,152.941600",lga-5010,assigned
+Pine/Caboolture:johnbraypark:1,John Bray Park,540413,"-27.296700,152.985000",lga-5010,assigned
+Pine/Caboolture:murrumbadowns:1,Murrumba Downs,540417,"-27.288100,153.017500",lga-5010,assigned
+Pine/Caboolture:kallangur:1,Kallangur,540658,"-27.241600,152.991200",lga-5010,assigned
+Pine/Caboolture:lipscomberd:1,Lipscombe Rd,540445,"-27.203100,153.014700",lga-5010,assigned
+Pine/Caboolture:deceptionbaymajorst:1,Deception Bay (Major St),540741,"-27.206600,153.026500",lga-5010,assigned
+Pine/Caboolture:rothwell:1,Rothwell,540659,"-27.217300,153.044300",lga-5010,assigned
+Pine/Caboolture:kipparing:1,Kippa-Ring,540629,"-27.216600,153.093300",lga-5010,assigned
+Pine/Caboolture:redcliffe:1,Redcliffe,,,,no-coordinates
+Pine/Caboolture:woodypoint:1,Woody Point,540498,"-27.258000,153.085000",lga-5010,assigned
+Pine/Caboolture:moorina:1,Moorina,540358,"-27.153100,152.852800",lga-5010,assigned
+Pine/Caboolture:narangbaoakeyflatrd:1,Narangba (Oakey Flat Rd),540508,"-27.175300,152.922200",lga-5010,assigned
+Pine/Caboolture:burpengarymathewcr:1,Burpengary (Mathew Cr),540619,"-27.164700,152.941100",lga-5010,assigned
+Pine/Caboolture:burpengarydalest:1,Burpengary (Dale St),540242,"-27.149200,152.961700",lga-5010,assigned
+Pine/Caboolture:deceptionbaycreekrd:1,Deception Bay (Creek Rd),540623,"-27.173300,152.982700",lga-5010,assigned
+Pine/Caboolture:deceptionbay:1,Deception Bay,040980,"-27.182200,153.018600",lga-5010,assigned
+Pine/Caboolture:mountmee:1,Mount Mee,540588,"-27.081100,152.770800",lga-5010,assigned
+Pine/Caboolture:mtmee:1,Mt Mee,540185,"-27.069700,152.780000",lga-5010,assigned
+Pine/Caboolture:oceanview:1,Ocean View,540634,"-27.116600,152.788600",lga-5010,assigned
+Pine/Caboolture:uppercaboolturemcclurerd:1,Upper Caboolture (Mcclure Rd),,,,no-coordinates
+Pine/Caboolture:uppercaboolturehausmanlane:1,Upper Caboolture (Hausman Lane),540357,"-27.097800,152.891400",lga-5010,assigned
+Pine/Caboolture:wamuranwararbacreek:1,Wamuran (Wararba Creek),540244,"-27.047800,152.859400",lga-5010,assigned
+Pine/Caboolture:wamuraneurekact:1,Wamuran (Eureka Ct),540793,"-27.059200,152.880000",lga-5010,assigned
+Pine/Caboolture:caboolturewtp:1,Caboolture WTP,540243,"-27.086100,152.939400",lga-5010,assigned
+Pine/Caboolture:cabooltureshortst:1,Caboolture (Short St),540660,"-27.087400,152.960800",lga-5010,assigned
+Pine/Caboolture:morayfieldwilliamsonrd:1,Morayfield (Williamson Rd),540654,"-27.144600,152.910500",lga-5010,assigned
+Pine/Caboolture:morayfieldpetersenrd:1,Morayfield (Petersen Rd),,,,no-coordinates
+Pine/Caboolture:sheepstationck:1,Sheep Station Ck,540542,"-27.110000,152.948600",lga-5010,assigned
+Pine/Caboolture:wamuranmcclintockrd:1,Wamuran (Mcclintock Rd),,,,no-coordinates
+Pine/Caboolture:moodluwilliamsrd:1,Moodlu (Williams Rd),540557,"-27.050600,152.911700",lga-5010,assigned
+Pine/Caboolture:caboolturemachinerypde:1,Caboolture (Machinery Pde),540736,"-27.073000,152.947000",lga-5010,assigned
+Pine/Caboolture:roundmtreservoir:1,Round Mt Reservoir,540241,"-27.032800,152.934400",lga-5010,assigned
+Pine/Caboolture:caboolturepumicestonerd:1,Caboolture (Pumicestone Rd),540561,"-27.053100,152.962800",lga-5010,assigned
+Pine/Caboolture:caboolturebrucehwy:1,Caboolture (Bruce Hwy),,,,no-coordinates
+Pine/Caboolture:caboolturebribieisrd:1,Caboolture (Bribie Is Rd),540627,"-27.075400,153.011100",lga-5010,assigned
+Pine/Caboolture:beachmereriversleighrd:1,Beachmere (Riversleigh Rd),540558,"-27.104200,153.007200",lga-5010,assigned
+Pine/Caboolture:beachmerestsmithrd:1,Beachmere (St Smith Rd),540740,"-27.145600,153.036100",lga-5010,assigned
+Pine/Caboolture:beachmere:1,Beachmere,540496,"-27.136900,153.049700",lga-5010,assigned
+Pine/Caboolture:beerburrumwoodfordroad:1,Beerburrum-Woodford Road,540622,"-26.937900,152.850900",lga-5010,assigned
+Pine/Caboolture:beerburrum:1,Beerburrum,040284,"-26.958600,152.961900",lga-6720,assigned
+Pine/Caboolture:elimbahrosecreekrd:1,Elimbah (Rose Creek Rd),540543,"-27.013100,152.945800",lga-5010,assigned
+Pine/Caboolture:elimbah:1,Elimbah,540653,"-26.970000,152.916400",lga-5010,assigned
+Pine/Caboolture:toorbuldonnybrookrd:1,Toorbul (Donnybrook Rd),540635,"-27.031100,153.039700",lga-5010,assigned
+Pine/Caboolture:westawayscreek:1,Westaways Creek,,,,no-coordinates
+Pine/Caboolture:bribieislandquarry:1,Bribie Island Quarry,,,,no-coordinates
+Pine/Caboolture:banksiabeach:1,Banksia Beach,540735,"-27.033100,153.148600",lga-5010,assigned
+Pine/Caboolture:bribieislandmortenbay:1,Bribie Island (Morten Bay),040978,"-27.079700,153.180300",lga-5010,assigned
+Pine/Caboolture:bribieislandtreatment:1,Bribie Island Treatment,540631,"-27.095600,153.183100",lga-5010,assigned
+Pine/Caboolture:narangbamainst:1,Narangba (Main St),540809,"-27.204400,152.961600",lga-5010,assigned
+Pine/Caboolture:burpengaryrowleyrd:1,Burpengary (Rowley Rd),,,,no-coordinates
+Pine/Caboolture:morayfieldrd:1,Morayfield Rd,,,,no-coordinates
+Pine/Caboolture:leescrossing:1,Lees Crossing,540826,"-27.210400,152.810100",lga-5010,assigned
+Pine/Caboolture:bribieisland:1,Bribie Island,540743,"-27.012800,153.136400",lga-5010,assigned
+Pine/Caboolture:normanbyway:1,Normanby Way,540414,"-27.306400,152.996900",lga-5010,assigned
+Pine/Caboolture:draperscrossingtm:1,Drapers Crossing Tm,540398,"-27.346700,152.923900",lga-5010,assigned
+Pine/Caboolture:dayboro:2,Dayboro,,,,no-coordinates
+Stanley/Upper Brisbane:crohamhurst:1,Crohamhurst,540662,"-26.807000,152.865000",lga-6720,assigned
+Stanley/Upper Brisbane:ferrisknob:1,Ferris Knob,540190,"-26.854200,152.816700",lga-5010,assigned
+Stanley/Upper Brisbane:woodford:1,Woodford,540338,"-26.935200,152.761000",lga-5010,assigned
+Stanley/Upper Brisbane:delaneysck:1,Delaneys Ck,540657,"-27.001900,152.787200",lga-5010,assigned
+Stanley/Upper Brisbane:lindfieldbrisbaneriver:1,Lindfield (Brisbane River),540491,"-26.836900,152.581100",lga-6580,assigned
+Stanley/Upper Brisbane:kilcoycreek:1,Kilcoy Creek,540373,"-26.920000,152.581900",lga-6580,assigned
+Stanley/Upper Brisbane:kilcoy:1,Kilcoy,540163,"-26.948100,152.583600",lga-6580,assigned
+Stanley/Upper Brisbane:uppersheepstationck:1,Upper Sheepstation Ck,540711,"-26.833000,152.435000",lga-6580,assigned
+Stanley/Upper Brisbane:westvale:1,Westvale,540486,"-27.024400,152.604400",lga-6580,assigned
+Stanley/Upper Brisbane:hazeldean:1,Hazeldean,540487,"-27.027500,152.537200",lga-6580,assigned
+Stanley/Upper Brisbane:somersetdam:1,Somerset Dam,040820,"-27.116900,152.555000",lga-6580,assigned
+Stanley/Upper Brisbane:topofbrisbane:1,Top of Brisbane,540164,"-26.477200,152.156700",lga-6580,assigned
+Stanley/Upper Brisbane:monsildale:1,Monsildale,540490,"-26.581400,152.325000",lga-6580,assigned
+Stanley/Upper Brisbane:mtstanley:1,Mt Stanley,540488,"-26.681700,152.204400",lga-6580,assigned
+Stanley/Upper Brisbane:rangemore:1,Rangemore,541152,"-26.980000,151.682000",lga-6910,assigned
+Stanley/Upper Brisbane:cooyarkooralginrd:1,Cooyar-Kooralgin Rd,,,,no-coordinates
+Stanley/Upper Brisbane:blackbutt:1,Blackbutt,540493,"-26.885800,152.101700",lga-6630,assigned
+Stanley/Upper Brisbane:yarraman:1,Yarraman,540145,"-26.835800,151.969200",lga-6910,assigned
+Stanley/Upper Brisbane:cooyarcreek:1,Cooyar Creek,540146,"-26.741700,152.136700",lga-6630,assigned
+Stanley/Upper Brisbane:linvillealert:1,Linville Alert,540261,"-26.804400,152.271900",lga-6580,assigned
+Stanley/Upper Brisbane:devonhills:1,Devon Hills,540188,"-26.899700,152.320800",lga-6580,assigned
+Stanley/Upper Brisbane:staubyns:1,St Aubyns,540144,"-27.061900,151.894400",lga-6910,assigned
+Stanley/Upper Brisbane:mtbingabrisbaneriver:1,Mt Binga (Brisbane River),540494,"-26.995300,151.986700",lga-6910,assigned
+Stanley/Upper Brisbane:boatmountain:1,Boat Mountain,540141,"-26.978900,152.284700",lga-6580,assigned
+Stanley/Upper Brisbane:glendale:1,Glendale,540446,"-26.978100,152.333600",lga-6580,assigned
+Stanley/Upper Brisbane:pohlmanrange:1,Pohlman Range,540459,"-26.992200,152.431400",lga-6580,assigned
+Stanley/Upper Brisbane:gregorcreek:1,Gregor Creek,540139,"-26.990600,152.404200",lga-6580,assigned
+Stanley/Upper Brisbane:crowsnestbrisbaneriver:1,Crows Nest (Brisbane River),540161,"-27.230800,152.031100",lga-6910,assigned
+Stanley/Upper Brisbane:perseverancedam:1,Perseverance Dam,,,,no-coordinates
+Stanley/Upper Brisbane:ravensbourne:1,Ravensbourne,,,,no-coordinates
+Stanley/Upper Brisbane:cressbrookdam:1,Cressbrook Dam,540142,"-27.265300,152.195000",lga-6580,assigned
+Stanley/Upper Brisbane:redbankcreekbrisbaneriver:1,Redbank Creek (Brisbane River),540489,"-27.276700,152.288900",lga-6580,assigned
+Stanley/Upper Brisbane:eskdale:1,Eskdale,540492,"-27.168000,152.198000",lga-6580,assigned
+Stanley/Upper Brisbane:rosentretersbridge:1,Rosentreters Bridge,540148,"-27.138300,152.329400",lga-6580,assigned
+Stanley/Upper Brisbane:toogoolawahpostoffice:1,Toogoolawah Post Office,,,,no-coordinates
+Stanley/Upper Brisbane:fulham:1,Fulham,540695,"-27.077000,152.413000",lga-6580,assigned
+Stanley/Upper Brisbane:reedycreek:1,Reedy Creek,540732,"-27.151000,152.653000",lga-6580,assigned
+Stanley/Upper Brisbane:mtbyron:1,Mt Byron,540560,"-27.135000,152.617500",lga-6580,assigned
+Stanley/Upper Brisbane:caboonbah:1,Caboonbah,540155,"-27.146400,152.490300",lga-6580,assigned
+Stanley/Upper Brisbane:glenesk:1,Glen Esk,540524,"-27.221000,152.487000",lga-6580,assigned
+Stanley/Upper Brisbane:bryden:1,Bryden,540522,"-27.243000,152.568000",lga-6580,assigned
+Stanley/Upper Brisbane:bellevuebay:1,Bellevue Bay,540709,"-27.346000,152.529000",lga-6580,assigned
+Stanley/Upper Brisbane:hayslanding:1,Hays Landing,540458,"-27.332200,152.610300",lga-6580,assigned
+Stanley/Upper Brisbane:wivenhoedamhg:1,Wivenhoe Dam HG,540177,"-27.394400,152.609700",lga-6580,assigned
+Stanley/Upper Brisbane:wivenhoedamtw:1,Wivenhoe Dam TW,540178,"-27.402200,152.606900",lga-6580,assigned
+Stanley/Upper Brisbane:fallsrd:1,Falls Rd,540441,"-27.235800,152.445300",lga-6580,assigned
+Stanley/Upper Brisbane:cressbrookdamhw:1,Cressbrook Dam HW,540750,"-27.263300,152.208900",lga-6580,assigned
+Stanley/Upper Brisbane:anduramba:1,Anduramba,540846,"-27.071200,152.085800",lga-6910,assigned
+Lower Brisbane:thornville:1,Thornville,540705,"-27.057500,151.871100",lga-6910,assigned
+Lower Brisbane:toowoomba:1,Toowoomba,540162,"-27.510300,151.954700",lga-6910,assigned
+Lower Brisbane:fifteenmile:1,Fifteen Mile,540601,"-27.398600,152.073100",lga-6910,assigned
+Lower Brisbane:paradisecreekrd:1,Paradise Creek Rd,540534,"-27.454200,152.078900",lga-4580,assigned
+Lower Brisbane:upperlockyer:1,Upper Lockyer,540566,"-27.492200,152.081900",lga-4580,assigned
+Lower Brisbane:withcott:1,Withcott,540602,"-27.565800,152.027200",lga-4580,assigned
+Lower Brisbane:helidon:1,Helidon,540143,"-27.543900,152.113300",lga-4580,assigned
+Lower Brisbane:gormansgap:1,Gormans Gap,540521,"-27.641500,151.984500",lga-4580,assigned
+Lower Brisbane:flagstoneckbore:1,Flagstone Ck Bore,,,,no-coordinates
+Lower Brisbane:flagstonecreek:1,Flagstone Creek,,,,no-coordinates
+Lower Brisbane:uppersandycreek:1,Upper Sandy Creek,540385,"-27.455800,152.198300",lga-4580,assigned
+Lower Brisbane:sandycreekrd:1,Sandy Creek Rd,540386,"-27.571100,152.178100",lga-4580,assigned
+Lower Brisbane:westhaldon:1,West Haldon,541106,"-27.778000,152.080300",lga-6910,assigned
+Lower Brisbane:westwoodbine:1,West Woodbine,540166,"-27.784700,152.149700",lga-4580,assigned
+Lower Brisbane:littleegypt:1,Little Egypt,540170,"-27.704200,152.065000",lga-4580,assigned
+Lower Brisbane:mamacreek:1,Ma Ma Creek,,,,no-coordinates
+Lower Brisbane:goltzrd:1,Goltz Rd,540600,"-27.865900,152.181300",lga-4580,assigned
+Lower Brisbane:upperblackfellow:1,Upper Blackfellow,540570,"-27.915100,152.273600",lga-4580,assigned
+Lower Brisbane:junctionview:1,Junction View,540568,"-27.801100,152.187500",lga-4580,assigned
+Lower Brisbane:blackfellowck:1,Blackfellow Ck,540556,"-27.777800,152.192200",lga-4580,assigned
+Lower Brisbane:uppertenthill:1,Upper Tenthill,540519,"-27.809200,152.286500",lga-4580,assigned
+Lower Brisbane:mtsylvia:1,Mt Sylvia,540571,"-27.720900,152.219400",lga-4580,assigned
+Lower Brisbane:mtpetersen:1,Mt Petersen,540525,"-27.651700,152.198600",lga-4580,assigned
+Lower Brisbane:tenthill:1,Tenthill,540152,"-27.635800,152.214400",lga-4580,assigned
+Lower Brisbane:tenthillbore:1,Tenthill Bore,540553,"-27.637800,152.219200",lga-4580,assigned
+Lower Brisbane:gattonlockyercreek:1,Gatton (Lockyer Creek),540156,"-27.550000,152.268600",lga-4580,assigned
+Lower Brisbane:gattonuq:1,Gatton (UQ),040082,"-27.543600,152.337500",lga-4580,assigned
+Lower Brisbane:mtcastle:1,Mt Castle,540171,"-27.963600,152.375600",lga-4580,assigned
+Lower Brisbane:mtberrymanrd:1,Mt Berryman Rd,540718,"-27.754400,152.336800",lga-4580,assigned
+Lower Brisbane:rocksidemt:1,Rockside Mt,540523,"-27.716700,152.310300",lga-4580,assigned
+Lower Brisbane:moonrd:1,Moon Rd,,,,no-coordinates
+Lower Brisbane:woodlandsrdsandycreek:1,Woodlands Rd (Sandy Creek),540680,"-27.628100,152.329900",lga-4580,assigned
+Lower Brisbane:whitewayrd:1,Whiteway Rd,540720,"-27.597200,152.345600",lga-4580,assigned
+Lower Brisbane:foresthill:1,Forest Hill,540516,"-27.583900,152.350300",lga-4580,assigned
+Lower Brisbane:stoneyckrd:1,Stoney Ck Rd,540573,"-27.873100,152.389200",lga-4580,assigned
+Lower Brisbane:townson:1,Townson,540716,"-27.861100,152.383700",lga-4580,assigned
+Lower Brisbane:thornton:1,Thornton,,,,no-coordinates
+Lower Brisbane:thorntonschoolrd:1,Thornton (School Rd),540789,"-27.798300,152.372800",lga-4580,assigned
+Lower Brisbane:maincamprd:1,Main Camp Rd,540717,"-27.833600,152.314400",lga-4580,assigned
+Lower Brisbane:mulgowie:1,Mulgowie,,,,no-coordinates
+Lower Brisbane:mulgowierdlaidleycreek:1,Mulgowie Rd (Laidley Creek),,,,no-coordinates
+Lower Brisbane:mcgarrigalrdlaidleycreek:1,McGarrigal Rd (Laidley Creek),540722,"-27.696900,152.370300",lga-4580,assigned
+Lower Brisbane:schultzlookout:1,Schultz Lookout,540526,"-27.665300,152.345800",lga-4580,assigned
+Lower Brisbane:nardalagoon:1,Narda Lagoon,540721,"-27.648900,152.390800",lga-4580,assigned
+Lower Brisbane:showgroundweir:1,Showground Weir,,,,no-coordinates
+Lower Brisbane:billgunndam:1,Bill Gunn Dam,540563,"-27.631700,152.379200",lga-4580,assigned
+Lower Brisbane:warregohighway:1,Warrego Highway,540529,"-27.553300,152.388900",lga-4580,assigned
+Lower Brisbane:lakeclarendondamhw:1,Lake Clarendon Dam HW,540546,"-27.515600,152.353100",lga-4580,assigned
+Lower Brisbane:glenoregrove:1,Glenore Grove,540149,"-27.523100,152.409200",lga-4580,assigned
+Lower Brisbane:batzloffsrd:1,Batzloffs Rd,540554,"-27.491900,152.493900",lga-6580,assigned
+Lower Brisbane:mtstradbroke:1,Mt Stradbroke,540733,"-27.520000,152.585000",lga-6580,assigned
+Lower Brisbane:buaraba:1,Buaraba,540457,"-27.406400,152.382500",lga-6580,assigned
+Lower Brisbane:clarendon:1,Clarendon,540701,"-27.420100,152.530800",lga-6580,assigned
+Lower Brisbane:oreillysweir:1,O'Reilly's Weir,,,,no-coordinates
+Lower Brisbane:savagescrossing:1,Savages Crossing,540150,"-27.441100,152.668300",lga-6580,assigned
+Lower Brisbane:marburg:1,Marburg,540312,"-27.577800,152.593600",lga-3960,assigned
+Lower Brisbane:lakemanchesterhg:1,Lake Manchester HG,540606,"-27.488300,152.751500",lga-1000,assigned
+Lower Brisbane:mtcrosby:1,Mt Crosby,540199,"-27.536400,152.799200",lga-1000,assigned
+Lower Brisbane:collegescrossing:1,Colleges Crossing,540063,"-27.557200,152.797500",lga-3960,assigned
+Lower Brisbane:adamsbridge:1,Adams Bridge,540157,"-27.829400,152.510800",lga-6510,assigned
+Lower Brisbane:lowermtwalker:1,Lower Mt Walker,540574,"-27.704000,152.551000",lga-3960,assigned
+Lower Brisbane:spressersbridge:1,Spressers Bridge,540314,"-27.663100,152.590600",lga-3960,assigned
+Lower Brisbane:greysplainsrd:1,Greys Plains Rd,540317,"-27.802500,152.436100",lga-3960,assigned
+Lower Brisbane:franklynvale:1,Franklyn Vale,040912,"-27.759700,152.470000",lga-3960,assigned
+Lower Brisbane:upperwesternck:1,Upper Western Ck,540667,"-27.681400,152.434200",lga-3960,assigned
+Lower Brisbane:grandchester:1,Grandchester,540064,"-27.663100,152.461100",lga-3960,assigned
+Lower Brisbane:kussrd:1,Kuss Rd,540194,"-27.665800,152.541400",lga-3960,assigned
+Lower Brisbane:tallegalla:1,Tallegalla,040503,"-27.607500,152.580000",lga-3960,assigned
+Lower Brisbane:mtmarrow:1,Mt Marrow,540663,"-27.604400,152.610600",lga-3960,assigned
+Lower Brisbane:rosewoodwwtp:1,Rosewood WWTP,,,,no-coordinates
+Lower Brisbane:rosewooddetentionbasin:1,Rosewood Detention Basin,540503,"-27.627200,152.591400",lga-3960,assigned
+Lower Brisbane:rosewood:1,Rosewood,540388,"-27.659200,152.604200",lga-3960,assigned
+Lower Brisbane:sevenmilebridge:1,Seven Mile Bridge,540669,"-27.648300,152.634700",lga-3960,assigned
+Lower Brisbane:fivemilebridge:1,Five Mile Bridge,540147,"-27.628900,152.668100",lga-3960,assigned
+Lower Brisbane:taromewarrillcreek:1,Tarome (Warrill Creek),540173,"-27.986700,152.500800",lga-6510,assigned
+Lower Brisbane:warrillcreekbore:1,Warrill Creek Bore,540724,"-27.978100,152.498300",lga-6510,assigned
+Lower Brisbane:toohillscrossing:1,Toohills Crossing,540549,"-27.975300,152.523100",lga-6510,assigned
+Lower Brisbane:upperclumber:1,Upper Clumber,540681,"-28.123000,152.442000",lga-6510,assigned
+Lower Brisbane:moogerahdamhg:1,Moogerah Dam HG,540474,"-28.031400,152.550000",lga-6510,assigned
+Lower Brisbane:kalbarweirhg:1,Kalbar Weir HG,540058,"-27.935300,152.597800",lga-6510,assigned
+Lower Brisbane:kalbarweirhw:1,Kalbar Weir HW,540151,"-27.935300,152.597800",lga-6510,assigned
+Lower Brisbane:kalbar:1,Kalbar,040867,"-27.940600,152.623600",lga-6510,assigned
+Lower Brisbane:kentslagoon:1,Kents Lagoon,,,,no-coordinates
+Lower Brisbane:harrisville:1,Harrisville,540387,"-27.813300,152.641700",lga-6510,assigned
+Lower Brisbane:churchbankweiralert:1,Churchbank Weir Alert,540316,"-27.770600,152.685000",lga-6510,assigned
+Lower Brisbane:willowbank:1,Willowbank,140024,"-27.695200,152.686500",lga-3960,assigned
+Lower Brisbane:amberley:1,Amberley,,,,no-coordinates
+Lower Brisbane:amberleydrdmw:1,Amberley DRDMW,040816,"-27.665800,152.698900",lga-3960,assigned
+Lower Brisbane:amberleyamo:1,Amberley AMO,040004,"-27.629700,152.711100",lga-3960,assigned
+Lower Brisbane:washpool:1,Washpool,540195,"-27.829200,152.755300",lga-6510,assigned
+Lower Brisbane:peakcrossing:1,Peak Crossing,540065,"-27.780600,152.731100",lga-6510,assigned
+Lower Brisbane:berryslagoon:1,Berry's Lagoon,,,,no-coordinates
+Lower Brisbane:onemilebridge:1,One Mile Bridge,040836,"-27.627200,152.746100",lga-3960,assigned
+Lower Brisbane:limestoneparkdetentionbasin:1,Limestone Park Detention Basin,540795,"-27.621100,152.765700",lga-3960,assigned
+Lower Brisbane:karaleebremerriver:1,Karalee (Bremer River),540661,"-27.584300,152.813100",lga-3960,assigned
+Lower Brisbane:moggill:1,Moggill,,,,no-coordinates
+Lower Brisbane:goodnabrisbaneriver:1,Goodna (Brisbane River),540670,"-27.600300,152.894200",lga-3960,assigned
+Lower Brisbane:jindaleealert:1,Jindalee Alert,540192,"-27.532200,152.923900",lga-1000,assigned
+Lower Brisbane:brisbanecity:1,Brisbane City,540198,"-27.470700,153.034100",lga-1000,assigned
+Lower Brisbane:goodnaroadoxleycreek:1,Goodna Road (Oxley Creek),540646,"-27.705000,152.971400",lga-4590,assigned
+Lower Brisbane:ipswich:1,Ipswich,040831,"-27.611700,152.761100",lga-3960,assigned
+Lower Brisbane:greenbank:1,Greenbank,140009,"-27.693200,152.993500",lga-4590,assigned
+Lower Brisbane:lowood:1,Lowood,540182,"-27.470000,152.595600",lga-6580,assigned
+Lower Brisbane:springbluffalert:1,Spring Bluff ALERT,540527,"-27.469200,151.983600",lga-4580,assigned
+Lower Brisbane:summerholm:1,Summerholm,540828,"-27.611600,152.464100",lga-4580,assigned
+Lower Brisbane:fordsrdsandycreek:1,Fords Rd (Sandy Creek),540829,"-27.529000,152.192800",lga-4580,assigned
+Lower Brisbane:wilsonslane:1,Wilsons Lane,,,,no-coordinates
+Lower Brisbane:brassallhancocksbridge:1,Brassall (Hancocks Bridge),540250,"-27.603600,152.743900",lga-3960,assigned
+Lower Brisbane:purgacreek:1,Purga Creek,140845,"-27.818200,152.754700",lga-6510,assigned
+Stradbroke Islands:northstradbrokeisland:1,North Stradbroke Island,540758,"-27.561700,153.432900",lga-6250,assigned
+Stradbroke Islands:dunwich:1,Dunwich,540212,"-27.493300,153.415800",lga-6250,assigned
+sunshine-coast-mary:Mary:maleny:1,Maleny,540336,"-26.763056,152.847500",lga-6720,assigned
+sunshine-coast-mary:Mary:baroonboatramp:1,Baroon Boat Ramp,540425,"-26.718056,152.871944",lga-6720,assigned
+sunshine-coast-mary:Mary:baroonpocketdamhg:1,Baroon Pocket Dam (HG),,,,no-coordinates
+sunshine-coast-mary:Mary:obilookout:1,Obi Lookout,540333,"-26.688333,152.806389",lga-6720,assigned
+sunshine-coast-mary:Mary:coolabinecreek:1,Coolabine Creek,540367,"-26.596667,152.767222",lga-6720,assigned
+sunshine-coast-mary:Mary:westbellthorpe:1,West Bellthorpe,540191,"-26.823333,152.677778",lga-6580,assigned
+sunshine-coast-mary:Mary:bellthorpegaprd:1,Bellthorpe (Gap Rd),540621,"-26.832500,152.743056",lga-5010,assigned
+sunshine-coast-mary:Mary:harpercreek:1,Harper Creek,540335,"-26.764167,152.772222",lga-6720,assigned
+sunshine-coast-mary:Mary:conondale:1,Conondale,540620,"-26.729444,152.713333",lga-6720,assigned
+sunshine-coast-mary:Mary:grigorrd:1,Grigor Rd,,,,no-coordinates
+sunshine-coast-mary:Mary:bellbirdcreek:1,Bellbird Creek,540332,"-26.627500,152.704722",lga-6720,assigned
+sunshine-coast-mary:Mary:kenilworthhomestead:1,Kenilworth Homestead,,,,no-coordinates
+sunshine-coast-mary:Mary:moypocket:1,Moy Pocket,540330,"-26.526111,152.743889",lga-3620,assigned
+sunshine-coast-mary:Mary:sundaycreek:1,Sunday Creek,540594,"-26.706944,152.536111",lga-6580,assigned
+sunshine-coast-mary:Mary:jimnamaryriver:1,Jimna (Mary River),,,,no-coordinates
+sunshine-coast-mary:Mary:mortimer:1,Mortimer,540551,"-26.460278,152.371944",lga-3620,assigned
+sunshine-coast-mary:Mary:kingaham:1,Kingaham,540595,"-26.535833,152.447778",lga-6580,assigned
+sunshine-coast-mary:Mary:yielo:1,Yielo,540643,"-26.603056,152.545000",lga-6580,assigned
+sunshine-coast-mary:Mary:borumbadamhg:1,Borumba Dam (HG),,,,no-coordinates
+sunshine-coast-mary:Mary:imbil:1,Imbil,040777,"-26.457222,152.680278",lga-3620,assigned
+sunshine-coast-mary:Mary:blackmtpomona:1,Black Mt (Pomona),,,,no-coordinates
+sunshine-coast-mary:Mary:oakwood:1,Oakwood,,,,no-coordinates
+sunshine-coast-mary:Mary:kandanga:1,Kandanga,040801,"-26.387778,152.684167",lga-3620,assigned
+sunshine-coast-mary:Mary:zachariah:1,Zachariah,040778,"-26.358333,152.628333",lga-3620,assigned
+sunshine-coast-mary:Mary:dagunpocket:1,Dagun Pocket,540569,"-26.322500,152.702500",lga-3620,assigned
+sunshine-coast-mary:Mary:cooroygarnetst:1,Cooroy (Garnet St),540779,"-26.418056,152.906111",lga-5740,assigned
+sunshine-coast-mary:Mary:cooroysixmilecreek:1,Cooroy (Six Mile Creek),,,,no-coordinates
+sunshine-coast-mary:Mary:cooroyelmstreet:1,Cooroy (Elm Street),,,,no-coordinates
+sunshine-coast-mary:Mary:lakemacdonaldhg:1,Lake Macdonald (HG),,,,no-coordinates
+sunshine-coast-mary:Mary:lakemacdonalddamhg:1,Lake Macdonald Dam (HG),,,,no-coordinates
+sunshine-coast-mary:Mary:pomonahillst:1,Pomona (Hill St),540775,"-26.366389,152.858333",lga-5740,assigned
+sunshine-coast-mary:Mary:pomonasixmilecreek:1,Pomona (Six Mile Creek),,,,no-coordinates
+sunshine-coast-mary:Mary:cooranalert:1,Cooran Alert,,,,no-coordinates
+sunshine-coast-mary:Mary:cedarpocketdamhg:1,Cedar Pocket Dam HG,,,,no-coordinates
+sunshine-coast-mary:Mary:gympiemaryriver:1,Gympie (Mary River),,,,no-coordinates
+sunshine-coast-mary:Mary:gympie:1,Gympie,,,,no-coordinates
+sunshine-coast-mary:Mary:fishermanspocket:1,Fishermans Pocket,040824,"-26.171111,152.599444",lga-3620,assigned
+sunshine-coast-mary:Mary:brooyar:1,Brooyar,540043,"-26.006667,152.410833",lga-3620,assigned
+sunshine-coast-mary:Mary:sexton:1,Sexton,540687,"-25.972500,152.506944",lga-3620,assigned
+sunshine-coast-mary:Mary:boompard:1,Boompa Rd,,,,no-coordinates
+sunshine-coast-mary:Mary:biggendenrd:1,Biggenden Rd,,,,no-coordinates
+sunshine-coast-mary:Mary:brooweena:1,Brooweena,,,,no-coordinates
+sunshine-coast-mary:Mary:mtjoseph:1,Mt Joseph,,,,no-coordinates
+sunshine-coast-mary:Mary:marodian:1,Marodian,040825,"-25.900000,152.349722",lga-3620,assigned
+sunshine-coast-mary:Mary:mtkanigan:1,Mt Kanigan,040892,"-25.957500,152.576944",lga-3620,assigned
+sunshine-coast-mary:Mary:glenwood:1,Glenwood,039177,"-25.696389,150.964722",lga-5760,assigned
+sunshine-coast-mary:Mary:homepark:1,Home Park,040833,"-25.768333,152.525000",,outside
+sunshine-coast-mary:Mary:tiaro:1,Tiaro,,,,no-coordinates
+sunshine-coast-mary:Mary:owanyilla:1,Owanyilla,540686,"-25.644722,152.624167",,outside
+sunshine-coast-mary:Mary:mountwolvi:1,Mount Wolvi,540304,"-26.176667,152.867500",lga-3620,assigned
+sunshine-coast-mary:Mary:goombooriantinanacreek:1,Goomboorian (Tinana Creek),,,,no-coordinates
+sunshine-coast-mary:Mary:magnolia:1,Magnolia,540678,"-25.723611,152.666111",,outside
+sunshine-coast-mary:Mary:teddingtonweirhg:1,Teddington Weir (HG),,,,no-coordinates
+sunshine-coast-mary:Mary:bidwell:1,Bidwell,540677,"-25.634167,152.680556",,outside
+sunshine-coast-mary:Mary:maryborough:1,Maryborough,,,,no-coordinates
+sunshine-coast-mary:Mary:ghosthill:1,Ghost Hill,540451,"-25.310833,152.831944",,outside
+sunshine-coast-mary:Mary:booralrd:1,Booral Rd,,,,no-coordinates
+sunshine-coast-mary:Mary:blackswampcreek:1,Black Swamp Creek,,,,no-coordinates
+sunshine-coast-mary:Mary:colescrossing:1,Coles Crossing,,,,no-coordinates
+sunshine-coast-mary:Mary:glastonbury:1,Glastonbury,540404,"-26.217778,152.520556",lga-3620,assigned
+sunshine-coast-mary:Mary:cedarpocketdamtw:1,Cedar Pocket Dam TW,540618,"-26.210000,152.791944",lga-3620,assigned
+sunshine-coast-mary:Mary:tagiganrd:1,Tagigan Rd,,,,no-coordinates
+sunshine-coast-mary:Mary:jimnaforestry:1,Jimna Forestry,,,,no-coordinates
+sunshine-coast-mary:Mary:toolarakelly:1,Toolara (Kelly),,,,no-coordinates
+sunshine-coast-mary:Noosa:mtbilewilam:1,Mt Bilewilam,540307,"-26.010833,153.046389",lga-3620,assigned
+sunshine-coast-mary:Noosa:mountelliot:1,Mount Elliot,540305,"-26.013889,152.907778",lga-3620,assigned
+sunshine-coast-mary:Noosa:coopscorner:1,Coops Corner,540532,"-26.056944,153.041944",lga-3620,assigned
+sunshine-coast-mary:Noosa:blackpinchrd:1,Black Pinch Rd,,,,no-coordinates
+sunshine-coast-mary:Noosa:kinkin:1,Kin Kin,540639,"-26.263056,152.878889",lga-5740,assigned
+sunshine-coast-mary:Noosa:wahpungalane:1,Wahpunga Lane,540774,"-26.237500,152.907500",lga-5740,assigned
+sunshine-coast-mary:Noosa:boreenpoint:1,Boreen Point,,,,no-coordinates
+sunshine-coast-mary:Noosa:lakecooroibah:1,Lake Cooroibah,540309,"-26.350000,153.041389",lga-5740,assigned
+sunshine-coast-mary:Noosa:mounttinbeerwah:1,Mount Tinbeerwah,540328,"-26.386944,152.971389",lga-5740,assigned
+sunshine-coast-mary:Noosa:tewantinrslpark:1,Tewantin RSL Park,,,,no-coordinates
+sunshine-coast-mary:Noosa:tewantin:1,Tewantin,,,,no-coordinates
+sunshine-coast-mary:Noosa:noosaheads:1,Noosa Heads,540323,"-26.381667,153.080278",lga-5740,assigned
+sunshine-coast-mary:Noosa:doubleislandpoint:1,Double Island Point,,,,no-coordinates
+sunshine-coast-mary:Noosa:tincanbay:1,Tin Can Bay,,,,no-coordinates
+sunshine-coast-mary:Mooloolah:baldknob:1,Bald Knob,540026,"-26.778889,152.915278",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:diamondvalley:1,Diamond Valley,540734,"-26.755000,152.930556",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:landsboroughmooloolahriver:1,Landsborough (Mooloolah River),,,,no-coordinates
+sunshine-coast-mary:Mooloolah:ewenmaddockdamhw:1,Ewen Maddock Dam HW,540603,"-26.779722,153.010000",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:jordanst:1,Jordan St,540344,"-26.766944,153.055278",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:palmview:1,Palmview,540350,"-26.745000,153.083056",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:sippydowns:1,Sippy Downs,540339,"-26.718889,153.066944",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:meridanway:1,Meridan Way,540351,"-26.763611,153.099722",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:sugarbagrdwtp:1,Sugarbag Rd Wtp,540349,"-26.785000,153.115000",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:parrearraweirus:1,Parrearra Weir US,540348,"-26.725833,153.120000",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:tanawha:1,Tanawha,540421,"-26.707500,153.046944",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:mountaincreek:1,Mountain Creek,540220,"-26.702778,153.071389",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:buderim:1,Buderim,,,,no-coordinates
+sunshine-coast-mary:Mooloolah:bundilla:1,Bundilla,540422,"-26.703611,153.100833",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:upperlamerough:1,Upper Lamerough,540765,"-26.794167,153.061111",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:koalacourt:1,Koala Court,540764,"-26.800278,153.077500",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:pelicanwaters:1,Pelican Waters,540738,"-26.822500,153.111389",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:upperbellscknorth:1,Upper Bells Ck North,540780,"-26.806111,153.041111",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:upperbellscksouth:1,Upper Bells Ck South,540783,"-26.845000,153.036111",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:humelane:1,Hume Lane,540341,"-26.841944,152.895278",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:oldgympierd:1,Old Gympie Rd,540342,"-26.857222,152.938056",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:juddsrd:1,Judds Rd,,,,no-coordinates
+sunshine-coast-mary:Mooloolah:beerwah:1,Beerwah,540343,"-26.866389,152.961667",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:glasshousemountains:1,Glasshouse Mountains,540536,"-26.899444,152.958611",lga-6720,assigned
+sunshine-coast-mary:Mooloolah:mawsonsrd:1,Mawsons Rd,540533,"-26.877500,153.004167",lga-6720,assigned
+sunshine-coast-mary:Maroochy:eerwahvale:1,Eerwah Vale,540136,"-26.476944,152.880000",lga-6720,assigned
+sunshine-coast-mary:Maroochy:balllookout:1,Ball Lookout,540084,"-26.456111,152.956389",lga-6720,assigned
+sunshine-coast-mary:Maroochy:eumundi:1,Eumundi,,,,no-coordinates
+sunshine-coast-mary:Maroochy:cooloolabindamhw:1,Cooloolabin Dam HW,540608,"-26.555556,152.878611",lga-6720,assigned
+sunshine-coast-mary:Maroochy:wappadam:1,Wappa Dam,540462,"-26.569722,152.921667",lga-6720,assigned
+sunshine-coast-mary:Maroochy:mapleton:1,Mapleton,,,,no-coordinates
+sunshine-coast-mary:Maroochy:poonadamhw:1,Poona Dam HW,540617,"-26.593889,152.911667",lga-6720,assigned
+sunshine-coast-mary:Maroochy:yandina:1,Yandina,540092,"-26.562222,152.939167",lga-6720,assigned
+sunshine-coast-mary:Maroochy:dunethinrock:1,Dunethin Rock,540095,"-26.575833,153.009167",lga-6720,assigned
+sunshine-coast-mary:Maroochy:yandinacreek:1,Yandina Creek,540223,"-26.525556,153.021389",lga-6720,assigned
+sunshine-coast-mary:Maroochy:upperdoonan:1,Upper Doonan,540224,"-26.450278,153.027500",lga-6720,assigned
+sunshine-coast-mary:Maroochy:doonancreek:1,Doonan Creek,540218,"-26.484167,153.042500",lga-6720,assigned
+sunshine-coast-mary:Maroochy:coolumwest:1,Coolum West,540499,"-26.533056,153.050556",lga-6720,assigned
+sunshine-coast-mary:Maroochy:coolum:1,Coolum,540221,"-26.542500,153.091944",lga-6720,assigned
+sunshine-coast-mary:Maroochy:stoneywharfrd:1,Stoney Wharf Rd,,,,no-coordinates
+sunshine-coast-mary:Maroochy:westwoombye:1,West Woombye,540419,"-26.666944,152.918889",lga-6720,assigned
+sunshine-coast-mary:Maroochy:nambourdaffhillside:1,Nambour Daff (Hillside),040988,"-26.644167,152.938333",lga-6720,assigned
+sunshine-coast-mary:Maroochy:nambour:1,Nambour,540137,"-26.628333,152.958611",lga-6720,assigned
+sunshine-coast-mary:Maroochy:radarhill:1,Radar Hill,540642,"-26.605278,152.989167",lga-6720,assigned
+sunshine-coast-mary:Maroochy:palmwoodspayntercreek:1,Palmwoods (Paynter Creek),,,,no-coordinates
+sunshine-coast-mary:Maroochy:palmwoodssportsground:1,Palmwoods Sportsground,540420,"-26.676111,152.954444",lga-6720,assigned
+sunshine-coast-mary:Maroochy:diddillibah:1,Diddillibah,540083,"-26.640556,152.994444",lga-6720,assigned
+sunshine-coast-mary:Maroochy:blibli:1,Bli Bli,540506,"-26.633611,153.038611",lga-6720,assigned
+sunshine-coast-mary:Maroochy:eudlo:1,Eudlo,540222,"-26.725000,152.956944",lga-6720,assigned
+sunshine-coast-mary:Maroochy:maroochydoredepot:1,Maroochydore Depot,540423,"-26.670278,153.086389",lga-6720,assigned
+sunshine-coast-mary:Maroochy:picnicpoint:1,Picnic Point,540094,"-26.644444,153.082500",lga-6720,assigned
+sunshine-coast-mary:Maroochy:sunshinecoastairport:1,Sunshine Coast Airport,040861,"-26.598889,153.091111",lga-6720,assigned
+sunshine-coast-mary:Maroochy:kielsmountain:1,Kiels Mountain,540087,"-26.661944,153.018611",lga-6720,assigned
+sunshine-coast-mary:Maroochy:maroochyintakeweir:1,Maroochy Intake Weir,540599,"-26.588056,152.891111",lga-6720,assigned
+burnett-kolan:Kolan:mtbeatrice:1,Mt Beatrice,539212,"-24.593889,151.430278",,outside
+burnett-kolan:Kolan:streetersroad:1,Streeters Road,,,,no-coordinates
+burnett-kolan:Kolan:springfield:1,Springfield,,,,no-coordinates
+burnett-kolan:Kolan:gaeta:1,Gaeta,539208,"-24.796389,151.603889",,outside
+burnett-kolan:Kolan:bania:1,Bania,539121,"-24.940000,151.573611",,outside
+burnett-kolan:Kolan:wonbahforest:1,Wonbah Forest,540699,"-24.978056,151.613889",,outside
+burnett-kolan:Kolan:fredhaighdamhw:1,Fred Haigh Dam HW,539050,"-24.872500,151.850000",,outside
+burnett-kolan:Kolan:mtwatalgan:1,Mt Watalgan,539145,"-24.701667,151.962500",,outside
+burnett-kolan:Kolan:wolcarange:1,Wolca Range,539217,"-25.078056,151.556944",,outside
+burnett-kolan:Kolan:moolboolaman:1,Moolboolaman,539206,"-24.982778,151.803056",,outside
+burnett-kolan:Kolan:gingincreek:1,Gin Gin Creek,539046,"-24.968611,151.891667",,outside
+burnett-kolan:Kolan:gingin:1,Gin Gin,,,,no-coordinates
+burnett-kolan:Kolan:buccaweir:1,Bucca Weir,539205,"-24.859167,152.071667",,outside
+burnett-kolan:Kolan:buccardhermansgully:1,Bucca Rd (Hermans Gully),,,,no-coordinates
+burnett-kolan:Kolan:buccaroadstonycreek:1,Bucca Road (Stony Creek),,,,no-coordinates
+burnett-kolan:Kolan:moorlandsgooburrumpsal:1,Moorlands (Gooburrum PS) AL,,,,no-coordinates
+burnett-kolan:Kolan:mooreparktm:1,Moore Park Tm,,,,no-coordinates
+burnett-kolan:Kolan:mooreparkalert:1,Moore Park Alert,,,,no-coordinates
+burnett-kolan:Kolan:malverndrivetidalcreek:1,Malvern Drive (Tidal Creek),,,,no-coordinates
+burnett-kolan:Burnett:caniadamhw:1,Cania Dam (HW),539182,"-24.650000,150.983333",lga-5760,assigned
+burnett-kolan:Burnett:caniaview:1,Caniaview,539176,"-24.785000,150.972778",lga-5760,assigned
+burnett-kolan:Burnett:monalrd:1,Monal Rd,539195,"-24.472222,151.131667",lga-5760,assigned
+burnett-kolan:Burnett:uppermonal:1,Upper Monal,539202,"-24.613056,151.113889",lga-5760,assigned
+burnett-kolan:Burnett:mungungoweir:1,Mungungo Weir,539198,"-24.764444,151.160000",lga-5760,assigned
+burnett-kolan:Burnett:monto:1,Monto,,,,no-coordinates
+burnett-kolan:Burnett:abercorn:1,Abercorn,,,,no-coordinates
+burnett-kolan:Burnett:mtfortwilliam:1,Mt Fort William,539177,"-24.647500,151.338889",lga-5760,assigned
+burnett-kolan:Burnett:dakiel:1,Dakiel,539185,"-24.745556,151.260278",lga-5760,assigned
+burnett-kolan:Burnett:stewartsbridge:1,Stewarts Bridge,539201,"-24.919167,151.204167",lga-5760,assigned
+burnett-kolan:Burnett:yarrol:1,Yarrol,539204,"-24.992500,151.347500",lga-5760,assigned
+burnett-kolan:Burnett:landsend:1,Lands End,539193,"-25.214444,151.273889",lga-5760,assigned
+burnett-kolan:Burnett:hollywell:1,Hollywell,539178,"-25.331944,151.232778",lga-5760,assigned
+burnett-kolan:Burnett:ceratodus:1,Ceratodus,539183,"-25.283056,151.145000",lga-5760,assigned
+burnett-kolan:Burnett:wurumadamhw:1,Wuruma Dam (HW),539051,"-25.199444,150.989444",lga-5760,assigned
+burnett-kolan:Burnett:glencoerd:1,Glencoe Rd,539192,"-25.255833,150.728611",lga-5760,assigned
+burnett-kolan:Burnett:eidsvoldbridge:1,Eidsvold Bridge,039259,"-25.377222,151.081944",lga-5760,assigned
+burnett-kolan:Burnett:eidsvold:1,Eidsvold,,,,no-coordinates
+burnett-kolan:Burnett:marriages:1,Marriages,539194,"-25.560000,151.183889",lga-5760,assigned
+burnett-kolan:Burnett:coonambula:1,Coonambula,539257,"-25.588333,151.148889",lga-5760,assigned
+burnett-kolan:Burnett:auburnrivertm:1,Auburn River Tm,,,,no-coordinates
+burnett-kolan:Burnett:arthurslookout:1,Arthurs Lookout,542015,"-25.769444,150.769722",lga-5760,assigned
+burnett-kolan:Burnett:redbank:1,Redbank,539199,"-25.484722,150.605000",lga-5760,assigned
+burnett-kolan:Burnett:hawkwoodrange:1,Hawkwood Range,539179,"-25.715833,150.975278",lga-5760,assigned
+burnett-kolan:Burnett:dykehead:1,Dykehead,539188,"-25.681389,151.007500",lga-5760,assigned
+burnett-kolan:Burnett:bawnduggieshepherdcreek:1,Bawnduggie (Shepherd Creek),,,,no-coordinates
+burnett-kolan:Burnett:brovinia:1,Brovinia,539181,"-25.938056,151.020278",lga-5760,assigned
+burnett-kolan:Burnett:flagstonebridge:1,Flagstone Bridge,539190,"-25.660000,151.176944",lga-5760,assigned
+burnett-kolan:Burnett:brigooda:1,Brigooda,540697,"-26.254444,151.408889",lga-6630,assigned
+burnett-kolan:Burnett:kingaroyairport:1,Kingaroy Airport,,,,no-coordinates
+burnett-kolan:Burnett:proston:1,Proston,,,,no-coordinates
+burnett-kolan:Burnett:boondoomarptr:1,Boondooma Rptr,540694,"-26.094167,151.441667",lga-6630,assigned
+burnett-kolan:Burnett:cooranga:1,Cooranga,541119,"-26.770000,151.406389",lga-7310,assigned
+burnett-kolan:Burnett:derra:1,Derra,539187,"-25.673333,151.243611",lga-5760,assigned
+burnett-kolan:Burnett:mundubbera:1,Mundubbera,,,,no-coordinates
+burnett-kolan:Burnett:mtgayndah:1,Mt Gayndah,539180,"-25.605000,151.540278",lga-5760,assigned
+burnett-kolan:Burnett:reidcreek:1,Reid Creek,539055,"-25.276111,151.516944",lga-5760,assigned
+burnett-kolan:Burnett:dalgangalrd:1,Dalgangal Rd,539186,"-25.419444,151.522500",lga-5760,assigned
+burnett-kolan:Burnett:gayndahflume:1,Gayndah Flume,539191,"-25.621667,151.603056",lga-5760,assigned
+burnett-kolan:Burnett:gayndahairport:1,Gayndah Airport,,,,no-coordinates
+burnett-kolan:Burnett:dandabah:1,Dandabah,540454,"-26.880833,151.598611",lga-6630,assigned
+burnett-kolan:Burnett:brooklands:1,Brooklands,540041,"-26.733333,151.816667",lga-6630,assigned
+burnett-kolan:Burnett:glenmore:1,Glenmore,540042,"-26.471389,152.054167",lga-6630,assigned
+burnett-kolan:Burnett:westbarambah:1,West Barambah,540025,"-26.319167,152.064167",lga-6630,assigned
+burnett-kolan:Burnett:cherbourg:1,Cherbourg,540679,"-26.293056,151.975556",,outside
+burnett-kolan:Burnett:banban:1,Ban Ban,540696,"-25.710833,151.808333",lga-5760,assigned
+burnett-kolan:Burnett:mtlawless:1,Mt Lawless,539151,"-25.545000,151.655000",lga-5760,assigned
+burnett-kolan:Burnett:mtperry:1,Mt Perry,539158,"-25.189167,151.626667",lga-5760,assigned
+burnett-kolan:Burnett:sundayckrd:1,Sunday Ck Rd,539159,"-25.394722,151.667778",lga-5760,assigned
+burnett-kolan:Burnett:byrnestown:1,Byrnestown,039341,"-25.524722,151.760000",lga-5760,assigned
+burnett-kolan:Burnett:mingocrossing:1,Mingo Crossing,539150,"-25.395000,151.777500",lga-5760,assigned
+burnett-kolan:Burnett:mingocreek:1,Mingo Creek,039340,"-25.320556,151.721389",lga-5760,assigned
+burnett-kolan:Burnett:paradisedamhw:1,Paradise Dam (HW),539108,"-25.351111,151.919444",lga-5760,assigned
+burnett-kolan:Burnett:figtreeburnettriver:1,Fig Tree (Burnett River),,,,no-coordinates
+burnett-kolan:Burnett:mtwalsh:1,Mt Walsh,540650,"-25.597222,152.093611",lga-5760,assigned
+burnett-kolan:Burnett:biggenden:1,Biggenden,040334,"-25.512222,152.038889",lga-5760,assigned
+burnett-kolan:Burnett:didcot:1,Didcot,,,,no-coordinates
+burnett-kolan:Burnett:coringa:1,Coringa,,,,no-coordinates
+burnett-kolan:Burnett:mtgoonaneman:1,Mt Goonaneman,540641,"-25.427500,152.117222",lga-5760,assigned
+burnett-kolan:Burnett:oldrangeroad:1,Old Range Road,,,,no-coordinates
+burnett-kolan:Burnett:eastbooyal:1,East Booyal,539155,"-25.251944,152.083889",,outside
+burnett-kolan:Burnett:mtrawdon:1,Mt Rawdon,539147,"-25.235556,151.796389",lga-5760,assigned
+burnett-kolan:Burnett:morganville:1,Morganville,539231,"-25.171944,151.972500",,outside
+burnett-kolan:Burnett:nearumroad:1,Nearum Road,039339,"-25.109722,151.853056",,outside
+burnett-kolan:Burnett:stagnescreek:1,St Agnes Creek,,,,no-coordinates
+burnett-kolan:Burnett:stkilda:1,St Kilda,539156,"-25.049167,151.921667",,outside
+burnett-kolan:Burnett:nedchurchwardweirhw:1,Ned Churchward Weir (HW),,,,no-coordinates
+burnett-kolan:Burnett:bungadoogoondoonroad:1,Bungadoo Goondoon Road,539262,"-24.986389,152.074722",,outside
+burnett-kolan:Burnett:lenihansrdcherrycreek:1,Lenihans Rd (Cherry Creek),,,,no-coordinates
+burnett-kolan:Burnett:pinecreekrd:1,Pine Creek Rd,539263,"-25.004167,152.166389",,outside
+burnett-kolan:Burnett:branyanwoongarraps:1,Branyan (Woongarra PS),539153,"-24.930000,152.255278",,outside
+burnett-kolan:Burnett:splittersckalert:1,Splitters Ck Alert,,,,no-coordinates
+burnett-kolan:Burnett:bundabergaero:1,Bundaberg Aero,,,,no-coordinates
+burnett-kolan:Burnett:bundaberg:1,Bundaberg,,,,no-coordinates
+burnett-kolan:Burnett:bundabergsouthfordst:1,Bundaberg South (Ford St),,,,no-coordinates
+burnett-kolan:Burnett:fairymeadsugarmill:1,Fairymead Sugar Mill,039037,"-24.791111,152.358611",,outside
+burnett-kolan:Burnett:bargara:1,Bargara,539226,"-24.833333,152.460278",,outside
+burnett-kolan:Burnett:walla:1,Walla,039313,"-25.136667,151.980000",,outside
+burnett-kolan:Burnett:mclaughlinsrd:1,Mclaughlins Rd,,,,no-coordinates
+burnett-kolan:Cherwell/Burrum:herveybayairport:1,Hervey Bay Airport,,,,no-coordinates
+burnett-kolan:Cherwell/Burrum:takurareservoir:1,Takura Reservoir,540268,"-25.327500,152.706111",,outside
+burnett-kolan:Cherwell/Burrum:fairliesknob:1,Fairlies Knob,540552,"-25.490833,152.281667",,outside
+burnett-kolan:Cherwell/Burrum:musketflatmt:1,Musket Flat Mt,040902,"-25.496944,152.383611",,outside
+burnett-kolan:Cherwell/Burrum:lenthallsdam:1,Lenthalls Dam,040906,"-25.401944,152.531667",,outside
+burnett-kolan:Cherwell/Burrum:torbanlea:1,Torbanlea,540449,"-25.340556,152.605833",,outside
+burnett-kolan:Cherwell/Burrum:howard:1,Howard,040907,"-25.328889,152.561944",,outside
+burnett-kolan:Cherwell/Burrum:uppercherwell:1,Upper Cherwell,040905,"-25.292778,152.409722",,outside
+burnett-kolan:Cherwell/Burrum:railwaybridgecherwellriver:1,Railway Bridge (Cherwell River),,,,no-coordinates
+burnett-kolan:Cherwell/Burrum:pacifichaven:1,Pacific Haven,040903,"-25.238611,152.531944",,outside
+burnett-kolan:Cherwell/Burrum:kullogum:1,Kullogum,540763,"-25.330833,152.251944",,outside
+burnett-kolan:Cherwell/Burrum:cordalba:1,Cordalba,539250,"-25.156944,152.211944",,outside
+burnett-kolan:Cherwell/Burrum:burrumhighwaygregoryriver:1,Burrum Highway (Gregory River),,,,no-coordinates
+burnett-kolan:Cherwell/Burrum:leesons:1,Leesons,539103,"-25.155000,152.390556",,outside
+burnett-kolan:Cherwell/Burrum:woodgate:1,Woodgate,539251,"-25.099167,152.548889",,outside
+burnett-kolan:Cherwell/Burrum:wallscamppacifichaven:1,Walls Camp (Pacific Haven),540792,"-25.240000,152.561389",,outside
+burnett-kolan:Cherwell/Burrum:pacifichavendrive:1,Pacific Haven Drive,,,,no-coordinates
+fitzroy:Fitzroy:riversleafitzroyriver:1,Riverslea (Fitzroy River),,,,no-coordinates
+fitzroy:Fitzroy:marlboroughhelipad:1,Marlborough Helipad,033111,"-22.815000,149.887778",,outside
+fitzroy:Fitzroy:marlboroughck:1,Marlborough Ck,534031,"-22.967778,149.869444",,outside
+fitzroy:Fitzroy:thegap:1,The Gap,033285,"-23.088333,150.110000",,outside
+fitzroy:Fitzroy:hedlowairfield:1,Hedlow Airfield,033312,"-23.223333,150.605000",,outside
+fitzroy:Fitzroy:southyaamba:1,South Yaamba,033310,"-23.200000,150.397778",,outside
+fitzroy:Fitzroy:rockhamptonaero:1,Rockhampton Aero,,,,no-coordinates
+fitzroy:Fitzroy:rockhampton:1,Rockhampton,,,,no-coordinates
+fitzroy:Fitzroy:westwood:1,Westwood,039349,"-23.626389,150.154722",,outside
+fitzroy:Fitzroy:stanwellpowerstation:1,Stanwell Power Station,,,,no-coordinates
+fitzroy:Fitzroy:oldstationraglancreek:1,Old Station (Raglan Creek),,,,no-coordinates
+fitzroy:Fitzroy:yeppoontheesplanad:1,Yeppoon (The Esplanad),,,,no-coordinates
+fitzroy:Fitzroy:samuelhillaero:1,Samuel Hill Aero,,,,no-coordinates
+fitzroy:Fitzroy:theglen:1,The Glen,033313,"-22.826389,150.337222",,outside
+fitzroy:Fitzroy:williamson:1,Williamson,,,,no-coordinates
+fitzroy:Fitzroy:middlepercyisland:1,Middle Percy Island,,,,no-coordinates
+fitzroy:Fitzroy:stanwell:1,Stanwell,539078,"-23.483611,150.343611",,outside
+fitzroy:Dawson:boolarootopscallidecreek:1,Boolaroo Tops (Callide Creek),,,,no-coordinates
+fitzroy:Dawson:boxvale:1,Boxvale,535048,"-25.415833,148.621389",,outside
+fitzroy:Dawson:westgrove:1,Westgrove,035040,"-25.581111,148.481111",,outside
+fitzroy:Dawson:waddybrae:1,Waddy Brae,035068,"-25.610278,148.944444",,outside
+fitzroy:Dawson:bendoba:1,Bendoba,043108,"-25.960000,148.386667",,outside
+fitzroy:Dawson:injune:1,Injune,043054,"-25.842778,148.566944",,outside
+fitzroy:Dawson:springrock:1,Springrock,543017,"-25.793889,148.774722",,outside
+fitzroy:Dawson:doboy:1,Doboy,543009,"-25.677222,148.527222",,outside
+fitzroy:Dawson:utopiadowns:1,Utopia Downs,535032,"-25.733333,149.316667",,outside
+fitzroy:Dawson:waikola:1,Waikola,535130,"-26.000278,149.195278",lga-7310,assigned
+fitzroy:Dawson:pinehills:1,Pine Hills,043051,"-26.262500,149.238889",lga-7310,assigned
+fitzroy:Dawson:eurombahcreek:1,Eurombah Creek,535111,"-25.900278,149.426944",lga-7310,assigned
+fitzroy:Dawson:peekadoo:1,Peekadoo,535066,"-25.908889,149.503333",,outside
+fitzroy:Dawson:taranacrossing:1,Tarana Crossing,,,,no-coordinates
+fitzroy:Dawson:giligulgul:1,Giligulgul,035039,"-26.356389,150.046389",lga-7310,assigned
+fitzroy:Dawson:weringacreek:1,Weringa Creek,535134,"-26.118889,150.110833",lga-7310,assigned
+fitzroy:Dawson:windamere:1,Windamere,535013,"-26.033333,149.883333",lga-7310,assigned
+fitzroy:Dawson:bundird:1,Bundi Rd,,,,no-coordinates
+fitzroy:Dawson:chilgerriehill:1,Chilgerrie Hill,035273,"-25.854444,149.791944",lga-7310,assigned
+fitzroy:Dawson:bungaban:1,Bungaban,035242,"-25.898611,150.129722",lga-7310,assigned
+fitzroy:Dawson:taroom:1,Taroom,,,,no-coordinates
+fitzroy:Dawson:glenhaughtonrd:1,Glenhaughton Rd,535131,"-25.417222,149.523611",,outside
+fitzroy:Dawson:broadmere:1,Broadmere,,,,no-coordinates
+fitzroy:Dawson:broadmererobinsoncreek:1,Broadmere (Robinson Creek),,,,no-coordinates
+fitzroy:Dawson:ruinedcastle:1,Ruined Castle,535140,"-25.231667,149.265833",,outside
+fitzroy:Dawson:cooradadawsonriver:1,Coorada (Dawson River),,,,no-coordinates
+fitzroy:Dawson:ghinghinda:1,Ghinghinda,535133,"-25.149722,149.728056",,outside
+fitzroy:Dawson:lapalma:1,La Palma,,,,no-coordinates
+fitzroy:Dawson:cockatoock:1,Cockatoo Ck,535065,"-25.788333,150.259444",,outside
+fitzroy:Dawson:cockatoord:1,Cockatoo Rd,,,,no-coordinates
+fitzroy:Dawson:downfallck:1,Downfall Ck,539162,"-25.500278,150.250556",,outside
+fitzroy:Dawson:cracow:1,Cracow,539161,"-25.288333,150.293611",,outside
+fitzroy:Dawson:isladelusioncrossing:1,Isla-Delusion Crossing,539164,"-25.180278,150.185000",,outside
+fitzroy:Dawson:camboon:1,Camboon,,,,no-coordinates
+fitzroy:Dawson:uppercastle:1,Upper Castle,539168,"-24.831111,150.578056",,outside
+fitzroy:Dawson:castlecreek:1,Castle Creek,539172,"-24.888056,150.199167",,outside
+fitzroy:Dawson:upperlonesome:1,Upper Lonesome,539171,"-24.736944,150.405556",,outside
+fitzroy:Dawson:lonesomecreek:1,Lonesome Creek,539175,"-24.816667,150.161667",,outside
+fitzroy:Dawson:woodleigh:1,Woodleigh,539043,"-24.833333,149.966667",,outside
+fitzroy:Dawson:dawsonrangesouth:1,Dawson Range South,535143,"-24.594444,149.813333",,outside
+fitzroy:Dawson:blackboycreek:1,Blackboy Creek,535078,"-24.178611,149.350278",,outside
+fitzroy:Dawson:redcliffetm:1,Redcliffe Tm,,,,no-coordinates
+fitzroy:Dawson:sandradowns:1,Sandra Downs,535141,"-24.871389,149.153611",,outside
+fitzroy:Dawson:bauhiniadowns:1,Bauhinia Downs,535135,"-24.561667,149.285278",,outside
+fitzroy:Dawson:oranapark:1,Orana Park,535139,"-24.807222,149.448056",,outside
+fitzroy:Dawson:krismarkdowns:1,Krismark Downs,535138,"-24.810000,149.824722",,outside
+fitzroy:Dawson:dawsonhighwayroundstonecreek:1,Dawson Highway (Roundstone Creek),,,,no-coordinates
+fitzroy:Dawson:karamea:1,Karamea,535124,"-24.520000,149.770000",,outside
+fitzroy:Dawson:bindaree:1,Bindaree,539095,"-24.357500,149.809444",,outside
+fitzroy:Dawson:beckers:1,Beckers,535015,"-24.083333,149.833333",,outside
+fitzroy:Dawson:kroombittopscallidecreek:1,Kroombit Tops (Callide Creek),,,,no-coordinates
+fitzroy:Dawson:kroombit:1,Kroombit,039240,"-24.447222,150.798056",,outside
+fitzroy:Dawson:midkroombit:1,Mid Kroombit,539246,"-24.414444,150.885000",,outside
+fitzroy:Dawson:kroombitdamhg:1,Kroombit Dam HG,,,,no-coordinates
+fitzroy:Dawson:biloela:1,Biloela,539232,"-24.435000,150.541111",,outside
+fitzroy:Dawson:bluehillscallidecreek:1,Blue Hills (Callide Creek),,,,no-coordinates
+fitzroy:Dawson:southkariboecreek:1,South Kariboe Creek,539106,"-24.561389,150.746944",,outside
+fitzroy:Dawson:thangoolairport:1,Thangool Airport,,,,no-coordinates
+fitzroy:Dawson:foldinghills:1,Folding Hills,539238,"-24.575000,150.623889",,outside
+fitzroy:Dawson:redhill:1,Red Hill,,,,no-coordinates
+fitzroy:Dawson:bananarange:1,Banana Range,539174,"-24.448611,150.315556",,outside
+fitzroy:Dawson:upperrainbow:1,Upper Rainbow,539229,"-24.220833,150.701389",,outside
+fitzroy:Dawson:callidedaminflowtm:1,Callide Dam Inflow Tm,,,,no-coordinates
+fitzroy:Dawson:callidedamhg:1,Callide Dam HG,,,,no-coordinates
+fitzroy:Dawson:jambin:1,Jambin,,,,no-coordinates
+fitzroy:Dawson:upperbellck:1,Upper Bell Ck,539249,"-24.150000,150.678056",,outside
+fitzroy:Dawson:craiglands:1,Craiglands,539237,"-24.150000,150.525000",,outside
+fitzroy:Dawson:goovigen:1,Goovigen,,,,no-coordinates
+fitzroy:Dawson:kingsborough:1,Kingsborough,539062,"-23.966667,150.383333",,outside
+fitzroy:Dawson:doreen:1,Doreen,539119,"-23.975556,150.340556",,outside
+fitzroy:Dawson:almackbore:1,Alma Ck Bore,539116,"-23.952222,150.243889",,outside
+fitzroy:Dawson:beschshill:1,Besch's Hill,539054,"-23.817778,150.549167",,outside
+fitzroy:Dawson:mthopeful:1,Mt Hopeful,539167,"-23.730000,150.533611",,outside
+fitzroy:Dawson:upperdee:1,Upper Dee,539053,"-23.613889,150.475000",,outside
+fitzroy:Dawson:number7dam:1,Number 7 Dam,539104,"-23.644444,150.405556",,outside
+fitzroy:Dawson:dairyck:1,Dairy Ck,539102,"-23.630833,150.388611",,outside
+fitzroy:Dawson:mundicgully:1,Mundic Gully,539109,"-23.643889,150.373611",,outside
+fitzroy:Dawson:kenbula:1,Kenbula,539056,"-23.660000,150.370000",,outside
+fitzroy:Dawson:wura:1,Wura,539016,"-23.767500,150.356667",,outside
+fitzroy:Dawson:dululu:1,Dululu,539219,"-23.849167,150.264444",,outside
+fitzroy:Dawson:pocketckrd:1,Pocket Ck Rd,539170,"-23.944167,150.114722",,outside
+fitzroy:Dawson:pheasantck:1,Pheasant Ck,539169,"-23.868611,150.131667",,outside
+fitzroy:Dawson:wowanwestwoodrd:1,Wowan Westwood Rd,539173,"-23.892500,150.156944",,outside
+fitzroy:Dawson:wowancemetryrd:1,Wowan Cemetry Rd,539115,"-23.930278,150.210833",,outside
+fitzroy:Dawson:rannes:1,Rannes,,,,no-coordinates
+fitzroy:Dawson:duaringa:1,Duaringa,,,,no-coordinates
+fitzroy:Dawson:malakoffjunction:1,Malakoff Junction,539245,"-24.313056,150.775833",,outside
+fitzroy:Dawson:linkescauseway:1,Linkes Causeway,539244,"-24.380556,150.549167",,outside
+fitzroy:Mackenzie:arcadiavalleyschool:1,Arcadia Valley School,535200,"-25.255278,148.821944",,outside
+fitzroy:Mackenzie:nuganuga:1,Nuga Nuga,,,,no-coordinates
+fitzroy:Mackenzie:sardinecreek:1,Sardine Creek,,,,no-coordinates
+fitzroy:Mackenzie:billabalongalert:1,Billabalong Alert,,,,no-coordinates
+fitzroy:Mackenzie:saddlersprings:1,Saddler Springs,,,,no-coordinates
+fitzroy:Mackenzie:sandstonepark:1,Sandstone Park,535185,"-25.071944,148.274167",,outside
+fitzroy:Mackenzie:rewantm:1,Rewan Tm,,,,no-coordinates
+fitzroy:Mackenzie:rewanalert:1,Rewan Alert,,,,no-coordinates
+fitzroy:Mackenzie:lakebrown:1,Lake Brown,,,,no-coordinates
+fitzroy:Mackenzie:basaltcreek:1,Basalt Creek,535201,"-24.632500,148.871111",,outside
+fitzroy:Mackenzie:thecrescent:1,The Crescent,535108,"-24.591667,148.674444",,outside
+fitzroy:Mackenzie:consuelo:1,Consuelo,,,,no-coordinates
+fitzroy:Mackenzie:mtpleasantrolleston:1,Mt Pleasant (Rolleston),535204,"-24.642222,148.541111",,outside
+fitzroy:Mackenzie:mtpanorama:1,Mt Panorama,535107,"-24.561389,148.537222",,outside
+fitzroy:Mackenzie:rollestoncometriver:1,Rolleston (Comet River),,,,no-coordinates
+fitzroy:Mackenzie:rollestonairport:1,Rolleston Airport,035129,"-24.461667,148.626389",,outside
+fitzroy:Mackenzie:dawsonhighwaypanoramacreek:1,Dawson Highway (Panorama Creek),,,,no-coordinates
+fitzroy:Mackenzie:mtmoffatt:1,Mt Moffatt,,,,no-coordinates
+fitzroy:Mackenzie:mtogg:1,Mt Ogg,535123,"-24.672222,148.184444",,outside
+fitzroy:Mackenzie:thelakecometriver:1,The Lake (Comet River),,,,no-coordinates
+fitzroy:Mackenzie:planetdowns:1,Planet Downs,,,,no-coordinates
+fitzroy:Mackenzie:katrinadowns:1,Katrina Downs,535060,"-24.358611,148.819444",,outside
+fitzroy:Mackenzie:redrock:1,Red Rock,535061,"-24.118889,148.915278",,outside
+fitzroy:Mackenzie:humboldt:1,Humboldt,535091,"-24.103333,148.815556",,outside
+fitzroy:Mackenzie:helendowns:1,Helen Downs,535059,"-24.180000,148.450556",,outside
+fitzroy:Mackenzie:roddaslookout:1,Roddas Lookout,535075,"-24.142222,148.154167",,outside
+fitzroy:Mackenzie:springsure:1,Springsure,,,,no-coordinates
+fitzroy:Mackenzie:cowley:1,Cowley,535057,"-23.976667,148.350556",,outside
+fitzroy:Mackenzie:arcturusdownsalert:1,Arcturus Downs Alert,,,,no-coordinates
+fitzroy:Mackenzie:springsurecreekjunction:1,Springsure Creek Junction,035276,"-23.856389,148.503611",,outside
+fitzroy:Mackenzie:glenorard:1,Glenora Rd,,,,no-coordinates
+fitzroy:Mackenzie:cometweir:1,Comet Weir,,,,no-coordinates
+fitzroy:Mackenzie:mtplayfair:1,Mt Playfair,035289,"-24.863889,146.947778",,outside
+fitzroy:Mackenzie:cungelella:1,Cungelella,535157,"-24.683611,147.164167",,outside
+fitzroy:Mackenzie:upperclauderiver:1,Upper Claude River,535086,"-24.474167,146.964722",,outside
+fitzroy:Mackenzie:tanderra:1,Tanderra,535182,"-24.654722,147.703333",,outside
+fitzroy:Mackenzie:whartoncreek:1,Wharton Creek,,,,no-coordinates
+fitzroy:Mackenzie:petrona:1,Petrona,535125,"-24.407222,147.322500",,outside
+fitzroy:Mackenzie:fairview:1,Fairview,,,,no-coordinates
+fitzroy:Mackenzie:mantuandownswest:1,Mantuan Downs (West),535181,"-24.301389,147.133611",,outside
+fitzroy:Mackenzie:glenrock:1,Glen Rock,535083,"-24.463611,147.568056",,outside
+fitzroy:Mackenzie:jojostation:1,Jo Jo Station,535172,"-24.076111,147.247222",,outside
+fitzroy:Mackenzie:echohills:1,Echo Hills,535085,"-24.177778,147.444444",,outside
+fitzroy:Mackenzie:raymond:1,Raymond,535099,"-24.231667,147.645000",,outside
+fitzroy:Mackenzie:uppervandyke:1,Upper Van Dyke,535087,"-24.500833,147.844722",,outside
+fitzroy:Mackenzie:pindari:1,Pindari,535174,"-24.607778,148.069444",,outside
+fitzroy:Mackenzie:heathwood:1,Heathwood,035293,"-24.343333,148.062222",,outside
+fitzroy:Mackenzie:glenlee:1,Glenlee,535153,"-24.071944,147.762778",,outside
+fitzroy:Mackenzie:lochington:1,Lochington,035139,"-23.942500,147.525000",,outside
+fitzroy:Mackenzie:greenvalley:1,Green Valley,535081,"-23.679444,147.315000",,outside
+fitzroy:Mackenzie:medway:1,Medway,535178,"-23.742500,147.380000",,outside
+fitzroy:Mackenzie:ducabrook:1,Ducabrook,035292,"-23.853333,147.399722",,outside
+fitzroy:Mackenzie:serpentinemedwaycreek:1,Serpentine (Medway Creek),,,,no-coordinates
+fitzroy:Mackenzie:craigmorenogoariver:1,Craigmore (Nogoa River),,,,no-coordinates
+fitzroy:Mackenzie:billaboo:1,Billaboo,535082,"-23.589167,147.321944",,outside
+fitzroy:Mackenzie:mtmayde:1,Mt Mayde,535080,"-23.687222,147.426111",,outside
+fitzroy:Mackenzie:kulumurrange:1,Kulumur Range,035294,"-23.803889,147.769167",,outside
+fitzroy:Mackenzie:borillacreek:1,Borilla Creek,,,,no-coordinates
+fitzroy:Mackenzie:avocet:1,Avocet,535092,"-23.822778,148.126944",,outside
+fitzroy:Mackenzie:fairbairndam:1,Fairbairn Dam,535101,"-23.652500,148.074444",,outside
+fitzroy:Mackenzie:emeraldairport:1,Emerald Airport,,,,no-coordinates
+fitzroy:Mackenzie:emeraldradar:1,Emerald Radar,035146,"-23.550000,148.239722",,outside
+fitzroy:Mackenzie:selmachanneltysonrd:1,Selma Channel (Tyson Rd),,,,no-coordinates
+fitzroy:Mackenzie:emerald:1,Emerald,535076,"-23.529722,148.166389",,outside
+fitzroy:Mackenzie:theresahut:1,Theresa Hut,535158,"-23.386111,147.266111",,outside
+fitzroy:Mackenzie:peakvale:1,Peak Vale,,,,no-coordinates
+fitzroy:Mackenzie:kilmarnochstation:1,Kilmarnoch Station,,,,no-coordinates
+fitzroy:Mackenzie:sunnypark:1,Sunny Park,535088,"-22.991667,147.463333",,outside
+fitzroy:Mackenzie:theresacreekdam:1,Theresa Creek Dam,535162,"-22.973056,147.556944",,outside
+fitzroy:Mackenzie:florencevale:1,Florence Vale,535074,"-23.240833,147.573889",,outside
+fitzroy:Mackenzie:clermontairport:1,Clermont Airport,035124,"-22.775556,147.621667",,outside
+fitzroy:Mackenzie:clermont:1,Clermont,535028,"-22.799167,147.575833",,outside
+fitzroy:Mackenzie:clermontbridge:1,Clermont Bridge,,,,no-coordinates
+fitzroy:Mackenzie:valeria:1,Valeria,,,,no-coordinates
+fitzroy:Mackenzie:mountlowe:1,Mount Lowe,535128,"-22.905000,148.149722",,outside
+fitzroy:Mackenzie:capellaroweshill:1,Capella (Rowe's Hill),035185,"-23.120556,148.040556",,outside
+fitzroy:Mackenzie:grenada:1,Grenada,535205,"-22.734167,147.975278",,outside
+fitzroy:Mackenzie:upperretreat:1,Upper Retreat,535127,"-23.445278,147.444167",,outside
+fitzroy:Mackenzie:keilambetealert:1,Keilambete Alert,,,,no-coordinates
+fitzroy:Mackenzie:sheepstationcreekgemfields:1,Sheep Station Creek (Gemfields),,,,no-coordinates
+fitzroy:Mackenzie:silverhills:1,Silver Hills,535211,"-23.525833,147.596389",,outside
+fitzroy:Mackenzie:graveshill:1,Graves Hill,,,,no-coordinates
+fitzroy:Mackenzie:sapphire:1,Sapphire,535100,"-23.469444,147.726111",,outside
+fitzroy:Mackenzie:rubyvale:1,Rubyvale,535077,"-23.418333,147.698611",,outside
+fitzroy:Mackenzie:gregoryhighway:1,Gregory Highway,,,,no-coordinates
+fitzroy:Mackenzie:tieri:1,Tieri,535089,"-23.045833,148.369444",,outside
+fitzroy:Mackenzie:duckponds:1,Duckponds,,,,no-coordinates
+fitzroy:Mackenzie:rileyscrossing:1,Rileys Crossing,535046,"-23.543611,148.606111",,outside
+fitzroy:Mackenzie:blackwaterairport:1,Blackwater Airport,035134,"-23.601389,148.807500",,outside
+fitzroy:Mackenzie:bedfordweirtw:1,Bedford Weir TW,,,,no-coordinates
+fitzroy:Mackenzie:middlemount:1,Middlemount,,,,no-coordinates
+fitzroy:Mackenzie:bingegangweirhg:1,Bingegang Weir HG,,,,no-coordinates
+fitzroy:Mackenzie:bingegangtw:1,Bingegang TW,535022,"-23.076944,149.031389",,outside
+fitzroy:Mackenzie:tartrus:1,Tartrus,,,,no-coordinates
+fitzroy:Mackenzie:coolmaringatmb:1,Coolmaringa Tm-B,535163,"-23.318333,149.522500",,outside
+fitzroy:Mackenzie:blackdowntableland:1,Blackdown Tableland,,,,no-coordinates
+fitzroy:Mackenzie:blackdowntablelandcharleuverd:1,Blackdown Tableland (Charleuve Rd),,,,no-coordinates
+fitzroy:Mackenzie:bluff:1,Bluff,535144,"-23.590278,149.056944",,outside
+fitzroy:Mackenzie:foleyvale:1,Foleyvale,535113,"-23.527222,149.718889",,outside
+fitzroy:Mackenzie:mtewan:1,Mt Ewan,533136,"-21.411111,148.173611",,outside
+fitzroy:Mackenzie:moranbahairport:1,Moranbah Airport,034035,"-22.064444,148.075833",,outside
+fitzroy:Mackenzie:isaacriverbridge:1,Isaac River Bridge,534026,"-22.049444,148.131389",,outside
+fitzroy:Mackenzie:deverill:1,Deverill,534003,"-22.174167,148.381111",,outside
+fitzroy:Mackenzie:dysart:1,Dysart,534023,"-22.591111,148.339722",,outside
+fitzroy:Mackenzie:goldenmilerd:1,Golden Mile Rd,534036,"-22.529444,148.642778",,outside
+fitzroy:Mackenzie:fitzroydevelopmentalrdbridge:1,Fitzroy Developmental Rd Bridge,,,,no-coordinates
+fitzroy:Mackenzie:upperbeecreek:1,Upper Bee Creek,,,,no-coordinates
+fitzroy:Mackenzie:peakdownshighwaybeecreek:1,Peak Downs Highway (Bee Creek),,,,no-coordinates
+fitzroy:Mackenzie:nebobore:1,Nebo Bore,534033,"-21.736667,148.675556",,outside
+fitzroy:Mackenzie:mtspencer:1,Mt Spencer,533120,"-21.479722,148.828611",,outside
+fitzroy:Mackenzie:braeside:1,Braeside,533030,"-21.769722,148.785833",,outside
+fitzroy:Mackenzie:prospectcreek:1,Prospect Creek,,,,no-coordinates
+fitzroy:Mackenzie:funnelcreekbridge:1,Funnel Creek Bridge,,,,no-coordinates
+fitzroy:Mackenzie:funnelcreek:1,Funnel Creek,534005,"-21.778333,148.926667",,outside
+fitzroy:Mackenzie:deacey:1,Deacey,533214,"-22.266111,149.283889",,outside
+fitzroy:Mackenzie:mtbridget:1,Mt Bridget,533091,"-22.038333,149.128611",,outside
+fitzroy:Mackenzie:pinklagoon:1,Pink Lagoon,534044,"-22.340833,148.950833",,outside
+fitzroy:Mackenzie:marlboroughsarinaroad:1,Marlborough-Sarina Road,,,,no-coordinates
+fitzroy:Mackenzie:yatton:1,Yatton,534042,"-22.661389,149.137778",,outside
+fitzroy:Mackenzie:mtjoss:1,Mt Joss,533191,"-22.510556,149.276111",,outside
+fitzroy:Mackenzie:convictscrossing:1,Convicts Crossing,534034,"-22.600833,148.268611",,outside
+fitzroy:Mackenzie:maydownsrd:1,May Downs Rd,534038,"-22.717500,149.189444",,outside
+fitzroy:Mackenzie:oxforddownssarina:1,Oxford Downs-Sarina,,,,no-coordinates
+fitzroy:Mackenzie:clermontrubyvalerd:1,Clermont-Rubyvale Rd,535160,"-22.893056,147.603333",,outside
+fitzroy:Mackenzie:nogoarivermtvexationrdalert:1,Nogoa River (Mt Vexation Rd) Alert,,,,no-coordinates
+fitzroy:Mackenzie:peakdownshighway:1,Peak Downs Highway,534040,"-21.871111,148.438333",,outside
+fitzroy:Mackenzie:craigmore:1,Craigmore,,,,no-coordinates
+fitzroy:Mackenzie:brookong:1,Brookong,,,,no-coordinates
+fitzroy:Mackenzie:dysartrd:1,Dysart Rd,534035,"-22.384444,148.265833",,outside
+fitzroy:Mackenzie:eastfunnelcreekrd:1,East Funnel Creek Rd,,,,no-coordinates
+fitzroy:Mackenzie:yambukal:1,Yambuk Al,,,,no-coordinates
+fitzroy:Mackenzie:thelakecometriver:2,The Lake (Comet River),,,,no-coordinates
+fitzroy:Calliope:castlehope:1,Castlehope,539072,"-23.985000,151.097500",,outside
+fitzroy:Calliope:calliopestowerd:1,Calliope (Stowe Rd),539227,"-24.000833,151.192500",,outside
+fitzroy:Calliope:calliopecampgroundsal:1,Calliope Campgrounds Al,,,,no-coordinates
+fitzroy:Calliope:calliopestational:1,Calliope Station Al,,,,no-coordinates
+fitzroy:Boyne:bulburin:1,Bulburin,539139,"-24.510000,151.459444",,outside
+fitzroy:Boyne:tabletops:1,Table Tops,539222,"-24.532222,151.209444",,outside
+fitzroy:Boyne:nagoorin:1,Nagoorin,,,,no-coordinates
+fitzroy:Boyne:cedarvale:1,Cedar Vale,539138,"-24.421667,151.115278",,outside
+fitzroy:Boyne:milton:1,Milton,,,,no-coordinates
+fitzroy:Boyne:eden:1,Eden,539223,"-24.301667,151.396944",,outside
+fitzroy:Boyne:mtseaview:1,Mt Seaview,539128,"-24.290000,150.954167",,outside
+fitzroy:Boyne:mtmongrel:1,Mt Mongrel,539123,"-24.203056,151.179722",,outside
+fitzroy:Boyne:marlua:1,Marlua,539130,"-24.193333,151.155833",,outside
+fitzroy:Boyne:iveragh:1,Iveragh,539221,"-24.131944,151.445833",,outside
+fitzroy:Boyne:awoongadam:1,Awoonga Dam,539131,"-24.070000,151.321667",,outside
+fitzroy:Boyne:benaraby:1,Benaraby,539125,"-24.027778,151.339167",,outside
+fitzroy:Boyne:boyneisland:1,Boyne Island,539134,"-23.956667,151.357778",,outside
+fitzroy:Boyne:gladstoneradar:1,Gladstone Radar,539127,"-23.855278,151.262778",,outside
+fitzroy:Boyne:gladstoneairport:1,Gladstone Airport,039326,"-23.869722,151.221389",,outside
+fitzroy:Boyne:glenedenkirkwoodrdal:1,Glen Eden (Kirkwood Rd) Al,,,,no-coordinates
+fitzroy:Baffle:springs:1,Springs,039255,"-24.166389,151.512778",,outside
+fitzroy:Baffle:miriamvalebafflecreek:1,Miriam Vale (Baffle Creek),,,,no-coordinates
+fitzroy:Baffle:westwoodrange:1,Westwood Range,539137,"-24.311111,151.624167",,outside
+fitzroy:Baffle:alligatorflats:1,Alligator Flats,539220,"-24.345278,151.598889",,outside
+fitzroy:Baffle:mimdale:1,Mimdale,539132,"-24.515000,151.735556",,outside
+fitzroy:Baffle:essendeanbridge:1,Essendean Bridge,539126,"-24.601389,151.845278",,outside
+fitzroy:Baffle:ampthillbafflecreek:1,Ampthill (Baffle Creek),,,,no-coordinates
+fitzroy:Baffle:captaincreekbafflecreek:1,Captain Creek (Baffle Creek),,,,no-coordinates
+fitzroy:Baffle:rapleys:1,Rapleys,539142,"-24.376944,151.825278",,outside
+fitzroy:Baffle:hillsrd:1,Hills Rd,,,,no-coordinates
+fitzroy:Baffle:barnettsrd:1,Barnetts Rd,,,,no-coordinates
+fitzroy:Baffle:ladyelliotisland:1,Lady Elliot Island,,,,no-coordinates
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:woolshed:1,Woolshed,033307,"-19.416667,146.536111",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:upperblackriver:1,Upper Black River,532045,"-19.342222,146.501667",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:texasrd:1,Texas Rd,532133,"-19.264444,146.632500",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:blackriver:1,Black River,,,,no-coordinates
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:upperbluewater:1,Upper Bluewater,532047,"-19.238611,146.453056",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:bluewater:1,Bluewater,,,,no-coordinates
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:toolakea:1,Toolakea,532083,"-19.146389,146.580278",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:toomulla:1,Toomulla,532084,"-19.075556,146.469444",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:rollingstone:1,Rollingstone,,,,no-coordinates
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:paradiselagoon:1,Paradise Lagoon,532026,"-18.979444,146.271111",,outside
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:pacerdrollingstone:1,Pace Rd Rollingstone,,,,no-coordinates
+burdekin-whitsunday-townsville:Black R/Bluewater Ck:millrdblackriver:1,Mill Rd Black River,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:calcium:1,Calcium,533070,"-19.655000,146.799444",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:cungulla:1,Cungulla,533108,"-19.396667,147.107222",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:alligatorcreek:1,Alligator Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:whitescreek:1,Whites Creek,532090,"-19.377778,146.924167",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:stuart:1,Stuart,532036,"-19.346944,146.851111",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:upperstuartcreek:1,Upper Stuart Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:stuartcreek:1,Stuart Creek,532035,"-19.321944,146.837500",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:nettlefield:1,Nettlefield,533043,"-19.582222,146.695278",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:brabons:1,Brabons,533007,"-19.477222,146.631389",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:woodlandsalert:1,Woodlands Alert,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:mcdonalds:1,Mcdonalds,533044,"-19.547222,146.848889",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:cormacks:1,Cormacks,533045,"-19.439167,146.846389",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:gleesonsmill:1,Gleesons Mill,532040,"-19.434722,146.703889",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:rossriverdamrossriver:1,Ross River Dam (Ross River),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:blackweirriverway:1,Black Weir (Riverway),532030,"-19.316389,146.735000",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:kirwan:1,Kirwan,532039,"-19.306667,146.739722",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:aplinweir:1,Aplin Weir,532029,"-19.303889,146.780278",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:annandale:1,Annandale,532108,"-19.312778,146.786389",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:gordoncreekbowenrd:1,Gordon Creek (Bowen Rd),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:cluden:1,Cluden,532076,"-19.311389,146.822222",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:rooneysbridge:1,Rooney's Bridge,532088,"-19.285000,146.815278",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:aitkenvalepark:1,Aitkenvale Park,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:mysterton:1,Mysterton,532037,"-19.285000,146.796667",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:vincent:1,Vincent,532102,"-19.286667,146.766944",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:thelakes:1,The Lakes,532107,"-19.280000,146.783056",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:southtownsville:1,South Townsville,532077,"-19.263333,146.825000",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:nellybay:1,Nelly Bay,532071,"-19.158056,146.855556",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:picnicbay:1,Picnic Bay,532081,"-19.176389,146.833889",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:castlehill:1,Castle Hill,532075,"-19.258611,146.803056",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:northward:1,North Ward,532078,"-19.243333,146.802222",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:garbutt:1,Garbutt,532106,"-19.260556,146.784167",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:townsvilleaero:1,Townsville Aero,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:townsvilleairport:1,Townsville Airport,532031,"-19.248333,146.766111",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:louisacreekbayswaterrd:1,Louisa Creek (Bayswater Rd),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:pallarenda:1,Pallarenda,532079,"-19.204167,146.770833",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:thepinnacles:1,The Pinnacles,532041,"-19.385000,146.683056",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:mtmargaret:1,Mt Margaret,532042,"-19.350000,146.604167",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:littlebohlerivergumlowrd:1,Little Bohle River (Gumlow Rd),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:bohleriverherveyrangerd:1,Bohle River (Hervey Range Rd),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:kirwansandstonedrive:1,Kirwan (Sandstone Drive),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:dalrymplerd:1,Dalrymple Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:mtbohle:1,Mt Bohle,532053,"-19.266944,146.704444",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:deeragun:1,Deeragun,532054,"-19.279722,146.648611",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:deeragunsaunderscreek:1,Deeragun (Saunders Creek),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:stonycreekgeaneyln:1,Stony Creek (Geaney Ln),,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:bushlandbeach:1,Bushland Beach,532082,"-19.193611,146.680833",,outside
+burdekin-whitsunday-townsville:Ross/Bohle:chisholmtrailoakvalley:1,Chisholm Trail Oak Valley,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:mountstuart:1,Mount Stuart,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:apjohnstreethorseshoebay:1,Apjohn Street Horseshoe Bay,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:alligatorcreekrd:1,Alligator Creek Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Ross/Bohle:upperalligatorcreek:1,Upper Alligator Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:glendhurd:1,Glen Dhu Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:valleyoflagoons:1,Valley of Lagoons,532103,"-18.664167,145.092500",,outside
+burdekin-whitsunday-townsville:Burdekin:lavaplains:1,Lava Plains,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:bluerange:1,Blue Range,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:wandovalestation:1,Wando Vale Station,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:clarkeriver:1,Clarke River,532135,"-19.213056,145.440833",,outside
+burdekin-whitsunday-townsville:Burdekin:mtfullstop:1,Mt Fullstop,532016,"-19.207778,145.494167",,outside
+burdekin-whitsunday-townsville:Burdekin:palumadam:1,Paluma Dam,532063,"-18.953611,146.146944",,outside
+burdekin-whitsunday-townsville:Burdekin:mtbradley:1,Mt Bradley,532086,"-19.131944,145.908333",,outside
+burdekin-whitsunday-townsville:Burdekin:batterycreek:1,Battery Creek,533210,"-19.437500,145.861111",,outside
+burdekin-whitsunday-townsville:Burdekin:paluma:1,Paluma,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:laroona:1,Laroona,533107,"-19.379444,146.045833",,outside
+burdekin-whitsunday-townsville:Burdekin:bluffdowns:1,Bluff Downs,530017,"-19.681944,145.540278",,outside
+burdekin-whitsunday-townsville:Burdekin:gainsfordburdekinriver:1,Gainsford (Burdekin River),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:keelbottom:1,Keelbottom,532085,"-19.371944,146.358889",,outside
+burdekin-whitsunday-townsville:Burdekin:toomba:1,Toomba,030083,"-19.971111,145.585000",,outside
+burdekin-whitsunday-townsville:Burdekin:sellheimmacrossanbridge:1,Sellheim (Macrossan Bridge),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:ravenswood:1,Ravenswood,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:rivington:1,Rivington,535296,"-23.960556,146.560556",,outside
+burdekin-whitsunday-townsville:Burdekin:sedgeford:1,Sedgeford,535149,"-23.881111,146.633056",,outside
+burdekin-whitsunday-townsville:Burdekin:zeta:1,Zeta,535146,"-23.761667,146.722500",,outside
+burdekin-whitsunday-townsville:Burdekin:violetgrove:1,Violet Grove,535053,"-23.577778,146.672222",,outside
+burdekin-whitsunday-townsville:Burdekin:surbitonstation:1,Surbiton Station,036139,"-22.985556,146.618889",,outside
+burdekin-whitsunday-townsville:Burdekin:cooinda:1,Cooinda,535145,"-23.721667,146.941111",,outside
+burdekin-whitsunday-townsville:Burdekin:mtpisgah:1,Mt Pisgah,535147,"-23.640278,147.192222",,outside
+burdekin-whitsunday-townsville:Burdekin:islayplains:1,Islay Plains,035275,"-23.210278,146.878056",,outside
+burdekin-whitsunday-townsville:Burdekin:upperbelyando:1,Upper Belyando,535102,"-23.113056,146.785000",,outside
+burdekin-whitsunday-townsville:Burdekin:betanga:1,Betanga,535151,"-23.688889,146.342500",,outside
+burdekin-whitsunday-townsville:Burdekin:twinhills:1,Twin Hills,536008,"-21.956389,146.942222",,outside
+burdekin-whitsunday-townsville:Burdekin:clermontalphard:1,Clermont Alpha Rd,536012,"-22.895000,147.205278",,outside
+burdekin-whitsunday-townsville:Burdekin:laglanrd:1,Laglan Rd,536013,"-22.562500,147.072222",,outside
+burdekin-whitsunday-townsville:Burdekin:belyandocrossing:1,Belyando Crossing,536007,"-21.535278,146.858889",,outside
+burdekin-whitsunday-townsville:Burdekin:eaglefield:1,Eaglefield,534016,"-21.450278,147.714167",,outside
+burdekin-whitsunday-townsville:Burdekin:logancreek:1,Logan Creek,534024,"-22.165278,147.562778",,outside
+burdekin-whitsunday-townsville:Burdekin:stanns:1,St Anns,534012,"-21.228889,146.912778",,outside
+burdekin-whitsunday-townsville:Burdekin:scartwater:1,Scartwater,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:glenhoughtonrd:1,Glen Houghton Rd,530035,"-20.484444,145.482222",,outside
+burdekin-whitsunday-townsville:Burdekin:pentland:1,Pentland,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:taemas:1,Taemas,534010,"-20.999444,146.427222",,outside
+burdekin-whitsunday-townsville:Burdekin:bruslee:1,Bruslee,034044,"-21.076667,146.513333",,outside
+burdekin-whitsunday-townsville:Burdekin:burdekindam:1,Burdekin Dam,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:blenheim:1,Blenheim,533082,"-21.100556,148.216944",,outside
+burdekin-whitsunday-townsville:Burdekin:oldracecourse:1,Old Racecourse,533032,"-21.197500,148.443611",,outside
+burdekin-whitsunday-townsville:Burdekin:eungelladam:1,Eungella Dam,533083,"-21.140278,148.365278",,outside
+burdekin-whitsunday-townsville:Burdekin:sandyplateau:1,Sandy Plateau,533137,"-20.766389,148.465000",,outside
+burdekin-whitsunday-townsville:Burdekin:ernestcreek:1,Ernest Creek,533134,"-20.874722,148.390000",,outside
+burdekin-whitsunday-townsville:Burdekin:urannah:1,Urannah,533094,"-20.918056,148.324444",,outside
+burdekin-whitsunday-townsville:Burdekin:sutherland:1,Sutherland,533079,"-20.714722,148.150278",,outside
+burdekin-whitsunday-townsville:Burdekin:thestonewall:1,The Stonewall,533080,"-20.824722,148.040833",,outside
+burdekin-whitsunday-townsville:Burdekin:jackscreek:1,Jacks Creek,533015,"-20.752500,147.881944",,outside
+burdekin-whitsunday-townsville:Burdekin:weetalaba:1,Weetalaba,533081,"-21.042778,147.941667",,outside
+burdekin-whitsunday-townsville:Burdekin:myuna:1,Myuna,033292,"-20.581944,147.598056",,outside
+burdekin-whitsunday-townsville:Burdekin:dalbeg:1,Dalbeg,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:expeditionpass:1,Expedition Pass,533114,"-20.183333,147.165000",,outside
+burdekin-whitsunday-townsville:Burdekin:upperbogie:1,Upper Bogie,533078,"-20.441111,147.995278",,outside
+burdekin-whitsunday-townsville:Burdekin:mtpleasant:1,Mt Pleasant,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:etonvalebogieriver:1,Eton Vale (Bogie River),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:strathbogiebogieriver:1,Strathbogie (Bogie River),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:millaroo:1,Millaroo,033287,"-19.971667,147.250833",,outside
+burdekin-whitsunday-townsville:Burdekin:landerscreek:1,Landers Creek,533115,"-19.997222,147.105556",,outside
+burdekin-whitsunday-townsville:Burdekin:clare:1,Clare,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:schoolrd:1,School Rd,533159,"-19.768611,147.210556",,outside
+burdekin-whitsunday-townsville:Burdekin:monapark:1,Mona Park,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:mtkelly:1,Mt Kelly,533109,"-19.661944,147.312778",,outside
+burdekin-whitsunday-townsville:Burdekin:ayr:1,Ayr,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:inkermanbridge:1,Inkerman Bridge,033288,"-19.643333,147.397222",,outside
+burdekin-whitsunday-townsville:Burdekin:brandon:1,Brandon,533117,"-19.555833,147.368056",,outside
+burdekin-whitsunday-townsville:Burdekin:ritaisland:1,Rita Island,533057,"-19.629444,147.481667",,outside
+burdekin-whitsunday-townsville:Burdekin:gropercreek:1,Groper Creek,533049,"-19.691667,147.531667",,outside
+burdekin-whitsunday-townsville:Burdekin:ayrdpi:1,Ayr DPI,033002,"-19.616944,147.375833",,outside
+burdekin-whitsunday-townsville:Burdekin:alvabeach:1,Alva Beach,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:alvabeach:2,Alva Beach,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:redbankcreek:1,Redbank Creek,540489,"-27.276667,152.288889",lga-6580,assigned
+burdekin-whitsunday-townsville:Burdekin:gregorydevrdbasaltriver:1,Gregory Dev Rd (Basalt River),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:burdekinfallsdamhg:1,Burdekin Falls Dam HG,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:fletchervalerd:1,Fletchervale Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:ameliacryarrowmererd:1,Amelia Cr (Yarrowmere Rd),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:townsvilleairweaponsrange:1,Townsville- Air Weapons Range,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:lavaplainsrd:1,Lava Plains Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:charterstowersweir:1,Charters Towers Weir,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:coreaplainsrd:1,Corea Plains Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:starriverbridge:1,Star River Bridge,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:wairunard:1,Wairuna Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:doongarrard:1,Doongarra Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:townsville:1,Townsville,032040,"-19.248333,146.766111",,outside
+burdekin-whitsunday-townsville:Burdekin:dotswoodroadfanningriver:1,Dotswood Road (Fanning River),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:niallroadmaryvalecreek:1,Niall Road (Maryvale Creek),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:redhillcreek:1,Red Hill Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:hiddenvalleyrunningriver:1,Hidden Valley (Running River),,,,no-coordinates
+burdekin-whitsunday-townsville:Burdekin:lolworthcreek:1,Lolworth Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Haughton:mingela:1,Mingela,533050,"-19.878889,146.632222",,outside
+burdekin-whitsunday-townsville:Haughton:fourmile:1,Four Mile,533073,"-19.864722,146.783056",,outside
+burdekin-whitsunday-townsville:Haughton:upperreid:1,Upper Reid,533053,"-19.730278,146.668889",,outside
+burdekin-whitsunday-townsville:Haughton:cameronhill:1,Cameron Hill,533052,"-19.743889,146.859167",,outside
+burdekin-whitsunday-townsville:Haughton:mtpiccaninny:1,Mt Piccaninny,533055,"-19.773333,146.959722",,outside
+burdekin-whitsunday-townsville:Haughton:uppermajorcreek:1,Upper Major Creek,533071,"-19.581667,146.938056",,outside
+burdekin-whitsunday-townsville:Haughton:donningtonairpark:1,Donnington Airpark,533054,"-19.601667,146.840278",,outside
+burdekin-whitsunday-townsville:Haughton:majorcreek:1,Major Creek,533072,"-19.668889,147.025000",,outside
+burdekin-whitsunday-townsville:Haughton:powerline:1,Powerline,533056,"-19.633056,147.110278",,outside
+burdekin-whitsunday-townsville:Haughton:reedbeds:1,Reed Beds,533150,"-19.516944,147.046389",,outside
+burdekin-whitsunday-townsville:Haughton:giru:1,Giru,533051,"-19.512500,147.111389",,outside
+burdekin-whitsunday-townsville:Haughton:upperbarrattas:1,Upper Barrattas,533074,"-19.885000,147.033333",,outside
+burdekin-whitsunday-townsville:Haughton:mitchellrd:1,Mitchell Rd,533196,"-19.826944,147.187500",,outside
+burdekin-whitsunday-townsville:Haughton:northcote:1,Northcote,533093,"-19.692222,147.168889",,outside
+burdekin-whitsunday-townsville:Haughton:barrattard:1,Barratta Rd,533193,"-19.677500,147.119444",,outside
+burdekin-whitsunday-townsville:Haughton:coricard:1,Corica Rd,533195,"-19.648056,147.245278",,outside
+burdekin-whitsunday-townsville:Haughton:hoeys:1,Hoeys,533194,"-19.595000,147.232778",,outside
+burdekin-whitsunday-townsville:Haughton:eastbarrattasbrucehwy:1,East Barrattas (Bruce Hwy),,,,no-coordinates
+burdekin-whitsunday-townsville:Haughton:plozard:1,Ploza Rd,533192,"-19.545278,147.165000",,outside
+burdekin-whitsunday-townsville:Haughton:haughtonbridge:1,Haughton Bridge,,,,no-coordinates
+burdekin-whitsunday-townsville:Haughton:flinderhighway:1,Flinder Highway,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:boundarycreek:1,Boundary Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:emucreek:1,Emu Creek,033306,"-20.410278,148.230556",,outside
+burdekin-whitsunday-townsville:Don:prettybend:1,Pretty Bend,533135,"-20.400278,148.142778",,outside
+burdekin-whitsunday-townsville:Don:romapeakmenildencreek:1,Roma Peak (Menilden Creek),,,,no-coordinates
+burdekin-whitsunday-townsville:Don:upperdon:1,Upper Don,033270,"-20.294167,148.114167",,outside
+burdekin-whitsunday-townsville:Don:idacreek:1,Ida Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:mossvalealert:1,Moss Vale Alert,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:mountdangar:1,Mount Dangar,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:reeves:1,Reeves,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:hermanrd:1,Herman Rd,533184,"-20.046111,148.185278",,outside
+burdekin-whitsunday-townsville:Don:bowenpumpstation:1,Bowen Pump Station,033264,"-20.008889,148.204444",,outside
+burdekin-whitsunday-townsville:Don:telegraphrd:1,Telegraph Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:bowenairportaws:1,Bowen Airport AWS,,,,no-coordinates
+burdekin-whitsunday-townsville:Don:balaamrd:1,Balaam Rd,533182,"-20.039444,148.137222",,outside
+burdekin-whitsunday-townsville:Don:koonandah:1,Koonandah,533106,"-20.006389,148.128889",,outside
+burdekin-whitsunday-townsville:Don:guthalungra:1,Guthalungra,533033,"-19.935000,147.838889",,outside
+burdekin-whitsunday-townsville:Proserpine:hamiltonislandairport:1,Hamilton Island Airport,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:hecateproserpineriver:1,Hecate (Proserpine River),,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:peterfaustdamhwtm:1,Peter Faust Dam HW TM,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:peterfaustdamhwalert:1,Peter Faust Dam HW Alert,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:bowenwtp:1,Bowen WTP,533166,"-20.353889,148.449167",,outside
+burdekin-whitsunday-townsville:Proserpine:upriverrd:1,Up River Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:blairrd:1,Blair Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:proserpine:1,Proserpine,533174,"-20.401667,148.584722",,outside
+burdekin-whitsunday-townsville:Proserpine:strathdickie:1,Strathdickie,533175,"-20.326389,148.586111",,outside
+burdekin-whitsunday-townsville:Proserpine:preston:1,Preston,533173,"-20.404167,148.668056",,outside
+burdekin-whitsunday-townsville:Proserpine:dittmer:1,Dittmer,533169,"-20.426667,148.475833",,outside
+burdekin-whitsunday-townsville:Proserpine:proserpineairport:1,Proserpine Airport,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:lowergregorytm:1,Lower Gregory Tm,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:lowergregoryalert:1,Lower Gregory Alert,,,,no-coordinates
+burdekin-whitsunday-townsville:Proserpine:dingobeach:1,Dingo Beach,533168,"-20.099722,148.491944",,outside
+burdekin-whitsunday-townsville:Proserpine:cannonvale:1,Cannonvale,533167,"-20.281389,148.685000",,outside
+burdekin-whitsunday-townsville:Proserpine:jubileepocket:1,Jubilee Pocket,533170,"-20.280278,148.745556",,outside
+burdekin-whitsunday-townsville:Pioneer:plevna:1,Plevna,533035,"-21.299722,148.544444",,outside
+burdekin-whitsunday-townsville:Pioneer:ridgelands:1,Ridgelands,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:teemburrack:1,Teemburra Ck,533131,"-21.193056,148.649722",,outside
+burdekin-whitsunday-townsville:Pioneer:teemburradam:1,Teemburra Dam,533041,"-21.217500,148.665000",,outside
+burdekin-whitsunday-townsville:Pioneer:whiteford:1,Whiteford,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:hannaville:1,Hannaville,533040,"-21.415278,148.895833",,outside
+burdekin-whitsunday-townsville:Pioneer:sarich:1,Sarich,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:mtwilliam:1,Mt William,533132,"-21.033611,148.597778",,outside
+burdekin-whitsunday-townsville:Pioneer:clarkerange:1,Clarke Range,533037,"-21.079444,148.544167",,outside
+burdekin-whitsunday-townsville:Pioneer:clarkerange2:1,Clarke Range 2,533084,"-21.079444,148.544167",,outside
+burdekin-whitsunday-townsville:Pioneer:eungella:1,Eungella,533039,"-21.131667,148.493056",,outside
+burdekin-whitsunday-townsville:Pioneer:netherdale:1,Netherdale,533179,"-21.138333,148.528611",,outside
+burdekin-whitsunday-townsville:Pioneer:senninisrd:1,Senninis Rd,533180,"-21.140000,148.590278",,outside
+burdekin-whitsunday-townsville:Pioneer:finchhattonshowgrounds:1,Finch Hatton Showgrounds,533186,"-21.137778,148.634444",,outside
+burdekin-whitsunday-townsville:Pioneer:upperfinchhattoncreek:1,Upper Finch Hatton Creek,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:gorgerd:1,Gorge Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:finchhatton:1,Finch Hatton,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:mattieoneillbridge:1,Mattie O'Neill Bridge,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:gargett:1,Gargett,033304,"-21.178056,148.744167",,outside
+burdekin-whitsunday-townsville:Pioneer:miraniweir:1,Mirani Weir,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:miranitownship:1,Mirani Township,533178,"-21.160556,148.859722",,outside
+burdekin-whitsunday-townsville:Pioneer:dowscreek:1,Dow's Creek,533036,"-21.109167,148.783889",,outside
+burdekin-whitsunday-townsville:Pioneer:boldonmiranird:1,Boldon Mirani Rd,533154,"-21.150556,148.898611",,outside
+burdekin-whitsunday-townsville:Pioneer:marianweir:1,Marian Weir,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:dumbletonrocks:1,Dumbleton Rocks,033300,"-21.143889,149.075278",,outside
+burdekin-whitsunday-townsville:Pioneer:hospitalbridge:1,Hospital Bridge,533060,"-21.144444,149.154444",,outside
+burdekin-whitsunday-townsville:Pioneer:mackay:1,Mackay,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:mackayairport:1,Mackay Airport,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:mackaymo:1,Mackay M.O,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:ooralearacecourse:1,Ooralea Racecourse,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:southmackayelamangst:1,South Mackay (Elamang St),533207,"-21.166389,149.186944",,outside
+burdekin-whitsunday-townsville:Pioneer:southmackayparadisest:1,South Mackay (Paradise St),533208,"-21.156389,149.171667",,outside
+burdekin-whitsunday-townsville:Pioneer:rowallanpark:1,Rowallan Park,533062,"-21.092778,149.118611",,outside
+burdekin-whitsunday-townsville:Pioneer:glenella:1,Glenella,533201,"-21.123333,149.146944",,outside
+burdekin-whitsunday-townsville:Pioneer:gooseponds:1,Gooseponds,533061,"-21.125278,149.166389",,outside
+burdekin-whitsunday-townsville:Pioneer:andergrove:1,Andergrove,533197,"-21.098611,149.177778",,outside
+burdekin-whitsunday-townsville:Pioneer:mtpleasantbaxterdv:1,Mt Pleasant (Baxter Dv),533204,"-21.111389,149.157500",,outside
+burdekin-whitsunday-townsville:Pioneer:golflinksrd:1,Golf Links Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:mackillopschool:1,MacKillop School,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:mccreadyscreek:1,McCreadys Creek,533144,"-21.072500,149.156389",,outside
+burdekin-whitsunday-townsville:Pioneer:blackmountainfarleigh:1,Black Mountain (Farleigh),533200,"-21.064167,149.095556",,outside
+burdekin-whitsunday-townsville:Pioneer:mtroy:1,Mt Roy,533099,"-21.034167,148.860000",,outside
+burdekin-whitsunday-townsville:Pioneer:calen:1,Calen,533066,"-20.907778,148.758611",,outside
+burdekin-whitsunday-townsville:Pioneer:forbesrd:1,Forbes Rd,,,,no-coordinates
+burdekin-whitsunday-townsville:Pioneer:staffordcrossing:1,Stafford Crossing,533098,"-20.660833,148.570000",,outside
+burdekin-whitsunday-townsville:Pioneer:jochheims:1,Jochheims,533042,"-20.575278,148.468889",,outside
+burdekin-whitsunday-townsville:Pioneer:oconnell:1,O'Connell,533140,"-20.567222,148.617778",,outside
+burdekin-whitsunday-townsville:Pioneer:upperfinchhatton:1,Upper Finch Hatton,,,,no-coordinates
+burdekin-whitsunday-townsville:Plane:stlawrence:1,St Lawrence,033210,"-22.347222,149.524167",,outside
+burdekin-whitsunday-townsville:Plane:carmila:1,Carmila,,,,no-coordinates
+burdekin-whitsunday-townsville:Plane:koumala:1,Koumala,533129,"-21.600556,149.239444",,outside
+burdekin-whitsunday-townsville:Plane:sarinamaguirerd:1,Sarina (Maguire Rd),533211,"-21.493889,149.125000",,outside
+burdekin-whitsunday-townsville:Plane:westplanecreekrd:1,West Plane (Creek Rd),533212,"-21.469722,149.143333",,outside
+burdekin-whitsunday-townsville:Plane:sucrogenweir:1,Sucrogen Weir,533143,"-21.424167,149.223056",,outside
+burdekin-whitsunday-townsville:Plane:etonsandycreek:1,Eton (Sandy Creek),,,,no-coordinates
+burdekin-whitsunday-townsville:Plane:bellscreekalbellscreek:1,Bells Creek AL (Bells Creek),,,,no-coordinates
+burdekin-whitsunday-townsville:Plane:munburrard:1,Munburra Rd,533128,"-21.362500,149.114722",,outside
+burdekin-whitsunday-townsville:Plane:kinchantdam:1,Kinchant Dam,533124,"-21.214444,148.898611",,outside
+burdekin-whitsunday-townsville:Plane:marianetonrd:1,Marian-Eton Rd,533119,"-21.200000,148.953889",,outside
+burdekin-whitsunday-townsville:Plane:antoneyscrossing:1,Antoneys Crossing,533198,"-21.229722,148.949444",,outside
+burdekin-whitsunday-townsville:Plane:brightley:1,Brightley,533127,"-21.260833,148.928889",,outside
+burdekin-whitsunday-townsville:Plane:homebushsandycreek:1,Homebush (Sandy Creek),,,,no-coordinates
+burdekin-whitsunday-townsville:Plane:fennersrd:1,Fenners Rd,533153,"-21.248889,149.160278",,outside
+burdekin-whitsunday-townsville:Plane:mtvincewest:1,Mt Vince West,533112,"-21.165000,148.997222",,outside
+burdekin-whitsunday-townsville:Plane:greenmount:1,Greenmount,,,,no-coordinates
+burdekin-whitsunday-townsville:Plane:walkerston:1,Walkerston,533142,"-21.159444,149.055556",,outside
+burdekin-whitsunday-townsville:Plane:mtvinceeast:1,Mt Vince East,533139,"-21.212222,149.056389",,outside
+burdekin-whitsunday-townsville:Plane:bakerscreek:1,Bakers Creek,533063,"-21.213889,149.144722",,outside
+burdekin-whitsunday-townsville:Plane:ooraleaschmidtkerd:1,Ooralea (Schmidtke Rd),533205,"-21.184167,149.142778",,outside
+burdekin-whitsunday-townsville:Plane:paget:1,Paget,533206,"-21.192778,149.168333",,outside
+north-tropical-coast:Daintree/Endeavour:blackmt:1,Black Mt,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:craiglie:1,Craiglie,531133,"-16.539444,145.473889",,outside
+north-tropical-coast:Daintree/Endeavour:portdouglas:1,Port Douglas,531134,"-16.493889,145.460833",,outside
+north-tropical-coast:Daintree/Endeavour:whyanbeelcreek:1,Whyanbeel Creek,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:bairds:1,Bairds,531029,"-16.181667,145.280833",,outside
+north-tropical-coast:Daintree/Endeavour:daintreevillage:1,Daintree Village,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:diwan:1,Diwan,531135,"-16.203056,145.403889",,outside
+north-tropical-coast:Daintree/Endeavour:chinacamp:1,China Camp,531071,"-15.985000,145.287778",,outside
+north-tropical-coast:Daintree/Endeavour:beesbike:1,Beesbike,531062,"-15.687778,145.208611",,outside
+north-tropical-coast:Daintree/Endeavour:flaggy:1,Flaggy,531069,"-15.424722,145.065278",,outside
+north-tropical-coast:Daintree/Endeavour:cooktownairport:1,Cooktown Airport,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:hopevalebore:1,Hopevale Bore,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:mossmantreatmentplant:1,Mossman Treatment Plant,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:rexcreekintake:1,Rex Creek Intake,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:yandilli:1,Yandilli,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:lowisleslighthouse:1,Low Isles Lighthouse,,,,no-coordinates
+north-tropical-coast:Daintree/Endeavour:stewartcreekvalley:1,Stewart Creek Valley,,,,no-coordinates
+north-tropical-coast:Barron:wongabel:1,Wongabel,531121,"-17.337778,145.480278",,outside
+north-tropical-coast:Barron:mtquincan:1,Mt Quincan,530034,"-17.304167,145.574167",,outside
+north-tropical-coast:Barron:scrubbycreek:1,Scrubby Creek,531124,"-17.303333,145.461667",,outside
+north-tropical-coast:Barron:maundsrd:1,Maunds Rd,531097,"-17.251667,145.503611",,outside
+north-tropical-coast:Barron:boarpocket:1,Boar Pocket,531054,"-17.196667,145.669444",,outside
+north-tropical-coast:Barron:tinaroodamhw:1,Tinaroo Dam (HW),,,,no-coordinates
+north-tropical-coast:Barron:grahamrd:1,Graham Rd,531115,"-17.220000,145.494722",,outside
+north-tropical-coast:Barron:bonesknob:1,Bones Knob,531032,"-17.220556,145.446944",,outside
+north-tropical-coast:Barron:mareebaairport:1,Mareeba Airport,,,,no-coordinates
+north-tropical-coast:Barron:mareeba:1,Mareeba,,,,no-coordinates
+north-tropical-coast:Barron:emeraldcrest:1,Emerald Crest,531035,"-17.023333,145.518333",,outside
+north-tropical-coast:Barron:bilwon:1,Bilwon,,,,no-coordinates
+north-tropical-coast:Barron:boltonrd:1,Bolton Rd,,,,no-coordinates
+north-tropical-coast:Barron:monamona:1,Mona Mona,531038,"-16.731944,145.511111",,outside
+north-tropical-coast:Barron:flaggycreek:1,Flaggy Creek,,,,no-coordinates
+north-tropical-coast:Barron:myola:1,Myola,531040,"-16.800000,145.611944",,outside
+north-tropical-coast:Barron:saddlemountain:1,Saddle Mountain,531043,"-16.818333,145.662778",,outside
+north-tropical-coast:Barron:kamerungabridge:1,Kamerunga Bridge,031170,"-16.873333,145.685000",,outside
+north-tropical-coast:Barron:copperlodedamhg:1,Copperlode Dam (HG),,,,no-coordinates
+north-tropical-coast:Barron:thecascades:1,The Cascades,,,,no-coordinates
+north-tropical-coast:Barron:maryparkerdrive:1,Mary Parker Drive,531131,"-16.942778,145.695556",,outside
+north-tropical-coast:Barron:currundacreek:1,Currunda Creek,531129,"-16.934722,145.691944",,outside
+north-tropical-coast:Barron:rocksrdreserve:1,Rocks Rd Reserve,531130,"-16.927778,145.697500",,outside
+north-tropical-coast:Barron:brinsmead:1,Brinsmead,531042,"-16.888611,145.710833",,outside
+north-tropical-coast:Barron:cairnsairport:1,Cairns Airport,531049,"-16.862222,145.741944",,outside
+north-tropical-coast:Barron:cairnsaero:1,Cairns Aero,,,,no-coordinates
+north-tropical-coast:Barron:cairnsracecourse:1,Cairns Racecourse,031222,"-16.946389,145.747500",,outside
+north-tropical-coast:Barron:mountaunt:1,Mount Aunt,,,,no-coordinates
+north-tropical-coast:Barron:tinaroocreek:1,Tinaroo Creek,,,,no-coordinates
+north-tropical-coast:Barron:daviescreekrd:1,Davies Creek Rd,,,,no-coordinates
+north-tropical-coast:Barron:biboohra:1,Biboohra,,,,no-coordinates
+north-tropical-coast:Barron:glenomapark:1,Glenoma Park,531128,"-16.898889,145.708333",,outside
+north-tropical-coast:Mulgrave-Russell:goldsboroughvalley:1,Goldsborough Valley,531075,"-17.246389,145.774444",,outside
+north-tropical-coast:Mulgrave-Russell:thefisheries:1,The Fisheries,531076,"-17.185278,145.723889",,outside
+north-tropical-coast:Mulgrave-Russell:gillieslookout:1,Gillies Lookout,531077,"-17.170556,145.688611",,outside
+north-tropical-coast:Mulgrave-Russell:peetsbridge:1,Peets Bridge,,,,no-coordinates
+north-tropical-coast:Mulgrave-Russell:gordonvale:1,Gordonvale,531051,"-17.101111,145.789444",,outside
+north-tropical-coast:Mulgrave-Russell:morganrdgordonvale:1,Morgan Rd Gordonvale,531114,"-17.063056,145.807778",,outside
+north-tropical-coast:Mulgrave-Russell:aloomba:1,Aloomba,531093,"-17.115833,145.837778",,outside
+north-tropical-coast:Mulgrave-Russell:vohlandrd:1,Vohland Rd,531092,"-17.137222,145.857222",,outside
+north-tropical-coast:Mulgrave-Russell:bucklands:1,Bucklands,531024,"-17.383333,145.966667",,outside
+north-tropical-coast:Mulgrave-Russell:theboulders:1,The Boulders,531022,"-17.348889,145.872500",,outside
+north-tropical-coast:Mulgrave-Russell:clyderd:1,Clyde Rd,531074,"-17.324722,145.952222",,outside
+north-tropical-coast:Mulgrave-Russell:parramattapark:1,Parramatta Park,031218,"-16.914167,145.761111",,outside
+north-tropical-coast:Mulgrave-Russell:wongapark:1,Wonga Park,531127,"-17.344167,145.928611",,outside
+north-tropical-coast:Johnstone:mckellrd:1,Mckell Rd,,,,no-coordinates
+north-tropical-coast:Johnstone:bromfieldswamp:1,Bromfield Swamp,531122,"-17.372500,145.539722",,outside
+north-tropical-coast:Johnstone:malandanorthjohnstoneriver:1,Malanda (North Johnstone River),,,,no-coordinates
+north-tropical-coast:Johnstone:malandaenglishrd:1,Malanda (English Rd),,,,no-coordinates
+north-tropical-coast:Johnstone:glenallyn:1,Glen Allyn,,,,no-coordinates
+north-tropical-coast:Johnstone:topaznorthjohnstoneriver:1,Topaz (North Johnstone River),,,,no-coordinates
+north-tropical-coast:Johnstone:greenhaven:1,Greenhaven,031182,"-17.587500,145.599722",,outside
+north-tropical-coast:Johnstone:millaamillaa:1,Millaa Millaa,031185,"-17.517500,145.608889",,outside
+north-tropical-coast:Johnstone:bartleview:1,Bartle View,031181,"-17.545000,145.715556",,outside
+north-tropical-coast:Johnstone:crawfordslookout:1,Crawfords Lookout,032162,"-17.615000,145.801111",,outside
+north-tropical-coast:Johnstone:nerada:1,Nerada,032165,"-17.530833,145.846389",,outside
+north-tropical-coast:Johnstone:rankincreek:1,Rankin Creek,532092,"-17.544444,145.861944",,outside
+north-tropical-coast:Johnstone:upperfisherck:1,Upper Fisher Ck,532100,"-17.605556,145.866111",,outside
+north-tropical-coast:Johnstone:fishercreek:1,Fisher Creek,,,,no-coordinates
+north-tropical-coast:Johnstone:tungoil:1,Tung Oil,,,,no-coordinates
+north-tropical-coast:Johnstone:marcost:1,Marco St,,,,no-coordinates
+north-tropical-coast:Johnstone:mcavoybridge:1,McAvoy Bridge,532023,"-17.504722,145.992778",,outside
+north-tropical-coast:Johnstone:garradunga:1,Garradunga,532115,"-17.460556,145.992222",,outside
+north-tropical-coast:Johnstone:saltwatercreek:1,Saltwater Creek,532014,"-17.512222,146.032222",,outside
+north-tropical-coast:Johnstone:suttiescreek:1,Sutties Creek,031186,"-17.680278,145.660278",,outside
+north-tropical-coast:Johnstone:corsis:1,Corsis,032161,"-17.596667,145.901389",,outside
+north-tropical-coast:Johnstone:menavale:1,Menavale,032164,"-17.680833,145.887778",,outside
+north-tropical-coast:Johnstone:centralmill:1,Central Mill,032160,"-17.608889,145.979167",,outside
+north-tropical-coast:Johnstone:southjohnstone:1,South Johnstone,032037,"-17.605278,145.997222",,outside
+north-tropical-coast:Johnstone:frielsrdteakplant:1,Friels Rd Teak Plant,532130,"-17.587222,145.983611",,outside
+north-tropical-coast:Johnstone:mourilyanmill:1,Mourilyan Mill,532025,"-17.580556,146.029722",,outside
+north-tropical-coast:Johnstone:mourilyanbore:1,Mourilyan Bore,532098,"-17.585833,146.049444",,outside
+north-tropical-coast:Johnstone:innisfailaerodrome:1,Innisfail Aerodrome,,,,no-coordinates
+north-tropical-coast:Johnstone:sweeneyscreekus:1,Sweeneys Creek (US),,,,no-coordinates
+north-tropical-coast:Johnstone:innisfailwharf:1,Innisfail Wharf,,,,no-coordinates
+north-tropical-coast:Johnstone:japoonvale:1,Japoonvale,,,,no-coordinates
+north-tropical-coast:Johnstone:silkwood:1,Silkwood,532093,"-17.730833,146.006944",,outside
+north-tropical-coast:Johnstone:lowerliverpool:1,Lower Liverpool,532097,"-17.718611,146.039722",,outside
+north-tropical-coast:Johnstone:cowleybeach:1,Cowley Beach,032194,"-17.690556,146.112500",,outside
+north-tropical-coast:Johnstone:japoonvale:2,Japoonvale,,,,no-coordinates
+north-tropical-coast:Johnstone:willisisland:1,Willis Island,,,,no-coordinates
+north-tropical-coast:Tully:meungacreek:1,Meunga Creek,532065,"-18.281667,145.878611",,outside
+north-tropical-coast:Tully:kennedyvalley:1,Kennedy Valley,532099,"-18.223611,145.908889",,outside
+north-tropical-coast:Tully:cardwelltide:1,Cardwell Tide,532113,"-18.263333,146.025833",,outside
+north-tropical-coast:Tully:kirramarange:1,Kirrama Range,532126,"-18.208611,145.795278",,outside
+north-tropical-coast:Tully:uppermurray:1,Upper Murray,532061,"-18.106944,145.805278",,outside
+north-tropical-coast:Tully:murrayflats:1,Murray Flats,532060,"-18.029722,145.924167",,outside
+north-tropical-coast:Tully:bilyana:1,Bilyana,532062,"-18.118056,145.877222",,outside
+north-tropical-coast:Tully:uppermurrayrd:1,Upper Murray Rd,,,,no-coordinates
+north-tropical-coast:Tully:koombooloomba:1,Koombooloomba,531058,"-17.832778,145.601111",,outside
+north-tropical-coast:Tully:tullyweir:1,Tully Weir,531056,"-17.777222,145.565000",,outside
+north-tropical-coast:Tully:koolmoon:1,Koolmoon,531109,"-17.746111,145.562500",,outside
+north-tropical-coast:Tully:cardstone:1,Cardstone,531102,"-17.764167,145.593611",,outside
+north-tropical-coast:Tully:maalanrd:1,Maalan Rd,,,,no-coordinates
+north-tropical-coast:Tully:tullygorge:1,Tully Gorge,531104,"-17.772500,145.650278",,outside
+north-tropical-coast:Tully:bolindaestate:1,Bolinda Estate,531057,"-17.831111,145.705278",,outside
+north-tropical-coast:Tully:davidsoncreek:1,Davidson Creek,532058,"-17.960833,145.753889",,outside
+north-tropical-coast:Tully:jarracreektullyriver:1,Jarra Creek (Tully River),,,,no-coordinates
+north-tropical-coast:Tully:bulguncreek:1,Bulgun Creek,532064,"-17.867778,145.924722",,outside
+north-tropical-coast:Tully:tully:1,Tully,532057,"-17.935278,145.923056",,outside
+north-tropical-coast:Tully:euramo:1,Euramo,,,,no-coordinates
+north-tropical-coast:Tully:southmissionbeach:1,South Mission Beach,532074,"-17.950556,146.086111",,outside
+north-tropical-coast:Tully:clumppointtide:1,Clump Point Tide,,,,no-coordinates
+north-tropical-coast:Tully:singsfarm:1,Sing's Farm,532096,"-18.237500,145.948333",,outside
+north-tropical-coast:Tully:whitingscrossing:1,Whiting's Crossing,,,,no-coordinates
+north-tropical-coast:Herbert:wildriver:1,Wild River,531120,"-17.366389,145.431667",,outside
+north-tropical-coast:Herbert:herberton:1,Herberton,031198,"-17.376944,145.380278",,outside
+north-tropical-coast:Herbert:wondecla:1,Wondecla,531125,"-17.436389,145.421667",,outside
+north-tropical-coast:Herbert:silvervalley:1,Silver Valley,531015,"-17.633333,145.300000",,outside
+north-tropical-coast:Herbert:ravenshoe:1,Ravenshoe,,,,no-coordinates
+north-tropical-coast:Herbert:archerscreek:1,Archers Creek,531021,"-17.650000,145.333333",,outside
+north-tropical-coast:Herbert:chalumbin:1,Chalumbin,531101,"-17.783056,145.518889",,outside
+north-tropical-coast:Herbert:wooroorablundercreek:1,Wooroora (Blunder Creek),,,,no-coordinates
+north-tropical-coast:Herbert:benavon:1,Ben Avon,531082,"-17.807222,145.325000",,outside
+north-tropical-coast:Herbert:extendedrange:1,Extended Range,531116,"-17.551111,145.211111",,outside
+north-tropical-coast:Herbert:crooksdamhw:1,Crooks Dam HW,531111,"-17.598889,145.138056",,outside
+north-tropical-coast:Herbert:mtgarnet:1,Mt Garnet,,,,no-coordinates
+north-tropical-coast:Herbert:upperruddcreek:1,Upper Rudd Creek,031197,"-18.039444,144.885556",,outside
+north-tropical-coast:Herbert:upperpoisoncreek:1,Upper Poison Creek,530036,"-17.806111,144.959444",,outside
+north-tropical-coast:Herbert:gunnawarraruddcreek:1,Gunnawarra (Rudd Creek),,,,no-coordinates
+north-tropical-coast:Herbert:nativewells:1,Native Wells,531117,"-18.146944,145.093333",,outside
+north-tropical-coast:Herbert:wooroora:1,Wooroora,,,,no-coordinates
+north-tropical-coast:Herbert:yourka:1,Yourka,531047,"-18.008056,145.470556",,outside
+north-tropical-coast:Herbert:gleneagle:1,Gleneagle,032169,"-18.191944,145.332500",,outside
+north-tropical-coast:Herbert:murraysprings:1,Murray Springs,031191,"-18.149444,145.480278",,outside
+north-tropical-coast:Herbert:kirrama:1,Kirrama,032176,"-18.143889,145.610000",,outside
+north-tropical-coast:Herbert:blencoefalls:1,Blencoe Falls,532080,"-18.204167,145.537222",,outside
+north-tropical-coast:Herbert:nashscrossing:1,Nash's Crossing,032170,"-18.412500,145.772222",,outside
+north-tropical-coast:Herbert:wallaman:1,Wallaman,032172,"-18.460556,145.738333",,outside
+north-tropical-coast:Herbert:whitecrystal:1,White Crystal,032142,"-18.682222,145.750000",,outside
+north-tropical-coast:Herbert:zattas:1,Zattas,032184,"-18.450556,145.829444",,outside
+north-tropical-coast:Herbert:gowriecreek:1,Gowrie Creek,532010,"-18.450000,145.850000",,outside
+north-tropical-coast:Herbert:abergowrie:1,Abergowrie,032174,"-18.488889,145.936389",,outside
+north-tropical-coast:Herbert:abergowriebridge:1,Abergowrie Bridge,,,,no-coordinates
+north-tropical-coast:Herbert:michaelcreek:1,Michael Creek,032186,"-18.847778,145.906667",,outside
+north-tropical-coast:Herbert:runningcreekstoneriver:1,Running Creek (Stone River),,,,no-coordinates
+north-tropical-coast:Herbert:peacocksiding:1,Peacock Siding,032173,"-18.679722,145.996111",,outside
+north-tropical-coast:Herbert:trebonne:1,Trebonne,532067,"-18.618056,146.084167",,outside
+north-tropical-coast:Herbert:inghampumpstation:1,Ingham Pump Station,032171,"-18.634722,146.144444",,outside
+north-tropical-coast:Herbert:inghamdepot:1,Ingham Depot,532008,"-18.670000,146.153889",,outside
+north-tropical-coast:Herbert:gairloch:1,Gairloch,,,,no-coordinates
+north-tropical-coast:Herbert:cardwellgap:1,Cardwell Gap,532087,"-18.542222,146.184444",,outside
+north-tropical-coast:Herbert:halifax:1,Halifax,,,,no-coordinates
+north-tropical-coast:Herbert:povertyhill:1,Poverty Hill,032183,"-18.749722,146.115000",,outside
+north-tropical-coast:Herbert:lucindapoint:1,Lucinda Point,,,,no-coordinates
+north-tropical-coast:Herbert:inghamaero:1,Ingham Aero,,,,no-coordinates
+north-tropical-coast:Herbert:wallamanescarpment:1,Wallaman Escarpment,,,,no-coordinates
+north-tropical-coast:Herbert:yammanieminnamoolka:1,Yammanie Minnamoolka,,,,no-coordinates
+border-rivers-moonie:Border Rivers:gleninnesagstn:1,Glen Innes (Ag.Stn),,,,no-coordinates
+border-rivers-moonie:Border Rivers:gleninnesairport:1,Glen Innes Airport,,,,no-coordinates
+border-rivers-moonie:Border Rivers:glenorchy:1,Glenorchy,,,,no-coordinates
+border-rivers-moonie:Border Rivers:bukkullaruralfireservice:1,Bukkulla (Rural Fire Service),,,,no-coordinates
+border-rivers-moonie:Border Rivers:westholmeashfordrd:1,Westholme (Ashford Rd),,,,no-coordinates
+border-rivers-moonie:Border Rivers:benlomondbeulah:1,Ben Lomond (Beulah),056245,"-29.959444,151.605000",,outside
+border-rivers-moonie:Border Rivers:swanvale:1,Swan Vale,,,,no-coordinates
+border-rivers-moonie:Border Rivers:paradisestation:1,Paradise Station,556035,"-29.876111,151.466944",,outside
+border-rivers-moonie:Border Rivers:wyoming:1,Wyoming,,,,no-coordinates
+border-rivers-moonie:Border Rivers:gred:1,Gred,,,,no-coordinates
+border-rivers-moonie:Border Rivers:newsteadnorth:1,Newstead North,,,,no-coordinates
+border-rivers-moonie:Border Rivers:littlevalley:1,Little Valley,556014,"-29.848611,151.325000",,outside
+border-rivers-moonie:Border Rivers:stannifer:1,Stannifer,,,,no-coordinates
+border-rivers-moonie:Border Rivers:stannifermiddlecreek:1,Stannifer (Middle Creek),,,,no-coordinates
+border-rivers-moonie:Border Rivers:elsmorevillage:1,Elsmore Village,,,,no-coordinates
+border-rivers-moonie:Border Rivers:elsmorebridge:1,Elsmore Bridge,,,,no-coordinates
+border-rivers-moonie:Border Rivers:elsmoredanthonia:1,Elsmore (Danthonia),056111,"-29.782778,151.361667",,outside
+border-rivers-moonie:Border Rivers:riverstone:1,Riverstone,,,,no-coordinates
+border-rivers-moonie:Border Rivers:ferndalemiddlecreek:1,Ferndale (Middle Creek),,,,no-coordinates
+border-rivers-moonie:Border Rivers:inverellmiddlecreek:1,Inverell (Middle Creek),556008,"-29.800000,151.133333",,outside
+border-rivers-moonie:Border Rivers:emmavillepostoffice:1,Emmaville Post Office,,,,no-coordinates
+border-rivers-moonie:Border Rivers:bolivia:1,Bolivia,556004,"-29.300000,151.933333",,outside
+border-rivers-moonie:Border Rivers:donaldson:1,Donaldson,556002,"-29.016667,151.600000",,outside
+border-rivers-moonie:Border Rivers:haystack:1,Haystack,054146,"-29.233333,151.383333",,outside
+border-rivers-moonie:Border Rivers:glenarbonweirds:1,Glenarbon Weir DS,,,,no-coordinates
+border-rivers-moonie:Border Rivers:boomiofftake:1,Boomi Offtake,553024,"-28.633333,149.666667",,outside
+border-rivers-moonie:Border Rivers:inverellresearch:1,Inverell Research,,,,no-coordinates
+border-rivers-moonie:Border Rivers:ridgelandsmacintyreriver:1,Ridgelands (Macintyre River),,,,no-coordinates
+border-rivers-moonie:Border Rivers:yetmanbridge:1,Yetman Bridge,,,,no-coordinates
+border-rivers-moonie:Border Rivers:stormkingdaminflow:1,Storm King Dam Inflow,541083,"-28.734444,151.989722",lga-6660,assigned
+border-rivers-moonie:Border Rivers:mountainstationcreek:1,Mountain Station Creek,541082,"-28.717778,151.984722",lga-6660,assigned
+border-rivers-moonie:Border Rivers:stormkingdamhg:1,Storm King Dam HG,,,,no-coordinates
+border-rivers-moonie:Border Rivers:dalcouthroad:1,Dalcouth Road,,,,no-coordinates
+border-rivers-moonie:Border Rivers:kettleswampcreek:1,Kettle Swamp Creek,541084,"-28.660833,151.949444",lga-6660,assigned
+border-rivers-moonie:Border Rivers:granitest:1,Granite St,,,,no-coordinates
+border-rivers-moonie:Border Rivers:stanthorpe:1,Stanthorpe,,,,no-coordinates
+border-rivers-moonie:Border Rivers:glennivendamhw:1,Glen Niven Dam HW,541189,"-28.593333,151.970833",lga-6660,assigned
+border-rivers-moonie:Border Rivers:applethorpe:1,Applethorpe,041175,"-28.621667,151.953333",lga-6660,assigned
+border-rivers-moonie:Border Rivers:amiensknob:1,Amiens Knob,541079,"-28.606111,151.817500",lga-6660,assigned
+border-rivers-moonie:Border Rivers:broadwatercreek:1,Broadwater Creek,541088,"-28.598611,151.888333",lga-6660,assigned
+border-rivers-moonie:Border Rivers:ballandeanhill:1,Ballandean Hill,541091,"-28.797778,151.830278",lga-6660,assigned
+border-rivers-moonie:Border Rivers:wallangarra:1,Wallangarra,,,,no-coordinates
+border-rivers-moonie:Border Rivers:ballandeanaccommodationcreek:1,Ballandean (Accommodation Creek),,,,no-coordinates
+border-rivers-moonie:Border Rivers:farnbro:1,Farnbro,541053,"-28.916667,151.583333",lga-6660,assigned
+border-rivers-moonie:Border Rivers:pikedale:1,Pikedale,041365,"-28.651389,151.633611",lga-6660,assigned
+border-rivers-moonie:Border Rivers:glenlyondamtw:1,Glenlyon Dam TW,541052,"-28.983333,151.466667",lga-6660,assigned
+border-rivers-moonie:Border Rivers:mtbowman:1,Mt Bowman,541149,"-29.077222,151.480833",lga-3610,assigned
+border-rivers-moonie:Border Rivers:texasbore:1,Texas Bore,541078,"-28.916667,151.251111",lga-3610,assigned
+border-rivers-moonie:Border Rivers:texas:1,Texas,,,,no-coordinates
+border-rivers-moonie:Border Rivers:limevale:1,Limevale,041230,"-28.725000,151.184167",lga-3610,assigned
+border-rivers-moonie:Border Rivers:oakycreek:1,Oaky Creek,541065,"-28.806667,151.155278",lga-3610,assigned
+border-rivers-moonie:Border Rivers:mtburrabaranga:1,Mt Burrabaranga,541116,"-28.361389,151.671667",lga-3610,assigned
+border-rivers-moonie:Border Rivers:barongarook:1,Barongarook,,,,no-coordinates
+border-rivers-moonie:Border Rivers:artunga:1,Artunga,541110,"-28.401389,151.292500",lga-3610,assigned
+border-rivers-moonie:Border Rivers:upperbrackerck:1,Upper Bracker Ck,541113,"-28.784722,151.412222",lga-3610,assigned
+border-rivers-moonie:Border Rivers:terraine:1,Terraine,,,,no-coordinates
+border-rivers-moonie:Border Rivers:coolmundadamhg:1,Coolmunda Dam HG,,,,no-coordinates
+border-rivers-moonie:Border Rivers:nyora:1,Nyora,541115,"-28.169444,151.392778",lga-3610,assigned
+border-rivers-moonie:Border Rivers:canningcreek:1,Canning Creek,541114,"-28.171111,151.136111",lga-6910,assigned
+border-rivers-moonie:Border Rivers:inglewoodbridge:1,Inglewood Bridge,,,,no-coordinates
+border-rivers-moonie:Border Rivers:boobasands:1,Booba Sands,041519,"-28.576667,150.845000",lga-3610,assigned
+border-rivers-moonie:Border Rivers:bengalla:1,Bengalla,,,,no-coordinates
+border-rivers-moonie:Border Rivers:coolatai:1,Coolatai,554015,"-29.233889,150.758056",,outside
+border-rivers-moonie:Border Rivers:newkildonan:1,New Kildonan,041507,"-28.665556,150.445000",,outside
+border-rivers-moonie:Border Rivers:goondiwindiairport:1,Goondiwindi Airport,041560,"-28.522500,150.322222",lga-3610,assigned
+border-rivers-moonie:Border Rivers:oonavale:1,Oonavale,541072,"-28.513889,150.025278",lga-3610,assigned
+border-rivers-moonie:Border Rivers:tintot:1,Tintot,,,,no-coordinates
+border-rivers-moonie:Border Rivers:woodspring:1,Woodspring,,,,no-coordinates
+border-rivers-moonie:Border Rivers:pikescreek:1,Pikes Creek,,,,no-coordinates
+border-rivers-moonie:Border Rivers:upperquartpotck:1,Upper Quart Pot Ck,541165,"-28.776667,152.016111",lga-6660,assigned
+border-rivers-moonie:Weir:oconnor:1,O'Connor,041508,"-27.726667,150.645278",lga-7310,assigned
+border-rivers-moonie:Weir:dunmoreexchange:1,Dunmore Exchange,041545,"-27.653889,150.913611",lga-6910,assigned
+border-rivers-moonie:Weir:lundavra:1,Lundavra,042115,"-28.069722,149.979444",lga-3610,assigned
+border-rivers-moonie:Weir:gunnbridgednrm:1,Gunn Bridge (DNRM),542004,"-28.157500,150.100833",lga-3610,assigned
+border-rivers-moonie:Weir:wyaga:1,Wyaga,041348,"-28.166667,150.644444",lga-3610,assigned
+border-rivers-moonie:Weir:ballymena:1,Ballymena,041488,"-28.052222,150.147500",lga-3610,assigned
+border-rivers-moonie:Weir:kilbronae:1,Kilbronae,041124,"-28.281667,150.374722",lga-3610,assigned
+border-rivers-moonie:Weir:medparkbridge:1,Medpark Bridge,041489,"-28.301111,150.293611",lga-3610,assigned
+border-rivers-moonie:Weir:kerimbilla:1,Kerimbilla,041169,"-28.391111,150.482500",lga-3610,assigned
+border-rivers-moonie:Weir:ardendowns:1,Arden Downs,042116,"-28.230000,149.561667",lga-3610,assigned
+border-rivers-moonie:Weir:langley:1,Langley,041152,"-27.975278,150.922500",lga-6910,assigned
+border-rivers-moonie:Weir:avoca:1,Avoca,041546,"-27.980278,150.515000",lga-3610,assigned
+border-rivers-moonie:Weir:rippledowns:1,Ripple Downs,042102,"-27.936389,150.142500",lga-3610,assigned
+border-rivers-moonie:Weir:bybera:1,Bybera,041162,"-28.269444,150.810556",lga-3610,assigned
+border-rivers-moonie:Weir:giddigiddisouth:1,Giddi Giddi South,,,,no-coordinates
+border-rivers-moonie:Weir:surrey:1,Surrey,042104,"-28.383889,149.674722",lga-3610,assigned
+border-rivers-moonie:Weir:jerichoweirriver:1,Jericho (Weir River),,,,no-coordinates
+border-rivers-moonie:Weir:mascot:1,Mascot,542007,"-28.823889,149.108333",lga-3610,assigned
+border-rivers-moonie:Moonie:kinkora:1,Kinkora,042111,"-27.834444,149.684167",lga-7310,assigned
+border-rivers-moonie:Moonie:flinton:1,Flinton,,,,no-coordinates
+border-rivers-moonie:Moonie:mtdriven:1,Mt Driven,542035,"-27.981111,149.097222",,outside
+border-rivers-moonie:Moonie:nindigully:1,Nindigully,,,,no-coordinates
+border-rivers-moonie:Moonie:nindigullytm:1,Nindigully TM,,,,no-coordinates
+border-rivers-moonie:Moonie:fenton:1,Fenton,042106,"-28.941667,148.740000",,outside
+border-rivers-moonie:Moonie:teelba:1,Teelba,043097,"-27.764167,149.397222",,outside
+border-rivers-moonie:Moonie:flintontown:1,Flinton Town,,,,no-coordinates
+condamine-balonne:Upper Condamine:springcreekrd:1,Spring Creek Rd,,,,no-coordinates
+condamine-balonne:Upper Condamine:theheadcondamineriver:1,The Head (Condamine River),,,,no-coordinates
+condamine-balonne:Upper Condamine:carrslookout:1,Carrs Lookout,541064,"-28.294444,152.415556",lga-6660,assigned
+condamine-balonne:Upper Condamine:queenmaryfallskillarney:1,Queen Mary Falls (Killarney),,,,no-coordinates
+condamine-balonne:Upper Condamine:killarneycondamineriver:1,Killarney (Condamine River),,,,no-coordinates
+condamine-balonne:Upper Condamine:cherrabahcondamineriver:1,Cherrabah (Condamine River),,,,no-coordinates
+condamine-balonne:Upper Condamine:elbowvalley:1,Elbow Valley,041535,"-28.373056,152.140000",lga-6660,assigned
+condamine-balonne:Upper Condamine:upperrosenthal:1,Upper Rosenthal,541163,"-28.402500,152.038611",lga-6660,assigned
+condamine-balonne:Upper Condamine:gambubalrd:1,Gambubal Rd,541136,"-28.275833,152.344722",lga-6660,assigned
+condamine-balonne:Upper Condamine:consplains:1,Cons Plains,541135,"-28.229722,152.416389",lga-6660,assigned
+condamine-balonne:Upper Condamine:upperemuck:1,Upper Emu Ck,541164,"-28.160833,152.383889",lga-6660,assigned
+condamine-balonne:Upper Condamine:emuvale:1,Emu Vale,,,,no-coordinates
+condamine-balonne:Upper Condamine:murraysbridge:1,Murrays Bridge,041536,"-28.288333,152.105278",lga-6660,assigned
+condamine-balonne:Upper Condamine:harrisonsrd:1,Harrisons Rd,,,,no-coordinates
+condamine-balonne:Upper Condamine:moselysal:1,Mosely's AL,,,,no-coordinates
+condamine-balonne:Upper Condamine:yangan:1,Yangan,,,,no-coordinates
+condamine-balonne:Upper Condamine:warwick:1,Warwick,,,,no-coordinates
+condamine-balonne:Upper Condamine:connollydam:1,Connolly Dam,041532,"-28.355833,151.996667",lga-6660,assigned
+condamine-balonne:Upper Condamine:warwickscotscollege:1,Warwick (Scots College),041503,"-28.216667,152.050000",lga-6660,assigned
+condamine-balonne:Upper Condamine:warwickcondamineriver:1,Warwick (Condamine River),,,,no-coordinates
+condamine-balonne:Upper Condamine:campbellsgully:1,Campbells Gully,541103,"-28.178056,152.059444",lga-6660,assigned
+condamine-balonne:Upper Condamine:dalveenrosenthallcreek:1,Dalveen (Rosenthall Creek),,,,no-coordinates
+condamine-balonne:Upper Condamine:scottsdale:1,Scottsdale,541190,"-28.431944,151.875556",lga-6660,assigned
+condamine-balonne:Upper Condamine:mandala:1,Mandala,,,,no-coordinates
+condamine-balonne:Upper Condamine:spicerspeak:1,Spicers Peak,541140,"-28.113333,152.372222",lga-6660,assigned
+condamine-balonne:Upper Condamine:glengallancreek:1,Glengallan Creek,041531,"-28.116667,152.064167",lga-6660,assigned
+condamine-balonne:Upper Condamine:bonymountain:1,Bony Mountain,541092,"-28.101389,151.876667",lga-6660,assigned
+condamine-balonne:Upper Condamine:talgaicondamineriver:1,Talgai (Condamine River),,,,no-coordinates
+condamine-balonne:Upper Condamine:upperdalrympleck:1,Upper Dalrymple Ck,541105,"-27.983889,152.290833",lga-6660,assigned
+condamine-balonne:Upper Condamine:goomburra:1,Goomburra,541101,"-28.038889,152.108056",lga-6660,assigned
+condamine-balonne:Upper Condamine:allora:1,Allora,,,,no-coordinates
+condamine-balonne:Upper Condamine:alloraalert:1,Allora Alert,,,,no-coordinates
+condamine-balonne:Upper Condamine:victoriahill:1,Victoria Hill,541048,"-27.983056,151.770556",lga-6910,assigned
+condamine-balonne:Upper Condamine:piltonkingscrkgat:1,Pilton Kings Crk Gat,,,,no-coordinates
+condamine-balonne:Upper Condamine:millbrook:1,Millbrook,541050,"-27.941111,151.722222",lga-6910,assigned
+condamine-balonne:Upper Condamine:hodgsonvalerdhodgsonck:1,Hodgson Vale Rd (Hodgson Ck),,,,no-coordinates
+condamine-balonne:Upper Condamine:cambooya:1,Cambooya,,,,no-coordinates
+condamine-balonne:Upper Condamine:feltontm:1,Felton Tm,,,,no-coordinates
+condamine-balonne:Upper Condamine:warahgaibranchcreek:1,Warahgai (Branch Creek),,,,no-coordinates
+condamine-balonne:Upper Condamine:warahgaicanalcreek:1,Warahgai (Canal Creek),,,,no-coordinates
+condamine-balonne:Upper Condamine:durikai:1,Durikai,541134,"-28.276667,151.602222",lga-6660,assigned
+condamine-balonne:Upper Condamine:karara:1,Karara,,,,no-coordinates
+condamine-balonne:Upper Condamine:strathyrerd:1,Strathyre Rd,541143,"-28.123889,151.474167",lga-6660,assigned
+condamine-balonne:Upper Condamine:torridon:1,Torridon,541104,"-28.052222,151.590000",lga-6660,assigned
+condamine-balonne:Upper Condamine:leyburncanalcreek:1,Leyburn (Canal Creek),,,,no-coordinates
+condamine-balonne:Upper Condamine:graysgateexchange:1,Grays Gate Exchange,041550,"-27.985556,151.282778",lga-6910,assigned
+condamine-balonne:Upper Condamine:millmerrancommensst:1,Millmerran Commens St,541173,"-27.878056,151.263889",lga-6910,assigned
+condamine-balonne:Upper Condamine:centenarybridge:1,Centenary Bridge,,,,no-coordinates
+condamine-balonne:Upper Condamine:jeffriesrd:1,Jeffries Rd,541188,"-27.468333,151.397500",lga-6910,assigned
+condamine-balonne:Upper Condamine:struth:1,St Ruth,541187,"-27.385556,151.269444",lga-7310,assigned
+condamine-balonne:Upper Condamine:toowoombaairport:1,Toowoomba Airport,,,,no-coordinates
+condamine-balonne:Upper Condamine:kingsthorpeeastst:1,Kingsthorpe (East St),541195,"-27.479167,151.817778",lga-6910,assigned
+condamine-balonne:Upper Condamine:oakey:1,Oakey,,,,no-coordinates
+condamine-balonne:Upper Condamine:atholnetwonrdeast:1,Athol (Netwon Rd East),,,,no-coordinates
+condamine-balonne:Upper Condamine:wellcampairport:1,Wellcamp Airport,541150,"-27.551667,151.784444",lga-6910,assigned
+condamine-balonne:Upper Condamine:mtpechey:1,Mt Pechey,541057,"-27.316667,152.081667",lga-6910,assigned
+condamine-balonne:Upper Condamine:highfields:1,Highfields,541172,"-27.443056,151.963889",lga-6910,assigned
+condamine-balonne:Upper Condamine:coobycreekdam:1,Cooby Creek Dam,541031,"-27.382500,151.924444",lga-6910,assigned
+condamine-balonne:Upper Condamine:goombungeepecheymaclaganrd:1,Goombungee (Pechey-Maclagan Rd),,,,no-coordinates
+condamine-balonne:Upper Condamine:oakeypecheymaclaganrd:1,Oakey (Pechey-Maclagan Rd),541145,"-27.288889,151.805000",lga-6910,assigned
+condamine-balonne:Upper Condamine:highlandplains:1,Highland Plains,541100,"-27.268056,151.770000",lga-6910,assigned
+condamine-balonne:Upper Condamine:shannonbrook:1,Shannonbrook,,,,no-coordinates
+condamine-balonne:Upper Condamine:oakeybooduamuniganeenrd:1,Oakey (Boodua Muniganeen Rd),541148,"-27.373333,151.859444",lga-6910,assigned
+condamine-balonne:Upper Condamine:oakeykingsthorpehadenrd:1,Oakey (Kingsthorpe Haden Rd),541147,"-27.401111,151.832500",lga-6910,assigned
+condamine-balonne:Upper Condamine:oakeyaero:1,Oakey Aero,,,,no-coordinates
+condamine-balonne:Upper Condamine:oakeyoakeycooyarrd:1,Oakey (Oakey-Cooyar Rd),541141,"-27.396944,151.718889",lga-6910,assigned
+condamine-balonne:Upper Condamine:oakeyweirpark:1,Oakey (Weir Park),541146,"-27.429722,151.718611",lga-6910,assigned
+condamine-balonne:Upper Condamine:dalmenyoakeycreek:1,Dalmeny (Oakey Creek),,,,no-coordinates
+condamine-balonne:Upper Condamine:jondaryanlagooncrk:1,Jondaryan Lagoon Crk,,,,no-coordinates
+condamine-balonne:Upper Condamine:bowenvillereserve:1,Bowenville Reserve,541159,"-27.332778,151.441111",lga-6910,assigned
+condamine-balonne:Upper Condamine:upperfreestone:1,Upper Freestone,,,,no-coordinates
+condamine-balonne:Upper Condamine:uppergoomburra:1,Upper Goomburra,,,,no-coordinates
+condamine-balonne:Myall Creek:mtbrigalow:1,Mt Brigalow,541045,"-27.202222,151.786111",lga-6910,assigned
+condamine-balonne:Myall Creek:kulpi:1,Kulpi,541153,"-27.189722,151.699444",lga-6910,assigned
+condamine-balonne:Myall Creek:cooringa:1,Cooringa,541044,"-27.090833,151.596111",lga-6910,assigned
+condamine-balonne:Myall Creek:quinalowperangard:1,Quinalow Peranga Rd,,,,no-coordinates
+condamine-balonne:Myall Creek:clydesdale:1,Clydesdale,,,,no-coordinates
+condamine-balonne:Myall Creek:mtmowbullan:1,Mt Mowbullan,541046,"-26.888333,151.600556",lga-6630,assigned
+condamine-balonne:Myall Creek:belgraepark:1,Belgrae Park,041551,"-26.966944,151.484722",lga-7310,assigned
+condamine-balonne:Myall Creek:moffatt:1,Moffatt,541042,"-27.096944,151.397778",lga-7310,assigned
+condamine-balonne:Myall Creek:blaxland:1,Blaxland,,,,no-coordinates
+condamine-balonne:Myall Creek:dalbyairport:1,Dalby Airport,,,,no-coordinates
+condamine-balonne:Myall Creek:dalby:1,Dalby,,,,no-coordinates
+condamine-balonne:Condamine:loudounbridge:1,Loudoun Bridge,,,,no-coordinates
+condamine-balonne:Condamine:rangesbridge:1,Ranges Bridge,041346,"-27.122778,151.090833",lga-7310,assigned
+condamine-balonne:Condamine:cooranga:1,Cooranga,541119,"-26.770000,151.406389",lga-7310,assigned
+condamine-balonne:Condamine:jandowaemacalisterrd:1,Jandowae-Macalister Rd,,,,no-coordinates
+condamine-balonne:Condamine:jimbourwest:1,Jimbour West,541099,"-26.895833,151.086944",lga-7310,assigned
+condamine-balonne:Condamine:niagara:1,Niagara,541120,"-26.696667,151.393333",lga-7310,assigned
+condamine-balonne:Condamine:sengsrd:1,Sengs Rd,,,,no-coordinates
+condamine-balonne:Condamine:braziershill:1,Braziers Hill,541127,"-26.726111,151.132778",lga-7310,assigned
+condamine-balonne:Condamine:jandowaedam:1,Jandowae Dam,541162,"-26.760833,151.137222",lga-7310,assigned
+condamine-balonne:Condamine:jandowae:1,Jandowae,,,,no-coordinates
+condamine-balonne:Condamine:warra:1,Warra,541154,"-26.928333,150.918056",lga-7310,assigned
+condamine-balonne:Condamine:brigalowbridge:1,Brigalow Bridge,,,,no-coordinates
+condamine-balonne:Condamine:diamondy:1,Diamondy,541121,"-26.633333,151.270278",lga-7310,assigned
+condamine-balonne:Condamine:jinghijinghi:1,Jinghi Jinghi,541194,"-26.694167,151.076944",lga-7310,assigned
+condamine-balonne:Condamine:jingijingi:1,Jingi Jingi,041052,"-26.692778,151.096389",lga-7310,assigned
+condamine-balonne:Condamine:burraburricreek:1,Burraburri Creek,540676,"-26.409167,151.122222",lga-6630,assigned
+condamine-balonne:Condamine:darrcreek:1,Darr Creek,041090,"-26.539167,151.134722",lga-7310,assigned
+condamine-balonne:Condamine:upperdurahcreek:1,Upper Durah Creek,542011,"-26.170833,150.912222",lga-7310,assigned
+condamine-balonne:Condamine:durahhomestead:1,Durah Homestead,542010,"-26.283889,150.966389",lga-7310,assigned
+condamine-balonne:Condamine:turkeymountain:1,Turkey Mountain,542014,"-26.345556,150.870000",lga-7310,assigned
+condamine-balonne:Condamine:ballon:1,Ballon,041092,"-26.448889,150.892500",lga-7310,assigned
+condamine-balonne:Condamine:upperstockyardcreek:1,Upper Stockyard Creek,542013,"-26.251389,150.727222",lga-7310,assigned
+condamine-balonne:Condamine:beruna:1,Beruna,541126,"-26.643333,150.854167",lga-7310,assigned
+condamine-balonne:Condamine:sevenoaks:1,Seven Oaks,541125,"-26.704167,150.763056",lga-7310,assigned
+condamine-balonne:Condamine:canaancreek:1,Canaan Creek,542012,"-26.395556,150.676667",lga-7310,assigned
+condamine-balonne:Condamine:horsecreek:1,Horse Creek,042025,"-26.551944,150.632222",lga-7310,assigned
+condamine-balonne:Condamine:burncluithbridge:1,Burncluith Bridge,,,,no-coordinates
+condamine-balonne:Condamine:chinchilla:1,Chinchilla,,,,no-coordinates
+condamine-balonne:Condamine:bottletree:1,Bottle Tree,542027,"-26.800000,150.432222",lga-7310,assigned
+condamine-balonne:Condamine:bedarracondamineriver:1,Bedarra (Condamine River),,,,no-coordinates
+condamine-balonne:Condamine:bedarra:1,Bedarra,542020,"-26.841667,150.344167",lga-7310,assigned
+condamine-balonne:Condamine:condamine:1,Condamine,,,,no-coordinates
+condamine-balonne:Condamine:upperdogwoodcreek:1,Upper Dogwood Creek,542018,"-26.203333,150.256667",lga-7310,assigned
+condamine-balonne:Condamine:barakulaforeststation:1,Barakula Forest Station,542022,"-26.427222,150.504444",lga-7310,assigned
+condamine-balonne:Condamine:boortkoi:1,Boortkoi,542025,"-26.526389,150.395278",lga-7310,assigned
+condamine-balonne:Condamine:stillersrd:1,Stillers Rd,,,,no-coordinates
+condamine-balonne:Condamine:pinelands:1,Pinelands,542017,"-26.434167,150.075556",lga-7310,assigned
+condamine-balonne:Condamine:myallparkrd:1,Myall Park Rd,,,,no-coordinates
+condamine-balonne:Condamine:clovelly:1,Clovelly,542026,"-26.476389,150.076389",lga-7310,assigned
+condamine-balonne:Condamine:glenaubyn:1,Glenaubyn,542024,"-26.508333,149.948333",lga-7310,assigned
+condamine-balonne:Condamine:miles:1,Miles,,,,no-coordinates
+condamine-balonne:Condamine:greenswamprdcharle:1,Greenswamp Rd Charle,,,,no-coordinates
+condamine-balonne:Condamine:niagarardjandowae:1,Niagara Rd Jandowae,,,,no-coordinates
+condamine-balonne:Condamine:taralagoonundulla:1,Tara Lagoon Undulla,,,,no-coordinates
+condamine-balonne:Condamine:macalisterbellrd:1,Macalister Bell Rd,,,,no-coordinates
+condamine-balonne:Condamine:chinchillaairport:1,Chinchilla Airport,,,,no-coordinates
+condamine-balonne:Balonne:milesconstancest:1,Miles (Constance St),,,,no-coordinates
+condamine-balonne:Balonne:pinehillcrossing:1,Pine Hill Crossing,042113,"-26.909722,149.961389",lga-7310,assigned
+condamine-balonne:Balonne:warkon:1,Warkon,043052,"-27.000556,149.496944",,outside
+condamine-balonne:Balonne:yulebaforestry:1,Yuleba Forestry,543008,"-26.850000,149.466667",,outside
+condamine-balonne:Balonne:springdale:1,Springdale,043008,"-26.168333,148.664444",,outside
+condamine-balonne:Balonne:tabers:1,Tabers,043105,"-26.408333,148.783333",,outside
+condamine-balonne:Balonne:moogahills:1,Mooga Hills,043006,"-26.254444,148.945278",,outside
+condamine-balonne:Balonne:tindarra:1,Tindarra,043033,"-26.468889,148.804722",,outside
+condamine-balonne:Balonne:romaairport:1,Roma Airport,,,,no-coordinates
+condamine-balonne:Balonne:roma:1,Roma,,,,no-coordinates
+condamine-balonne:Balonne:kingull:1,Kingull,543013,"-26.409444,148.655000",,outside
+condamine-balonne:Balonne:hunterton:1,Hunterton,543012,"-26.250556,148.501389",,outside
+condamine-balonne:Balonne:karoolapark:1,Karoola Park,043080,"-27.227500,148.741111",,outside
+condamine-balonne:Balonne:weribone:1,Weribone,043101,"-27.311667,148.826667",,outside
+condamine-balonne:Balonne:warroo:1,Warroo,543016,"-27.645000,148.741111",,outside
+condamine-balonne:Balonne:holmleighmaranoariver:1,Holmleigh (Maranoa River),,,,no-coordinates
+condamine-balonne:Balonne:begonia:1,Begonia,543024,"-27.493611,148.335556",,outside
+condamine-balonne:Balonne:hastings:1,Hastings,544017,"-28.433333,148.266667",,outside
+condamine-balonne:Balonne:narranriver:1,Narran River,544012,"-28.841667,148.051389",,outside
+condamine-balonne:Balonne:hebel:1,Hebel,,,,no-coordinates
+condamine-balonne:Balonne:moogacreek:1,Mooga Creek,,,,no-coordinates
+condamine-balonne:Balonne:knayerslane:1,Knayers Lane,,,,no-coordinates
+condamine-balonne:Balonne:wallumbilla:1,Wallumbilla,043038,"-26.585000,149.186389",,outside
+condamine-balonne:Maranoa:mtmoffattnationalpark:1,Mt Moffatt National Park,,,,no-coordinates
+condamine-balonne:Maranoa:forestvale:1,Forest Vale,,,,no-coordinates
+condamine-balonne:Maranoa:homebushstation:1,Homebush Station,543011,"-26.393056,147.941389",,outside
+condamine-balonne:Maranoa:mitchell:1,Mitchell,,,,no-coordinates
+condamine-balonne:Maranoa:upperambyck:1,Upper Amby Ck,543015,"-26.407500,148.263889",,outside
+condamine-balonne:Maranoa:springfield:1,Springfield,,,,no-coordinates
+condamine-balonne:Maranoa:woodlands:1,Woodlands,,,,no-coordinates
+condamine-balonne:Maranoa:oldcashmere:1,Old Cashmere,043100,"-27.733333,148.466667",,outside
+condamine-balonne:Maranoa:wagoord:1,Wagoo Rd,,,,no-coordinates
+condamine-balonne:Lower Balonne:stgeorgeairport:1,St George Airport,,,,no-coordinates
+condamine-balonne:Lower Balonne:stgeorgehuttst:1,St George (Hutt St),,,,no-coordinates
+condamine-balonne:Wallam/Mungallala Creeks:westcourt:1,Westcourt,544071,"-27.131389,147.479167",,outside
+condamine-balonne:Wallam/Mungallala Creeks:abbieglassie:1,Abbieglassie,544070,"-27.291944,147.483889",,outside
+condamine-balonne:Wallam/Mungallala Creeks:bartapark:1,Barta Park,544073,"-27.071111,147.865278",,outside
+condamine-balonne:Wallam/Mungallala Creeks:cardiff:1,Cardiff,544022,"-27.831111,147.516389",,outside
+condamine-balonne:Wallam/Mungallala Creeks:tyrconnel:1,Tyrconnel,544035,"-26.298889,147.550000",,outside
+condamine-balonne:Wallam/Mungallala Creeks:mungallala:1,Mungallala,044056,"-26.445833,147.545278",,outside
+condamine-balonne:Wallam/Mungallala Creeks:eversfieldmungallalasouth:1,Eversfield (Mungallala South),,,,no-coordinates
+condamine-balonne:Wallam/Mungallala Creeks:ularunda:1,Ularunda,544077,"-26.797222,147.119444",,outside
+condamine-balonne:Wallam/Mungallala Creeks:roseleighcrossing:1,Roseleigh Crossing,544025,"-28.922500,146.877778",,outside
+warrego-paroo-bulloo:Bulloo:patriciapark:1,Patricia Park,544064,"-25.689444,144.765833",,outside
+warrego-paroo-bulloo:Bulloo:boondoon:1,Boondoon,544079,"-25.701944,145.129167",,outside
+warrego-paroo-bulloo:Bulloo:marialanationalpark:1,Mariala National Park,544078,"-25.989167,145.018889",,outside
+warrego-paroo-bulloo:Bulloo:milroytm:1,Milroy Tm,,,,no-coordinates
+warrego-paroo-bulloo:Bulloo:quilpie:1,Quilpie,,,,no-coordinates
+warrego-paroo-bulloo:Bulloo:winbincreek:1,Winbin Creek,545008,"-26.618889,144.512500",,outside
+warrego-paroo-bulloo:Bulloo:southcomongin:1,South Comongin,,,,no-coordinates
+warrego-paroo-bulloo:Bulloo:soonahcrossing:1,Soonah Crossing,545005,"-27.707778,144.004722",,outside
+warrego-paroo-bulloo:Bulloo:autumnvale:1,Autumnvale,545001,"-27.763333,143.919167",,outside
+warrego-paroo-bulloo:Bulloo:yappicreek:1,Yappi Creek,545009,"-27.903889,143.800833",,outside
+warrego-paroo-bulloo:Bulloo:thargomindahairport:1,Thargomindah Airport,,,,no-coordinates
+warrego-paroo-bulloo:Bulloo:whynotstation:1,Whynot Station,045022,"-26.691111,143.904722",,outside
+warrego-paroo-bulloo:Warrego:dooloogarah:1,Dooloogarah,535165,"-24.865278,147.713056",,outside
+warrego-paroo-bulloo:Warrego:mttabornorth:1,Mt Tabor North,535168,"-25.105278,147.578333",,outside
+warrego-paroo-bulloo:Warrego:mttabor:1,Mt Tabor,535171,"-25.192500,147.492778",,outside
+warrego-paroo-bulloo:Warrego:barngocrossing:1,Barngo Crossing,535167,"-25.027778,147.283889",,outside
+warrego-paroo-bulloo:Warrego:upperwarrego:1,Upper Warrego,535169,"-25.152500,147.160000",,outside
+warrego-paroo-bulloo:Warrego:bogarellacrossing:1,Bogarella Crossing,544038,"-25.338056,147.100556",,outside
+warrego-paroo-bulloo:Warrego:mtlindsay:1,Mt Lindsay,544037,"-25.325000,146.856944",,outside
+warrego-paroo-bulloo:Warrego:chestertonhoganthullacreek:1,Chesterton (Hoganthulla Creek),,,,no-coordinates
+warrego-paroo-bulloo:Warrego:hoganthullacrossing:1,Hoganthulla Crossing,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:rockyck:1,Rocky Ck,544045,"-25.719167,147.040278",,outside
+warrego-paroo-bulloo:Warrego:willara:1,Willara,544040,"-25.541389,146.911667",,outside
+warrego-paroo-bulloo:Warrego:carolinecrossing:1,Caroline Crossing,544042,"-25.614722,146.748889",,outside
+warrego-paroo-bulloo:Warrego:augathella:1,Augathella,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:augathellarptr:1,Augathella Rptr,544048,"-25.804444,146.589444",,outside
+warrego-paroo-bulloo:Warrego:drensmaineniveriver:1,Drensmaine (Nive River),,,,no-coordinates
+warrego-paroo-bulloo:Warrego:oldtambord:1,Old Tambo Rd,544041,"-25.605278,146.502500",,outside
+warrego-paroo-bulloo:Warrego:barradeen:1,Barradeen,044234,"-26.041944,146.429167",,outside
+warrego-paroo-bulloo:Warrego:the27milegarden:1,The 27 Mile Garden,044232,"-26.080833,146.417222",,outside
+warrego-paroo-bulloo:Warrego:dunveganwarregoriver:1,Dunvegan (Warrego River),,,,no-coordinates
+warrego-paroo-bulloo:Warrego:dunvegan:1,Dunvegan,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:wellwaterrd:1,Wellwater Rd,544055,"-26.325000,146.320000",,outside
+warrego-paroo-bulloo:Warrego:joylands:1,Joylands,544026,"-26.393333,146.573889",,outside
+warrego-paroo-bulloo:Warrego:lesdale:1,Lesdale,544033,"-26.373056,146.524444",,outside
+warrego-paroo-bulloo:Warrego:southlesdale:1,South Lesdale,544029,"-26.415278,146.515833",,outside
+warrego-paroo-bulloo:Warrego:arabella:1,Arabella,544031,"-26.433611,146.458611",,outside
+warrego-paroo-bulloo:Warrego:springhill:1,Spring Hill,544030,"-26.466944,146.415278",,outside
+warrego-paroo-bulloo:Warrego:raceview:1,Raceview,544028,"-26.408333,146.404167",,outside
+warrego-paroo-bulloo:Warrego:raceviewtowers:1,Raceview Towers,544034,"-26.398333,146.359722",,outside
+warrego-paroo-bulloo:Warrego:middlecreek:1,Middle Creek,544032,"-26.324167,146.438333",,outside
+warrego-paroo-bulloo:Warrego:lowerbradleys:1,Lower Bradleys,544027,"-26.373611,146.339722",,outside
+warrego-paroo-bulloo:Warrego:charleville:1,Charleville,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:charlevilleaero:1,Charleville Aero,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:minniedownslanglord:1,Minnie Downs (Langlo Rd),535207,"-25.058056,145.836944",,outside
+warrego-paroo-bulloo:Warrego:lumeahlanglord:1,Lumeah (Langlo Rd),535206,"-25.281944,145.725278",,outside
+warrego-paroo-bulloo:Warrego:ravenscourt:1,Ravenscourt,544060,"-26.021944,145.723333",,outside
+warrego-paroo-bulloo:Warrego:warilda:1,Warilda,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:bonella:1,Bonella,544067,"-26.238611,145.892500",,outside
+warrego-paroo-bulloo:Warrego:woolgawardrd:1,Woolga (Ward Rd),535210,"-25.208611,146.130000",,outside
+warrego-paroo-bulloo:Warrego:cookstank:1,Cooks Tank,544039,"-25.496389,146.307222",,outside
+warrego-paroo-bulloo:Warrego:oakwoodwardriver:1,Oakwood (Ward River),,,,no-coordinates
+warrego-paroo-bulloo:Warrego:wardriverxing:1,Ward River Xing,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:oakpark:1,Oak Park,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:calowriealert:1,Calowrie Alert,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:adavalerd:1,Adavale Rd,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:binnowee:1,Binnowee,044230,"-26.484167,146.086111",,outside
+warrego-paroo-bulloo:Warrego:myendetta:1,Myendetta,044231,"-26.545833,146.016667",,outside
+warrego-paroo-bulloo:Warrego:bonfield:1,Bonfield,544062,"-26.165833,146.950278",,outside
+warrego-paroo-bulloo:Warrego:uabbard:1,Uabba Rd,544050,"-25.975000,147.099444",,outside
+warrego-paroo-bulloo:Warrego:moyallen:1,Moyallen,544054,"-26.212500,147.079722",,outside
+warrego-paroo-bulloo:Warrego:alicedowns:1,Alice Downs,544069,"-26.413056,146.886944",,outside
+warrego-paroo-bulloo:Warrego:glengarry:1,Glengarry,544076,"-26.570556,147.097500",,outside
+warrego-paroo-bulloo:Warrego:maryvale:1,Maryvale,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:sommariva:1,Sommariva,544063,"-26.503889,146.666111",,outside
+warrego-paroo-bulloo:Warrego:wallal:1,Wallal,544072,"-26.653056,146.175833",,outside
+warrego-paroo-bulloo:Warrego:bakersbend:1,Bakers Bend,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:upperquilberry:1,Upper Quilberry,544074,"-26.332778,145.511667",,outside
+warrego-paroo-bulloo:Warrego:wyandra:1,Wyandra,,,,no-coordinates
+warrego-paroo-bulloo:Warrego:biddenham:1,Biddenham,544047,"-25.803333,146.425278",,outside
+warrego-paroo-bulloo:Warrego:mtmorris:1,Mt Morris,044052,"-25.812778,145.573056",,outside
+warrego-paroo-bulloo:Warrego:ivanhoe:1,Ivanhoe,,,,no-coordinates
+warrego-paroo-bulloo:Paroo:loddon:1,Loddon,544061,"-26.510000,145.617222",,outside
+warrego-paroo-bulloo:Paroo:cooladdi:1,Cooladdi,544059,"-26.633333,145.463611",,outside
+warrego-paroo-bulloo:Paroo:allambie:1,Allambie,,,,no-coordinates
+warrego-paroo-bulloo:Paroo:cliffdale:1,Cliffdale,544066,"-27.226389,145.498611",,outside
+warrego-paroo-bulloo:Paroo:humeburnalert:1,Humeburn Alert,,,,no-coordinates
+warrego-paroo-bulloo:Paroo:alroycrossing:1,Alroy Crossing,544080,"-27.805556,144.707778",,outside
+cooper-diamantina-georgina:Georgina:rocklands:1,Rocklands,037115,"-19.860833,138.101667",,outside
+cooper-diamantina-georgina:Georgina:camooweal:1,Camooweal,037010,"-19.922500,138.121389",,outside
+cooper-diamantina-georgina:Georgina:newmaydowns:1,New May Downs,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:cartersbore:1,Carters Bore,037053,"-20.935833,139.296389",,outside
+cooper-diamantina-georgina:Georgina:urandangiaerodrome:1,Urandangi Aerodrome,037058,"-21.597778,138.366389",,outside
+cooper-diamantina-georgina:Georgina:roxboroughdownstm:1,Roxborough Downs Tm,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:themonumentairport:1,The Monument Airport,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:bouliaburkeriver:1,Boulia (Burke River),,,,no-coordinates
+cooper-diamantina-georgina:Georgina:trepellairport:1,Trepell Airport,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:toolebuc:1,Toolebuc,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:waverlycreek:1,Waverly Creek,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:hamiltonriverstation1tm:1,Hamilton River Station 1 TM,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:hamiltonriverstation2tm:1,Hamilton River Station 2 TM,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:cottonbushcreek:1,Cottonbush Creek,,,,no-coordinates
+cooper-diamantina-georgina:Georgina:mariondownsgeorginariver:1,Marion Downs (Georgina River),,,,no-coordinates
+cooper-diamantina-georgina:Georgina:dajarraairport:1,Dajarra Airport,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:kirby:1,Kirby,537012,"-21.958889,141.481667",,outside
+cooper-diamantina-georgina:Diamantina:dagworth:1,Dagworth,537011,"-21.663611,142.198889",,outside
+cooper-diamantina-georgina:Diamantina:lorraine:1,Lorraine,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:mountainviewmtlandsborough:1,Mountain View (Mt Landsborough),,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:corfield:1,Corfield,537010,"-21.716111,143.374167",,outside
+cooper-diamantina-georgina:Diamantina:malboonatm:1,Malboona Tm,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:lanifer:1,Lanifer,537014,"-21.994167,143.253611",,outside
+cooper-diamantina-georgina:Diamantina:oondooroo:1,Oondooroo,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:mahrigongtm:1,Mahrigong Tm,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:belmont:1,Belmont,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:wintonairport:1,Winton Airport,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:raeleedowns:1,Raelee Downs,537009,"-21.593056,143.035556",,outside
+cooper-diamantina-georgina:Diamantina:leeson:1,Leeson,537015,"-22.178333,142.758056",,outside
+cooper-diamantina-georgina:Diamantina:wintonjundahrd:1,Winton Jundah Rd,537020,"-23.637222,142.330000",,outside
+cooper-diamantina-georgina:Diamantina:diamantinalakes:1,Diamantina Lakes,538003,"-23.712500,141.094722",,outside
+cooper-diamantina-georgina:Diamantina:farrarscreek:1,Farrars Creek,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:birdsvilleairport:1,Birdsville Airport,,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:bendemeerdiamantinariver:1,Bendemeer (Diamantina River),,,,no-coordinates
+cooper-diamantina-georgina:Diamantina:monkiratm:1,Monkira TM,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:torrenscreektownship:1,Torrens Creek Township,530045,"-20.767500,145.030278",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:torrensck:1,Torrens Ck,530016,"-21.015556,145.185833",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:bowendowns:1,Bowen Downs,536006,"-22.449167,145.024167",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:lerida:1,Lerida,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:tragowel:1,Tragowel,536015,"-22.418333,144.516111",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:muttaburra:1,Muttaburra,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:longreach:1,Longreach,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:longreachaero:1,Longreach Aero,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:ilfracombe:1,Ilfracombe,536017,"-23.513333,144.449722",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:darr:1,Darr,536005,"-23.216111,144.080556",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:bogewong:1,Bogewong,537007,"-23.928333,143.514444",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:weona:1,Weona,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:vergemontcreek:1,Vergemont Creek,537008,"-24.087500,143.128889",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:stonehenge:1,Stonehenge,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:jundah:1,Jundah,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:trunord:1,Truno Rd,535209,"-24.868056,146.510000",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:tamboairport:1,Tambo Airport,535148,"-24.832778,146.313056",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:tambolake:1,Tambo Lake,535215,"-24.879722,146.257500",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:tambo:1,Tambo,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:wyanga:1,Wyanga,535119,"-24.765000,146.052778",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:tarabah:1,Tarabah,535155,"-24.560833,146.446389",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:myallgrove:1,Myall Grove,535115,"-24.552500,146.321111",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:mtenniskillen:1,Mt Enniskillen,535208,"-24.611111,146.016667",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:gillespie:1,Gillespie,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:mountmacquarie:1,Mount Macquarie,535121,"-24.686944,145.890833",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:duneira:1,Duneira,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:blackallbarcooriver:1,Blackall (Barcoo River),,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:blackallairport:1,Blackall Airport,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:barneysbore:1,Barney's Bore,535120,"-24.543889,145.353611",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:ravensbournerd:1,Ravensbourne Rd,535116,"-24.855000,145.544722",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:cootabinya:1,Cootabinya,535122,"-25.159722,145.262500",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:mtcalder:1,Mt Calder,536011,"-24.980000,145.065278",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:allandale:1,Allandale,535118,"-24.302778,146.012500",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:coolaghtm:1,Coolagh Tm,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:glencoe:1,Glencoe,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:jericho:1,Jericho,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:barcaldineweir:1,Barcaldine Weir,536002,"-23.650000,145.216667",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:mtharden:1,Mt Harden,536010,"-24.753056,144.870833",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:powellcreek:1,Powell Creek,538011,"-25.067778,143.704722",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:retreat:1,Retreat,538001,"-25.185556,143.281389",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:windorahlignumchannel:1,Windorah (Lignum Channel),538008,"-25.440000,142.807778",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:windorahlongcrossing:1,Windorah (Long Crossing),,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:congie:1,Congie,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:southgalway:1,South Galway,038056,"-25.665278,142.108611",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:tanbarstation:1,Tanbar Station,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:balleragasfield:1,Ballera Gas Field,045009,"-27.400833,141.811389",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:bellalie:1,Bellalie,545012,"-27.019167,142.940278",,outside
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:nockatunga:1,Nockatunga,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:nockatungastation:1,Nockatunga Station,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:nappamerrie:1,Nappa Merrie,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:prairieflindershighway:1,Prairie (Flinders Highway),,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:windorahairport:1,Windorah Airport,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:chinbitower:1,Chinbi Tower,,,,no-coordinates
+cooper-diamantina-georgina:Thomson/Barcoo/Cooper:moombaairport:1,Moomba Airport,,,,no-coordinates
+gulf-cape:Cape Rivers (East):capeflattery:1,Cape Flattery,031213,"-14.967222,145.310556",,outside
+gulf-cape:Cape Rivers (East):eastnormanbyriver:1,East Normanby River,531091,"-15.768056,145.013056",,outside
+gulf-cape:Cape Rivers (East):westnormanbyriver:1,West Normanby River,531119,"-15.759444,144.975833",,outside
+gulf-cape:Cape Rivers (East):battlecamp:1,Battle Camp,528002,"-15.282222,144.837778",,outside
+gulf-cape:Cape Rivers (East):lakelanddowns:1,Lakeland Downs,528010,"-15.831944,144.837500",,outside
+gulf-cape:Cape Rivers (East):laurariver:1,Laura River,528004,"-15.613333,144.484444",,outside
+gulf-cape:Cape Rivers (East):kalpowercrossing:1,Kalpower Crossing,,,,no-coordinates
+gulf-cape:Cape Rivers (East):hannriver:1,Hann River,528008,"-15.226667,143.845556",,outside
+gulf-cape:Cape Rivers (East):stewartriver:1,Stewart River,528007,"-14.167500,143.394167",,outside
+gulf-cape:Cape Rivers (East):lockhartriverairport:1,Lockhart River Airport,,,,no-coordinates
+gulf-cape:Cape Rivers (East):fallcreek:1,Fall Creek,,,,no-coordinates
+gulf-cape:Cape Rivers (East):newbamboo:1,New Bamboo,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:kingfishercamp:1,Kingfisher Camp,029163,"-17.868333,138.285556",,outside
+gulf-cape:Nicholson/Gregory:norfolkstationtm:1,Norfolk Station Tm,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:oshannassyriver:1,O Shannassy River,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:thorntonia:1,Thorntonia,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:riversleigh:1,Riversleigh,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:gregorydowns:1,Gregory Downs,529009,"-18.642222,139.252500",,outside
+gulf-cape:Nicholson/Gregory:willsdevrdbarklyriver:1,Wills Dev Rd (Barkly River),,,,no-coordinates
+gulf-cape:Nicholson/Gregory:centurymine:1,Century Mine,029167,"-18.756944,138.705556",,outside
+gulf-cape:Nicholson/Gregory:burketownairport:1,Burketown Airport,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:willsdevelopmentrd:1,Wills Development Rd,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:lowerlawnhillcreek:1,Lower Lawn Hill Creek,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:sandycreek:1,Sandy Creek,,,,no-coordinates
+gulf-cape:Nicholson/Gregory:archiecreek:1,Archie Creek,,,,no-coordinates
+gulf-cape:Leichhardt:mountisaaero:1,Mount Isa Aero,,,,no-coordinates
+gulf-cape:Leichhardt:doughboyck:1,Doughboy Ck,529014,"-20.313333,139.741111",,outside
+gulf-cape:Leichhardt:lakejuliusaws:1,Lake Julius AWS,,,,no-coordinates
+gulf-cape:Leichhardt:mirandacreek:1,Miranda Creek,529021,"-20.066667,139.933333",,outside
+gulf-cape:Leichhardt:gunpowder:1,Gunpowder,529013,"-19.690278,139.357222",,outside
+gulf-cape:Leichhardt:floraville:1,Floraville,529010,"-18.237222,139.878333",,outside
+gulf-cape:Leichhardt:neumeyervalleystation:1,Neumeyer Valley Station,,,,no-coordinates
+gulf-cape:Leichhardt:eastleichardtdam:1,East Leichardt Dam,,,,no-coordinates
+gulf-cape:Leichhardt:cartridgecreek:1,Cartridge Creek,,,,no-coordinates
+gulf-cape:Leichhardt:willscreekcdr:1,Wills Creek Cdr,,,,no-coordinates
+gulf-cape:Flinders:reedyspringsstation:1,Reedy Springs Station,530046,"-19.965833,144.683333",,outside
+gulf-cape:Flinders:whitesmountain:1,Whites Mountain,530031,"-20.546667,144.661944",,outside
+gulf-cape:Flinders:glendowercrossing:1,Glendower Crossing,530023,"-20.756667,144.481389",,outside
+gulf-cape:Flinders:glenmoanstation:1,Glenmoan Station,530042,"-20.815000,144.439722",,outside
+gulf-cape:Flinders:hughendenairport:1,Hughenden Airport,,,,no-coordinates
+gulf-cape:Flinders:hughenden:1,Hughenden,,,,no-coordinates
+gulf-cape:Flinders:mtemuplains:1,Mt Emu Plains,530012,"-20.177500,144.523056",,outside
+gulf-cape:Flinders:wintonroadwalkerck:1,Winton Road (Walker Ck),,,,no-coordinates
+gulf-cape:Flinders:marathon:1,Marathon,,,,no-coordinates
+gulf-cape:Flinders:richmond:1,Richmond,,,,no-coordinates
+gulf-cape:Flinders:richmondairport:1,Richmond Airport,,,,no-coordinates
+gulf-cape:Flinders:hampstead:1,Hampstead,530039,"-19.871111,143.615556",,outside
+gulf-cape:Flinders:burleigh:1,Burleigh,530040,"-19.944722,143.173333",,outside
+gulf-cape:Flinders:hulbertsbridge:1,Hulberts Bridge,,,,no-coordinates
+gulf-cape:Flinders:punchbowl:1,Punchbowl,529043,"-20.429167,142.043611",,outside
+gulf-cape:Flinders:ettaplains:1,Etta Plains,529018,"-19.741111,141.265833",,outside
+gulf-cape:Flinders:juliacreekjuliacreek:1,Julia Creek (Julia Creek),,,,no-coordinates
+gulf-cape:Flinders:juliacreekairport:1,Julia Creek Airport,,,,no-coordinates
+gulf-cape:Flinders:werrinastation:1,Werrina Station,029049,"-20.443611,141.455278",,outside
+gulf-cape:Flinders:glenidol:1,Glen Idol,529029,"-21.266667,140.800000",,outside
+gulf-cape:Flinders:landsboroughhwy:1,Landsborough Hwy,529022,"-20.872778,140.832222",,outside
+gulf-cape:Flinders:gilliatriver:1,Gilliat River,529041,"-20.088611,141.138611",,outside
+gulf-cape:Flinders:brinardstation:1,Brinard Station,029092,"-19.839167,140.933611",,outside
+gulf-cape:Flinders:selwyn:1,Selwyn,529030,"-21.472778,140.485833",,outside
+gulf-cape:Flinders:blackgorge:1,Black Gorge,529028,"-21.063056,140.092222",,outside
+gulf-cape:Flinders:cloncurry:1,Cloncurry,529011,"-20.703889,140.490000",,outside
+gulf-cape:Flinders:cloncurryairport:1,Cloncurry Airport,,,,no-coordinates
+gulf-cape:Flinders:corelladamhw:1,Corella Dam HW,529054,"-20.843333,140.047500",,outside
+gulf-cape:Flinders:dugaldriver:1,Dugald River,529015,"-20.201667,140.223611",,outside
+gulf-cape:Flinders:canobie:1,Canobie,,,,no-coordinates
+gulf-cape:Flinders:flinderscloncurryjunction:1,Flinders Cloncurry Junction,,,,no-coordinates
+gulf-cape:Flinders:punchbowlrd:1,Punchbowl Rd,529042,"-20.053056,142.035000",,outside
+gulf-cape:Flinders:wondoola:1,Wondoola,529045,"-18.514722,140.909722",,outside
+gulf-cape:Flinders:walkersbend:1,Walkers Bend,,,,no-coordinates
+gulf-cape:Flinders:snakecreek:1,Snake Creek,,,,no-coordinates
+gulf-cape:Flinders:toorakresearchstation:1,Toorak Research Station,,,,no-coordinates
+gulf-cape:Flinders:roxmerestation:1,Roxmere Station,,,,no-coordinates
+gulf-cape:Flinders:fourwayswillsdevrd:1,Four Ways (Wills Dev Rd),,,,no-coordinates
+gulf-cape:Flinders:alickcreek:1,Alick Creek,529039,"-20.416667,141.999167",,outside
+gulf-cape:Flinders:porcupinecreek:1,Porcupine Creek,530030,"-20.693611,144.377778",,outside
+gulf-cape:Flinders:mtdesolation:1,Mt Desolation,,,,no-coordinates
+gulf-cape:Flinders:florencecreek:1,Florence Creek,,,,no-coordinates
+gulf-cape:Flinders:wyomingssdr:1,Wyoming (Ssdr),,,,no-coordinates
+gulf-cape:Flinders:seymourgap:1,Seymour Gap,,,,no-coordinates
+gulf-cape:Flinders:villadale:1,Villa Dale,,,,no-coordinates
+gulf-cape:Flinders:duttonriver:1,Dutton River,530041,"-20.628333,143.361111",,outside
+gulf-cape:Flinders:devoncourtstation:1,Devoncourt Station,,,,no-coordinates
+gulf-cape:Norman:iffleyspearcreek:1,Iffley (Spear Creek),,,,no-coordinates
+gulf-cape:Norman:yapparjunction:1,Yappar Junction,529046,"-18.285278,141.215278",,outside
+gulf-cape:Norman:broadwater:1,Broadwater,529047,"-18.079722,141.133056",,outside
+gulf-cape:Norman:glenoreweir:1,Glenore Weir,529012,"-17.860000,141.128611",,outside
+gulf-cape:Norman:normantonairport:1,Normanton Airport,,,,no-coordinates
+gulf-cape:Norman:normanton:1,Normanton,,,,no-coordinates
+gulf-cape:Norman:upperwalkercreek:1,Upper Walker Creek,529050,"-17.352222,141.646111",,outside
+gulf-cape:Norman:lowerwalkercreek:1,Lower Walker Creek,,,,no-coordinates
+gulf-cape:Norman:oaklandpark:1,Oakland Park,,,,no-coordinates
+gulf-cape:Norman:mundjuro:1,Mundjuro,,,,no-coordinates
+gulf-cape:Norman:savanah:1,Savanah,,,,no-coordinates
+gulf-cape:Norman:fishholecreek:1,Fish Hole Creek,,,,no-coordinates
+gulf-cape:Norman:prospect:1,Prospect,,,,no-coordinates
+gulf-cape:Norman:strathpark:1,Strathpark,,,,no-coordinates
+gulf-cape:Norman:brennansknob:1,Brennans Knob,,,,no-coordinates
+gulf-cape:Norman:claraville:1,Claraville,,,,no-coordinates
+gulf-cape:Norman:fogcreek:1,Fog Creek,,,,no-coordinates
+gulf-cape:Gilbert:rockfields:1,Rockfields,533095,"-18.193333,142.872778",,outside
+gulf-cape:Gilbert:werringtonstation:1,Werrington Station,,,,no-coordinates
+gulf-cape:Gilbert:spannerwaterhole:1,Spanner Waterhole,530015,"-19.085000,144.168333",,outside
+gulf-cape:Gilbert:kidstondamtw:1,Kidston Dam TW,530013,"-19.029167,144.117778",,outside
+gulf-cape:Gilbert:einasleigh:1,Einasleigh,530007,"-18.500278,144.095833",,outside
+gulf-cape:Gilbert:mtsurprise:1,Mt Surprise,,,,no-coordinates
+gulf-cape:Gilbert:roseglen:1,Roseglen,530010,"-18.306667,143.578889",,outside
+gulf-cape:Gilbert:georgetownairport:1,Georgetown Airport,030124,"-18.303889,143.530556",,outside
+gulf-cape:Gilbert:abingdondowns:1,Abingdon Downs,,,,no-coordinates
+gulf-cape:Gilbert:minniesdip:1,Minnies Dip,529052,"-17.634444,142.711389",,outside
+gulf-cape:Gilbert:burkedevrd:1,Burke Dev Rd,529053,"-17.168333,141.767500",,outside
+gulf-cape:Gilbert:vanrookstation:1,Vanrook Station,,,,no-coordinates
+gulf-cape:Gilbert:carpentariabridge:1,Carpentaria Bridge,,,,no-coordinates
+gulf-cape:Gilbert:kidstondamhg:1,Kidston Dam HG,,,,no-coordinates
+gulf-cape:Cape Rivers (West):dorunda:1,Dorunda,529023,"-16.531667,142.059722",,outside
+gulf-cape:Cape Rivers (West):fonthill:1,Fonthill,531086,"-16.679167,145.228611",,outside
+gulf-cape:Cape Rivers (West):mcleodriver:1,Mcleod River,531083,"-16.497778,145.001667",,outside
+gulf-cape:Cape Rivers (West):cooktowncrossing:1,Cooktown Crossing,531087,"-16.563056,144.889444",,outside
+gulf-cape:Cape Rivers (West):okbridge:1,Ok Bridge,528006,"-16.470833,144.289444",,outside
+gulf-cape:Cape Rivers (West):nullinga:1,Nullinga,531080,"-17.178333,145.300833",,outside
+gulf-cape:Cape Rivers (West):flatrock:1,Flatrock,531025,"-17.181389,144.899167",,outside
+gulf-cape:Cape Rivers (West):rookwood:1,Rookwood,528009,"-16.982222,144.286111",,outside
+gulf-cape:Cape Rivers (West):trimblescrossing:1,Trimbles Crossing,528003,"-16.546944,143.782778",,outside
+gulf-cape:Cape Rivers (West):gamboola:1,Gamboola,528001,"-16.534722,143.676944",,outside
+gulf-cape:Cape Rivers (West):palmerriver:1,Palmer River,531031,"-16.109167,144.776667",,outside
+gulf-cape:Cape Rivers (West):palmerville:1,Palmerville,028004,"-16.000000,144.075278",,outside
+gulf-cape:Cape Rivers (West):drumduff:1,Drumduff,527013,"-16.041944,143.036667",,outside
+gulf-cape:Cape Rivers (West):dunbar:1,Dunbar,529024,"-15.950833,142.377222",,outside
+gulf-cape:Cape Rivers (West):kowanyamaairport:1,Kowanyama Airport,,,,no-coordinates
+gulf-cape:Cape Rivers (West):holroyd:1,Holroyd,527016,"-14.119167,142.622500",,outside
+gulf-cape:Cape Rivers (West):coenairport:1,Coen Airport,,,,no-coordinates
+gulf-cape:Cape Rivers (West):telegraphcrossing:1,Telegraph Crossing,527003,"-13.419167,142.919167",,outside
+gulf-cape:Cape Rivers (West):coenracecourse:1,Coen Racecourse,527008,"-13.955000,143.175000",,outside
+gulf-cape:Cape Rivers (West):watsonriver:1,Watson River,527010,"-13.128056,142.052500",,outside
+gulf-cape:Cape Rivers (West):schergerraaf:1,Scherger RAAF,027075,"-12.616667,142.086944",,outside
+gulf-cape:Cape Rivers (West):weipaaero:1,Weipa Aero,,,,no-coordinates
+gulf-cape:Cape Rivers (West):moreton:1,Moreton,527006,"-12.453889,142.638889",,outside
+gulf-cape:Cape Rivers (West):dulhunty:1,Dulhunty,527012,"-11.833889,142.419722",,outside
+gulf-cape:Cape Rivers (West):monument:1,Monument,527007,"-11.151389,142.351667",,outside
+gulf-cape:Cape Rivers (West):wenlockriver:1,Wenlock River,,,,no-coordinates
+gulf-cape:Cape Rivers (West):mapoon:1,Mapoon,,,,no-coordinates
+gulf-cape:Cape Rivers (West):upperspencecreek:1,Upper Spence Creek,,,,no-coordinates
+gulf-cape:Cape Rivers (West):pormpuraawairport:1,Pormpuraaw Airport,,,,no-coordinates
+gulf-cape:Cape Rivers (West):mountmulligan:1,Mount Mulligan,,,,no-coordinates

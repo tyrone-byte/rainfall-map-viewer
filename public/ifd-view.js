@@ -7,7 +7,7 @@ const mm=v=>v===null?'Incomplete':`${v.toFixed(1)} mm`;
 let ifdReference=null,ifdReferenceError=null,ifdChart=null,ifdMode='latest';
 let ifdIndex=null,ifdIndexError=null;
 const ifdLocationFiles=new Map(),ifdSelections=new Map();
-function gaugeLocationKey(station){if(station.ifdLocationKey)return station.ifdLocationKey;const c=station.coordinates;return c?`${c.lat.toFixed(6)},${c.lon.toFixed(6)}`:null;}
+function gaugeLocationKey(station){const c=station.coordinates,coordinateKey=c?`${c.lat.toFixed(6)},${c.lon.toFixed(6)}`:null;const localKey=station.ifdLocationKey||coordinateKey;return ifdIndex?.regionalAssignments?.[coordinateKey]||ifdIndex?.regionalAssignments?.[localKey]||localKey;}
 function redrawSelectedIfd(){if(typeof data!=='undefined'&&data&&selected){const s=data.stations.find(s=>s.id===selected);if(s)renderIfd(s);}}
 function localIfd(station){
  const key=gaugeLocationKey(station);
@@ -30,14 +30,21 @@ function renderIfd(station){
  const host=$('ifdComparison');if(!host)return;
  clearIfdChart();host.replaceChildren();
  const local=localIfd(station),key=gaugeLocationKey(station);
- const isLocal=local.state==='ready';
- host.append(node('span','DESIGN RAINFALL COMPARISON','eyebrow'),node('h2',isLocal?'Observed rainfall & local 2030 IFD':'Observed rainfall & Brisbane 2030 IFD'));
+ const isLocal=local.state==='ready',isRegional=isLocal&&local.data.referenceType==='regional-centroid';
+ host.append(node('span','DESIGN RAINFALL COMPARISON','eyebrow'),node('h2',isRegional?'Observed rainfall & regional 2030 IFD':isLocal?'Observed rainfall & local 2030 IFD':local.state==='unavailable'?'Observed rainfall & Brisbane 2030 IFD':'Observed rainfall & 2030 IFD'));
  const blockMinutes=data.periodMinutes||180,blockLabel=blockMinutes===15?'15-minute':'3-hour';
  host.append(node('p',data.periodMinutes===15?`${station.name} · Saved quarter-hours ending ${date(data.periods.at(-1).end)} AEST`:`${station.name} · BoM bulletin issued ${date(data.issuedAt)} AEST`,'ifd-station'));
  if(['loading-index','loading'].includes(local.state)){host.append(node('p','Checking saved local IFD datasets…','muted'));return;}
- if(local.state==='error'){host.append(node('p',`${local.error} No regional table has been substituted for the known local dataset.`,'unmapped'));return;}
+ if(local.state==='error'){host.append(node('p',`${local.error} No Brisbane reference has been substituted for the saved IFD reference.`,'unmapped'));return;}
+ if(local.state==='index-error'){host.append(node('p','Saved IFD assignments could not be checked. No Brisbane reference has been substituted.','unmapped'));return;}
  let reference=ifdReference,selectedDataset=null;
- if(isLocal){
+ if(isRegional){
+  selectedDataset=local.data.datasets.find(d=>d.name==='Default Current (2030) Baseline');
+  if(!selectedDataset){host.append(node('p','Regional default 2030 table is unavailable. No Brisbane reference has been substituted.','unmapped'));return;}
+  reference=selectedDataset;
+  host.append(node('p',`${local.data.region.name} · Default Current (2030) Baseline · ARR Data Hub ${local.data.datahubVersion} · depths in mm.`,'ifd-provisional'));
+  host.append(node('p',`Regional reference sampled at centroid ${local.data.coordinates.lat}, ${local.data.coordinates.lon}. Assigned because this gauge lies within the supplied LGA region. This is not a gauge-specific IFD; local rainfall design depths can vary within the region.`,'muted'));
+ }else if(isLocal){
   host.append(node('p',`Local gauge coordinates ${local.data.coordinates.lat}, ${local.data.coordinates.lon} · ARR Data Hub ${local.data.datahubVersion} · depths in mm · 2030 baseline.`,'ifd-provisional'));
   const controls=node('div',undefined,'ifd-controls'),label=node('label','Local dataset and climate scenario'),select=node('select');select.id='ifdDataset';
   select.append(new Option('Choose a local 2030 dataset…',''));
@@ -65,7 +72,7 @@ function renderIfd(station){
  const hasGaps=points.some(p=>p.validWindows<p.possibleWindows);
  host.append(node('p',ifdMode==='latest'?`Accumulations ending ${date(data.periods.at(-1).end)} AEST. Only consecutive, complete ${blockLabel} blocks are summed.`:`Each duration uses its wettest complete window within the 24 hours preceding the selected ending time. Durations may have different ending times. Only windows aligned to the ${blockLabel} observation blocks can be assessed.`,'ifd-explanation'));
  if(hasGaps)host.append(node('p',ifdMode==='latest'?'Missing observations leave gaps in the observed comparison.':'Incomplete windows excluded. With missing data, the true wettest accumulation may be higher than the available result.','unmapped'));
- const wrap=node('div',undefined,'ifd-chart'),canvas=node('canvas');canvas.id='ifdChart';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${station.name}: observed accumulated rainfall depths from ${blockMinutes} minutes to 24 hours against ${isLocal?'local ARR':'shared Brisbane'} 2030 design rainfall curves. Summary values are in the following table.`);wrap.append(canvas);host.append(wrap);
+ const wrap=node('div',undefined,'ifd-chart'),canvas=node('canvas');canvas.id='ifdChart';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${station.name}: observed accumulated rainfall depths from ${blockMinutes} minutes to 24 hours against ${isRegional?'regional centroid ARR':isLocal?'local ARR':'shared Brisbane'} 2030 design rainfall curves. Summary values are in the following table.`);wrap.append(canvas);host.append(wrap);
  const datasets=referenceAeps.map((aep,i)=>({label:`${aep}% AEP reference`,data:reference.points.filter(p=>p.minutes<=1440).map(p=>({x:p.minutes,y:p.depths[reference.aeps.indexOf(aep)]})),borderColor:referenceColours[i],backgroundColor:referenceColours[i],borderWidth:1.6,pointRadius:0,pointHoverRadius:0,pointHitRadius:5,tension:0,order:2}));
  datasets.unshift({label:ifdMode==='latest'?'Observed · ending latest':'Observed · wettest complete windows',data:points.map(p=>({x:p.minutes,y:p.depth})),borderColor:'#123f43',backgroundColor:'#123f43',borderWidth:3,borderDash:[5,4],pointRadius:0,pointHoverRadius:0,pointHitRadius:7,pointBorderColor:'#fff',pointBorderWidth:1.5,spanGaps:false,order:1});
  const shortDuration={id:'shortDuration',beforeDraw(c){const {ctx,chartArea:a,scales:{x}}=c;if(!a)return;const limit=x.getPixelForValue(blockMinutes);ctx.save();ctx.fillStyle='#eef2f3';ctx.fillRect(a.left,a.top,limit-a.left,a.bottom-a.top);ctx.strokeStyle='#9eacb1';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(limit,a.top);ctx.lineTo(limit,a.bottom);ctx.stroke();ctx.restore();}};
@@ -81,7 +88,7 @@ function renderIfd(station){
   body.append(tr);
  }
  table.append(body);tw.append(table);host.append(tw);
- const source=node('p',undefined,'detail-source'),link=node('a',isLocal?'Download saved local IFD datasets':'Download supplied Brisbane 2030 IFD table');
+ const source=node('p',undefined,'detail-source'),link=node('a',isRegional?'Download regional default 2030 IFD':isLocal?'Download saved local IFD datasets':'Download supplied Brisbane 2030 IFD table');
  link.href=isLocal?`/reference/local-ifd/${encodeURIComponent(local.file)}`:'/reference/brisbane-ifd-2030.csv';
  link.download=isLocal?local.file:'brisbane-ifd-2030.csv';
  source.append(link,isLocal?` · ${local.data.attribution} · ${selectedDataset.name}. No AEP is assigned to the observed rainfall.`:' · User supplied “Default Current (2030) Baseline”. No AEP is assigned to the observed rainfall.');host.append(source);
