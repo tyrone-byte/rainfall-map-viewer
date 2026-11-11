@@ -94,7 +94,7 @@ def prepare(source, output):
     write(output / 'regions.json', plan)
     write(output / 'regions.geojson', {'type': 'FeatureCollection', 'features': features})
     with (output / 'gauge-assignments.csv').open('w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=['id', 'name', 'stationNumber', 'locationKey', 'regionIds', 'status'])
+        writer = csv.DictWriter(f, fieldnames=['id', 'name', 'stationNumber', 'locationKey', 'regionIds', 'status'], lineterminator='\n')
         writer.writeheader(); writer.writerows({**a, 'regionIds': ';'.join(a['regionIds'])} for a in assignments)
     print(json.dumps({'regions': regions, 'summary': plan['summary']}, indent=2))
 
