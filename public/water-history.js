@@ -14,7 +14,7 @@ let basin=null,groups=[],extent=null,frame=null,selected=null,chart=null,end=par
 if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 $('ending').step='60';
 const map=L.map('map',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tapHold:false}).setView([-27.25,152.75],9);SharedMapView.attach(map);MobileViewer.attach(map);
-MapBackgrounds.attach(map,$('background'));
+MapBackgrounds.attach(map,$('background'));MapContext.attach(map);
 const waterRenderer=L.svg({padding:.5});
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function notice(text){$('notice').hidden=!text;$('notice').textContent=text||'';}
@@ -102,7 +102,7 @@ async function openBasin(id,gauge=null){
  const group=groups.find(g=>g.id===id);if(!group)return;version++;refreshVersion++;controller?.abort();clearDetail();basin=id;selected=gauge;frame=null;layer.clearLayers();markers.clear();$('stations').replaceChildren();$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;fitPending=true;
  $('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=group.label;$('period').textContent='Loading saved water levels';map.invalidateSize();await refresh();
 }
-$('changeBasin').onclick=()=>{version++;refreshVersion++;controller?.abort();clearDetail();basin=null;frame=null;layer.clearLayers();markers.clear();$('historyWorkspace').hidden=true;$('groupPicker').hidden=false;$('freshness').textContent='Choose a water-level group';$('refresh').disabled=true;loadRainfallPriority();notice('');history.replaceState(null,'','/water-history');};
+document.querySelector('.page-tabs [aria-current="page"]').onclick=event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();version++;refreshVersion++;controller?.abort();clearDetail();basin=null;frame=null;layer.clearLayers();markers.clear();$('historyWorkspace').hidden=true;$('groupPicker').hidden=false;$('freshness').textContent='Choose a water-level group';$('refresh').disabled=true;loadRainfallPriority();notice('');history.replaceState(null,'','/water-history');$('groupTitle').setAttribute('tabindex','-1');$('groupTitle').focus();};
 function selectTime(time){end=time;follow=false;controls();loadFrame();}
 $('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!Number.isFinite(time)||time<Date.parse(extent.firstEnd)||time>Date.parse(extent.lastEnd)){notice('Choose an ending time within the saved range, in Brisbane time.');return;}selectTime(new Date(time).toISOString());};
 $('previous').onclick=()=>selectTime(new Date(Date.parse(end)-Number($('accumulation').value)*60000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(end)+Number($('accumulation').value)*60000).toISOString());

@@ -21,6 +21,7 @@ const map=L.map('map',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tapHold:
 let initialFit=!SharedMapView.attach(map);
 MobileViewer.attach(map);
 MapBackgrounds.attach(map,$('background'));
+MapContext.attach(map);
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function legend(){
  if(pointIfdPage){$('legend').replaceChildren(...[...PointRainfallIFD.bands].reverse().map(b=>{const e=node('span'),dot=node('i',undefined,'dot');dot.style.background=b.colour;e.append(dot,b.label);return e;}),node('span','Grey = unavailable'));return;}
@@ -150,7 +151,9 @@ async function openBasin(id,gauge=null){
  $('count').textContent='Loading this group…';$('period').textContent='Loading saved observations';
  map.invalidateSize();saveURL();await refresh();
 }
-$('changeBasin').onclick=()=>{
+document.querySelector('.page-tabs [aria-current="page"]').onclick=event=>{
+ if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+ event.preventDefault();
  resetSelection();basinId=null;$('historyWorkspace').hidden=true;$('groupPicker').hidden=false;notice('');
  $('loading').textContent='';$('refresh').disabled=true;$('freshness').textContent='Choose a rainfall group';loadGroupStats();history.replaceState(null,'',pagePath);$('groupTitle').setAttribute('tabindex','-1');$('groupTitle').focus();
 };

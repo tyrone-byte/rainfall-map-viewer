@@ -27,7 +27,7 @@ test('saved water levels require a basin and duration bounds map, graph and time
  await page.locator('#previous').click();await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(end)-3*3600000);
  await page.locator('#latest').click();await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(end));
  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
- await page.locator('#changeBasin').click();await expect(page.locator('#groupPicker')).toBeVisible();expect(await page.evaluate(()=>markers.size)).toBe(0);expect(errors).toEqual([]);
+ await page.locator('.page-tabs [aria-current="page"]').click();await expect(page.locator('#groupPicker')).toBeVisible();expect(await page.evaluate(()=>markers.size)).toBe(0);expect(errors).toEqual([]);
 });
 test('failed series cannot leave another gauge hydrograph labelled as the selected gauge',async({page})=>{
  await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
@@ -108,6 +108,8 @@ test.describe('phone navigation',()=>{
   await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:px-30,y:py,id:1},{x:px+30,y:py,id:2}]});
   for(const spread of [40,50,60]){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:px-spread,y:py,id:1},{x:px+spread,y:py,id:2}]});await page.waitForTimeout(30);}
   await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(zoom);
+  await page.getByRole('button',{name:'Expand map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(true);
+  await page.getByRole('button',{name:'Exit full map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
 
  });
 });

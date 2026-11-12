@@ -142,6 +142,16 @@ The former `/` bulletin and `/water` live pages have been retired and redirect
 to the corresponding saved-history views. Their dedicated frontend scripts and
 obsolete browser tests have been removed; collector/migration code is unchanged.
 
+## Map context and phone layout
+
+Rainfall, Water levels and Point Rainfall IFD share zoom-dependent water-plan
+outlines and saved named watercourses. Use **Layers** to toggle them. Stream
+coverage is partial; water-plan areas are geographic context, not verified
+upstream gauge catchments. Phone controls and legends start collapsed to expose
+the larger map; **Expand map** offers an immersive view. Re-click the active page
+tab to return to group selection. See the [UX review, evidence and recommended
+next improvements](docs/MAP_UX_REVIEW.md).
+
 ## Point Rainfall IFD
 
 The **Point Rainfall IFD** page (`/point-ifd`) colours gauges by estimated point

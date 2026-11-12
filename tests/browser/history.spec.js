@@ -205,7 +205,7 @@ test('basin list opens before any rainfall query, then selection fits gauges and
  await expect(page.locator('#basinTitle')).toHaveText('Brisbane basin');
  await expect(page).toHaveURL(/basin=brisbane-bremer-pine-caboolture/);
  await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
- await page.locator('#changeBasin').click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
+ await page.locator('.page-tabs [aria-current="page"]').click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
  expect(await page.evaluate(()=>markers.size)).toBe(0);await expect(page.locator('#hyetograph')).toHaveCount(0);
  await page.locator('[data-basin="gold-coast-logan"]').click();await expect(page.locator('#basinTitle')).toHaveText('Gold Coast basin');
  expect(await page.evaluate(()=>map.getZoom())).toBeLessThanOrEqual(12);
@@ -254,9 +254,9 @@ test('rainfall hover keeps its name and selected rainfall depth on one horizonta
  expect(result.text).toContain('Alpha gauge');expect(result.text).toContain('50.0 mm');expect(Math.abs(result.nameTop-result.valueTop)).toBeLessThan(1);expect(result.height).toBeLessThan(25);
 });
 
-test('phone layout puts time first, map and plots next, and gauge list last without duplicate controls',async({page})=>{
+test('phone layout collapses controls above the prominent map, with gauges below and no duplicate controls',async({page})=>{
  await mock(page);await page.setViewportSize({width:390,height:844});await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
- expect(await page.locator('main').evaluate(el=>[...el.children].map(child=>child.classList.contains('time-controls')?'time':child.classList.contains('workspace')?'plots':'gauges'))).toEqual(['time','plots','gauges']);
+ expect(await page.locator('main').evaluate(el=>[...el.children].map(child=>child.classList.contains('mobile-controls')?'controls':child.classList.contains('workspace')?'plots':'gauges'))).toEqual(['controls','plots','gauges']);
  await expect(page.locator('#accumulation')).toHaveCount(1);await expect(page.getByRole('link',{name:'Jump to station search and gauges'})).toBeVisible();
  await page.getByRole('link',{name:'Jump to station search and gauges'}).click();await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
  await expect.poll(()=>page.locator('#detail').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(100);
