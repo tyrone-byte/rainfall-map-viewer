@@ -53,8 +53,9 @@ These measures vary with text, source freshness, device fonts and viewport size.
    clicks retain normal browser link behaviour. The group title receives focus
    for keyboard users; the page tab stays reachable in a horizontally scrolling
    phone navigation bar.
-5. **Geographic orientation — high priority.** Shared water-plan outlines appear
-   from zoom 9, saved named rivers/larger creeks from zoom 11, and limited,
+5. **Geographic orientation — high priority.** Shared water-plan solid outlines appear
+   from zoom 9, dashed supplied subcatchment dividers from zoom 12, saved named
+   rivers/larger creeks from zoom 11, and limited,
    deduplicated river labels from zoom 13. These layers sit below gauges and use
    muted colours independent of observation colours. The **Layers** control lets
    users toggle either layer, remembers that preference between pages, explains
@@ -121,3 +122,8 @@ Validation outcome: 96 Python tests passed, one optional PostgreSQL integration
 test skipped, and 14 JavaScript calculation tests passed. The full browser suite
 passed 63 tests; the 10 affected context/water interaction tests were rerun after
 the final expanded-map and status-message adjustments and also passed.
+
+For the subsequent single-stroke boundary hierarchy and exact stream-merging
+update, see [Map context methods](MAP_CONTEXT_METHODS.md). The 187 source areas
+are now separated into 41 catchments and 146 subcatchments, with hover polygons
+kept independent from their unique rendered outlines.

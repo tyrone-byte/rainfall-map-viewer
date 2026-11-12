@@ -145,7 +145,10 @@ obsolete browser tests have been removed; collector/migration code is unchanged.
 ## Map context and phone layout
 
 Rainfall, Water levels and Point Rainfall IFD share zoom-dependent water-plan
-outlines and saved named watercourses. Use **Layers** to toggle them. Stream
+outlines and saved named watercourses. Catchments use solid single-stroke lines;
+supplied creek subcatchments add dashed dividers at closer zooms. Use **Layers**
+to toggle them. Connected source stream segments are merged without bridging
+missing data. See [boundary hierarchy and stream methods](docs/MAP_CONTEXT_METHODS.md). Stream
 coverage is partial; water-plan areas are geographic context, not verified
 upstream gauge catchments. Phone controls and legends start collapsed to expose
 the larger map; **Expand map** offers an immersive view. Re-click the active page
