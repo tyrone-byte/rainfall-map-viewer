@@ -142,6 +142,16 @@ The former `/` bulletin and `/water` live pages have been retired and redirect
 to the corresponding saved-history views. Their dedicated frontend scripts and
 obsolete browser tests have been removed; collector/migration code is unchanged.
 
+## Point Rainfall IFD
+
+The **Point Rainfall IFD** page (`/point-ifd`) colours gauges by estimated point
+rainfall AEP against their assigned default 2030 reference. Its default searches
+all complete quarter-hour-aligned durations in the preceding 24 hours for the
+rarest estimated AEP. Hover identifies the controlling window; selecting a gauge
+shows its hyetograph and IFD plot below the map. **Use this window** switches to
+ending-at-selected-time mode with the controlling duration and ending time.
+See [calculation methods and limitations](docs/POINT_RAINFALL_IFD.md).
+
 ## Regional default 2030 IFD references
 
 Gauges inside the 18 supplied LGA regions now automatically use the region's

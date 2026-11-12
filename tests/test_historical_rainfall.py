@@ -23,6 +23,18 @@ class HistoricalRainTests(unittest.TestCase):
         self.store.db.commit();api.CACHE.clear()
         self.env=patch.dict(os.environ,{'HISTORY_DATABASE_URL':'sqlite:///'+str(self.path)});self.env.start()
 
+    def test_point_ifd_group_series_returns_native_quarters_without_coarse_fill(self):
+        result=api.rainfall_group_series('brisbane-bremer-pine-caboolture',END.isoformat())
+        self.assertTrue(result['available'])
+        self.assertEqual(len(result['periods']),96)
+        gauge=next(g for g in result['stations'] if g['id']==GOOLMAN)
+        self.assertEqual(gauge['values'][-4:],[4,3,2,0])
+        self.assertEqual(gauge['values'][:-4],[None]*92)
+        self.assertTrue(all(g['basinId']=='brisbane-bremer-pine-caboolture' for g in result['stations']))
+        self.assertNotIn(999,gauge['values'])
+        with self.assertRaises(ValueError):api.rainfall_group_series('unknown',END.isoformat())
+        with self.assertRaises(ValueError):api.rainfall_group_series(None,END.isoformat())
+
     def tearDown(self):
         self.env.stop();self.store.close();self.temp.cleanup();api.CACHE.clear()
 

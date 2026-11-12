@@ -1,10 +1,10 @@
 'use strict';
-window.GaugeIFD={create(){
+window.GaugeIFD={create(options={}){
 let data=null,selected=null;
 const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const date=iso=>new Date(iso).toLocaleString('en-AU',{timeZone:'Australia/Brisbane',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
 const mm=v=>v===null?'Incomplete':`${v.toFixed(1)} mm`;
-let ifdReference=null,ifdReferenceError=null,ifdChart=null,ifdMode='latest';
+let ifdReference=null,ifdReferenceError=null,ifdChart=null,ifdMode=options.mode||'latest';
 let ifdIndex=null,ifdIndexError=null;
 const ifdLocationFiles=new Map(),ifdSelections=new Map();
 function gaugeLocationKey(station){const c=station.coordinates,coordinateKey=c?`${c.lat.toFixed(6)},${c.lon.toFixed(6)}`:null;const localKey=station.ifdLocationKey||coordinateKey;return ifdIndex?.regionalAssignments?.[coordinateKey]||ifdIndex?.regionalAssignments?.[localKey]||localKey;}
@@ -37,6 +37,7 @@ function renderIfd(station){
  if(['loading-index','loading'].includes(local.state)){host.append(node('p','Checking saved local IFD datasets…','muted'));return;}
  if(local.state==='error'){host.append(node('p',`${local.error} No Brisbane reference has been substituted for the saved IFD reference.`,'unmapped'));return;}
  if(local.state==='index-error'){host.append(node('p','Saved IFD assignments could not be checked. No Brisbane reference has been substituted.','unmapped'));return;}
+ if(document.body.dataset.view==='point-ifd'&&!isRegional){host.append(node('p','No assigned default 2030 IFD is available for this gauge. No Brisbane table or climate scenario has been selected for its point AEP estimate.','unmapped'));return;}
  let reference=ifdReference,selectedDataset=null;
  if(isRegional){
   selectedDataset=local.data.datasets.find(d=>d.name==='Default Current (2030) Baseline');
@@ -66,7 +67,7 @@ function renderIfd(station){
  if(!reference){host.append(node('p',ifdReferenceError||'Loading IFD reference…','muted'));return;}
  const control=node('div',undefined,'ifd-controls'),label=node('label','Observed accumulation'),select=node('select');select.id='ifdMode';
  select.append(new Option(data.periodMinutes===15?'Ending at selected time':'Ending at latest observation','latest'),new Option('Wettest windows in preceding 24 hours','wettest'));select.value=ifdMode;
- select.onchange=()=>{ifdMode=select.value;renderIfd(station);};label.append(select);control.append(label);host.append(control);
+ select.onchange=()=>{ifdMode=select.value;if(options.onModeChange)options.onModeChange(ifdMode);else renderIfd(station);};label.append(select);control.append(label);host.append(control);
  const recentValues=blockMinutes===15?station.values.slice(-96):station.values,recentPeriods=blockMinutes===15?data.periods.slice(-96):data.periods;
  const points=RainfallIFD.accumulations(recentValues,recentPeriods,ifdMode,blockMinutes);
  const hasGaps=points.some(p=>p.validWindows<p.possibleWindows);
@@ -74,7 +75,7 @@ function renderIfd(station){
  if(hasGaps)host.append(node('p',ifdMode==='latest'?'Missing observations leave gaps in the observed comparison.':'Incomplete windows excluded. With missing data, the true wettest accumulation may be higher than the available result.','unmapped'));
  const wrap=node('div',undefined,'ifd-chart'),canvas=node('canvas');canvas.id='ifdChart';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${station.name}: observed accumulated rainfall depths from ${blockMinutes} minutes to 24 hours against ${isRegional?'regional centroid ARR':isLocal?'local ARR':'shared Brisbane'} 2030 design rainfall curves. Summary values are in the following table.`);wrap.append(canvas);host.append(wrap);
  const datasets=referenceAeps.map((aep,i)=>({label:`${aep}% AEP reference`,data:reference.points.filter(p=>p.minutes<=1440).map(p=>({x:p.minutes,y:p.depths[reference.aeps.indexOf(aep)]})),borderColor:referenceColours[i],backgroundColor:referenceColours[i],borderWidth:1.6,pointRadius:0,pointHoverRadius:0,pointHitRadius:5,tension:0,order:2}));
- datasets.unshift({label:ifdMode==='latest'?'Observed · ending latest':'Observed · wettest complete windows',data:points.map(p=>({x:p.minutes,y:p.depth})),borderColor:'#123f43',backgroundColor:'#123f43',borderWidth:3,borderDash:[5,4],pointRadius:0,pointHoverRadius:0,pointHitRadius:7,pointBorderColor:'#fff',pointBorderWidth:1.5,spanGaps:false,order:1});
+ datasets.unshift({label:ifdMode==='latest'?'Observed · ending latest':'Observed · wettest complete windows',data:points.map(p=>({x:p.minutes,y:p.depth})),borderColor:'#123f43',backgroundColor:'#123f43',borderWidth:3,borderDash:[5,4],pointRadius:document.body.dataset.view==='point-ifd'?points.map(p=>p.minutes===station.pointIFD?.minutes?5:0):0,pointHoverRadius:0,pointHitRadius:7,pointBorderColor:'#fff',pointBorderWidth:1.5,spanGaps:false,order:1});
  const shortDuration={id:'shortDuration',beforeDraw(c){const {ctx,chartArea:a,scales:{x}}=c;if(!a)return;const limit=x.getPixelForValue(blockMinutes);ctx.save();ctx.fillStyle='#eef2f3';ctx.fillRect(a.left,a.top,limit-a.left,a.bottom-a.top);ctx.strokeStyle='#9eacb1';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(limit,a.top);ctx.lineTo(limit,a.bottom);ctx.stroke();ctx.restore();}};
  ifdChart=new Chart(canvas,{type:'line',data:{datasets},plugins:[shortDuration],options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'nearest',intersect:false},plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:9,font:{size:11}}},tooltip:{callbacks:{title:items=>{const m=items[0].parsed.x;return m<60?`${m} minutes`:`${m/60} hours`;},label:context=>`${context.dataset.label}: ${mm(context.parsed.y)}`,afterLabel:context=>{if(context.datasetIndex!==0)return 'Design reference depth · mm';const p=points[context.dataIndex];return [`${date(p.start)} – ${date(p.end)} AEST`,`${p.validWindows}/${p.possibleWindows} complete windows`];}}}},scales:{x:{type:'logarithmic',min:5,max:1440,afterBuildTicks:axis=>{axis.ticks=[5,15,30,60,180,360,720,1440].map(value=>({value}));},ticks:{maxRotation:0,autoSkip:false,callback:value=>value<60?`${value}m`:`${value/60}h`},title:{display:true,text:'Rainfall duration · logarithmic scale'}},y:{beginAtZero:true,title:{display:true,text:'Accumulated rainfall depth (mm)'}}}}});
  host.append(node('p',`Shaded durations below ${blockMinutes===15?'15 minutes':'3 hours'} have no observed data. Observed depths are sums of complete ${blockLabel} blocks; dashed connectors do not reconstruct shorter bursts. Reference curves connect supplied table points.`,'muted'));
@@ -97,8 +98,8 @@ fetch('/reference/brisbane-ifd-2030.csv').then(response=>{if(!response.ok)throw 
 
 fetch('/reference/local-ifd-index.json').then(r=>{if(!r.ok)throw new Error('Local IFD index unavailable.');return r.json();}).then(index=>{if(!index.locations||index.schemaVersion!==1)throw new Error('Local IFD index format not recognised.');ifdIndex=index;}).catch(error=>{ifdIndexError=error.message;}).finally(redrawSelectedIfd);
 
-return {render(result,station){data=result;selected=station.id;renderIfd(station);},clear(){clearIfdChart();data=null;selected=null;}};
+return {setMode(mode){ifdMode=mode;},render(result,station){data=result;selected=station.id;renderIfd(station);},clear(){clearIfdChart();data=null;selected=null;}};
 }};
 let sharedIfdView;
-function renderIfd(station){sharedIfdView??=GaugeIFD.create();sharedIfdView.render(data,station);}
+function renderIfd(station){const select=document.getElementById('mapIfdMode');sharedIfdView??=GaugeIFD.create(select?{mode:select.value,onModeChange:mode=>{select.value=mode;select.dispatchEvent(new Event('change'));}}:{});if(select)sharedIfdView.setMode(select.value);sharedIfdView.render(data,station);}
 function clearIfdChart(){sharedIfdView?.clear();}

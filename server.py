@@ -125,6 +125,15 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             self.diagnostic_response(payload)
             return
+        if path == '/api/archive-rainfall/group-series':
+            params=parse_qs(urlsplit(self.path).query)
+            try:
+                payload=archive_service.rainfall_group_series(params.get('basin',[None])[0],params.get('end',[None])[0])
+            except (ValueError,OverflowError):
+                self.send_error(400,'Choose a rainfall group and saved quarter-hour ending time.')
+                return
+            self.diagnostic_response(payload)
+            return
         if path == '/api/archive-rainfall/groups':
             self.diagnostic_response(archive_service.rainfall_groups())
             return
@@ -207,7 +216,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            pages = {'/dams':'dams.html','/dams/':'dams.html','/history/':'history.html','/water-history/':'water-history.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
+            pages = {'/point-ifd':'point-ifd.html','/point-ifd/':'point-ifd.html','/dams':'dams.html','/dams/':'dams.html','/history/':'history.html','/water-history/':'water-history.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
             base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'history.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():

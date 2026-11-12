@@ -192,6 +192,45 @@ def rainfall_series(gauge_id,requested=None,minutes=1440):
         return {'end':end,'periodMinutes':15,'periods':periods,'stations':[{**gauge,'values':values}]}
     return read_archive(f'rainfall-series:{gauge_id}:{end}:{minutes}',read)
 
+def rainfall_group_series(basin, requested=None):
+    """One bounded 24-hour query for the point IFD map, not one query per gauge."""
+    if not basin or basin not in {g['id'] for g in rainfall_groups()['groups']}:
+        raise ValueError('Choose a rainfall group.')
+    inventory = [g for g in rainfall_inventory() if g['basinId'] == basin]
+    identities = sorted({'bom:' + g['stationNumber'] for g in inventory if g['stationNumber']})
+    extent = rainfall_extent()
+    if not extent['available']: return extent
+    end = selected_end(requested, extent)
+    if end is None: return {'available': True, 'reason': 'no-observations', 'periods': [], 'stations': []}
+    def read(db):
+        start = date(end) - timedelta(hours=24)
+        if not identities: rows = []
+        else:
+            placeholders = ','.join('?' for _ in identities)
+            if has_table(db, 'history_readings'):
+                rows = query(db, """SELECT g.station,r.end_at,r.value FROM history_readings r
+                    JOIN history_gauges g ON g.id=r.gauge_id
+                    WHERE r.kind_id=(SELECT id FROM history_kinds WHERE kind='rain-15m' AND duration_seconds=900)
+                    AND r.end_at>? AND r.end_at<=? AND g.station IN (""" + placeholders + ') ORDER BY g.station,r.end_at',
+                    (start.isoformat(), end, *identities))
+            else:
+                rows = query(db, """SELECT station,end_at,value FROM observations
+                    WHERE kind='rain-15m' AND duration_seconds=900 AND end_at>? AND end_at<=?
+                    AND station IN (""" + placeholders + ') ORDER BY station,end_at', (start.isoformat(), end, *identities))
+        grouped = {}
+        for row in rows:
+            readings = grouped.setdefault(row['station'], {})
+            timestamp = date(row['end_at'])
+            if timestamp in readings: raise ValueError('Duplicate quarter-hours require investigation.')
+            readings[timestamp] = row['value']
+        periods = [{'start': (start + timedelta(minutes=15*i)).isoformat(),
+                    'end': (start + timedelta(minutes=15*(i+1))).isoformat()} for i in range(96)]
+        times = [date(p['end']) for p in periods]
+        return {'start': start.isoformat(), 'end': end, 'periodMinutes': 15, 'periods': periods,
+                'stations': [{**g, 'values': [grouped.get('bom:' + (g['stationNumber'] or ''), {}).get(t) for t in times]} for g in inventory]}
+    return {**read_archive(f'rainfall-group-series:{basin}:{end}', read), 'extent': extent}
+
+
 def archive_status():
     def read(db):
         if has_table(db,'history_readings'):
