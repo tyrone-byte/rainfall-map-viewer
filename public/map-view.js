@@ -3,19 +3,10 @@
  'use strict';
  const storageKey='rainfall-atlas.map-view.v1';
  root.SharedMapView={attach(map){
-  // Mouse wheels and trackpads zoom while the pointer is over the map.
-  map.scrollWheelZoom.enable();
-  if(L.Browser.mobile||root.matchMedia('(pointer: coarse)').matches){
-   map.dragging.disable();
-   const PanControl=L.Control.extend({options:{position:'topleft'},onAdd(){
-    const container=L.DomUtil.create('div','leaflet-bar map-pan-control'),button=L.DomUtil.create('button','',container);
-    button.type='button';button.textContent='Move map';button.setAttribute('aria-pressed','false');button.title='Enable one-finger map movement';
-    L.DomEvent.disableClickPropagation(container);
-    L.DomEvent.on(button,'click',()=>{const active=!map.dragging.enabled();if(active)map.dragging.enable();else map.dragging.disable();button.textContent=active?'Finish moving':'Move map';button.setAttribute('aria-pressed',String(active));button.title=active?'Return to page scrolling':'Enable one-finger map movement';});
-    return container;
-   }});
-   map.addControl(new PanControl());
-  }
+  let movement=false;
+  function setMovement(value){movement=!!value;for(const name of ['dragging','scrollWheelZoom','touchZoom','doubleClickZoom','boxZoom','keyboard'])map[name]?.[movement?'enable':'disable']();const button=map.getContainer().querySelector('.map-pan-control button');if(button){button.textContent=movement?'Lock map':'Move map';button.setAttribute('aria-pressed',String(movement));}}
+  const PanControl=L.Control.extend({options:{position:'topleft'},onAdd(){const container=L.DomUtil.create('div','leaflet-bar map-pan-control'),button=L.DomUtil.create('button','',container);button.type='button';button.textContent='Move map';button.setAttribute('aria-pressed','false');button.title='Unlock dragging, wheel and touch zoom; lock again to compare views';L.DomEvent.disableClickPropagation(container);L.DomEvent.disableScrollPropagation(container);L.DomEvent.on(button,'click',()=>setMovement(!movement));return container;}});
+  map.addControl(new PanControl());map.setMovementEnabled=setMovement;map.movementEnabled=()=>movement;setMovement(false);
   let restored=false;
   try{
    const params=new URLSearchParams(location.search),names=['mapLat','mapLng','mapZoom'];

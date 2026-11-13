@@ -21,9 +21,9 @@ fits initially at 320 × 568, 390 × 844, 844 × 390 and 1440 × 1000.
 
 Phone time/display settings are in **Map & time**, on the map. Fit/find actions
 are also on the map. Larger desktop screens retain the sidebar controls.
-Expanded-map mode remains available. Plots, source notes and group summaries
-are reached by scrolling below the map; desktop viewer panes keep their existing
-independent scrolling. Opening a settings disclosure does not add a large white
+Expanded-map mode remains available. Gauge plots and source notes open in a non-modal detail panel; the desktop
+legend/layer rail keeps an identical width across Rainfall, Water levels and IFD.
+Group summaries remain in the station sidebar. Opening a settings disclosure does not add a large white
 block above the map.
 
 Dams keeps its dam selector immediately available on phones. Other dam/time/layer
@@ -97,10 +97,11 @@ screenshots is for UI validation, not a live rainfall assessment.
 
 ## Mouse interaction update
 
-Mouse-wheel/trackpad scrolling over the map zooms the map again, across Rainfall,
-Water levels, Point Rainfall IFD and Dams. Scroll outside the map, use the gauge
-jump links, or scroll the chart panels to reach the plots. Phone touch page
-scrolling, explicit Move map and pinch zoom retain their existing behaviour.
+Mouse-wheel/trackpad map zoom is available after selecting Move map. Maps
+start locked to protect comparisons across Rainfall, Water levels and Point IFD.
+Gauge plots open in a non-modal panel rather than requiring a page scroll.
+Phone page scrolling remains available; Move map unlocks pinch zoom as well as
+panning. Phone users find the ranked gauge list and search below the map.
 
 Catchment fills, boundary lines and their tiles are passive visual context. They
 have no click selection, mouse highlight or polygon tooltip; their SVG panes let
@@ -133,9 +134,9 @@ navigation only. These hulls are not catchment boundaries or authoritative cover
 areas. Regenerate the file when the source catalogues change. If it is unavailable,
 the normal group selector continues to work.
 
-Selecting a gauge reveals its totals/detail section on desktop and phones, closing
-an expanded map when necessary. Desktop scrolling stays inside the detail pane.
-Time updates do not force another scroll. Choosing a group returns to the map;
+Selecting a gauge opens its totals and plots in a side panel / phone bottom
+sheet, closing an expanded map when necessary. It does not scroll or pan the map.
+Time updates remain in that panel. Choosing a group returns to the map;
 explicit gauge selections on the Dams page also reveal the associated plot.
 
 Gauge hover labels use 10 px text and contain only the name, measurement and
@@ -158,3 +159,6 @@ On the Rainfall page, the IFD comparison defaults to the wettest complete window
 for each duration in the 24 hours preceding the selected ending time. The Ending
 at selected time mode remains available. The map and hyetograph still reflect the
 selected rainfall duration; it does not restrict that preceding-day IFD search.
+
+See `COMPARISON_WORKFLOW.md` for the current panel, fixed legend rail, gesture
+lock, gauge-deep-link priority and measured caching improvements.

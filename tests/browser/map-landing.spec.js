@@ -28,9 +28,9 @@ test('map opens before group selection and selecting from the compact picker loa
 
 test('hybrid imagery and greyscale remain accessible in phone map settings',async({page})=>{
  await page.setViewportSize({width:390,height:844});await fixtures(page,'/history');await page.goto('/history');await expect(page.locator('#mapGroup option')).toHaveCount(2);
- await page.locator('.mobile-controls summary').click();await expect(page.locator('#background')).toBeVisible();
+ await page.locator('.mobile-controls>summary').click();await expect(page.locator('#background')).toBeVisible();
  await page.locator('#background').selectOption('hybrid');
  expect(await page.evaluate(()=>{const urls=[];map.eachLayer(l=>{if(l._url)urls.push(l._url);});return urls;})).toEqual([expect.stringContaining('World_Imagery'),expect.stringContaining('World_Boundaries_and_Places')]);
  await page.locator('#background').selectOption('grey');await expect(page.locator('.map-grey-tiles')).toHaveCount(1);
- await page.locator('.mobile-controls summary').click();await expect.poll(()=>page.locator('#map').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(844);
+ await page.locator('.mobile-controls>summary').click();await expect.poll(()=>page.locator('#map').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(844);
 });

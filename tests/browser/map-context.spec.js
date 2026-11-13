@@ -46,7 +46,7 @@ test('mobile map is prominent, controls/legend collapse, and expanded view exits
  await page.setViewportSize({width:390,height:844});await mockRain(page);await context(page);await page.goto('/history?basin='+basin);await expect(page.locator('.station')).toHaveCount(1);
  await expect(page.locator('#changeBasin')).toHaveCount(0);await expect(page.locator('.mobile-controls')).not.toHaveAttribute('open','');await expect(page.locator('.map-legend')).not.toHaveAttribute('open','');
  const mapBox=await page.locator('#map').boundingBox();expect(mapBox.height).toBeGreaterThan(500);expect(mapBox.y).toBeLessThan(320);
- await page.locator('.mobile-controls summary').click();await expect(page.locator('#accumulation')).toBeVisible();await expect(page.locator('#background')).toBeVisible();await page.locator('#background').selectOption('grey');await page.locator('.mobile-controls summary').click();
+ await page.locator('.mobile-controls>summary').click();await expect(page.locator('#accumulation')).toBeVisible();await expect(page.locator('#background')).toBeVisible();await page.locator('#background').selectOption('grey');await page.locator('.mobile-controls>summary').click();
  await page.getByRole('button',{name:'Expand map',exact:true}).click();await expect(page.getByRole('dialog',{name:'Expanded gauge map'})).toBeVisible();await expect(page.locator('.expanded-map-caption')).toContainText('24 hours');expect((await page.locator('#map').boundingBox()).height).toBeGreaterThan(800);
  await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);await expect(page.getByRole('button',{name:'Expand map',exact:true})).toBeFocused();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
@@ -58,7 +58,7 @@ test('mouse wheel zooms over passive context while gauge clicks still open plots
  const box=await page.locator('#map').boundingBox(),point=await page.evaluate(()=>{const p=map.latLngToContainerPoint([-27.51,153.01]);return {x:p.x,y:p.y};});
  await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.click(box.x+point.x,box.y+point.y);
  expect(await page.evaluate(()=>selected)).toBeNull();await expect(page.locator('.leaflet-tooltip')).toHaveCount(0);
- await page.mouse.wheel(0,-120);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(12);
+ await page.getByRole('button',{name:'Move map',exact:true}).click();await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.wheel(0,-120);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(12);
  await page.locator('.leaflet-overlay-pane path.leaflet-interactive').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
 });
 

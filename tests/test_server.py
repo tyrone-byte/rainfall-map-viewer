@@ -58,7 +58,7 @@ class BrowserCacheTests(unittest.TestCase):
                 self.assertNotIn('href="/water"',html)
                 self.assertIn('>Water levels</a>',html)
                 self.assertIn('Storm summary',html)
-            with urlopen(base+'/history.js?v=group-links-3') as response:
+            with urlopen(base+'/history.js?v=panel-4') as response:
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('renderIfd(series)',response.read().decode())
         finally:

@@ -18,6 +18,7 @@
    const top=rect.top+scrollY+(mobile?0:workspace.scrollTop);
    const bottom=!mobile&&document.body.classList.contains('viewer-page')?workspace.getBoundingClientRect().bottom:viewport;
    const available=Math.max(140,Math.floor(bottom-top-10));
+   wrap.closest('.map-frame')?.style.setProperty('--map-height',available+'px');
    wrap.style.setProperty('--map-panel-height',Math.max(100,available-24)+'px');
    if(Math.abs(map.getContainer().offsetHeight-available)>1){const center=map.getCenter(),zoom=map.getZoom();map.getContainer().style.setProperty('height',available+'px');map.invalidateSize({animate:false});map.setView(center,zoom,{animate:false,reset:true});}
   }

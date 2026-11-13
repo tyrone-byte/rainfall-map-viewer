@@ -164,11 +164,11 @@ test('gauge selection reveals totals while later time updates keep the plot posi
  await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
  await page.locator('.workspace').evaluate(el=>el.scrollTop=700);
  let top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
- expect(top).toBeGreaterThan(500);
+ expect(top).toBe(0);
  await page.locator('.station').filter({hasText:'Beta gauge'}).click();
  await expect(page.locator('#detail h2').first()).toHaveText('Beta gauge');
  await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
- await expect.poll(()=>page.locator('#detail').evaluate(el=>Math.abs(el.getBoundingClientRect().top-document.querySelector('.workspace').getBoundingClientRect().top))).toBeLessThan(3);
+ await expect(page.locator('.gauge-detail-panel')).toBeVisible();expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBe(top);
  top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
  await page.locator('#accumulation').selectOption('15');
  await expect(page.locator('#period')).toContainText('15 minutes');
@@ -259,9 +259,9 @@ test('rainfall hover keeps its name and selected rainfall depth on one horizonta
 test('phone layout places collapsed controls on the map, with gauges below and no duplicate controls',async({page})=>{
  await mock(page);await page.setViewportSize({width:390,height:844});await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
  expect(await page.locator('main').evaluate(el=>[...el.children].map(child=>child.classList.contains('mobile-controls')?'controls':child.classList.contains('workspace')?'plots':'gauges'))).toEqual(['plots','gauges']);
- await expect(page.locator('#accumulation')).toHaveCount(1);await expect(page.getByRole('link',{name:'Jump to station search and gauges'})).toBeVisible();
- await page.getByRole('link',{name:'Jump to station search and gauges'}).click();await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
- await expect.poll(()=>page.locator('#detail').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(100);
+ await expect(page.locator('#accumulation')).toHaveCount(1);await expect(page.getByRole('link',{name:'Jump to station search and gauges'})).toBeHidden();
+ await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
+ await expect(page.locator('.gauge-detail-panel')).toBeVisible();
  await page.setViewportSize({width:1440,height:1000});await expect(page.locator('.sidebar>.time-controls')).toHaveCount(1);await expect(page.locator('#accumulation')).toHaveCount(1);
  await page.locator('#accumulation').selectOption('60');await expect(page.locator('#period')).toContainText('1 hour');
 });

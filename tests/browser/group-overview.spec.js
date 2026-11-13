@@ -38,7 +38,7 @@ for(const mobile of [false,true])test(`gauge click reveals totals and subgroup s
  if(mobile)await page.setViewportSize({width:390,height:844});const calls=await mock(page);await page.goto('/history?basin='+bris);await expect(page.locator('.station')).toHaveCount(2);
  await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);
  if(mobile)await page.getByRole('button',{name:'Expand map',exact:true}).click();
- await page.locator('.leaflet-overlay-pane path.leaflet-interactive').first().click();await expect(page.locator('#hyetograph')).toBeVisible();await expect(page.locator('.metrics')).toBeInViewport();expect(calls).toHaveLength(1);await expect(page.getByRole('dialog')).toHaveCount(0);
+ await page.locator('.leaflet-overlay-pane path.leaflet-interactive').first().click();await expect(page.locator('#hyetograph')).toBeVisible();await expect(page.locator('.metrics')).toBeInViewport();expect(calls).toHaveLength(1);await expect(page.getByRole('dialog',{name:'Expanded gauge map'})).toHaveCount(0);await expect(page.locator('.gauge-detail-panel')).toBeVisible();
  await page.locator('#group').selectOption('South');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.65,4);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBe(12);expect(await page.evaluate(()=>markers.size)).toBe(1);
 });
 

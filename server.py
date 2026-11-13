@@ -83,12 +83,22 @@ class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
         # Browser application files must not survive a deployment as stale code.
         # Vendor libraries remain independently cacheable.
-        if urlsplit(self.path).path.startswith(('/public/','/data/ifd/')):
+        if getattr(self,'context_immutable',False):
+            self.send_header('Cache-Control','public, max-age=31536000, immutable')
+        elif urlsplit(self.path).path.startswith(('/public/','/data/ifd/')):
             self.send_header('Cache-Control', 'no-store')
         super().end_headers()
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        self.context_immutable=False
+        if path=='/map-context/index.json':
+            import context_assets
+            self.diagnostic_response(context_assets.manifest());return
+        if path.startswith('/map-context/') and path.endswith('.geojson'):
+            import context_assets
+            version=parse_qs(urlsplit(self.path).query).get('v',[None])[0]
+            self.context_immutable=version==context_assets.manifest()['assetVersion']
         if path in ('/','/index.html','/water','/water/','/water.html'):
             self.send_response(302)
             self.send_header('Location','/water-history' if path.startswith('/water') else '/summary')
