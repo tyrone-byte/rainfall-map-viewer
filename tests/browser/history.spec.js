@@ -153,7 +153,7 @@ test('rainfall duration bounds the chart and steps ending time while IFD retains
  await expect(page.locator('#chartInterval')).toHaveValue('60');
 });
 
-test('sidebar controls and right plots scroll independently and keep the plot position on updates',async({page})=>{
+test('gauge selection reveals totals while later time updates keep the plot position',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));const requests=await mock(page);
  await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
  await expect(page.locator('#rainFilter')).toHaveCount(0);
@@ -162,12 +162,13 @@ test('sidebar controls and right plots scroll independently and keep the plot po
  await expect(page.locator('.sidebar #previous')).toBeVisible();
  await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
  await page.locator('.workspace').evaluate(el=>el.scrollTop=700);
- const top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
+ let top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
  expect(top).toBeGreaterThan(500);
  await page.locator('.station').filter({hasText:'Beta gauge'}).click();
  await expect(page.locator('#detail h2').first()).toHaveText('Beta gauge');
  await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
- expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeCloseTo(top,0);
+ await expect.poll(()=>page.locator('#detail').evaluate(el=>Math.abs(el.getBoundingClientRect().top-document.querySelector('.workspace').getBoundingClientRect().top))).toBeLessThan(3);
+ top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
  await page.locator('#accumulation').selectOption('15');
  await expect(page.locator('#period')).toContainText('15 minutes');
  await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');

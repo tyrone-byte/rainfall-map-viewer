@@ -104,3 +104,28 @@ Catchment fills, boundary lines and their tiles are passive visual context. They
 have no click selection, mouse highlight or polygon tooltip; their SVG panes let
 pointer events pass through. Gauges, dam markers, map controls and background
 selection remain interactive. Geographic colours and layer toggles are retained.
+
+## Gauge-group navigation and detail scrolling
+
+Rainfall, Point Rainfall IFD and Water levels keep the group selector available
+while a group is selected. Choosing another group fits its gauges; changing the
+within-group filter also refits the displayed gauges.
+
+When the viewport contains saved gauge locations from at least two groups, clickable
+group labels appear. They also appear before the first group is selected. Clicking
+a label selects that group and fits its gauges. A background click inside one saved
+group footprint selects it; overlapping footprints offer a chooser. Gauge clicks,
+map controls and passive catchment polygons retain their existing behaviour and
+shading.
+
+`public/gauge-group-overview.json` is generated with
+`python3 tools/build_gauge_group_overview.py` from the rainfall and water group
+catalogues. Locations determine overview visibility; convex hulls support background
+navigation only. These hulls are not catchment boundaries or authoritative coverage
+areas. Regenerate the file when the source catalogues change. If it is unavailable,
+the normal group selector continues to work.
+
+Selecting a gauge reveals its totals/detail section on desktop and phones, closing
+an expanded map when necessary. Desktop scrolling stays inside the detail pane.
+Time updates do not force another scroll. Choosing a group returns to the map;
+explicit gauge selections on the Dams page also reveal the associated plot.

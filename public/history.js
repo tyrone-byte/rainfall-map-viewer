@@ -135,7 +135,7 @@ $('ending').onchange=()=>{const time=Date.parse($('ending').value+'+10:00');if(!
 $('previous').onclick=()=>selectTime(new Date(Date.parse(targetEnd)-Number($('accumulation').value)*60000).toISOString());$('next').onclick=()=>selectTime(new Date(Date.parse(targetEnd)+Number($('accumulation').value)*60000).toISOString());
 $('latest').onclick=()=>{follow=true;targetEnd=extent.lastEnd;controlTime();clearTimeout(selectionTimer);loadFrame();};
 $('accumulation').onchange=()=>{controlTime();clearTimeout(selectionTimer);loadFrame();};$('refresh').onclick=refresh;$('fit').onclick=fit;
-for(const id of ['search','group'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();});
+for(const id of ['search','group'])$(id).addEventListener(id==='search'?'input':'change',()=>{draw();saveURL();if(id==='group'){fit();MobileViewer.showMap();}});
 if($('thresholds'))$('thresholds').onsubmit=event=>{event.preventDefault();const values=thresholds.map((_,i)=>Number($(`t${i+1}`).value));if(values.some(v=>!Number.isFinite(v)||v<0)||values.some((v,i)=>i>0&&v<=values[i-1])){$('thresholdError').textContent='Enter increasing non-negative limits.';return;}$('thresholdError').textContent='';thresholds=values;legend();draw();};
 function resetSelection(){
  loadVersion++;detailVersion++;clearTimeout(selectionTimer);frameController?.abort();detailController?.abort();
@@ -147,7 +147,7 @@ function resetSelection(){
 async function openBasin(id,gauge=null){
  const basin=basinGroups.find(g=>g.id===id);if(!basin)return;
  resetSelection();selected=gauge;basinId=id;initialFit=true;
- MobileViewer.setGroup(id);$('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=basin.label;
+ MobileViewer.setGroup(id);MobileViewer.showMap();$('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=basin.label;
  $('count').textContent='Loading this group…';$('period').textContent='Loading saved observations';
  map.invalidateSize();saveURL();await refresh();
 }

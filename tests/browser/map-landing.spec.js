@@ -22,7 +22,7 @@ for(const [width,height] of [[320,568],[390,844],[844,390],[1440,1000]]){
 test('map opens before group selection and selecting from the compact picker loads gauges',async({page})=>{
  const requests=[];await fixtures(page,'/history');page.on('request',r=>{if(r.url().includes('/api/archive-rainfall/frame'))requests.push(r.url());});await page.goto('/history');
  await expect(page.locator('#mapGroup option')).toHaveCount(2);expect(requests).toHaveLength(0);await expect(page.locator('#historyWorkspace')).toBeVisible();
- await page.locator('#mapGroup').selectOption('brisbane-bremer-pine-caboolture');await expect(page.locator('.station')).toHaveCount(1);await expect(page.locator('.map-group-selector')).toBeHidden();
+ await page.locator('#mapGroup').selectOption('brisbane-bremer-pine-caboolture');await expect(page.locator('.station')).toHaveCount(1);await expect(page.locator('.map-group-selector')).toBeVisible();await expect(page.locator('#mapGroup')).toHaveValue('brisbane-bremer-pine-caboolture');
  await page.locator('.page-tabs [aria-current="page"]').click();await expect(page.locator('#mapGroup')).toBeVisible();await expect(page.locator('#map')).toBeVisible();await expect(page.locator('.station')).toHaveCount(0);
 });
 

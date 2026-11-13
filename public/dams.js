@@ -233,7 +233,7 @@
    const series={...station,...result.stations[0]},data={...result,periodMinutes:result.periodMinutes||15,stations:[series]};
    chart=GaugePlots.rainfall($('plot'),station,series,data,minutes,{interval:rainChartMinutes,onInterval:value=>{rainChartMinutes=value;},renderIfd:()=>{ifdView??=GaugeIFD.create();ifdView.render(data,series);}});
    const link=el('a','Open full rainfall viewer'),query=new URLSearchParams({basin:station.basinId,gauge:station.id,minutes,end});link.href='/history?'+query;link.target='_blank';link.rel='noopener';$('plot').append(link);
-   if(reveal&&matchMedia('(max-width:850px)').matches)$('plot').scrollIntoView({block:'start'});
+   if(reveal)$('plot').scrollIntoView({block:'start'});
   }catch(error){if(version===detailVersion&&error.name!=='AbortError')message.textContent='Could not load this gauge’s rainfall observations. Try Update observations.';}
  }
  function appendBomLinks(host,station) {
@@ -261,7 +261,7 @@
    const minutes=Number($('duration').value),data=await json(`/api/archive-water/series?gauge=${encodeURIComponent(station.id)}&end=${encodeURIComponent(ending)}&minutes=${minutes}`,detailController.signal);
    if(version!==detailVersion||frameVersion!==loadVersion)return;
    chart=GaugePlots.water($('plot'),station,data,{showPoints:showRecordedPoints,onPoints:value=>{showRecordedPoints=value;},links:addLinks});
-   if(reveal&&matchMedia('(max-width:850px)').matches)$('plot').scrollIntoView({block:'start'});
+   if(reveal)$('plot').scrollIntoView({block:'start'});
   }catch(error){if(version===detailVersion&&error.name!=='AbortError'){$('plot').replaceChildren(el('h2',station.name),el('p','Could not load saved water levels. Please try again.'));addLinks($('plot'),station);}}
  }
  for(const id of ['showRain','showWater'])$(id).onchange=draw;
