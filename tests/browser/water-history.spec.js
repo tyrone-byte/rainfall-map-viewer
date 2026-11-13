@@ -83,7 +83,7 @@ test('short labels, compact hover and wheel zoom keep plots accessible',async({p
  expect(Math.abs(alignment.nameTop-alignment.valueTop)).toBeLessThan(1);expect(alignment.height).toBeLessThan(25);
  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
  await expect(page.locator('.history-coverage,.movement-summary')).toHaveCount(0);await expect(page.locator('.plot-notes')).not.toHaveAttribute('open','');
- await page.getByRole('button',{name:'Close details',exact:true}).click();await page.getByRole('button',{name:'Move map',exact:true}).click();await page.locator('#map').hover();const zoom=await page.evaluate(()=>map.getZoom());const before=await page.locator('.workspace').evaluate(el=>el.scrollTop);
+ await page.getByRole('button',{name:'Close details',exact:true}).click();await page.locator('#map').hover();const zoom=await page.evaluate(()=>map.getZoom());const before=await page.locator('.workspace').evaluate(el=>el.scrollTop);
  await page.mouse.wheel(0,400);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeLessThan(zoom);
  expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBe(before);
  await page.evaluate(()=>new Promise(resolve=>{if(!map._animatingZoom)resolve();else map.once('zoomend',()=>resolve());}));const wheelZoom=await page.evaluate(()=>map.getZoom());await page.locator('.leaflet-control-zoom-in').click();await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBe(wheelZoom+1);
@@ -93,23 +93,27 @@ test('short labels, compact hover and wheel zoom keep plots accessible',async({p
 
 test.describe('phone navigation',()=>{
  test.use({isMobile:true,hasTouch:true,viewport:{width:390,height:844}});
- test('one-finger page scroll works over the map unless Move map is explicitly enabled',async({page})=>{
+ test('one-finger page scrolling and two-finger map gestures work without lock controls',async({page})=>{
   await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
   await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
-  await page.getByRole('button',{name:'Close details',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);expect(await page.evaluate(()=>map.touchZoom.enabled())).toBe(false);
+  await page.getByRole('button',{name:'Close details',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);expect(await page.evaluate(()=>map.touchZoom.enabled())).toBe(true);
   await page.locator('#map').scrollIntoViewIfNeeded();const before=await page.evaluate(()=>scrollY),box=await page.locator('#map').boundingBox(),x=box.x+box.width/2,y=box.y+box.height/2;
   const client=await page.context().newCDPSession(page);
   await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
   for(let i=1;i<=6;i++){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y-i*25}]});await page.waitForTimeout(20);}
   await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before);
-  await page.getByRole('button',{name:'Move map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(true);
-  await page.getByRole('button',{name:'Lock map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
-  await page.getByRole('button',{name:'Move map',exact:true}).click();await page.locator('#map').scrollIntoViewIfNeeded();const pinchBox=await page.locator('#map').boundingBox(),px=pinchBox.x+pinchBox.width/2,py=pinchBox.y+pinchBox.height/2,zoom=await page.evaluate(()=>map.getZoom());
+  expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
+  await page.locator('#map').scrollIntoViewIfNeeded();const pinchBox=await page.locator('#map').boundingBox(),px=pinchBox.x+pinchBox.width/2,py=pinchBox.y+pinchBox.height/2,zoom=await page.evaluate(()=>map.getZoom());
   await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:px-30,y:py,id:1},{x:px+30,y:py,id:2}]});
   for(const spread of [40,50,60]){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:px-spread,y:py,id:1},{x:px+spread,y:py,id:2}]});await page.waitForTimeout(30);}
   await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(zoom);
-  await page.getByRole('button',{name:'Lock map',exact:true}).click();await page.getByRole('button',{name:'Expand map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>!!map._animatingZoom)).toBe(false);
+  const centerBefore=await page.evaluate(()=>({lat:map.getCenter().lat,lng:map.getCenter().lng}));
+  await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:px-30,y:py,id:1},{x:px+30,y:py,id:2}]});
+  for(const delta of [10,20,30,40]){await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:px-30+delta,y:py,id:1},{x:px+30+delta,y:py,id:2}]});await page.waitForTimeout(30);}
+  await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(()=>page.evaluate(c=>map.distance(map.getCenter(),c),centerBefore)).toBeGreaterThan(10);
+  await page.getByRole('button',{name:'Expand map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(true);
   await page.getByRole('button',{name:'Exit full map',exact:true}).click();expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
 
  });

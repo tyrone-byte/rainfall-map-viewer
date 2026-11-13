@@ -105,6 +105,11 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header('Cache-Control','no-store')
             self.end_headers()
             return
+        if path == '/api/gauge-counterparts':
+            params=parse_qs(urlsplit(self.path).query)
+            try:payload=archive_service.gauge_counterparts(params.get('station',[''])[0],params.get('basin',[None])[0])
+            except ValueError:self.send_error(400,'Use an exact six-digit station number.');return
+            self.diagnostic_response(payload);return
         if path == '/api/storm-summary':
             import storm_summary
             try:payload=storm_summary.summary(int(parse_qs(urlsplit(self.path).query).get('minutes',['1440'])[0]))

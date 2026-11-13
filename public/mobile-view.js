@@ -34,7 +34,7 @@
    compactDate();
    if(media.matches){plots.prepend(groupBar);displayControls.append(...displayFields);compact.append(time);timeContainer.append(compact);actionContainer.append(fitButton,find);timeContainer.hidden=false;actionContainer.hidden=true;main.append(plots,sidebar);}
    else{mapControls.prepend(...displayFields);mapControls.append(fitButton,find);sidebar.prepend(time);sidebar.prepend(groupBar);compact.remove();timeContainer.hidden=true;actionContainer.hidden=true;main.append(sidebar,plots);}
-   if(legendPanel){(media.matches?mapWrap:rail).append(legendPanel);legendPanel.open=!media.matches;}rail.hidden=media.matches;
+   if(legendPanel){(media.matches?mapWrap:rail).append(legendPanel);legendPanel.open=!media.matches;}rail.hidden=media.matches;(media.matches||!mapWrap.classList.contains('map-expanded')?frame:mapWrap).append(rail);
    if(!main.hidden)requestAnimationFrame(()=>MapLanding.resize(map));
   }
   compact.addEventListener('toggle',()=>{if(!main.hidden)requestAnimationFrame(()=>MapLanding.resize(map));});
@@ -50,7 +50,7 @@
   let expanded=false,previousOverflow='',wasDragging=false;const inertBefore=new Map();
   function syncPan(){const button=document.querySelector('.map-pan-control button');if(button){const enabled=map.dragging.enabled();button.textContent=enabled?'Lock map':'Move map';button.setAttribute('aria-pressed',String(enabled));}}
   function setExpanded(value){
-   expanded=value;expand.textContent=value?'Exit full map':'Expand map';expand.setAttribute('aria-pressed',String(value));wrap.classList.toggle('map-expanded',value);document.body.classList.toggle('viewer-map-expanded',value);
+   expanded=value;if(!media.matches){if(value)wrap.append(rail);else frame.append(rail);}expand.textContent=value?'Exit full map':'Expand map';expand.setAttribute('aria-pressed',String(value));wrap.classList.toggle('map-expanded',value);document.body.classList.toggle('viewer-map-expanded',value);
    if(value){previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';wasDragging=map.movementEnabled?.()??map.dragging.enabled();map.setMovementEnabled?.(true);wrap.setAttribute('role','dialog');wrap.setAttribute('aria-modal','true');wrap.setAttribute('aria-label','Expanded gauge map');
     for(const element of document.querySelectorAll('header,nav,footer,.sidebar,.time-controls,#notice,.workspace > :not(.map-wrap)')){if(element.contains(wrap))continue;inertBefore.set(element,element.inert);element.inert=true;}
    }else{document.body.style.overflow=previousOverflow;map.setMovementEnabled?.(wasDragging);wrap.removeAttribute('role');wrap.removeAttribute('aria-modal');wrap.removeAttribute('aria-label');for(const [el,value] of inertBefore)el.inert=value;inertBefore.clear();}

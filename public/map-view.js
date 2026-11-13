@@ -3,10 +3,9 @@
  'use strict';
  const storageKey='rainfall-atlas.map-view.v1';
  root.SharedMapView={attach(map){
-  let movement=false;
-  function setMovement(value){movement=!!value;for(const name of ['dragging','scrollWheelZoom','touchZoom','doubleClickZoom','boxZoom','keyboard'])map[name]?.[movement?'enable':'disable']();const button=map.getContainer().querySelector('.map-pan-control button');if(button){button.textContent=movement?'Lock map':'Move map';button.setAttribute('aria-pressed',String(movement));}}
-  const PanControl=L.Control.extend({options:{position:'topleft'},onAdd(){const container=L.DomUtil.create('div','leaflet-bar map-pan-control'),button=L.DomUtil.create('button','',container);button.type='button';button.textContent='Move map';button.setAttribute('aria-pressed','false');button.title='Unlock dragging, wheel and touch zoom; lock again to compare views';L.DomEvent.disableClickPropagation(container);L.DomEvent.disableScrollPropagation(container);L.DomEvent.on(button,'click',()=>setMovement(!movement));return container;}});
-  map.addControl(new PanControl());map.setMovementEnabled=setMovement;map.movementEnabled=()=>movement;setMovement(false);
+  const mobile=L.Browser.mobile||root.matchMedia('(pointer: coarse)').matches;let movement=!mobile;
+  function setMovement(value){movement=!!value;for(const name of ['dragging','scrollWheelZoom','doubleClickZoom','boxZoom','keyboard'])map[name]?.[movement?'enable':'disable']();map.touchZoom?.enable();}
+  map.setMovementEnabled=setMovement;map.movementEnabled=()=>movement;setMovement(!mobile);
   let restored=false;
   try{
    const params=new URLSearchParams(location.search),names=['mapLat','mapLng','mapZoom'];

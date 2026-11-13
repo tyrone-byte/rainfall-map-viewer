@@ -510,3 +510,14 @@ def water_series(gauge_id,requested=None,minutes=1440):
         rows=water_rows(db,start,end,{'bom:'+gauge_id})
         return {'start':start,'end':end,'minutes':minutes,'station':gauge,'references':gauge_references.for_gauge(gauge_id,db),'observations':[{'time':r['end_at'],'level':r['value'],'datum':r['datum']} for r in rows]}
     return read_archive(f'water-series:{gauge_id}:{end}:{minutes}',read)
+
+
+def gauge_counterparts(station_number,basin=None):
+    """Exact catalogue identity only; never name/coordinate/nearest-gauge guesses."""
+    import re
+    if not re.fullmatch(r'\d{6}',station_number):raise ValueError('Invalid station number.')
+    def match(rows):
+        matches=[s for s in rows if s.get('stationNumber')==station_number]
+        matches.sort(key=lambda s:(s['basinId']!=basin,not bool(s.get('coordinates')),s['id']))
+        return {k:matches[0][k] for k in ('id','basinId')} if matches else None
+    return {'available':True,'rain':match(rainfall_inventory()),'water':match(water_inventory())}

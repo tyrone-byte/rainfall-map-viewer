@@ -58,7 +58,7 @@ test('mouse wheel zooms over passive context while gauge clicks still open plots
  const box=await page.locator('#map').boundingBox(),point=await page.evaluate(()=>{const p=map.latLngToContainerPoint([-27.51,153.01]);return {x:p.x,y:p.y};});
  await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.click(box.x+point.x,box.y+point.y);
  expect(await page.evaluate(()=>selected)).toBeNull();await expect(page.locator('.leaflet-tooltip')).toHaveCount(0);
- await page.getByRole('button',{name:'Move map',exact:true}).click();await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.wheel(0,-120);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(12);
+ await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.wheel(0,-120);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(12);
  await page.locator('.leaflet-overlay-pane path.leaflet-interactive').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
 });
 

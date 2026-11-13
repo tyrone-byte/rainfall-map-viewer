@@ -6,14 +6,15 @@ rail scrolls independently; legends and Layers do not cover geographic features.
 Phone legends use the same fixed-width, scrollable drawer. Page links continue to
 carry the selected group and explicit geographic viewport, including new tabs.
 
-Maps start locked against dragging, wheel, keyboard, box and touch zoom. Move map
-unlocks those gestures; Lock map restores comparison mode. Zoom buttons, explicit
-Fit gauges/group changes and Centre on gauge remain deliberate navigation actions.
-Expanded-map mode temporarily unlocks movement and restores its prior state on exit.
+Desktop maps support normal dragging and mouse-wheel zoom without a lock
+control. Phones use one-finger page scrolling and two-finger map pan/pinch zoom.
+Expanded-map mode temporarily enables one-finger dragging on phones and restores
+page-scroll behaviour on exit. Expanded desktop maps retain the fixed legend rail;
+phones retain their legend drawer, including after orientation changes.
 
-A gauge click opens a non-modal side panel on desktop and an expandable bottom
+A gauge click opens a non-modal side panel on desktop and a bottom
 sheet on phones. Details do not scroll the page or resize the map. The panel has
-Close details, Expand details, Centre on gauge and Open in new tab actions.
+Open Water Level, Open IFD and Close details actions.
 Escape closes it and restores focus. Navigation remains available while details
 are open. Existing totals, hyetographs, IFD controls and source notes are reused.
 
@@ -57,4 +58,15 @@ Phones do not show Find gauge, Fit gauges or Layers buttons on the map. The gaug
 list and search remain below it in normal page flow. Rainfall ranks complete totals
 highest first; Point IFD ranks the rarest estimated AEP first. Desktop retains its
 Fit/search shortcuts and layer controls. Phones keep the compact map/time and legend
-drawers, explicit movement unlock and expanded-map action.
+drawers, two-finger pan/pinch zoom and the expanded-map action.
+
+## Comparison actions
+
+Open Water Level and Open IFD are native new-tab links, retaining explicit map
+coordinates and zoom. Rainfall and IFD use the same rainfall-gauge identity.
+Cross-type matching uses exact six-digit BoM station numbers only, preferring
+the current group when a catalogue identity occurs in several groups. No name,
+coordinate or nearest-neighbour matching is used. When no direct counterpart
+exists, open the destination group/view without selecting a gauge; the user chooses.
+The matching catalogue is local and involves no live BoM requests. IFD ending times
+are rounded down to a saved quarter-hour boundary for water-to-IFD navigation.

@@ -97,11 +97,9 @@ screenshots is for UI validation, not a live rainfall assessment.
 
 ## Mouse interaction update
 
-Mouse-wheel/trackpad map zoom is available after selecting Move map. Maps
-start locked to protect comparisons across Rainfall, Water levels and Point IFD.
+Desktop mouse-wheel zoom and dragging are enabled normally, without a lock.
 Gauge plots open in a non-modal panel rather than requiring a page scroll.
-Phone page scrolling remains available; Move map unlocks pinch zoom as well as
-panning. Phone users find the ranked gauge list and search below the map.
+Phones retain one-finger page scrolling and two-finger map pan/pinch zoom. Phone users find the ranked gauge list and search below the map.
 
 Catchment fills, boundary lines and their tiles are passive visual context. They
 have no click selection, mouse highlight or polygon tooltip; their SVG panes let
