@@ -3,8 +3,8 @@
  'use strict';
  const storageKey='rainfall-atlas.map-view.v1';
  root.SharedMapView={attach(map){
-  // Wheel/trackpad scrolling belongs to the page, never the map.
-  map.scrollWheelZoom.disable();
+  // Mouse wheels and trackpads zoom while the pointer is over the map.
+  map.scrollWheelZoom.enable();
   if(L.Browser.mobile||root.matchMedia('(pointer: coarse)').matches){
    map.dragging.disable();
    const PanControl=L.Control.extend({options:{position:'topleft'},onAdd(){

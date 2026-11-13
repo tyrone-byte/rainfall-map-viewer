@@ -5,7 +5,7 @@
  const date = t => new Date(t).toLocaleString('en-AU', {timeZone:'Australia/Brisbane',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
  const local = t => new Date(Date.parse(t)+36000000).toISOString().slice(0,16);
  const number = v => Number.isFinite(v) ? v.toLocaleString('en-AU') : 'Not supplied';
- const map = L.map('map', {scrollWheelZoom:false,touchZoom:'center'}).setView([-23,147],5);
+ const map = L.map('map', {scrollWheelZoom:true,touchZoom:'center'}).setView([-23,147],5);
  SharedMapView.attach(map); MapBackgrounds.attach(map,$('background'));
  DamMapLegend.attach(map);MapLanding.attachDam(map);MapContext.attach(map,{boundariesOnly:true,skipAttribution:true});
  map.createPane('damMarkers').style.zIndex=625;

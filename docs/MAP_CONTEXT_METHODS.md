@@ -29,8 +29,8 @@ all native areas, so they cannot cover a smaller area's name.
 The Layers panel distinguishes both boundary styles and provides a subcatchment
 toggle. Subcatchments include their solid enclosing catchment outlines: enabling
 subcatchments enables catchments; disabling catchments also hides subcatchments.
-Detailed geometry replaces the overview from zoom 9. At lower zoom, the panel prompts users to zoom closer. Names and a subtle area
-highlight are available by hovering/tapping the source polygon. Context remains
+Detailed geometry replaces the overview from zoom 9. At lower zoom, the panel prompts users to zoom closer. Source names remain recorded in the saved geographic files. The displayed
+polygons are passive and do not capture hover, tap or click selection. Context remains
 below gauge symbols and does not affect observation colours or IFD assignments.
 
 ## Why overlapping dashes no longer become solid
@@ -43,9 +43,9 @@ edges, including coincidences introduced by simplification/transformation.
 Line networks are clipped into viewport-loadable tiles. Half-open ownership
 keeps a stroke that lies on a tile edge in only one tile.
 
-The source polygons remain separate hover areas, with **no stroke** and optional translucent categorical fills. Hover adds a
-subtle highlight and restores the chosen fill setting afterwards. Their outlines are never drawn again. This separates feature
-identity from cartography: neighbouring polygons can both be identified without
+The source polygons remain separate display areas, with **no stroke** and optional translucent categorical fills. These areas
+are non-interactive and do not highlight or display polygon tooltips. Their outlines are never drawn again. This separates feature
+identity from cartography: neighbouring area fills remain visible without
 painting their common edge twice. Small display precision/simplification changes
 are not a change to the source's geographic membership or drainage definition.
 

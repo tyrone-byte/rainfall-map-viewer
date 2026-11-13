@@ -52,8 +52,8 @@ areas; **they do not encode rainfall, AEP, water levels or warnings**. Transluce
 fills preserve the basemap and sit below gauges. Catchment outlines remain solid,
 subcatchment dividers remain dashed, and area polygons have no strokes of their
 own. The **Area colours** checkbox in Layers removes fills while retaining
-outlines and area identification. Hover highlights return to the chosen fill
-setting when dismissed.
+outlines. Areas are non-interactive: fills do not change on hover or capture
+clicks intended for gauges.
 
 All 41 native catchments, 146 supplied subcatchments and 19 derived water-plan
 overviews remain governed by the source limitations documented in
@@ -92,3 +92,15 @@ with device fonts, browser chrome, notice text and saved state.
 Screenshots and layout measurements from the local fixture review are retained
 outside the checkout at `/workspace/map-landing-review`. Data shown in those
 screenshots is for UI validation, not a live rainfall assessment.
+
+## Mouse interaction update
+
+Mouse-wheel/trackpad scrolling over the map zooms the map again, across Rainfall,
+Water levels, Point Rainfall IFD and Dams. Scroll outside the map, use the gauge
+jump links, or scroll the chart panels to reach the plots. Phone touch page
+scrolling, explicit Move map and pinch zoom retain their existing behaviour.
+
+Catchment fills, boundary lines and their tiles are passive visual context. They
+have no click selection, mouse highlight or polygon tooltip; their SVG panes let
+pointer events pass through. Gauges, dam markers, map controls and background
+selection remain interactive. Geographic colours and layer toggles are retained.

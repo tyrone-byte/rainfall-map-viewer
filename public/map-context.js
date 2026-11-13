@@ -5,7 +5,7 @@
  root.MapContext={attach(map,options={}){
   if(map.contextLayers)return map.contextLayers;
   for(const [name,z] of [['contextOverviewAreas',325],['contextAreas',330],['contextSubAreas',331],['contextBoundaries',340],['contextStreams',350],['contextLabels',360]]){map.createPane(name);map.getPane(name).style.zIndex=z;}
-  map.getPane('contextLabels').style.pointerEvents='none';
+  for(const name of ['contextOverviewAreas','contextAreas','contextSubAreas','contextBoundaries','contextStreams','contextLabels'])map.getPane(name).style.pointerEvents='none';
   const labels=L.layerGroup().addTo(map),active=new Map(),cache=new Map(),failed=new Set(),pending=new Map(),queue=[];
   let manifest=null,indexPromise=null,version=0,timer,busy=0,indexFailed=false;
   const panel=node('details');panel.className='map-context-control';panel.append(node('summary','Layers'));
@@ -70,7 +70,7 @@
     const chosen=matches.slice(0,32),wanted=new Set(chosen.map(e=>e.file));
     for(const [file,{layer}] of active)if(!wanted.has(file)){map.removeLayer(layer);active.delete(file);}
     await Promise.allSettled(chosen.map(async entry=>{if(active.has(entry.file)){active.get(entry.file).layer.setStyle(entry.kind==='areas'?f=>styleFor(entry,zoom,f):styleFor(entry,zoom));return;}const geo=await get(entry);if(run!==version)return;
-     const layer=L.geoJSON(geo,{pane:paneFor(entry),smoothFactor:0,interactive:entry.kind==='areas',style:f=>styleFor(entry,zoom,f),onEachFeature:(f,l)=>{if(entry.kind==='areas'){const el=node('span',`${f.properties?.title||'Water-plan area'} · ${f.properties?.feature||''} · ${f.properties?.waterplan||''}`);l.bindTooltip(el);l.on('mouseover',()=>l.setStyle({fillOpacity:Math.min(.30,styleFor(entry,zoom,f).fillOpacity+.10)}));l.on('mouseout',()=>l.setStyle({fillOpacity:styleFor(entry,zoom,f).fillOpacity}));}}}).addTo(map);
+     const layer=L.geoJSON(geo,{pane:paneFor(entry),smoothFactor:0,interactive:false,style:f=>styleFor(entry,zoom,f)}).addTo(map);
      active.set(entry.file,{entry,data:geo,layer});
     }));
     if(run!==version)return;

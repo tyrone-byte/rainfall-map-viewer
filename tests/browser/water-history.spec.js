@@ -74,7 +74,7 @@ test('map controls preserve movement colours, comparison, background and seven-d
  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
 });
 
-test('short labels, compact hover and page scrolling over the map keep plots accessible',async({page})=>{
+test('short labels, compact hover and wheel zoom keep plots accessible',async({page})=>{
  await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
  await expect(page.locator('h1')).toContainText('Water levels');await expect(page.getByRole('link',{name:'Rainfall',exact:true})).toBeVisible();
  const content=await page.evaluate(()=>markers.get('540111').getTooltip().getContent().textContent);
@@ -84,9 +84,10 @@ test('short labels, compact hover and page scrolling over the map keep plots acc
  await page.locator('.station').filter({hasText:'Test river'}).click();await expect(page.locator('#waterHistoryChart')).toBeVisible();
  await expect(page.locator('.history-coverage,.movement-summary')).toHaveCount(0);await expect(page.locator('.plot-notes')).not.toHaveAttribute('open','');
  await page.locator('#map').hover();const zoom=await page.evaluate(()=>map.getZoom());const before=await page.locator('.workspace').evaluate(el=>el.scrollTop);
- await page.mouse.wheel(0,400);await expect.poll(()=>page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeGreaterThan(before);
- expect(await page.evaluate(()=>map.getZoom())).toBe(zoom);
- await page.locator('.leaflet-control-zoom-in').click();await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBe(zoom+1);
+ await page.mouse.wheel(0,400);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeLessThan(zoom);
+ expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBe(before);
+ await page.evaluate(()=>new Promise(resolve=>{if(!map._animatingZoom)resolve();else map.once('zoomend',()=>resolve());}));const wheelZoom=await page.evaluate(()=>map.getZoom());await page.locator('.leaflet-control-zoom-in').click();await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBe(wheelZoom+1);
+ await page.locator('#waterHistoryChart').scrollIntoViewIfNeeded();await expect(page.locator('#waterHistoryChart')).toBeInViewport();
  await page.locator('#background').selectOption('grey');expect(await page.locator('.map-grey-tiles').evaluate(el=>getComputedStyle(el).filter)).toBe('grayscale(1)');
 });
 

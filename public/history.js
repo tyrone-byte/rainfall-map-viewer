@@ -17,7 +17,7 @@ if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(para
 selected=params.get('gauge');
 if(pointIfdPage){if(params.get('mode')==='latest')$('mapIfdMode').value='latest';const minutes=Number(params.get('minutes'));if(minutes>=15&&minutes<=1440&&minutes%15===0){ensureDuration(minutes);$('accumulation').value=minutes;}}
 function ensureDuration(minutes){if(![...$('accumulation').options].some(o=>Number(o.value)===minutes))$('accumulation').append(new Option(duration(minutes),String(minutes)));}
-const map=L.map('map',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tapHold:false}).setView([-22.5,145.5],5);
+const map=L.map('map',{scrollWheelZoom:true,dragging:!L.Browser.mobile,tapHold:false}).setView([-22.5,145.5],5);
 let initialFit=!SharedMapView.attach(map);
 MobileViewer.attach(map);
 MapBackgrounds.attach(map,$('background'));
