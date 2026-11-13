@@ -51,7 +51,7 @@ class MapContextGeometryTests(unittest.TestCase):
         manifest=json.loads((root/'index.json').read_text())
         networks={}
         for kind in ['catchments','subcatchments']:
-            parts=[shape(json.loads((root/e['file']).read_text())['geometry']) for e in manifest['entries'] if e['kind']==kind]
+            parts=[shape(json.loads((root/e['file']).read_text())['geometry']) for e in manifest['entries'] if e['kind']==kind and not e.get('coarse')]
             network=unary_union(parts)
             self.assertAlmostEqual(sum(g.length for g in parts),network.length,places=8)
             networks[kind]=network

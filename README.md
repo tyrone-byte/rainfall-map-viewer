@@ -150,8 +150,11 @@ supplied creek subcatchments add dashed dividers at closer zooms. Use **Layers**
 to toggle them. Connected source stream segments are merged without bridging
 missing data. See [boundary hierarchy and stream methods](docs/MAP_CONTEXT_METHODS.md). Stream
 coverage is partial; water-plan areas are geographic context, not verified
-upstream gauge catchments. Phone controls and legends start collapsed to expose
-the larger map; **Expand map** offers an immersive view. Re-click the active page
+upstream gauge catchments. Viewers open directly on the map with a compact group selector. Phone settings
+are in **Map & time** on the map, and the map fits the available initial screen.
+**Expand map** remains available. Catchments appear from zoom 5 and subcatchments
+from zoom 7, with optional geographic area colours. Street, greyscale and hybrid
+imagery remain available. See [map-first landing and background controls](docs/MAP_FIRST_LANDING.md). Re-click the active page
 tab to return to group selection. See the [UX review, evidence and recommended
 next improvements](docs/MAP_UX_REVIEW.md).
 

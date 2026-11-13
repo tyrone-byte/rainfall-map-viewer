@@ -12,24 +12,25 @@ async function mockRain(page){
 async function context(page,{failure=false}={}){
  const calls=[];await page.route('**/map-context/**',r=>{
   const path=new URL(r.request().url()).pathname;calls.push(path);
-  if(path.endsWith('index.json'))return r.fulfill({json:{schemaVersion:2,entries:[{file:'near-boundary.geojson',kind:'catchments',bounds:[152,-28,154,-27]},{file:'near-stream.geojson',kind:'streams',bounds:[152,-28,154,-27]},{file:'near-sub.geojson',kind:'subcatchments',bounds:[152,-28,154,-27]},{file:'near-area.geojson',kind:'areas',level:'subcatchments',bounds:[152,-28,154,-27]},{file:'far-boundary.geojson',kind:'catchments',bounds:[140,-20,141,-19]}]}});
+  if(path.endsWith('index.json'))return r.fulfill({json:{schemaVersion:2,entries:[{file:'near-boundary.geojson',kind:'catchments',bounds:[152,-28,154,-27]},{file:'near-stream.geojson',kind:'streams',bounds:[152,-28,154,-27]},{file:'near-sub.geojson',kind:'subcatchments',minimumZoom:9,bounds:[152,-28,154,-27]},{file:'near-area.geojson',kind:'areas',level:'subcatchments',minimumZoom:9,bounds:[152,-28,154,-27]},{file:'far-boundary.geojson',kind:'catchments',bounds:[140,-20,141,-19]}]}});
   if(failure)return r.fulfill({status:503,json:{error:'Unavailable'}});
   return r.fulfill({json:path.includes('sub')?{type:'Feature',properties:{level:'subcatchments'},geometry:{type:'LineString',coordinates:[[153,-27.7],[153,-27.3]]}}:path.includes('stream')?{type:'FeatureCollection',features:[{type:'Feature',properties:{name:'Test River'},geometry:{type:'LineString',coordinates:[[152.95,-27.5],[153,-27.5],[153.05,-27.5]]}}]}:{type:'Feature',properties:{title:'Test creek catchment',feature:'Subcatchment Area',waterplan:'Test plan'},geometry:path.includes('area')?{type:'Polygon',coordinates:[[[152.8,-27.7],[153.2,-27.7],[153.2,-27.3],[152.8,-27.3],[152.8,-27.7]]]}:{type:'LineString',coordinates:[[152.8,-27.7],[153.2,-27.7],[153.2,-27.3],[152.8,-27.3],[152.8,-27.7]]}}});
  });return calls;
 }
 test('geographic context follows viewport, zoom and toggles without covering gauges',async({page})=>{
  await mockRain(page);const calls=await context(page);await page.goto('/history?basin='+basin);await expect(page.locator('#count')).toContainText('1 gauges');
- await page.evaluate(()=>map.setView([-27.5,153],8,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(0);
- const before=calls.length;await page.waitForTimeout(200);expect(calls.length).toBe(before);
- await page.evaluate(()=>map.setView([-27.5,153],10,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);
- await page.evaluate(()=>map.setZoom(11,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(2);
+ await page.evaluate(()=>map.setView([-27.5,153],4,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(0);
+ await page.waitForTimeout(200);const before=calls.length;await page.waitForTimeout(200);expect(calls.length).toBe(before);
+ await page.evaluate(()=>map.setView([-27.5,153],10,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(3);
+ await page.evaluate(()=>map.setZoom(11,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
  await page.evaluate(()=>map.setZoom(12,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
  expect(await page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='catchments').layer.getLayers()[0].options.dashArray)).toBeNull();
  expect(await page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='subcatchments').layer.getLayers()[0].options.dashArray)).toBe('6 5');
  expect(await page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='areas').layer.getLayers()[0].options.stroke)).toBe(false);
+ expect(await page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='areas').layer.getLayers()[0].options.fillOpacity)).toBeGreaterThan(0);
  expect(calls.some(p=>p.includes('far-boundary'))).toBe(false);expect(await page.evaluate(()=>Number(map.getPane('contextStreams').style.zIndex))).toBeLessThan(400);
  await page.evaluate(()=>map.setZoom(13,{animate:false}));await expect(page.locator('.context-stream-label')).toHaveText('Test River');
- await page.locator('.map-context-control summary').click();await page.locator('#contextSubcatchments').uncheck();await page.locator('#contextStreams').uncheck();await expect(page.locator('.context-stream-label')).toHaveCount(0);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);
+ await page.locator('.map-context-control summary').click();await page.locator('#contextAreaFills').uncheck();await expect.poll(()=>page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='areas')?.layer.getLayers()[0].options.fillOpacity)).toBe(0);await page.locator('#contextSubcatchments').uncheck();await page.locator('#contextStreams').uncheck();await expect(page.locator('.context-stream-label')).toHaveCount(0);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);
  await page.locator('#contextCatchments').uncheck();await expect(page.locator('#contextSubcatchments')).not.toBeChecked();await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(0);
  await page.locator('#contextSubcatchments').check();await expect(page.locator('#contextCatchments')).toBeChecked();await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(3);
  await expect(page.locator('.station')).toHaveCount(1);

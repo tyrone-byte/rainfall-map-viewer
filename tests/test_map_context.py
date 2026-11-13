@@ -11,7 +11,7 @@ class MapContextDataTests(unittest.TestCase):
         self.assertIn('partial',manifest['streamSource'])
         entries=manifest['entries'];files={e['file'] for e in entries}
         self.assertEqual(len(files),len(entries))
-        self.assertEqual(sum(e['kind']=='areas' and not e.get('derived') for e in entries),187)
+        self.assertEqual(sum(e['kind']=='areas' and not e.get('derived') and not e.get('coarse') for e in entries),187)
         self.assertEqual(manifest['boundaryCounts'],{'catchments':41,'subcatchments':146})
         self.assertEqual(sum(e.get('derived',False) for e in entries),manifest['waterPlanOverviewCount'])
         self.assertTrue(any(e['kind']=='subcatchments' for e in entries))

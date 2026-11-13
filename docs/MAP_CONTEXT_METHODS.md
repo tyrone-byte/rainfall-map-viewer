@@ -7,9 +7,9 @@ context. The Dams viewer's original source files are retained unchanged.
 
 | Layer | Minimum zoom | Appearance |
 | --- | ---: | --- |
-| Catchment / water-plan overview areas | 9 | Solid muted green outline |
+| Broad catchment / water-plan overview areas | 5 | Solid muted green outline |
 | Named rivers / larger creeks | 11 | Solid blue lines with rounded joins |
-| Supplied subcatchment areas | 12 | Thinner dashed dividers |
+| Supplied subcatchment overview areas | 7 | Thinner dashed dividers |
 | Stream names | 13 | Limited, deduplicated labels following the line |
 
 The supplied Queensland water-plan source contains **41 Catchment Area** records
@@ -29,7 +29,7 @@ all native areas, so they cannot cover a smaller area's name.
 The Layers panel distinguishes both boundary styles and provides a subcatchment
 toggle. Subcatchments include their solid enclosing catchment outlines: enabling
 subcatchments enables catchments; disabling catchments also hides subcatchments.
-At lower zoom, the panel prompts users to zoom closer. Names and a subtle area
+Detailed geometry replaces the overview from zoom 9. At lower zoom, the panel prompts users to zoom closer. Names and a subtle area
 highlight are available by hovering/tapping the source polygon. Context remains
 below gauge symbols and does not affect observation colours or IFD assignments.
 
@@ -43,8 +43,8 @@ edges, including coincidences introduced by simplification/transformation.
 Line networks are clipped into viewport-loadable tiles. Half-open ownership
 keeps a stroke that lies on a tile edge in only one tile.
 
-The source polygons remain separate hover areas, with **no stroke and no fill
-unless hovered**. Their outlines are never drawn again. This separates feature
+The source polygons remain separate hover areas, with **no stroke** and optional translucent categorical fills. Hover adds a
+subtle highlight and restores the chosen fill setting afterwards. Their outlines are never drawn again. This separates feature
 identity from cartography: neighbouring polygons can both be identified without
 painting their common edge twice. Small display precision/simplification changes
 are not a change to the source's geographic membership or drainage definition.
@@ -85,3 +85,6 @@ The generated statewide outline files are also checked for duplicate linework.
 Browser checks verify zoom thresholds, independent stream control, subcatchment
 styles, unstroked hover polygons, geographic labels, context failure handling and
 mobile interaction. The normal application suites cover existing map/chart use.
+
+For the subsequent map-first landing, wider overview geometry, area-colour toggle
+and retained hybrid background controls, see [Map-first landing](MAP_FIRST_LANDING.md).

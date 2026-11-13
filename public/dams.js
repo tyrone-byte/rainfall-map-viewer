@@ -7,7 +7,7 @@
  const number = v => Number.isFinite(v) ? v.toLocaleString('en-AU') : 'Not supplied';
  const map = L.map('map', {scrollWheelZoom:false,touchZoom:'center'}).setView([-23,147],5);
  SharedMapView.attach(map); MapBackgrounds.attach(map,$('background'));
- DamMapLegend.attach(map);
+ DamMapLegend.attach(map);MapLanding.attachDam(map);MapContext.attach(map,{boundariesOnly:true,skipAttribution:true});
  map.createPane('damMarkers').style.zIndex=625;
  const damsLayer=L.layerGroup().addTo(map), gaugeLayer=L.layerGroup().addTo(map), areaLayer=L.layerGroup().addTo(map), streamsLayer=L.layerGroup().addTo(map);
  map.attributionControl.addAttribution('Water plans / watercourses © The State of Queensland 2025 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>');

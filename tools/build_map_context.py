@@ -16,6 +16,10 @@ from shapely.ops import transform, unary_union, linemerge
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'public/map-context'
+AREA_PALETTE=['#6ea6c8','#b5a36b','#8c9cc8','#72ada0','#b88eb0','#9ab56b','#c69a76','#7eabc0','#a6a1c4']
+
+def area_colour(name):
+    return AREA_PALETTE[int(hashlib.sha256(name.encode()).hexdigest()[:8],16)%len(AREA_PALETTE)]
 
 
 def write(name,value):
@@ -83,7 +87,7 @@ def build():
     records=[dict(zip(meta['fields'],values)) for values in zip(*columns)]
     project=Transformer.from_crs(meta['crs'],3577,always_xy=True).transform
     geographic=Transformer.from_crs(3577,4326,always_xy=True).transform
-    entries=[];polygons={'catchments':[],'subcatchments':[]};counts={'catchments':0,'subcatchments':0};plans=defaultdict(list)
+    entries=[];polygons={'catchments':[],'subcatchments':[]};counts={'catchments':0,'subcatchments':0};plans=defaultdict(list);source_areas=[];overview_areas=[]
     for fid,wkb,record in zip(fids,wkbs,records):
         if record['status']!='Current':continue
         geometry=from_wkb(wkb)
@@ -93,17 +97,20 @@ def build():
         display=transform(geographic,metric.simplify(40,preserve_topology=True))
         name=f'boundaries/water-plan-{int(fid)}.geojson'
         props={k:record[k] for k in ('title','feature','waterplan','status')}
-        props['level']=level
+        props['level']=level;props['areaColour']=area_colour(record['waterplan']+':'+record['title'])
+        source_areas.append((metric,props))
         # These polygons are hover/highlight areas only. Their edges are not drawn.
         write(name,{'type':'Feature','properties':props,'geometry':mapping(display)})
-        entries.append({'file':name,'kind':'areas','level':level,'minimumZoom':12 if level=='subcatchments' else 9,'bounds':list(display.bounds)})
+        entries.append({'file':name,'kind':'areas','level':level,'minimumZoom':9,'bounds':list(display.bounds)})
     # The extract omits parent Catchment Area records in several water plans.
     # Retain their low-zoom geographic extent without inventing a drainage basin.
     for plan,parts in sorted(plans.items()):
         metric=unary_union(parts);polygons['catchments'].append(metric)
         display=transform(geographic,metric.simplify(40,preserve_topology=True))
         name='boundaries/overview-'+hashlib.sha256(plan.encode()).hexdigest()[:12]+'.geojson'
-        write(name,{'type':'Feature','properties':{'title':plan,'waterplan':plan,'feature':'Water-plan overview (derived from supplied areas)','level':'catchments','derived':True},'geometry':mapping(display)})
+        props={'title':plan,'waterplan':plan,'feature':'Water-plan overview (derived from supplied areas)','level':'catchments','derived':True,'areaColour':area_colour(plan)}
+        overview_areas.append((metric,props))
+        write(name,{'type':'Feature','properties':props,'geometry':mapping(display)})
         entries.append({'file':name,'kind':'areas','level':'catchments','derived':True,'minimumZoom':9,'bounds':list(display.bounds)})
     primary,secondary=boundary_networks(polygons['catchments'],polygons['subcatchments'])
     primary=merge_lines(transform(geographic,primary))
@@ -112,7 +119,28 @@ def build():
         for (x,y),line in sorted(tile_lines(geometry,exclusive_edges=True).items()):
             name=f'outlines/{level}/{x}_{y}.geojson'
             write(name,{'type':'Feature','properties':{'level':level},'geometry':mapping(line)})
-            entries.append({'file':name,'kind':level,'minimumZoom':12 if level=='subcatchments' else 9,'bounds':list(line.bounds)})
+            entries.append({'file':name,'kind':level,'minimumZoom':9,'bounds':list(line.bounds)})
+    # One lightweight statewide layer for wide views; detailed tiles replace it
+    # from zoom 9, so coarse and detailed outlines never overpaint each other.
+    def coarse_network(parts):
+        return merge_lines(unary_union([set_precision(g,1000).boundary for g in parts]).simplify(1200,preserve_topology=True))
+    coarse_primary=coarse_network(polygons['catchments'])
+    coarse_minor=merge_lines(coarse_network(polygons['subcatchments']).difference(coarse_primary))
+    for level,geometry,minimum in [('catchments',coarse_primary,5),('subcatchments',coarse_minor,7)]:
+        geometry=merge_lines(transform(geographic,geometry))
+        name=f'outlines/{level}-overview.geojson'
+        write(name,{'type':'Feature','properties':{'level':level,'coarse':True},'geometry':mapping(geometry)})
+        entries.append({'file':name,'kind':level,'coarse':True,'minimumZoom':minimum,'maximumZoom':8,'bounds':list(geometry.bounds)})
+    for level,areas,minimum in [('catchments',overview_areas,5),('subcatchments',[(g,p) for g,p in source_areas if p['level']=='subcatchments'],7)]:
+        features=[]
+        for geometry,props in areas:
+            geometry=set_precision(geometry,1000).simplify(1200,preserve_topology=True)
+            if geometry.is_empty:continue
+            features.append({'type':'Feature','properties':props,'geometry':mapping(transform(geographic,geometry))})
+        name=f'areas/{level}-overview.geojson'
+        write(name,{'type':'FeatureCollection','features':features})
+        bounds=unary_union([shape(f['geometry']) for f in features]).bounds
+        entries.append({'file':name,'kind':'areas','level':level,'coarse':True,'minimumZoom':minimum,'maximumZoom':8,'bounds':list(bounds)})
     grouped=defaultdict(list);source_hashes={};input_parts=0
     for path in sorted((ROOT/'public/dam-watercourses').glob('*.geojson')):
         source_hashes[path.name]=hashlib.sha256(path.read_bytes()).hexdigest()
@@ -133,13 +161,13 @@ def build():
               'streamSource':'Existing supplied Dams named river/larger-creek extracts; partial coverage, not a complete stream network.',
               'streamSourceSHA256':source_hashes,'streamContinuity':'Exact touching segments dissolved and line-merged by name; mixed-intersection linework retained. No endpoint snapping, buffering, bridging or inferred connections.',
               'streamPartsBeforeDissolving':input_parts,'streamPartsAfterMerging':merged_parts,
-              'boundaryMinimumZoom':9,'subcatchmentMinimumZoom':12,'streamMinimumZoom':11,'labelMinimumZoom':13,
+              'boundaryMinimumZoom':5,'detailedBoundaryMinimumZoom':9,'overviewSimplificationMetres':1200,'subcatchmentMinimumZoom':7,'detailedSubcatchmentMinimumZoom':9,'overviewPrecisionMetres':1000,'streamMinimumZoom':11,'labelMinimumZoom':13,
               'note':'Water-plan areas are context, not verified upstream gauge catchments. Only supplied creek subcatchments are shown. Stream coverage is partial.',
               'entries':entries}
     write('index.json',manifest)
     # Remove only obsolete generated assets, never original Dams inputs.
     wanted={entry['file'] for entry in entries}
-    for directory in ['boundaries','outlines','streams']:
+    for directory in ['boundaries','outlines','streams','areas']:
         for path in (OUT/directory).rglob('*.geojson'):
             if path.relative_to(OUT).as_posix() not in wanted:path.unlink()
     print(json.dumps({'boundaryCounts':counts,'outlineTiles':sum(e['kind'] in counts for e in entries),'streamTiles':len(tiles),'names':len(grouped),'inputStreamParts':input_parts,'mergedStreamParts':merged_parts}))
