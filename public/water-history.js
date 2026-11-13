@@ -36,7 +36,7 @@ function clearDetail(){detailVersion++;detailController?.abort();selected=null;c
 function draw(){
  if(!frame)return;
  const term=$('search').value.trim().toLowerCase(),group=$('group').value;
- const rows=frame.stations.filter(s=>(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.name.localeCompare(b.name));
+ const rows=frame.stations.filter(s=>(!s.basinId||s.basinId===basin)&&(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.name.localeCompare(b.name));
  const scroll=document.querySelector('.sidebar').scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();
  for(const s of rows){
   const button=node('button',undefined,'station'+(s.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=pointColour(s);

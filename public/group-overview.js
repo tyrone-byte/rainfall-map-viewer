@@ -21,7 +21,7 @@
   function choose(id){const group=groups().find(g=>g.id===id);if(!group)return;map.closePopup();const b=group.bounds;map.fitBounds([[b[1],b[0]],[b[3],b[2]]],{padding:[20,20],maxZoom:12,animate:false});document.dispatchEvent(new CustomEvent('viewer-group-select',{detail:id}));}
   function draw(){
    layer.clearLayers();const view=map.getBounds(),visible=groups().map(g=>({...g,visibleSites:(g.locations||[g.anchor]).filter(p=>view.contains(p))})).filter(g=>g.visibleSites.length);
-   overviewEnabled=loaded&&allowed.size>0&&(!selected||visible.length>=2);map.getContainer().classList.toggle('group-overview-enabled',overviewEnabled);
+   overviewEnabled=loaded&&allowed.size>0&&!selected;map.getContainer().classList.toggle('group-overview-enabled',overviewEnabled);
    if(!overviewEnabled)return;
    const size=map.getSize(),occupied=[];
    for(const group of visible.sort((a,b)=>(b.id===selected)-(a.id===selected)||b.mappedGaugeCount-a.mappedGaugeCount)){
