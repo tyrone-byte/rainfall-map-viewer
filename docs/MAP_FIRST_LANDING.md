@@ -111,11 +111,12 @@ Rainfall, Point Rainfall IFD and Water levels keep the group selector available
 while a group is selected. Choosing another group fits its gauges; changing the
 within-group filter also refits the displayed gauges.
 
-Before a group is selected, clickable group labels appear for groups in view.
+Before a group is selected, group names appear only while hovering over a group
+footprint. Clicking the area selects it; overlapping footprints offer a chooser.
+On touchscreens, tap an area or use the group selector.
 Selecting a group hides all overview labels and disables background group navigation,
 even after zooming out. Only the selected group’s gauges are displayed. Use the
-group selector to switch groups, or click the active page tab to return to the overview. Clicking
-a label selects that group and fits its gauges. A background click inside one saved
+group selector to switch groups, or click the active page tab to return to the overview. Selecting a group fits its gauges. A background click inside one saved
 group footprint selects it; overlapping footprints offer a chooser. Gauge clicks,
 map controls and passive catchment polygons retain their existing behaviour and
 shading.

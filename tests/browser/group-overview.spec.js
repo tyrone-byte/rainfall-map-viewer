@@ -15,20 +15,21 @@ async function mock(page){
  await page.route('**/api/archive-water/series?*',r=>r.fulfill({json:{available:true,start:'2026-10-21T00:00:00Z',end:last,observations:[{time:'2026-10-21T23:00:00Z',level:.9,datum:'AHD'},{time:last,level:1,datum:'AHD'}]}}));
  return calls;
 }
-async function clickMap(page,lat,lon){const point=await page.evaluate(({lat,lon})=>{const p=map.latLngToContainerPoint([lat,lon]),r=document.getElementById('map').getBoundingClientRect();return {x:r.x+p.x,y:r.y+p.y};},{lat,lon});await page.mouse.click(point.x,point.y);}
+async function pointMap(page,lat,lon,click=false){const point=await page.evaluate(({lat,lon})=>{const p=map.latLngToContainerPoint([lat,lon]),r=document.getElementById('map').getBoundingClientRect();return {x:r.x+p.x,y:r.y+p.y};},{lat,lon});await page.mouse.move(point.x,point.y);if(click)await page.mouse.click(point.x,point.y);}
+async function clickMap(page,lat,lon){await pointMap(page,lat,lon,true);}
 test('overview labels and unambiguous map areas open a group and refit its gauges',async({page})=>{
  const calls=await mock(page);await page.goto('/history');await expect(page.locator('#mapGroup option')).toHaveCount(3);await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));
- await expect(page.locator('[data-group-overview]')).toHaveCount(2);await page.locator(`[data-group-overview="${bris}"]`).click();await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect(page.locator('.station')).toHaveCount(2);
+ await expect(page.locator('[data-group-overview]')).toHaveCount(0);await pointMap(page,-27.15,152.8);await expect(page.locator('[data-group-overview]')).toHaveText('Brisbane group');await page.mouse.move(0,0);await expect(page.locator('[data-group-overview]')).toHaveCount(0);await clickMap(page,-27.15,152.8);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect(page.locator('.station')).toHaveCount(2);
  expect(await page.evaluate(()=>[...markers.values()].every(m=>map.getBounds().contains(m.getLatLng())))).toBe(true);
  await expect(page.locator('[data-group-overview]')).toHaveCount(0);
  await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);
  await clickMap(page,-28.3,153.5);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect(page.locator('.group-choice-popup')).toHaveCount(0);
  expect(await page.evaluate(()=>[...markers.keys()].sort())).toEqual(['a','b']);
  await page.evaluate(()=>map.setView([-20,145],6,{animate:false}));await page.locator('#mapGroup').selectOption(gold);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeLessThan(-28);
- await page.locator('.page-tabs [aria-current="page"]').click();await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(2);await clickMap(page,-27.15,152.8);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect.poll(()=>calls.at(-1)).toBe(bris);
+ await page.locator('.page-tabs [aria-current="page"]').click();await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);await clickMap(page,-27.15,152.8);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect.poll(()=>calls.at(-1)).toBe(bris);
 });
 test('overlapping group footprints offer a choice instead of guessing',async({page})=>{
- const calls=await mock(page);await page.goto('/history');await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(2);await clickMap(page,-27.65,153.15);
+ const calls=await mock(page);await page.goto('/history');await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);await pointMap(page,-27.65,153.15);await expect(page.locator('[data-group-overview]')).toHaveCount(2);await clickMap(page,-27.65,153.15);
  await expect(page.locator('.group-choice-popup')).toContainText('Choose a gauge group');expect(calls).toHaveLength(0);await page.getByRole('button',{name:'Gold Coast group',exact:true}).click();await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');
 });
 for(const mobile of [false,true])test(`gauge click reveals totals and subgroup selection refits (${mobile?'phone':'desktop'})`,async({page})=>{
@@ -40,8 +41,8 @@ for(const mobile of [false,true])test(`gauge click reveals totals and subgroup s
 });
 
 test('water-level group labels load and refit water gauges, then reveal their chart',async({page})=>{
- await mock(page);await page.goto('/water-history');await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(2);
- await page.locator(`[data-group-overview="${gold}"]`).click();await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('[data-group-overview]')).toHaveCount(0);
+ await mock(page);await page.goto('/water-history');await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);await pointMap(page,-28.3,153.5);await expect(page.locator('[data-group-overview]')).toHaveText('Gold Coast group');
+ await clickMap(page,-28.3,153.5);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('[data-group-overview]')).toHaveCount(0);
  await page.locator('#mapGroup').selectOption(bris);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeGreaterThan(-28);
  await page.locator('[data-gauge="water:a"]').click();await expect(page.locator('#waterHistoryChart')).toBeInViewport();
 });
