@@ -53,7 +53,7 @@ class BrowserCacheTests(unittest.TestCase):
             with urlopen(base+'/') as response:
                 html=response.read().decode()
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
-                self.assertIn('/summary.js?v=2',html)
+                self.assertIn('/summary.js?v=3',html)
                 self.assertTrue(response.url.endswith('/summary'))
                 self.assertNotIn('href="/water"',html)
                 self.assertIn('>Water levels</a>',html)

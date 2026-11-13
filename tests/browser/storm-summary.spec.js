@@ -1,11 +1,12 @@
 const {test,expect}=require('@playwright/test');
 const basin='brisbane-bremer-pine-caboolture',end='2026-11-13T00:00:00Z';
-async function mock(page){
+async function mock(page,{unassigned=false}={}){
  const periods=Array.from({length:96},(_,i)=>({start:new Date(Date.parse(end)-(96-i)*900000).toISOString(),end:new Date(Date.parse(end)-(95-i)*900000).toISOString()}));
  const station={id:'a',stationNumber:'540111',name:'Storm Creek',group:'Brisbane',basinId:basin,coordinates:{lat:-27,lon:152}};
  const extent={source:{status:'ok'}},rainfall={available:true,start:periods[0].start,end,extent,stations:[{...station,complete:true,depth:100},{...station,id:'duplicate',complete:true,depth:100},{...station,id:'bad',stationNumber:'bad',name:'Incomplete gauge',complete:false,depth:null}]};
  const pointRainfall={available:true,start:periods[0].start,end,extent,periods,stations:[{...station,values:periods.map((_,i)=>i===80?40:.1)}]};
 
+ if(unassigned){const other={...station,id:'outside',stationNumber:'540668',name:'Outside IFD region',coordinates:{lat:-27.1,lon:152.1}};rainfall.stations.push({...other,complete:true,depth:120});pointRainfall.stations.push({...other,values:Array(96).fill(1.25)});}
  await page.route('**/api/storm-summary?*',r=>r.fulfill({json:{minutes:Number(new URL(r.request().url()).searchParams.get('minutes')),generatedAt:end,rainfall,pointRainfall}}));
  await page.route('**/reference/local-ifd-index.json',r=>r.fulfill({json:{schemaVersion:1,locations:{'-27.000000,152.000000':{file:'test.json'}}}}));
  await page.route('**/reference/local-ifd/test.json',r=>r.fulfill({json:{locationKey:'-27.000000,152.000000',region:{name:'Test regional centroid'},datasets:[{name:'Default Current (2030) Baseline',aeps:[50,10,1],points:[{minutes:15,depths:[10,20,40]},{minutes:1440,depths:[40,80,160]}]}]}}));
@@ -41,4 +42,17 @@ test('rainfall values appear while point AEP references are still loading',async
 test('a stalled summary request times out and allows retry instead of loading forever',async({page})=>{
  await page.clock.install();await page.route('**/api/storm-summary?*',()=>{});await page.goto('/summary');await expect(page.locator('#loadStatus')).toContainText('Loading saved rainfall');
  await page.clock.fastForward(21000);await expect(page.locator('#loadStatus')).toContainText('timed out');await expect(page.locator('#refresh')).toBeEnabled();
+});
+
+test('rainfall flags survive AEP completion for gauges without assigned IFD references',async({page})=>{
+ await mock(page,{unassigned:true});let release;const gate=new Promise(resolve=>release=resolve);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/reference/local-ifd-index.json',async r=>{await gate;await r.fulfill({json:{schemaVersion:1,locations:{'-27.000000,152.000000':{file:'test.json'}}}});});
+ await page.goto('/summary');await expect(page.locator('#loadStatus')).toContainText('Assessing point rainfall');expect(await page.evaluate(()=>pins.getLayers().length)).toBe(2);await expect(page.locator('#rainList .summary-row')).toHaveCount(2);
+ release();await expect(page.locator('#aepList')).toContainText('≈1% AEP');await expect(page.locator('#headline .summary-stat strong')).toHaveText(['2','1']);await expect(page.locator('#rainList')).toContainText('Outside IFD region');expect(await page.evaluate(()=>pins.getLayers().length)).toBe(2);expect(errors).toEqual([]);
+ const mapBox=await page.locator('.summary-map-panel').boundingBox(),summaryBox=await page.locator('.summary-sections').boundingBox();expect(mapBox.x+mapBox.width).toBeLessThanOrEqual(summaryBox.x);expect((await page.locator('#map').boundingBox()).height).toBeGreaterThan(500);
+ await page.locator('#refresh').click();await expect(page.locator('#loadStatus')).toContainText('Saved summary loaded');expect(await page.evaluate(()=>pins.getLayers().length)).toBe(2);
+ await page.screenshot({path:'/tmp/overview-side-by-side.png',fullPage:true});
+});
+test('a missing regional curve cannot clear valid rainfall results',async({page})=>{
+ await mock(page);await page.route('**/reference/local-ifd/test.json',r=>r.fulfill({status:503}));await page.goto('/summary');await expect(page.locator('#loadStatus')).toContainText('Saved summary loaded');await expect(page.locator('#headline .summary-stat strong')).toHaveText(['1','—']);await expect(page.locator('#rainList .summary-row')).toHaveCount(1);expect(await page.evaluate(()=>pins.getLayers().length)).toBe(1);
 });

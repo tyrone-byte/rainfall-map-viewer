@@ -31,7 +31,7 @@ function render(refit=false){
  if(!rare.length)empty('aepList',point?(assessed.length?'No assessed gauge meets the selected AEP threshold.':'No gauge could be assessed for point AEP.'):'Point AEP assessment unavailable.');
  for(const [id,rows] of [['rainList',wet],['aepList',rare]])if(rows.length>10)$(id).append(el('small',`Showing the top 10 of ${rows.length} flagged gauges; all located flags appear on the map.`));
  const flagged=new Map(wet.map(s=>[rainKey(s),{s,kind:'rain'}]));for(const s of rare)flagged.set(rainKey(s),{s,kind:'ifd'});
- for(const {s,kind} of flagged.values()){const p=byRain.get(rainKey(s))?.pointIFD;marker(s,kind,kind==='rain'?`${s.depth.toFixed(1)} mm`:PointRainfallIFD.label(p),p?`${duration(p.minutes)} · ${p.depth.toFixed(1)} mm · ${PointRainfallIFD.label(p)}`:'Point AEP unavailable',kind==='rain'?data.rainfall.end:data.pointRainfall.end,Number.isFinite(p?.aep)?PointRainfallIFD.colour(p):'#2779b4');}
+ for(const {s,kind} of flagged.values()){const comparison=byRain.get(rainKey(s))?.pointIFD,p=Number.isFinite(comparison?.aep)&&Number.isFinite(comparison?.depth)&&Number.isFinite(comparison?.minutes)?comparison:null;marker(s,kind,kind==='rain'?`${s.depth.toFixed(1)} mm`:PointRainfallIFD.label(p),p?`${duration(p.minutes)} · ${p.depth.toFixed(1)} mm · ${PointRainfallIFD.label(p)}`:'Point AEP unavailable',kind==='rain'?data.rainfall.end:data.pointRainfall.end,Number.isFinite(p?.aep)?PointRainfallIFD.colour(p):'#2779b4');}
  if(refit)fit();$('loadStatus').textContent=`Saved summary loaded · ${time(data.generatedAt)}. Flags are screening aids; follow a gauge to investigate.`;
 }
 function preparePoint(result,signal){
@@ -75,7 +75,7 @@ async function load(){
     }catch(error){if(run!==version)return;pointError=error.message;}
    }
   }else pointError='Saved quarter-hour rainfall unavailable';
-  render(true);
+  try{render(true);}catch(error){point=null;pointError='Point AEP display unavailable; rainfall totals retained.';render(true);}
  }catch(error){
   if(error.name!=='AbortError'&&run===version){
    data=null;point=null;pins.clearLayers();for(const id of ['headline','rainList','aepList'])$(id).replaceChildren();

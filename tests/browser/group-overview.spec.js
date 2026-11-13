@@ -56,3 +56,9 @@ test('switching water, point IFD and rainfall retains the selected group and vie
  await page.locator('#mapGroup').selectOption(gold);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeLessThan(-28);
  await page.getByRole('link',{name:'Rainfall',exact:true}).click();await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('#mapGroup')).toHaveValue(gold);expect(await page.evaluate(()=>map.getCenter().lat)).toBeLessThan(-28);
 });
+
+test('new-tab links restore the group and viewport without inherited session storage',async({page,context})=>{
+ await mock(page);await page.goto('/water-history?basin='+bris);await expect(page.locator('.station')).toHaveCount(2);await page.evaluate(()=>map.setView([-27.5,153.05],10,{animate:false}));
+ const link=page.getByRole('link',{name:'Point Rainfall IFD',exact:true});await link.dispatchEvent('contextmenu');const href=await link.getAttribute('href');expect(href).toContain('mapZoom=10');expect(href).toContain('basin='+bris);
+ const tab=await context.newPage();await mock(tab);await tab.addInitScript(()=>{sessionStorage.clear();sessionStorage.setItem('rainfall-atlas.map-view.v1',JSON.stringify({lat:0,lng:0,zoom:3}));});await tab.goto(href);await expect(tab.locator('.station')).toHaveCount(2);await expect(tab.locator('#mapGroup')).toHaveValue(bris);expect(await tab.evaluate(()=>map.getZoom())).toBe(10);expect(await tab.evaluate(()=>map.project(map.getCenter()).distanceTo(map.project([-27.5,153.05])))).toBeLessThan(1);await tab.close();
+});

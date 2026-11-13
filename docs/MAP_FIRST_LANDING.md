@@ -147,3 +147,14 @@ carries the selected group and the saved geographic viewport. A one-time
 `view=keep` navigation flag avoids refitting on arrival; an explicit group change
 or Fit gauges action still refits normally. Gauge IDs are not copied between
 different observation types. The active page tab still returns to its overview.
+
+Map-page navigation links also encode `mapLat`, `mapLng` and `mapZoom` and update
+when the map moves, or before a link is opened/copied. Valid explicit coordinates
+take precedence over tab-local storage, allowing right-click Open in new tab to
+retain the group and viewport even when the new tab has no copied session store.
+Invalid coordinates fall back to the normal saved/default view.
+
+On the Rainfall page, the IFD comparison defaults to the wettest complete window
+for each duration in the 24 hours preceding the selected ending time. The Ending
+at selected time mode remains available. The map and hyetograph still reflect the
+selected rainfall duration; it does not restrict that preceding-day IFD search.

@@ -101,5 +101,5 @@ fetch('/reference/local-ifd-index.json').then(r=>{if(!r.ok)throw new Error('Loca
 return {setMode(mode){ifdMode=mode;},render(result,station){data=result;selected=station.id;renderIfd(station);},clear(){clearIfdChart();data=null;selected=null;}};
 }};
 let sharedIfdView;
-function renderIfd(station){const select=document.getElementById('mapIfdMode');sharedIfdView??=GaugeIFD.create(select?{mode:select.value,onModeChange:mode=>{select.value=mode;select.dispatchEvent(new Event('change'));}}:{});if(select)sharedIfdView.setMode(select.value);sharedIfdView.render(data,station);}
+function renderIfd(station){const select=document.getElementById('mapIfdMode');sharedIfdView??=GaugeIFD.create(select?{mode:select.value,onModeChange:mode=>{select.value=mode;select.dispatchEvent(new Event('change'));}}:{mode:'wettest'});if(select)sharedIfdView.setMode(select.value);sharedIfdView.render(data,station);}
 function clearIfdChart(){sharedIfdView?.clear();}

@@ -42,3 +42,12 @@ lines. `data/water-reference-levels.json` now contains the exact-ID SLS import f
 user-confirmed same-station datum basis. Missing classification definitions,
 unknown observation datums and inconsistent reference levels remain unassessed.
 No historical effective dates or datum offsets are inferred.
+
+## Layout and incomplete IFD coverage
+
+Desktop places a large sticky map on the left and the controls, totals and ranked
+summaries on the right. Phones retain a single column with the map above the
+ranked lists. A gauge can have a valid rainfall total without an assigned IFD
+curve. Such gauges remain on the map in rainfall blue; missing AEP depth/duration
+fields are never formatted as numeric comparisons. Failed AEP display enrichment
+falls back to the loaded rainfall totals rather than clearing the overview.

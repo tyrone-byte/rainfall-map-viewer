@@ -8,7 +8,7 @@
   document.body.classList.add('viewer-page','viewer-awaiting-group');main.hidden=false;
   const picker=document.getElementById('groupPicker');if(picker)sidebar.prepend(picker);
   const groupBar=document.createElement('div');groupBar.className='map-group-selector';const groupLabel=document.createElement('label');groupLabel.htmlFor='mapGroup';groupLabel.textContent='Group';const groupSelect=document.createElement('select');groupSelect.id='mapGroup';groupSelect.setAttribute('aria-label','Choose observation group');groupSelect.append(new Option('Loading groups…',''));document.getElementById('period').textContent='Choose a group to load saved gauge observations';groupBar.append(groupLabel,groupSelect);plots.prepend(groupBar);groupSelect.onchange=()=>document.dispatchEvent(new CustomEvent('viewer-group-select',{detail:groupSelect.value}));
-  function groupLinks(id){for(const link of document.querySelectorAll('.page-tabs a')){const url=new URL(link.href,location.href);if(!['/history','/point-ifd','/water-history'].includes(url.pathname))continue;url.search=id?new URLSearchParams({basin:id,view:'keep'}).toString():'';link.href=url.pathname+url.search;}}
+  function groupLinks(id){for(const link of document.querySelectorAll('.page-tabs a')){const url=new URL(link.href,location.href);if(!['/history','/point-ifd','/water-history'].includes(url.pathname))continue;url.search=id?new URLSearchParams({basin:id,view:'keep'}).toString():'';link.href=url.pathname+url.search;}map.shareViewLinks?.();}
   const media=root.matchMedia('(max-width: 850px)');
   const overview=GroupOverview.attach(map,{kind:location.pathname.startsWith('/water-history')?'water':'rain'});
   sidebar.id=sidebar.id||'viewerGauges';plots.id=plots.id||'viewerPlots';

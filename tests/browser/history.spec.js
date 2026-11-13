@@ -74,7 +74,8 @@ test('IFD keeps a missing quarter as a gap and map labels stay on failed window 
  await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');await page.locator('.station').first().click();
  await expect(page.locator('#ifdChart')).toBeVisible();
  const points=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
- expect(points[0].y).toBe(1);expect(points[1].y).toBeNull();
+ expect(points[0].y).toBe(1);expect(points[1].y).toBe(2);expect(points.at(-1).y).toBeNull();
+ await page.locator('#ifdMode').selectOption('latest');await expect.poll(()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].data[1].y)).toBeNull();
  await page.locator('#chartInterval').selectOption('30');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.at(-1))).toBeNull();
  await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
  const caption=await page.locator('#period').textContent();
@@ -263,4 +264,11 @@ test('phone layout places collapsed controls on the map, with gauges below and n
  await expect.poll(()=>page.locator('#detail').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(100);
  await page.setViewportSize({width:1440,height:1000});await expect(page.locator('.sidebar>.time-controls')).toHaveCount(1);await expect(page.locator('#accumulation')).toHaveCount(1);
  await page.locator('#accumulation').selectOption('60');await expect(page.locator('#period')).toContainText('1 hour');
+});
+
+test('rainfall IFD defaults to the wettest preceding-day window and retains ending mode',async({page})=>{
+ await mock(page);await page.route('**/api/archive-rainfall/series?*',r=>{const end=new URL(r.request().url()).searchParams.get('end'),periods=Array.from({length:96},(_,i)=>({start:new Date(Date.parse(end)-(96-i)*900000).toISOString(),end:new Date(Date.parse(end)-(95-i)*900000).toISOString()}));return r.fulfill({json:{available:true,end,periodMinutes:15,periods,stations:[{...gauge('a','Alpha gauge',83.75,1440,end),values:periods.map((_,i)=>i===20?60:.25)}]}});});
+ await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('.station')).toHaveCount(3);await page.locator('.station').filter({hasText:'Alpha gauge'}).click();await expect(page.locator('#ifdChart')).toBeVisible();await expect(page.locator('#ifdMode')).toHaveValue('wettest');
+ const quarter=()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].data.find(p=>p.x===15)?.y);await expect.poll(quarter).toBe(60);
+ await page.locator('#ifdMode').selectOption('latest');await expect.poll(quarter).toBe(.25);await page.locator('#ifdMode').selectOption('wettest');await page.locator('#accumulation').selectOption('360');await expect.poll(quarter).toBe(60);await expect(page.locator('#ifdMode')).toHaveValue('wettest');
 });
