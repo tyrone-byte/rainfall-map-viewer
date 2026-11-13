@@ -20,3 +20,9 @@ test('optional arrows require a configured significance threshold independently 
  assert.equal(classify({...station,ratePerHour:.11},'trend',settings).trend,'rising');
  assert.equal(classify({...station,ratePerHour:-.11},'trend',settings).trend,'falling');
 });
+test('flood colours use explicit classification, never the absolute height or a missing reading',()=>{
+ assert.equal(classify({level:100},'flood').colour,colours.missing);
+ assert.equal(classify({level:0,flood:{category:'major'}},'flood').colour,'#c73546');
+ assert.equal(classify({level:5,flood:{category:'minor'}},'flood').colour,'#d5ad20');
+ assert.equal(classify({level:null,flood:{category:'major'}},'flood').status,'missing');
+});

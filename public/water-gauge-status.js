@@ -8,6 +8,7 @@
  function classify(station,mode='trend',settings=config){
   const missing={status:'missing',colour:colours.missing,label:'Insufficient data',trend:null};
   if(!Number.isFinite(station.level))return missing;
+  if(mode==='flood'){const category=station.flood?.category||'unknown';return {status:category,colour:({below:'#36a48c',minor:'#d5ad20',moderate:'#e77f25',major:'#c73546'})[category]||colours.missing,label:category==='unknown'?'Flood thresholds / classification unavailable':category==='below'?'Below minor flood':category+' flood',trend:null};}
   if(mode==='age')return {status:station.status||'missing',colour:ageColours[station.status]||colours.missing,label:'Observation age',trend:null};
   const direction=station.direction,rate=station.ratePerHour;
   if(!['rising','falling','steady'].includes(direction))return missing;

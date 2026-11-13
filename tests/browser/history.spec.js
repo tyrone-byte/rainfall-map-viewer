@@ -232,7 +232,7 @@ test('seven-day rainfall uses a seven-day chart while IFD remains limited to 24 
 });
 
 test('obsolete bulletin URLs redirect to history pages and their navigation is removed',async({page})=>{
- await mock(page);await page.goto('/');await expect(page).toHaveURL(/\/history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
+ await mock(page);await page.goto('/');await expect(page).toHaveURL(/\/summary$/);await expect(page.locator('h1')).toHaveText('Storm summary');
  await expect(page.getByRole('link',{name:'Rainfall bulletin',exact:true})).toHaveCount(0);await expect(page.locator('.page-tabs a[href="/water"]')).toHaveCount(0);
  await page.goto('/water');await expect(page).toHaveURL(/\/water-history$/);await expect(page.locator('.basin-choice')).toHaveCount(2);
 });

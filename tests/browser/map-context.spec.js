@@ -21,7 +21,7 @@ test('geographic context follows viewport, zoom and toggles without covering gau
  await mockRain(page);const calls=await context(page);await page.goto('/history?basin='+basin);await expect(page.locator('#count')).toContainText('1 gauges');
  await page.evaluate(()=>map.setView([-27.5,153],4,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(0);
  await page.waitForTimeout(200);const before=calls.length;await page.waitForTimeout(200);expect(calls.length).toBe(before);
- await page.evaluate(()=>map.setView([-27.5,153],10,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(3);
+ await page.evaluate(()=>map.setView([-27.5,153],10,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);
  await page.evaluate(()=>map.setZoom(11,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
  await page.evaluate(()=>map.setZoom(12,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
  expect(await page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='catchments').layer.getLayers()[0].options.dashArray)).toBeNull();
@@ -32,7 +32,7 @@ test('geographic context follows viewport, zoom and toggles without covering gau
  expect(await page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='areas').layer.getLayers()[0].options.fillOpacity)).toBeGreaterThan(0);
  expect(calls.some(p=>p.includes('far-boundary'))).toBe(false);expect(await page.evaluate(()=>Number(map.getPane('contextStreams').style.zIndex))).toBeLessThan(400);
  await page.evaluate(()=>map.setZoom(13,{animate:false}));await expect(page.locator('.context-stream-label')).toHaveText('Test River');
- await page.locator('.map-context-control summary').click();await page.locator('#contextAreaFills').uncheck();await expect.poll(()=>page.evaluate(()=>[...map.contextLayers.active.values()].find(a=>a.entry.kind==='areas')?.layer.getLayers()[0].options.fillOpacity)).toBe(0);await page.locator('#contextSubcatchments').uncheck();await page.locator('#contextStreams').uncheck();await expect(page.locator('.context-stream-label')).toHaveCount(0);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);
+ await page.locator('.map-context-control summary').click();await expect(page.locator('#contextAreaFills')).toHaveCount(0);await page.locator('#contextSubcatchments').uncheck();await page.locator('#contextStreams').uncheck();await expect(page.locator('.context-stream-label')).toHaveCount(0);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);
  await page.locator('#contextCatchments').uncheck();await expect(page.locator('#contextSubcatchments')).not.toBeChecked();await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(0);
  await page.locator('#contextSubcatchments').check();await expect(page.locator('#contextCatchments')).toBeChecked();await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(3);
  await expect(page.locator('.station')).toHaveCount(1);
@@ -60,4 +60,16 @@ test('mouse wheel zooms over passive context while gauge clicks still open plots
  expect(await page.evaluate(()=>selected)).toBeNull();await expect(page.locator('.leaflet-tooltip')).toHaveCount(0);
  await page.mouse.wheel(0,-120);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(12);
  await page.locator('.leaflet-overlay-pane path.leaflet-interactive').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
+});
+
+test('half a neighbouring group hides linked details, and zooming back restores them',async({page})=>{
+ await mockRain(page);await context(page);
+ const other='gold-coast-logan';
+ await page.route('**/api/archive-rainfall/groups',r=>r.fulfill({json:{groups:[{id:basin,label:'Brisbane group'},{id:other,label:'Gold Coast group'}]}}));
+ await page.route('**/gauge-group-overview.json',r=>r.fulfill({json:{schemaVersion:1,rain:[{id:basin,anchor:[-27.5,153],locations:[[-27.5,153]],bounds:[152.9,-27.6,153.1,-27.4],footprint:[[152.9,-27.6],[153.1,-27.6],[153.1,-27.4],[152.9,-27.4]]},{id:other,anchor:[-27.5,153.05],locations:[[-27.5,153.05],[-27.5,153.20],[-27.5,155],[-27.5,156]],bounds:[153,-27.6,156,-27.4],footprint:[[153,-27.6],[156,-27.6],[156,-27.4],[153,-27.4]]}]}}));
+ await page.goto('/history?basin='+basin);await expect(page.locator('.station')).toHaveCount(1);
+ await page.evaluate(()=>map.setView([-27.5,153],12,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.groupOverview.broadView)).toBe(false);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
+ await page.locator('.map-context-control summary').click();await page.locator('#contextSubcatchments').uncheck();await expect.poll(()=>page.evaluate(()=>[...map.contextLayers.active.values()].filter(a=>a.entry.kind==='subcatchments'||a.entry.level==='subcatchments').length)).toBe(0);await page.locator('#contextSubcatchments').check();await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
+ await page.evaluate(()=>map.setZoom(11,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.groupOverview.broadView)).toBe(true);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(1);await expect(page.locator('#contextSubcatchments')).toBeChecked();await expect(page.locator('#contextStreams')).toBeChecked();
+ await page.evaluate(()=>map.setZoom(12,{animate:false}));await expect.poll(()=>page.evaluate(()=>map.groupOverview.broadView)).toBe(false);await expect.poll(()=>page.evaluate(()=>map.contextLayers.active.size)).toBe(4);
 });

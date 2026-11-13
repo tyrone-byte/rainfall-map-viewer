@@ -192,11 +192,11 @@ def rainfall_series(gauge_id,requested=None,minutes=1440):
         return {'end':end,'periodMinutes':15,'periods':periods,'stations':[{**gauge,'values':values}]}
     return read_archive(f'rainfall-series:{gauge_id}:{end}:{minutes}',read)
 
-def rainfall_group_series(basin, requested=None):
+def rainfall_group_series(basin, requested=None, *, all_groups=False):
     """One bounded 24-hour query for the point IFD map, not one query per gauge."""
-    if not basin or basin not in {g['id'] for g in rainfall_groups()['groups']}:
+    if not all_groups and (not basin or basin not in {g['id'] for g in rainfall_groups()['groups']}):
         raise ValueError('Choose a rainfall group.')
-    inventory = [g for g in rainfall_inventory() if g['basinId'] == basin]
+    inventory = [g for g in rainfall_inventory() if all_groups or g['basinId'] == basin]
     identities = sorted({'bom:' + g['stationNumber'] for g in inventory if g['stationNumber']})
     extent = rainfall_extent()
     if not extent['available']: return extent
@@ -489,11 +489,13 @@ def water_frame(requested=None,minutes=1440,basin=None,comparison_minutes=60):
         changes={}
         for row in water_rows(db,movement_start,end,identities):changes.setdefault(row['station'],[]).append(row)
         latest={r['station']:r for r in rows}
+        import flood_status
+        references=flood_status.published_by_station(db)
         stations=[]
         for gauge in inventory:
             r=latest.get('bom:'+gauge['id']);age=(date(end)-date(r['end_at'])).total_seconds()/60 if r else None
             state='missing' if not r or r['value'] is None else 'out' if age>=360 else 'suspect' if age>=60 else 'current'
-            stations.append({**gauge,'level':r['value'] if r else None,'datum':r['datum'] if r else 'Unspecified','observedAt':r['end_at'] if r else None,'ageMinutes':age,'status':state,**water_movement(r,changes.get('bom:'+gauge['id'],[]),end,comparison_minutes)})
+            stations.append({**gauge,'flood':flood_status.classify(r['value'] if r else None,r['datum'] if r else None,references.get(gauge['id'],[])),'level':r['value'] if r else None,'datum':r['datum'] if r else 'Unspecified','observedAt':r['end_at'] if r else None,'ageMinutes':age,'status':state,**water_movement(r,changes.get('bom:'+gauge['id'],[]),end,comparison_minutes)})
         return {'start':start,'end':end,'minutes':minutes,'stations':stations,'extent':extent,'comparisonMinutes':comparison_minutes}
     return read_archive(f'water-frame:{basin}:{end}:{minutes}:{comparison_minutes}',read)
 

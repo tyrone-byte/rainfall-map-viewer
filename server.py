@@ -91,10 +91,16 @@ class Handler(SimpleHTTPRequestHandler):
         path = urlsplit(self.path).path
         if path in ('/','/index.html','/water','/water/','/water.html'):
             self.send_response(302)
-            self.send_header('Location','/water-history' if path.startswith('/water') else '/history')
+            self.send_header('Location','/water-history' if path.startswith('/water') else '/summary')
             self.send_header('Cache-Control','no-store')
             self.end_headers()
             return
+        if path == '/api/storm-summary':
+            import storm_summary
+            try:payload=storm_summary.summary(int(parse_qs(urlsplit(self.path).query).get('minutes',['1440'])[0]))
+            except (ValueError,OverflowError):
+                self.send_error(400,'Choose 24 hours, 3 days or 7 days.');return
+            self.diagnostic_response(payload);return
         if path == '/api/archive-rainfall/group-stats':
             self.diagnostic_response(archive_service.rainfall_group_stats())
             return
@@ -216,7 +222,7 @@ class Handler(SimpleHTTPRequestHandler):
         elif path == '/vendor/chart.js':
             base, relative = ROOT/'node_modules/chart.js/dist', 'chart.umd.js'
         else:
-            pages = {'/point-ifd':'point-ifd.html','/point-ifd/':'point-ifd.html','/dams':'dams.html','/dams/':'dams.html','/history/':'history.html','/water-history/':'water-history.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
+            pages = {'/summary':'summary.html','/summary/':'summary.html','/point-ifd':'point-ifd.html','/point-ifd/':'point-ifd.html','/dams':'dams.html','/dams/':'dams.html','/history/':'history.html','/water-history/':'water-history.html', '/diagnostics/bom': 'bom-test.html', '/gauge-status': 'gauge-status.html', '/water-history':'water-history.html', '/history': 'history.html'}
             base, relative = ROOT/'public', pages.get(path, path.lstrip('/') or 'history.html')
         target = (base / relative).resolve()
         if not target.is_relative_to(base.resolve()) or not target.is_file():

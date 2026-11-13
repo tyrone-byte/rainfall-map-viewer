@@ -9,7 +9,7 @@ context. The Dams viewer's original source files are retained unchanged.
 | --- | ---: | --- |
 | Broad catchment / water-plan overview areas | 5 | Solid muted green outline |
 | Named rivers / larger creeks | 11 | Solid blue lines with rounded joins |
-| Supplied subcatchment overview areas | 7 | Thinner dashed dividers |
+| Supplied subcatchments | 11 | Thinner dashed dividers and paired shading |
 | Stream names | 13 | Limited, deduplicated labels following the line |
 
 The supplied Queensland water-plan source contains **41 Catchment Area** records
@@ -27,9 +27,13 @@ distinguishable in hover information. The broader overview hover areas sit below
 all native areas, so they cannot cover a smaller area's name.
 
 The Layers panel distinguishes both boundary styles and provides a subcatchment
-toggle. Subcatchments include their solid enclosing catchment outlines: enabling
+toggle for their dashed boundaries and shading together. There is no separate
+area-colour toggle. Subcatchments include their solid enclosing catchment outlines: enabling
 subcatchments enables catchments; disabling catchments also hides subcatchments.
-Detailed geometry replaces the overview from zoom 9. At lower zoom, the panel prompts users to zoom closer. Source names remain recorded in the saved geographic files. The displayed
+Detailed catchment geometry replaces the overview from zoom 9. Subcatchments
+and waterways both require zoom 11. They temporarily hide when at least 50%
+of another group’s mapped gauge coordinates are in the viewport; the saved
+checkbox choices are retained and restored when zooming back in. At lower zoom, the panel prompts users to zoom closer. Source names remain recorded in the saved geographic files. The displayed
 polygons are passive and do not capture hover, tap or click selection. Context remains
 below gauge symbols and does not affect observation colours or IFD assignments.
 
@@ -43,7 +47,7 @@ edges, including coincidences introduced by simplification/transformation.
 Line networks are clipped into viewport-loadable tiles. Half-open ownership
 keeps a stroke that lies on a tile edge in only one tile.
 
-The source polygons remain separate display areas, with **no stroke** and optional translucent categorical fills. These areas
+The source polygons remain separate display areas, with **no stroke** and translucent categorical fills tied to their boundary layer toggle. These areas
 are non-interactive and do not highlight or display polygon tooltips. Their outlines are never drawn again. This separates feature
 identity from cartography: neighbouring area fills remain visible without
 painting their common edge twice. Small display precision/simplification changes

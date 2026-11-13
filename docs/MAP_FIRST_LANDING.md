@@ -36,9 +36,11 @@ area, named-stream and gauge controls.
 ## Wider-scale catchments and colours
 
 - **Zoom 5–8:** broad catchment/plan outlines and coloured overview areas.
-- **Zoom 7–8:** supplied subcatchment overview dividers and coloured areas.
-- **Zoom 9 onward:** detailed catchment/plan and supplied subcatchment geometry.
-- Streams remain available from zoom 11, with stream names from zoom 13.
+- **Zoom 9 onward:** detailed catchment/plan geometry.
+- **Zoom 11 onward:** supplied subcatchment dividers and their shading, together
+  with streams. Stream names appear from zoom 13.
+- Subcatchments and streams temporarily hide when at least half the saved gauge
+  locations of another group are visible; broad catchment context stays visible.
 
 Overview geometry uses a 1 km precision grid and 1.2 km simplification for display
 at small scales. It is replaced, not overpainted, by the existing detailed geometry
@@ -114,9 +116,12 @@ within-group filter also refits the displayed gauges.
 Before a group is selected, group names appear only while hovering over a group
 footprint. Clicking the area selects it; overlapping footprints offer a chooser.
 On touchscreens, tap an area or use the group selector.
-Selecting a group hides all overview labels and disables background group navigation,
-even after zooming out. Only the selected group’s gauges are displayed. Use the
-group selector to switch groups, or click the active page tab to return to the overview. Selecting a group fits its gauges. A background click inside one saved
+Selecting a group hides overview hover labels at close views. Once at least 50%
+of another group’s saved gauge locations are visible, background selection and
+small hover names return for that group. This is a gauge-location proportion,
+not an area measurement or a hydrological relationship. Selecting it recentres
+the map and replaces the displayed gauges. The group selector and active page
+tab also remain available. Only the selected group’s gauge dataset is displayed. Selecting a group fits its gauges. A background click inside one saved
 group footprint selects it; overlapping footprints offer a chooser. Gauge clicks,
 map controls and passive catchment polygons retain their existing behaviour and
 shading.
@@ -132,3 +137,7 @@ Selecting a gauge reveals its totals/detail section on desktop and phones, closi
 an expanded map when necessary. Desktop scrolling stays inside the detail pane.
 Time updates do not force another scroll. Choosing a group returns to the map;
 explicit gauge selections on the Dams page also reveal the associated plot.
+
+Gauge hover labels use 10 px text and contain only the name, measurement and
+associated duration. Point IFD hover also identifies the estimated AEP; source,
+coverage and detailed time context remain in the selected-gauge detail panel.

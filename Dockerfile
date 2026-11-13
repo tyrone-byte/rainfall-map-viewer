@@ -10,7 +10,7 @@ RUN apt-get update \
 WORKDIR /app
 COPY requirements-collector.txt ./
 RUN pip install --no-cache-dir -r requirements-collector.txt
-COPY server.py rainfall.py water.py water_service.py bom_diagnostic.py bom_hcs.py bom_source.py archive_service.py gauge_references.py ./
+COPY server.py rainfall.py water.py water_service.py bom_diagnostic.py bom_hcs.py bom_source.py archive_service.py gauge_references.py flood_status.py storm_summary.py ./
 COPY public ./public
 COPY data ./data
 COPY --from=browser-libraries /build/node_modules/leaflet/dist ./node_modules/leaflet/dist

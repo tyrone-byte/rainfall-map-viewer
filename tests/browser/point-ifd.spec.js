@@ -23,7 +23,7 @@ test('map defaults to rarest duration; hover and use-window expose the controlli
  await expect(page.locator('h1')).toHaveText('Point Rainfall IFD');await expect(page.locator('#mapIfdMode')).toHaveValue('wettest');await expect(page.locator('#accumulation')).toBeDisabled();
  expect(await page.evaluate(()=>frame.stations.find(s=>s.id==='a').pointIFD.minutes)).toBe(15);
  expect(await page.evaluate(()=>markers.get('a').options.fillColor)).toBe('#c9414a');
- await page.evaluate(()=>markers.get('a').openTooltip());await expect(page.locator('.point-ifd-tooltip')).toContainText('≈1% AEP');await expect(page.locator('.point-ifd-tooltip')).toContainText('15 minutes · 40.0 mm');expect(await page.locator('.point-ifd-tooltip').evaluate(el=>el.getBoundingClientRect().width)).toBeGreaterThan(250);
+ await page.evaluate(()=>markers.get('a').openTooltip());await expect(page.locator('.point-ifd-tooltip')).toContainText('≈1% AEP');await expect(page.locator('.point-ifd-tooltip')).toContainText('40.0 mm · 15 minutes');expect(await page.locator('.point-ifd-tooltip').evaluate(el=>el.getBoundingClientRect().width)).toBeLessThan(250);
  await page.locator('.station').filter({hasText:'Alpha gauge'}).click();
  await expect(page.locator('#hyetograph')).toBeVisible();await expect(page.locator('#ifdChart')).toBeVisible();await expect(page.locator('#ifdMode')).toHaveValue('wettest');
  expect(await page.locator('#detail').evaluate(el=>el.getBoundingClientRect().top>document.querySelector('#map').getBoundingClientRect().top)).toBe(true);

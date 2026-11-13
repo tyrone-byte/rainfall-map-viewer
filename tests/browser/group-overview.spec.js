@@ -23,8 +23,8 @@ test('overview labels and unambiguous map areas open a group and refit its gauge
  expect(await page.evaluate(()=>[...markers.values()].every(m=>map.getBounds().contains(m.getLatLng())))).toBe(true);
  await expect(page.locator('[data-group-overview]')).toHaveCount(0);
  await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);
- await clickMap(page,-28.3,153.5);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect(page.locator('.group-choice-popup')).toHaveCount(0);
- expect(await page.evaluate(()=>[...markers.keys()].sort())).toEqual(['a','b']);
+ expect(await page.evaluate(()=>map.groupOverview.broadView)).toBe(true);await clickMap(page,-28.3,153.5);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect.poll(()=>calls.at(-1)).toBe(gold);await expect(page.locator('.group-choice-popup')).toHaveCount(0);
+ expect(await page.evaluate(()=>[...markers.keys()].sort())).toEqual(['c','d']);
  await page.evaluate(()=>map.setView([-20,145],6,{animate:false}));await page.locator('#mapGroup').selectOption(gold);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeLessThan(-28);
  await page.locator('.page-tabs [aria-current="page"]').click();await page.evaluate(()=>map.setView([-27.6,153.1],8,{animate:false}));await expect(page.locator('[data-group-overview]')).toHaveCount(0);await clickMap(page,-27.15,152.8);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect.poll(()=>calls.at(-1)).toBe(bris);
 });

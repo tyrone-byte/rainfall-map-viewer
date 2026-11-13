@@ -12,15 +12,14 @@
   const contents=node('div');contents.className='map-context-options';panel.append(contents);
   let saved={};try{saved=JSON.parse(localStorage.getItem('atlas-context-layers')||'{}')||{};}catch(_){}
   function toggle(id,text){const label=node('label'),input=node('input');input.type='checkbox';input.id=id;input.checked=typeof saved[id]==='boolean'?saved[id]:true;label.append(input,document.createTextNode(text));contents.append(label);input.onchange=()=>{saved[id]=input.checked;try{localStorage.setItem('atlas-context-layers',JSON.stringify(saved));}catch(_){}schedule();};return input;}
-  const catchments=toggle('contextCatchments','Catchments / water plans · solid'),subcatchments=toggle('contextSubcatchments','Subcatchments · dashed dividers'),streams=toggle('contextStreams','Named rivers / larger creeks');
-  const areaFills=toggle('contextAreaFills','Area colours');
+  const catchments=toggle('contextCatchments','Catchments / water plans · solid'),subcatchments=toggle('contextSubcatchments','Subcatchments · dashed + shading'),streams=toggle('contextStreams','Named rivers / larger creeks');
   if(options.boundariesOnly){streams.checked=false;streams.closest('label').hidden=true;}
   if(typeof saved.contextSubcatchments!=='boolean')subcatchments.checked=catchments.checked;
   if(!catchments.checked)subcatchments.checked=false;
   function saveHierarchy(){saved.contextCatchments=catchments.checked;saved.contextSubcatchments=subcatchments.checked;try{localStorage.setItem('atlas-context-layers',JSON.stringify(saved));}catch(_){}schedule();}
   catchments.onchange=()=>{if(!catchments.checked)subcatchments.checked=false;saveHierarchy();};subcatchments.onchange=()=>{if(subcatchments.checked)catchments.checked=true;saveHierarchy();};
   const key=node('div');key.className='context-style-key';for(const [cls,text] of [['context-major-key','Catchment / plan'],['context-minor-key','Subcatchment']]){const item=node('span'),line=node('i');line.className=cls;line.setAttribute('aria-hidden','true');item.append(line,document.createTextNode(text));key.append(item);}contents.append(key);
-  const status=node('p','Broad outlines from zoom 5; streams 11; subcatchments 7.');status.className='map-context-status';status.setAttribute('role','status');contents.append(status);
+  const status=node('p','Broad outlines from zoom 5; streams / subcatchments 11.');status.className='map-context-status';status.setAttribute('role','status');contents.append(status);
   const note=node('p','Plan overviews combine supplied areas; they are not newly delineated catchments. Water-plan areas are not verified upstream gauge catchments. Dashed dividers show supplied subcatchments inside solid outlines. Area colours distinguish geography, not warning levels. Stream coverage is partial.');note.className='muted';contents.append(note);
   const retry=node('button','Retry context layers');retry.type='button';retry.hidden=true;retry.onclick=()=>{failed.clear();indexFailed=false;indexPromise=null;schedule();};contents.append(retry);
   const control=L.control({position:'topright'});control.onAdd=()=>{L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);L.DomEvent.on(panel,'keydown',L.DomEvent.stopPropagation);return panel;};control.addTo(map);
@@ -29,10 +28,10 @@
   function pump(){while(busy<4&&queue.length){const {entry,resolve,reject}=queue.shift();busy++;fetch('/map-context/'+entry.file).then(r=>{if(!r.ok)throw new Error('Context file unavailable');return r.json();}).then(data=>{cache.set(entry.file,data);if(cache.size>48)cache.delete(cache.keys().next().value);resolve(data);}).catch(e=>{failed.add(entry.file);reject(e);}).finally(()=>{busy--;pending.delete(entry.file);pump();});}}
   function get(entry){if(cache.has(entry.file))return Promise.resolve(cache.get(entry.file));if(failed.has(entry.file))return Promise.reject(new Error('Context file unavailable'));if(!pending.has(entry.file)){const promise=new Promise((resolve,reject)=>queue.push({entry,resolve,reject}));pending.set(entry.file,promise);pump();}return pending.get(entry.file);}
   function intersects(bounds){const v=map.getBounds();return bounds[0]<=v.getEast()&&bounds[2]>=v.getWest()&&bounds[1]<=v.getNorth()&&bounds[3]>=v.getSouth();}
-  function enabled(entry,zoom){const level=entry.kind==='areas'?entry.level:entry.kind;if(zoom<(entry.minimumZoom??(level==='streams'?11:9))||zoom>(entry.maximumZoom??Infinity))return false;return level==='catchments'?catchments.checked:level==='subcatchments'?subcatchments.checked:level==='streams'&&streams.checked;}
+  function enabled(entry,zoom){const level=entry.kind==='areas'?entry.level:entry.kind;if((level==='subcatchments'||level==='streams')&&(zoom<11||map.groupOverview?.broadView))return false;if(zoom<(entry.minimumZoom??(level==='streams'?11:9))||zoom>(entry.maximumZoom??Infinity))return false;return level==='catchments'?catchments.checked:level==='subcatchments'?subcatchments.checked:level==='streams'&&streams.checked;}
   function paneFor(entry){return entry.kind==='areas'?(entry.derived?'contextOverviewAreas':entry.level==='subcatchments'?'contextSubAreas':'contextAreas'):entry.kind==='streams'?'contextStreams':'contextBoundaries';}
   function styleFor(entry,zoom,feature){
-   if(entry.kind==='areas')return {className:'context-area',stroke:false,fill:true,fillColor:feature?.properties?.areaColour||'#8faeaa',fillOpacity:areaFills.checked ? (entry.level==='subcatchments' ? .20 : .12) : 0};
+   if(entry.kind==='areas')return {className:'context-area',stroke:false,fill:true,fillColor:feature?.properties?.areaColour||'#8faeaa',fillOpacity:entry.level==='subcatchments' ? .20 : .12};
    if(entry.kind==='streams')return {className:'context-stream',color:'#337eae',weight:zoom>=13?2.2:1.7,opacity:.85,lineCap:'round',lineJoin:'round',fill:false};
    if(entry.kind==='subcatchments')return {className:'context-subcatchment',color:'#84916f',weight:1.2,opacity:.9,dashArray:'6 5',lineCap:'butt',lineJoin:'round',fill:false};
    return {className:'context-catchment',color:'#5c6f58',weight:1.8,opacity:.9,dashArray:null,lineCap:'round',lineJoin:'round',fill:false};
@@ -61,7 +60,7 @@
   }
   async function refresh(){
    const run=++version,zoom=map.getZoom();labels.clearLayers();if(!map.getContainer().getClientRects().length)return;
-   if(zoom<5||(!catchments.checked&&!streams.checked)){for(const {layer} of active.values())map.removeLayer(layer);active.clear();status.textContent=zoom<5?'Broad outlines from zoom 5; streams 11; subcatchments 7.':'Context layers hidden.';return;}
+   if(zoom<5||(!catchments.checked&&!streams.checked)){for(const {layer} of active.values())map.removeLayer(layer);active.clear();status.textContent=zoom<5?'Broad outlines from zoom 5; streams / subcatchments 11.':'Context layers hidden.';return;}
    status.textContent='Loading geographic context…';
    try{
     const data=manifest||await index();if(run!==version)return;
@@ -76,12 +75,12 @@
     if(run!==version)return;
     const n=[...active.values()].filter(a=>a.entry.kind==='catchments').length,minor=[...active.values()].filter(a=>a.entry.kind==='subcatchments').length,s=[...active.values()].filter(a=>a.entry.kind==='streams').length;
     const failures=chosen.filter(e=>failed.has(e.file)).length;
-    status.textContent=`${catchments.checked?(n?'Solid catchment / plan outlines shown.':'No saved catchment outline in view.'):'Catchments hidden.'} ${!subcatchments.checked?'Subcatchments hidden.':zoom<7?'Zoom to 7 for supplied subcatchments.':minor?'Dashed subcatchment dividers shown.':'No supplied subcatchment dividers in view.'} ${!streams.checked?'Stream layer hidden.':zoom<11?'Zoom to 11 for streams.':s?'Saved stream context shown; coverage is partial.':'No saved stream coverage in this view.'}${matches.length>32?' Zoom closer for additional detail.':''}${failures?' Some context files could not load; observations are unaffected.':''}`;
+    status.textContent=`${catchments.checked?(n?'Solid catchment / plan outlines shown.':'No saved catchment outline in view.'):'Catchments hidden.'} ${!subcatchments.checked?'Subcatchments hidden.':map.groupOverview?.broadView?'Subcatchments hidden in group overview.':zoom<11?'Zoom to 11 for supplied subcatchments.':minor?'Dashed subcatchment dividers shown.':'No supplied subcatchment dividers in view.'} ${!streams.checked?'Stream layer hidden.':map.groupOverview?.broadView?'Streams hidden in group overview.':zoom<11?'Zoom to 11 for streams.':s?'Saved stream context shown; coverage is partial.':'No saved stream coverage in this view.'}${matches.length>32?' Zoom closer for additional detail.':''}${failures?' Some context files could not load; observations are unaffected.':''}`;
     retry.hidden=!failures;labelStreams();
    }catch(_){if(run===version){status.textContent='Geographic context unavailable. Gauge observations remain available.';retry.hidden=false;}}
   }
   function schedule(){version++;clearTimeout(timer);timer=setTimeout(refresh,120);}
-  map.on('moveend zoomend resize',schedule);schedule();
+  map.on('moveend zoomend resize groupoverviewchange',schedule);schedule();
   map.contextLayers={refresh,active,labels,panel};return map.contextLayers;
  }};
 })(window);

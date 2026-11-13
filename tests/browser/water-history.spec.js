@@ -130,3 +130,10 @@ test('SVG water symbols resize with zoom, simplify at low zoom and preserve sele
  expect(await page.evaluate(()=>markers.get('540111').props.colour)).toBe('#d94843');
  expect(await page.evaluate(()=>markers.get('540111').props.trend)).toBeNull();
 });
+
+test('flood category mode has its own legend and leaves unknown thresholds grey',async({page})=>{
+ await mock(page);await page.goto('/water-history?basin='+basin);await expect(page.locator('#count')).toContainText('2 gauges');
+ await page.locator('#colourMode').selectOption('flood');await expect(page.locator('#legendTitle')).toContainText('Published flood category');await expect(page.locator('#legend')).toContainText('Major');await expect(page.locator('#comparison')).toBeDisabled();
+ expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#88969c');await expect(page.locator('.station').first()).toContainText('classification unavailable');
+ await page.evaluate(()=>{frame.stations[0].flood={category:'major'};draw();});expect(await page.evaluate(()=>markers.get('540111').options.fillColor)).toBe('#c73546');await expect(page.locator('.station').filter({hasText:'Test river'})).toContainText('major flood');
+});
