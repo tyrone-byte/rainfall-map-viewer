@@ -73,3 +73,11 @@ cleanup or mutate observations. Published explicit text values are exported to
 remain separate. Partial successful acquisitions are retained and the command
 returns failure on refusal. It does not run on page visits or in the collector
 schedule. No automatic database import has been run against production.
+
+## Supplied SLS import
+
+The portable export is no longer empty. The subsequently supplied Queensland SLS
+v3.7 has been imported by exact station ID, with the user explicitly confirming
+same-station observation/classification datum compatibility. See
+`../flood/SLS_IMPORT.md` for counts, source provenance, reconstruction and datum
+policy. Live BoM harvesting is not needed for these definitions.

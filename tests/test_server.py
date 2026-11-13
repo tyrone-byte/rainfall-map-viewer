@@ -53,12 +53,12 @@ class BrowserCacheTests(unittest.TestCase):
             with urlopen(base+'/') as response:
                 html=response.read().decode()
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
-                self.assertIn('/summary.js?v=1',html)
+                self.assertIn('/summary.js?v=2',html)
                 self.assertTrue(response.url.endswith('/summary'))
                 self.assertNotIn('href="/water"',html)
                 self.assertIn('>Water levels</a>',html)
                 self.assertIn('Storm summary',html)
-            with urlopen(base+'/history.js?v=compact-labels-2') as response:
+            with urlopen(base+'/history.js?v=group-links-3') as response:
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
                 self.assertIn('renderIfd(series)',response.read().decode())
         finally:

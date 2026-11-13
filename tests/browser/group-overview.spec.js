@@ -13,6 +13,8 @@ async function mock(page){
  await page.route('**/api/archive-water/extent',r=>r.fulfill({json:{available:true,firstEnd:'2026-10-20T00:00:00Z',lastEnd:last}}));
  await page.route('**/api/archive-water/frame?*',r=>{const q=new URL(r.request().url()).searchParams,basin=q.get('basin');calls.push(basin);return r.fulfill({json:{available:true,start:'2026-10-21T00:00:00Z',end:last,minutes:Number(q.get('minutes')),stations:[...stations(basin),...stations(basin===bris?gold:bris)].map(s=>({...s,level:1,datum:'AHD',direction:'rising',levelChange:.1,ageMinutes:0,observedAt:last,status:'current'}))}});});
  await page.route('**/api/archive-water/series?*',r=>r.fulfill({json:{available:true,start:'2026-10-21T00:00:00Z',end:last,observations:[{time:'2026-10-21T23:00:00Z',level:.9,datum:'AHD'},{time:last,level:1,datum:'AHD'}]}}));
+ await page.route('**/reference/local-ifd-index.json',r=>r.fulfill({json:{schemaVersion:1,locations:{}}}));
+ await page.route('**/api/archive-rainfall/group-series?*',r=>{const basin=new URL(r.request().url()).searchParams.get('basin');return r.fulfill({json:{available:true,end:last,periodMinutes:15,periods:Array.from({length:96},(_,i)=>({start:new Date(Date.parse(last)-(96-i)*900000).toISOString(),end:new Date(Date.parse(last)-(95-i)*900000).toISOString()})),stations:stations(basin).map(s=>({...s,values:Array(96).fill(1)}))}});});
  return calls;
 }
 async function pointMap(page,lat,lon,click=false){const point=await page.evaluate(({lat,lon})=>{const p=map.latLngToContainerPoint([lat,lon]),r=document.getElementById('map').getBoundingClientRect();return {x:r.x+p.x,y:r.y+p.y};},{lat,lon});await page.mouse.move(point.x,point.y);if(click)await page.mouse.click(point.x,point.y);}
@@ -45,4 +47,12 @@ test('water-level group labels load and refit water gauges, then reveal their ch
  await clickMap(page,-28.3,153.5);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('[data-group-overview]')).toHaveCount(0);
  await page.locator('#mapGroup').selectOption(bris);await expect(page.locator('#basinTitle')).toHaveText('Brisbane group');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeGreaterThan(-28);
  await page.locator('[data-gauge="water:a"]').click();await expect(page.locator('#waterHistoryChart')).toBeInViewport();
+});
+
+test('switching water, point IFD and rainfall retains the selected group and viewport',async({page})=>{
+ await mock(page);await page.goto('/water-history?basin='+bris);await expect(page.locator('.station')).toHaveCount(2);await page.evaluate(()=>map.setView([-27.5,153.05],10,{animate:false}));
+ await page.getByRole('link',{name:'Point Rainfall IFD',exact:true}).click();await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('#mapGroup')).toHaveValue(bris);expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.project(map.getCenter()).distanceTo(map.project([-27.5,153.05])))).toBeLessThan(1);
+ await page.getByRole('link',{name:'Water levels',exact:true}).click();await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('#mapGroup')).toHaveValue(bris);expect(await page.evaluate(()=>map.getZoom())).toBe(10);
+ await page.locator('#mapGroup').selectOption(gold);await expect(page.locator('#basinTitle')).toHaveText('Gold Coast group');await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeLessThan(-28);
+ await page.getByRole('link',{name:'Rainfall',exact:true}).click();await expect(page.locator('.station')).toHaveCount(2);await expect(page.locator('#mapGroup')).toHaveValue(gold);expect(await page.evaluate(()=>map.getCenter().lat)).toBeLessThan(-28);
 });

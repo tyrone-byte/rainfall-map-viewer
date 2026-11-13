@@ -102,10 +102,10 @@ test('history and water pages preserve the same geographic viewport',async({page
  await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
  await page.evaluate(()=>map.setView([-27.15,152.95],10,{animate:false}));
  await page.getByRole('link',{name:'Water levels',exact:true}).click();await expect(page.locator('.basin-choice')).toHaveCount(2);
- expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(-27.15,5);
- await page.getByRole('link',{name:'Rainfall',exact:true}).click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
- expect(await page.evaluate(()=>markers.size)).toBe(0);
- expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.getCenter().lng)).toBeCloseTo(152.95,5);
+ expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.project(map.getCenter()).distanceTo(map.project([-27.15,152.95])))).toBeLessThan(1);
+ await page.getByRole('link',{name:'Rainfall',exact:true}).click();await expect(page.locator('#groupPicker')).toBeHidden();await expect(page.locator('#mapGroup')).toHaveValue('brisbane-bremer-pine-caboolture');await expect(page.locator('.station')).toHaveCount(3);
+ expect(await page.evaluate(()=>markers.size)).toBe(3);
+ expect(await page.evaluate(()=>map.getZoom())).toBe(10);expect(await page.evaluate(()=>map.project(map.getCenter()).distanceTo(map.project([-27.15,152.95])))).toBeLessThan(1);
 });
 test('ending picker uses Brisbane time and bookmarked selections survive reload',async({page})=>{
  const requests=await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#ending')).toBeEnabled();

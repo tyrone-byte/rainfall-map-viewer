@@ -141,3 +141,9 @@ explicit gauge selections on the Dams page also reveal the associated plot.
 Gauge hover labels use 10 px text and contain only the name, measurement and
 associated duration. Point IFD hover also identifies the estimated AEP; source,
 coverage and detailed time context remain in the selected-gauge detail panel.
+
+Switching among Rainfall, Point Rainfall IFD and Water levels via the page tabs
+carries the selected group and the saved geographic viewport. A one-time
+`view=keep` navigation flag avoids refitting on arrival; an explicit group change
+or Fit gauges action still refits normally. Gauge IDs are not copied between
+different observation types. The active page tab still returns to its overview.

@@ -66,3 +66,14 @@ test('phone legend starts compact and expands within the map without horizontal 
  expect(legendBox.x).toBeGreaterThanOrEqual(mapBox.x);expect(legendBox.x+legendBox.width).toBeLessThanOrEqual(mapBox.x+mapBox.width);expect(legendBox.y).toBeGreaterThanOrEqual(mapBox.y);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
 });
+
+test('SLS references use only the confirmed same-station datum basis',async({page})=>{
+ const records=require('../../data/water-reference-levels.json').records.filter(r=>r.stationId==='540111');await page.goto('/water-history');
+ const result=await page.evaluate(records=>{
+  const host=document.createElement('div');host.style='width:800px;height:600px';document.body.append(host);
+  const start='2026-11-14T00:00:00Z',end='2026-11-14T01:00:00Z',station={id:'540111',name:'SLS test gauge',level:35,datum:'AHD',observedAt:end};
+  function plot(datum,references){const chart=GaugePlots.water(host,station,{start,end,observations:[{time:start,level:34,datum},{time:end,level:35,datum}],references});const lines=chart.data.datasets.filter(d=>d.referenceKind).map(d=>({label:d.label,level:d.data[0].y}));chart.destroy();return lines;}
+  return {valid:plot('AHD',records),unverified:plot('AHD',records.map(r=>({...r,datumVerified:false}))),unspecified:plot(null,records)};
+ },records);
+ expect(result.valid.map(r=>r.level)).toEqual([33.5,35,36]);expect(result.valid.every(r=>r.label.includes('AHD'))).toBe(true);expect(result.unverified).toEqual([]);expect(result.unspecified).toEqual([]);
+});

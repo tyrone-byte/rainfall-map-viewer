@@ -26,8 +26,9 @@ class ReferenceTests(unittest.TestCase):
         refs.save_records(db,[record,record])
         self.assertEqual(db.execute('SELECT COUNT(*) FROM gauge_reference_levels').fetchone()[0],1)
         refs.save_records(db,[{**record,'level':34,'retrievedAt':'2026-11-04T00:00:00+00:00'}])
-        self.assertEqual(len(refs.published('540111',db)),1)
-        self.assertEqual(refs.published('540111',db)[0]['level'],34)
+        verified=[r for r in refs.published('540111',db) if r['datum']=='AHD']
+        self.assertEqual(len(verified),1)
+        self.assertEqual(verified[0]['level'],34)
         self.assertEqual(db.execute('SELECT COUNT(*) FROM gauge_reference_levels').fetchone()[0],2)
         self.assertEqual(refs.published('540177',db),[])
         db.close()

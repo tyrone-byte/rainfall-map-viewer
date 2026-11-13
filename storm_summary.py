@@ -1,4 +1,5 @@
 """Cached, read-only storm overview. No live BoM or ARR requests."""
+import math
 import archive_service as archive
 import flood_status
 
@@ -39,9 +40,27 @@ def water_summary(minutes=1440):
 
 def summary(minutes=1440):
     if minutes not in (1440,4320,10080):raise ValueError('Choose 24 hours, 3 days or 7 days.')
-    # Separate clocks are explicit: each feed ends at its latest saved reading.
     rain=archive.rainfall_group_series(None,all_groups=True)
-    totals=archive.rainfall_frame(minutes=minutes)
-    water=water_summary(minutes)
-    return {'minutes':minutes,'rainfall':totals,'pointRainfall':rain,'water':water,
+    if minutes==1440:
+        # Totals and IFD now share the exact same saved snapshot and query.
+        stations=[]
+        if rain.get('available') and rain.get('periods'):
+            for gauge in rain['stations']:
+                values=gauge['values'];valid=[v for v in values if isinstance(v,(int,float)) and not isinstance(v,bool) and math.isfinite(v) and v>=0]
+                complete=len(values)==96 and len(valid)==96
+                stations.append({**{k:v for k,v in gauge.items() if k!='values'},
+                    'depth':sum(valid) if complete else None,'complete':complete,
+                    'validBlocks':len(valid),'expectedBlocks':96})
+        totals={k:v for k,v in rain.items() if k not in ('stations','periods','periodMinutes')}
+        totals.update(stations=stations,minutes=1440)
+    else:totals=archive.rainfall_frame(minutes=minutes)
+    # Send only display/identity fields, and deduplicate bulletin memberships once.
+    keys=('id','stationNumber','name','group','basinId','coordinates','ifdLocationKey')
+    def compact(rows,extra):
+        unique={}
+        for row in rows:unique.setdefault(row.get('stationNumber') or row['id'],{k:row[k] for k in (*keys,*extra) if k in row})
+        return list(unique.values())
+    rain={**rain,'stations':compact(rain.get('stations',[]),('values',))}
+    totals={**totals,'stations':compact(totals.get('stations',[]),('depth','complete','validBlocks','expectedBlocks'))}
+    return {'minutes':minutes,'rainfall':totals,'pointRainfall':rain,
             'generatedAt':archive.datetime.now(archive.timezone.utc).isoformat()}

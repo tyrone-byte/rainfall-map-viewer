@@ -144,9 +144,9 @@ function resetSelection(){
  $('detail').inert=false;$('detail').removeAttribute('style');$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));
  document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;
 }
-async function openBasin(id,gauge=null){
+async function openBasin(id,gauge=null,preserveView=false){
  const basin=basinGroups.find(g=>g.id===id);if(!basin)return;
- resetSelection();selected=gauge;basinId=id;initialFit=true;
+ resetSelection();selected=gauge;basinId=id;initialFit=!preserveView;
  MobileViewer.setGroup(id);MobileViewer.showMap();$('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=basin.label;
  $('count').textContent='Loading this group…';$('period').textContent='Loading saved observations';
  map.invalidateSize();saveURL();await refresh();
@@ -167,7 +167,7 @@ async function loadGroups(){
   }));
   loadGroupStats();
   const requested=basinGroups.find(g=>g.id===params.get('basin'));
-  if(requested)await openBasin(requested.id,params.get('gauge'));
+  if(requested)await openBasin(requested.id,params.get('gauge'),params.get('view')==='keep'&&map.sharedViewRestored);
  }catch(_){$('basinGroups').replaceChildren(node('p','Could not load basin groups. Please refresh to try again.'));}
 }
 document.addEventListener('viewer-group-select',event=>{if(event.detail)openBasin(event.detail);});

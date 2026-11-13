@@ -28,6 +28,7 @@
   };
   map.on('moveend zoomend',save);
   root.addEventListener('pagehide',save);
+  map.sharedViewRestored=restored;
   return restored;
  }};
 })(window);

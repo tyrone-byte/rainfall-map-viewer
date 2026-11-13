@@ -21,6 +21,11 @@ def validate(record):
     if not record.get('source') or not record.get('retrievedAt'):raise ValueError('Reference provenance required')
     return record
 
+def datum_compatible(record,datum):
+    return datum in ('AHD','LGH') and (record.get('datum')==datum or (
+        record.get('datum') is None and record.get('datumBasis')=='same-station-observation'
+        and record.get('datumVerified') is True))
+
 def ensure_table(db):
     db.execute('''CREATE TABLE IF NOT EXISTS gauge_reference_levels (
         id TEXT PRIMARY KEY, station TEXT NOT NULL, kind TEXT NOT NULL,

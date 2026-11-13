@@ -99,8 +99,8 @@ async function refresh(){
  }catch(_){if(token===refreshVersion){notice('Could not read saved water-level data. Please try Refresh saved data.');$('freshness').textContent='● Archive unavailable';}}
  finally{if(token===refreshVersion)$('refresh').disabled=false;}
 }
-async function openBasin(id,gauge=null){
- const group=groups.find(g=>g.id===id);if(!group)return;version++;refreshVersion++;controller?.abort();clearDetail();basin=id;selected=gauge;frame=null;layer.clearLayers();markers.clear();$('stations').replaceChildren();$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;fitPending=true;
+async function openBasin(id,gauge=null,preserveView=false){
+ const group=groups.find(g=>g.id===id);if(!group)return;version++;refreshVersion++;controller?.abort();clearDetail();basin=id;selected=gauge;frame=null;layer.clearLayers();markers.clear();$('stations').replaceChildren();$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;fitPending=!preserveView;
  MobileViewer.setGroup(id);MobileViewer.showMap();$('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=group.label;$('period').textContent='Loading saved water levels';map.invalidateSize();await refresh();
 }
 document.querySelector('.page-tabs [aria-current="page"]').onclick=event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();version++;refreshVersion++;controller?.abort();clearDetail();basin=null;frame=null;layer.clearLayers();markers.clear();MobileViewer.setGroup(null);$('historyWorkspace').hidden=false;$('groupPicker').hidden=false;$('freshness').textContent='Choose a water-level group';$('refresh').disabled=true;loadRainfallPriority();notice('');history.replaceState(null,'','/water-history');$('mapGroup').focus({preventScroll:true});map.viewportLayout?.fit();};
@@ -119,7 +119,7 @@ function legend(){
 $('colourMode').onchange=()=>{legend();draw();if(frame)saveURL();};
 $('comparison').onchange=()=>{legend();if(basin)loadFrame();};
 legend();
-(async()=>{try{const response=await fetch('/api/archive-rainfall/groups');if(!response.ok)throw new Error();groups=(await response.json()).groups;MobileViewer.setGroups(groups);$('basinGroups').replaceChildren(...groups.map(g=>{const button=node('button',undefined,'basin-choice');button.dataset.basin=g.id;button.append(node('strong',g.label),node('span','→'));button.onclick=()=>openBasin(g.id);return button;}));loadRainfallPriority();if(groups.some(g=>g.id===params.get('basin')))openBasin(params.get('basin'),params.get('gauge'));}catch(_){$('basinGroups').textContent='Could not load groups. Please refresh.';}})();
+(async()=>{try{const response=await fetch('/api/archive-rainfall/groups');if(!response.ok)throw new Error();groups=(await response.json()).groups;MobileViewer.setGroups(groups);$('basinGroups').replaceChildren(...groups.map(g=>{const button=node('button',undefined,'basin-choice');button.dataset.basin=g.id;button.append(node('strong',g.label),node('span','→'));button.onclick=()=>openBasin(g.id);return button;}));loadRainfallPriority();if(groups.some(g=>g.id===params.get('basin')))openBasin(params.get('basin'),params.get('gauge'),params.get('view')==='keep'&&map.sharedViewRestored);}catch(_){$('basinGroups').textContent='Could not load groups. Please refresh.';}})();
 setInterval(refresh,60000);
 
 async function loadRainfallPriority(){

@@ -8,19 +8,21 @@ def classify(level,datum,references):
     unknown={'category':'unknown','reason':'Published flood thresholds unavailable'}
     if not refs.finite(level):return {**unknown,'reason':'No valid water-level reading'}
     if datum not in ('AHD','LGH'):return {**unknown,'reason':'Observation datum unspecified'}
-    levels={r['kind']:r['level'] for r in references if r.get('kind') in CATEGORIES[1:]
-            and r.get('datum')==datum and r.get('provisional') is False and refs.finite(r.get('level'))}
+    compatible=[r for r in references if r.get('kind') in CATEGORIES[1:]
+                and refs.datum_compatible(r,datum) and r.get('provisional') is False]
+    levels={r['kind']:r['level'] for r in compatible if refs.finite(r.get('level'))}
+    undefined={kind for r in compatible for kind in r.get('undefinedKinds',[]) if kind in CATEGORIES[1:]}
     ordered=[levels[k] for k in CATEGORIES[1:] if k in levels]
-    if any(b<=a for a,b in zip(ordered,ordered[1:])):
+    if any(b<a for a,b in zip(ordered,ordered[1:])):
         return {**unknown,'reason':'Flood thresholds are inconsistent'}
-    if not all(k in levels for k in CATEGORIES[1:]):
-        # A published major threshold alone can establish a major exceedance.
-        if 'major' in levels and level>=levels['major']:return {'category':'major','reason':None}
-        return unknown
-    category='below'
-    for kind in CATEGORIES[1:]:
-        if level>=levels[kind]:category=kind
-    return {'category':category,'reason':None}
+    for index in range(3,0,-1):
+        kind=CATEGORIES[index]
+        if kind in levels and level>=levels[kind]:
+            if any(higher not in levels and higher not in undefined for higher in CATEGORIES[index+1:]):return unknown
+            return {'category':kind,'reason':None}
+    if 'minor' in levels and all(k in levels or k in undefined for k in CATEGORIES[1:]):
+        return {'category':'below','reason':None}
+    return unknown
 
 
 def published_by_station(db):

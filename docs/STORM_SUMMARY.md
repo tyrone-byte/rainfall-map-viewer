@@ -1,52 +1,44 @@
 # Storm summary
 
-`/` now opens `/summary`. Existing map URLs and bookmarks keep working, and the
-shared page navigation links to the summary. The default lookback is 24 hours;
-3-day and 7-day options change totals and flood peaks. Point rainfall AEP always
-uses the latest saved 24-hour period, explicitly labelled independently.
+`/` opens `/summary`, a rainfall-only overview. Water-level gauges remain on the
+dedicated Water levels page; the overview neither queries nor displays water
+readings or flood classifications. The default lookback is 24 hours; 3-day and
+7-day options change totals. Point AEP always uses the latest saved 24 hours.
 
-The summary reads saved observations only. It does not contact BoM or ARR on a
-page visit. `/api/storm-summary?minutes=1440` combines cached archive readers:
-complete rainfall totals, one all-gauge quarter-hour series query, and water
-readings with published references. The existing point IFD calculation compares
-complete windows from 15 minutes through 24 hours with the assigned regional
-centroid default 2030 baseline. Browser reference requests have bounded concurrency. Statewide AEP calculation
-runs in a dedicated worker so the map remains responsive, and is cancelled when
-the lookback changes or a new refresh starts.
-Distinct station numbers are counted once across duplicated bulletin memberships.
+## Bounded saved-data loading
 
-Rainfall flags default to >=50 mm total or <=10% estimated point AEP. Both are
-user-adjustable screening thresholds, not official warning criteria. Incomplete
-totals are excluded, and complete IFD subwindows within an incomplete day are
-labelled. Point rainfall AEP is not an estimate of flood AEP. Cards jump to their
-ranked lists; the map shows every located flagged gauge, with links to the existing
-maps/charts preserving group, gauge, time and duration.
+`/api/storm-summary?minutes=1440` reads one statewide quarter-hour snapshot and
+calculates complete totals from those same 96 readings, avoiding a second archive
+observation query. Longer totals use the existing duration aggregate reader.
+Responses deduplicate bulletin memberships by exact station number and contain
+only the identity/display fields needed by the overview. No page visit contacts
+BoM or ARR. Archive readers cache for 60 seconds.
 
-Flood peaks use the highest classified observation in the lookback, not just
-the latest reading; major flooding remains flagged after levels fall. Nulls,
-unspecified datums, mismatched datums, provisional references and inconsistent
-thresholds cannot establish a category. Below/minor/moderate require all three
-ordered reference levels; a verified major threshold can establish a major
-exceedance on its own. No datum conversion is inferred. Numeric peak heights
-are never compared across different datums. The water map also offers an explicit
-Flood category colour mode; the default remains measured rise/fall.
+Totals display before AEPs finish. Statewide AEP calculations run in a dedicated
+worker with bounded local-reference concurrency; refresh cancels an old worker.
+Unchanged point-data snapshots reuse their result when changing lookback or
+refreshing. A 20-second request deadline offers retry instead of loading forever.
+A 45-second AEP deadline keeps already loaded totals visible if comparison stalls.
+A failed new archive request clears old results rather than presenting them as
+current; unavailable or empty data shows unknown counts instead of zero events.
 
-The portable `data/water-reference-levels.json` is currently empty. A bounded
-single-station BoM check during implementation returned HTTP 403. The UI therefore
-reports unassessed flood coverage rather than claiming no major flooding. The
-existing importer in `tools/collect_water_references.py` accepts genuine saved
-BoM pages or bounded serial live collection when accessible; see
-`docs/research/water-level-references.md`. No fixture reference was imported as
-live metadata. The classifier and existing hydrograph threshold overlays use
-matching explicit gauge datums and published reference provenance.
+## Flags and interpretation
 
-Each feed's own saved window and stale state are shown. Rainfall and water may
-have different ending times. No archive connection, query failure and missing
-reference data have separate unavailable states. A failed refresh clears the
-previous summary rather than leaving it presented as current. Counts of assessed
-water gauges mean at least one compatible classified sample, not a complete
-continuous record; unknown samples and potentially missed peaks are disclosed.
-Unreferenced gauges need only a latest-reading query; all window readings are
-loaded only for gauges with saved flood references. Archive caches expire after
-60 seconds. Threshold retrieval dates are not historical effective dates, so
-comparisons explicitly use currently saved references.
+Display thresholds default to >=50 mm total or <=10% estimated point AEP and are
+user-adjustable screening aids, not official warning criteria. Only complete
+totals are ranked. IFD comparisons use complete 15-minute through 24-hour windows
+with assigned regional-centroid default 2030 references; partial daily coverage is
+disclosed. Point rainfall AEP is not flood AEP. The map includes all located flags,
+while lists show the top ten; links preserve group, gauge, window and time.
+
+The displayed feed windows and stale state describe the saved data, not current
+conditions when feeds are stale. Missing readings are never zero-filled.
+
+## Water-level classifications
+
+The separate water viewer offers Flood category colours and hydrograph reference
+lines. `data/water-reference-levels.json` now contains the exact-ID SLS import for
+808 catalogue gauges. See `docs/flood/SLS_IMPORT.md` for source provenance and the
+user-confirmed same-station datum basis. Missing classification definitions,
+unknown observation datums and inconsistent reference levels remain unassessed.
+No historical effective dates or datum offsets are inferred.

@@ -21,7 +21,7 @@ class FloodClassificationTests(unittest.TestCase):
     def test_boundaries_and_unknowns(self):
         for value,category in [(0,'below'),(1,'minor'),(2,'moderate'),(3,'major'),(-1,'below')]:
             self.assertEqual(flood_status.classify(value,'AHD',references())['category'],category)
-        for value,datum,refs in [(None,'AHD',references()),(3,'LGH',references()),(3,None,references()),(4,'AHD',[]),(2,'AHD',references()[1:]),(4,'AHD',[{**r,'provisional':True} for r in references()])]:
+        for value,datum,refs in [(None,'AHD',references()),(3,'LGH',references()),(3,None,references()),(4,'AHD',[]),(.5,'AHD',references()[1:]),(4,'AHD',[{**r,'provisional':True} for r in references()])]:
             self.assertEqual(flood_status.classify(value,datum,refs)['category'],'unknown')
         self.assertEqual(flood_status.classify(3,'AHD',references()[2:])['category'],'major')
         bad=references();bad[0]['level']=4
@@ -31,12 +31,13 @@ class StormArchiveTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.path=Path(self.temp.name)/'history.sqlite';self.store=Store(str(self.path))
         self.env=patch.dict(os.environ,{'HISTORY_DATABASE_URL':'sqlite:///'+str(self.path)});self.env.start();archive.CACHE.clear()
+        self.reference_patch=patch('flood_status.published_by_station',return_value={SID:references()});self.reference_patch.start()
         snap,_=self.store.snapshot(b'storm fixture','fixture','water-summary',END.isoformat())
         for age,value,datum in [(1500,4,'AHD'),(120,3.5,'AHD'),(60,100,'LGH'),(0,.5,'AHD')]:
             self.store.observation(snap,'bom:'+SID,'water-level',(END-timedelta(minutes=age)).isoformat(),0,value,'water-summary',END.isoformat(),datum=datum)
         self.store.db.commit();gauge_references.ensure_table(self.store.db);gauge_references.save_records(self.store.db,references())
     def tearDown(self):
-        self.env.stop();self.store.close();self.temp.cleanup();archive.CACHE.clear()
+        self.reference_patch.stop();self.env.stop();self.store.close();self.temp.cleanup();archive.CACHE.clear()
     def test_peak_major_is_retained_after_falling_and_incompatible_readings_excluded(self):
         result=storm_summary.water_summary();g=next(s for s in result['stations'] if s['id']==SID)
         self.assertEqual(g['peakFlood']['category'],'major');self.assertEqual(g['peakFlood']['level'],3.5)
@@ -56,21 +57,21 @@ class StormArchiveTests(unittest.TestCase):
         g=next(s for s in result['stations'] if s['stationNumber']==SID)
         self.assertEqual(g['values'][-1],0);self.assertEqual(g['values'][:-1],[None]*95)
         self.assertGreater(len({s['basinId'] for s in result['stations']}),1)
-    def test_summary_combines_saved_totals_point_windows_and_flood_peaks(self):
+    def test_summary_derives_saved_totals_without_duplicate_or_water_queries(self):
         snap,_=self.store.snapshot(b'complete rain fixture','fixture','rain-15m',END.isoformat())
         for i in range(96):
             self.store.observation(snap,'bom:'+SID,'rainfall',(END-timedelta(minutes=15*i)).isoformat(),900,1,'rain-15m',END.isoformat())
         self.store.db.commit();archive.CACHE.clear()
-        result=storm_summary.summary()
+        with patch('archive_service.rainfall_frame',side_effect=AssertionError('Duplicate total query')),patch('storm_summary.water_summary',side_effect=AssertionError('No water query permitted')):
+            result=storm_summary.summary()
         total=next(s for s in result['rainfall']['stations'] if s['stationNumber']==SID)
         self.assertTrue(total['complete']);self.assertEqual(total['depth'],96)
         series=next(s for s in result['pointRainfall']['stations'] if s['stationNumber']==SID)
         self.assertEqual(series['values'],[1]*96)
-        water=next(s for s in result['water']['stations'] if s['id']==SID)
-        self.assertEqual(water['peakFlood']['category'],'major')
+        self.assertNotIn('water',result)
 
     def test_summary_without_database_reports_unknown_not_zero(self):
         with patch.dict(os.environ,{'HISTORY_DATABASE_URL':'','DATABASE_URL':''}):
             result=storm_summary.summary()
-        self.assertFalse(result['water']['available']);self.assertFalse(result['rainfall']['available'])
+        self.assertNotIn('water',result);self.assertFalse(result['rainfall']['available'])
         with self.assertRaises(ValueError):storm_summary.summary(60)
