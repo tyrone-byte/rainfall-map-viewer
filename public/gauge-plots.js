@@ -32,7 +32,7 @@
   for(const source of new Set((result.references||[]).map(r=>r.source).filter(s=>typeof s==='string'&&s.startsWith('/reference/QLD_SLS_v3.7.pdf#page=')))){const p=node('p'),link=node('a','Open published SLS classifications');link.href=source;link.target='_blank';link.rel='noopener';p.append(link);notes.append(p);}
   host.append(notes);return chart;
  }
- function rainfall(host,station,series,data,minutes,{interval=15,onInterval=()=>{},renderIfd=()=>{}}={}){
+ function rainfall(host,station,series,data,minutes,{interval=15,onInterval=()=>{},renderIfd=()=>{},includeIfd=true}={}){
   host.replaceChildren(node('span',(station.group||'').toUpperCase(),'eyebrow'),node('h2',station.name));
   const valid=series.values.slice(-96).filter(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0),complete=valid.length===96;
   const metrics=node('div',undefined,'metrics');
@@ -49,7 +49,7 @@
    chart=new Chart(canvas,{type:'bar',data:{labels:periods.map(p=>date(p.end)),datasets:[{label:`${duration(interval)} rainfall (mm)`,data:values,backgroundColor:'#36a46d',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const p=periods[items[0].dataIndex];return `${date(p.start)} – ${date(p.end)} AEST`;}}}},scales:{x:{title:{display:true,text:`${duration(interval)} period ending · AEST`},ticks:{maxTicksLimit:10},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'Rainfall (mm)'}}}}});
   }
   select.onchange=()=>{interval=Number(select.value);onInterval(interval);draw();};draw();
-  const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';host.append(comparison);renderIfd(series);
+  if(includeIfd){const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';host.append(comparison);renderIfd(series);}
   if(station.coordinates?.source){const p=node('p',undefined,'detail-source'),link=node('a',`BoM station ${station.stationNumber} · audited map coordinates`);link.href=station.coordinates.source;link.target='_blank';link.rel='noopener';p.append(link);host.append(p);}
   return {destroy(){chart?.destroy();}};
  }

@@ -39,18 +39,14 @@ test('duration and ending time change totals, ranking and colours together witho
  await expect(page.locator('#latest')).toHaveAttribute('aria-pressed','true');
  expect(errors).toEqual([]);
 });
-test('chart interval groups bars independently of map totals and native IFD, with mobile layout',async({page})=>{
+test('chart interval groups bars independently of map totals, with mobile layout',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await mock(page);
  await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');await page.locator('.station').first().click();
- await expect(page.locator('#ifdChart')).toBeVisible();
+ await expect(page.locator('#hyetograph')).toBeVisible();
  await expect(page.locator('input[type=range]')).toHaveCount(0);
- expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets.every(d=>d.pointRadius===0))).toBe(true);
- const points=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
- expect(points[0]).toEqual({x:15,y:1});expect(points.at(-1)).toEqual({x:1440,y:96});
  const period=await page.locator('#period').textContent();
  await page.locator('#chartInterval').selectOption('60');
  expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(3).fill(4));
- expect(await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(points);
  await expect(page.locator('#period')).toHaveText(period);
  await page.locator('#accumulation').selectOption('30');await expect(page.locator('#period')).toContainText('30 minutes');
  await expect(page.locator('#chartInterval')).toHaveValue('30');
@@ -64,7 +60,7 @@ test('unavailable archive never falls back to unlabelled coarse values',async({p
  await expect(page.locator('#ending')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
  await expect(page.locator('#freshness')).toContainText('Archive unavailable');
 });
-test('IFD keeps a missing quarter as a gap and map labels stay on failed window loads',async({page})=>{
+test('rainfall chart keeps a missing quarter as a gap and map labels stay on failed window loads',async({page})=>{
  await mock(page);
  await page.route('**/api/archive-rainfall/series?*',route=>{
   const end=last,base=Date.parse(end),periods=Array.from({length:96},(_,i)=>({start:new Date(base-(96-i)*900000).toISOString(),end:new Date(base-(95-i)*900000).toISOString()}));
@@ -72,10 +68,7 @@ test('IFD keeps a missing quarter as a gap and map labels stay on failed window 
   return route.fulfill({json:{available:true,end,periodMinutes:15,periods,stations:[{...gauge('a','Alpha gauge',null,180,end),values}]}});
  });
  await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');await page.locator('.station').first().click();
- await expect(page.locator('#ifdChart')).toBeVisible();
- const points=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
- expect(points[0].y).toBe(1);expect(points[1].y).toBe(2);expect(points.at(-1).y).toBeNull();
- await page.locator('#ifdMode').selectOption('latest');await expect.poll(()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].data[1].y)).toBeNull();
+ await expect(page.locator('#hyetograph')).toBeVisible();
  await page.locator('#chartInterval').selectOption('30');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.at(-1))).toBeNull();
  await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
  const caption=await page.locator('#period').textContent();
@@ -127,21 +120,17 @@ test('refresh preserves a paused time while Latest follows newly collected perio
  await page.locator('#latest').click();await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(newer));
 });
 
-test('rainfall duration bounds the chart and steps ending time while IFD retains its 24-hour search',async({page})=>{
+test('rainfall duration bounds the chart and steps ending time',async({page})=>{
  const requests=await mock(page);
  await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{...metadata,firstEnd:'2026-10-20T00:00:00Z'}}));
  await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
  await expect(page.getByLabel('Rainfall duration',{exact:true})).toHaveValue('180');
  await expect(page.locator('#previous')).toHaveText('← 3 hours');
- await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
+ await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
  expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.length)).toBe(12);
  await expect(page.locator('#observationTable')).toHaveCount(0);
- const original=await page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets[0].data);
- await page.locator('#ifdMode').selectOption({label:'Wettest windows in preceding 24 hours'});
- await expect(page.locator('.ifd-explanation')).toContainText('24 hours preceding');
  await page.locator('#accumulation').selectOption('360');
  await expect.poll(()=>page.locator('#hyetograph').evaluate(c=>Chart.getChart(c)?.data.labels.length)).toBe(24);
- await expect.poll(()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].data)).toEqual(original);
  await expect(page.locator('#previous')).toHaveText('← 6 hours');
  await page.locator('#previous').click();
  await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-6*3600000);
@@ -161,7 +150,7 @@ test('gauge selection reveals totals while later time updates keep the plot posi
  await expect(page.locator('.sidebar #accumulation')).toBeVisible();
  await expect(page.locator('.sidebar #ending')).toBeVisible();
  await expect(page.locator('.sidebar #previous')).toBeVisible();
- await page.locator('.station').first().click();await expect(page.locator('#ifdChart')).toBeVisible();
+ await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
  await page.locator('.workspace').evaluate(el=>el.scrollTop=700);
  let top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
  expect(top).toBe(0);
@@ -222,13 +211,12 @@ test('group rainfall summaries disclose coverage and opening a group defaults to
  await expect.poll(()=>requests.at(-1)?.minutes).toBe(1440);
 });
 
-test('seven-day rainfall uses a seven-day chart while IFD remains limited to 24 hours',async({page})=>{
+test('seven-day rainfall uses a seven-day chart',async({page})=>{
  await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
  await page.locator('#accumulation').selectOption('10080');await expect(page.locator('#period')).toContainText('7 days');
  await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
  expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.length)).toBe(672);
- await expect(page.locator('#ifdChart')).toBeVisible();
- expect(await page.locator('#ifdChart').evaluate(c=>Math.max(...Chart.getChart(c).data.datasets[0].data.map(p=>p.x)))).toBe(1440);
+ await expect(page.locator('#ifdChart')).toHaveCount(0);
  await page.locator('#chartInterval').selectOption('1440');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(7).fill(96));
 });
 
@@ -266,9 +254,7 @@ test('phone layout places collapsed controls on the map, with gauges below and n
  await page.locator('#accumulation').selectOption('60');await expect(page.locator('#period')).toContainText('1 hour');
 });
 
-test('rainfall IFD defaults to the wettest preceding-day window and retains ending mode',async({page})=>{
- await mock(page);await page.route('**/api/archive-rainfall/series?*',r=>{const end=new URL(r.request().url()).searchParams.get('end'),periods=Array.from({length:96},(_,i)=>({start:new Date(Date.parse(end)-(96-i)*900000).toISOString(),end:new Date(Date.parse(end)-(95-i)*900000).toISOString()}));return r.fulfill({json:{available:true,end,periodMinutes:15,periods,stations:[{...gauge('a','Alpha gauge',83.75,1440,end),values:periods.map((_,i)=>i===20?60:.25)}]}});});
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('.station')).toHaveCount(3);await page.locator('.station').filter({hasText:'Alpha gauge'}).click();await expect(page.locator('#ifdChart')).toBeVisible();await expect(page.locator('#ifdMode')).toHaveValue('wettest');
- const quarter=()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c)?.data.datasets[0].data.find(p=>p.x===15)?.y);await expect.poll(quarter).toBe(60);
- await page.locator('#ifdMode').selectOption('latest');await expect.poll(quarter).toBe(.25);await page.locator('#ifdMode').selectOption('wettest');await page.locator('#accumulation').selectOption('360');await expect.poll(quarter).toBe(60);await expect(page.locator('#ifdMode')).toHaveValue('wettest');
+test('rainfall details contain totals and a hyetograph without fetching IFD references',async({page})=>{
+ await mock(page);const references=[];page.on('request',r=>{if(r.url().includes('/reference/local-ifd'))references.push(r.url());});
+ await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('.station')).toHaveCount(3);await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();await expect(page.locator('#detail .metrics')).toBeVisible();await expect(page.locator('#ifdComparison')).toHaveCount(0);expect(references).toEqual([]);
 });

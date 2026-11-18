@@ -18,7 +18,7 @@ selected=params.get('gauge');
 if(pointIfdPage){if(params.get('mode')==='latest')$('mapIfdMode').value='latest';const minutes=Number(params.get('minutes'));if(minutes>=15&&minutes<=1440&&minutes%15===0){ensureDuration(minutes);$('accumulation').value=minutes;}}
 function ensureDuration(minutes){if(![...$('accumulation').options].some(o=>Number(o.value)===minutes))$('accumulation').append(new Option(duration(minutes),String(minutes)));}
 const map=L.map('map',{scrollWheelZoom:true,dragging:!L.Browser.mobile,tapHold:false}).setView([-22.5,145.5],5);
-let initialFit=!SharedMapView.attach(map),focusPending=false,revealPending=false;
+let initialFit=!SharedMapView.attach(map),focusPending=false;
 MobileViewer.attach(map);
 MapBackgrounds.attach(map,$('background'));
 MapContext.attach(map);
@@ -93,9 +93,10 @@ async function choose(id,pan=false,reveal=false){
 }
 function renderDetail(station,series){
  clearIfdChart();chart?.destroy();
- const plotValues=pointIfdPage?series.values.slice(-frame.minutes/15):null;
- const plotStation=pointIfdPage?{...station,depth:plotValues.every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0)?plotValues.reduce((a,b)=>a+b,0):null}:station;
- chart=GaugePlots.rainfall($('detail'),plotStation,series,data,frame.minutes,{interval:chartMinutes,onInterval:value=>{chartMinutes=value;},renderIfd:()=>renderIfd(series)});
+ if(pointIfdPage){
+  $('detail').replaceChildren(node('h2',station.name));
+  const comparison=node('section',undefined,'ifd-comparison');comparison.id='ifdComparison';$('detail').append(comparison);renderIfd(series);chart=null;
+ }else chart=GaugePlots.rainfall($('detail'),station,series,data,frame.minutes,{interval:chartMinutes,onInterval:value=>{chartMinutes=value;},includeIfd:false});
  if(pointIfdPage){const p=station.pointIFD,summary=node('section',undefined,'point-ifd-summary');summary.append(node('h3',PointRainfallIFD.label(p)));if(p?.minutes){summary.append(node('p',`${duration(p.minutes)} · ${mm(p.depth)} · ${date(p.start)} – ${date(p.end)} AEST · ${station.ifdRegion}`));if(p.partial)summary.append(node('p','Partial coverage: the true maximum may be rarer than the available complete windows.','unmapped'));const use=node('button','Use this window');use.id='useIfdWindow';use.onclick=()=>{ensureDuration(p.minutes);$('accumulation').value=p.minutes;$('mapIfdMode').value='latest';selectTime(p.end);};summary.append(use);} $('detail').prepend(summary);}
 }
 async function loadFrame(){
@@ -112,7 +113,7 @@ async function loadFrame(){
   const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
   $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;$('legendTitle').textContent=`Rainfall · mm / ${duration(frame.minutes)}`;
   if(pointIfdPage){$('period').textContent=mode==='wettest'?`Rarest estimated AEP across 15-minute to 24-hour durations · 24 hours ending ${date(frame.end)} AEST`:`${duration(minutes)} ending ${date(frame.end)} AEST`;$('legendTitle').textContent='Estimated point rainfall AEP';}
-  $('loading').textContent='';notice('');draw();if(focusPending){const gauge=frame.stations.find(s=>s.id===selected);if(gauge?.coordinates)map.setView([gauge.coordinates.lat,gauge.coordinates.lon],12,{animate:false});else fit();focusPending=false;initialFit=false;}else if(initialFit){fit();initialFit=false;}if(selected){const reveal=revealPending;revealPending=false;choose(selected,false,reveal);}saveURL();freshness();
+  $('loading').textContent='';notice('');draw();if(focusPending){const gauge=frame.stations.find(s=>s.id===selected);if(gauge?.coordinates)map.setView([gauge.coordinates.lat,gauge.coordinates.lon],12,{animate:false});else fit();focusPending=false;initialFit=false;}else if(initialFit){fit();initialFit=false;}if(selected&&MobileViewer.isPlotOpen())choose(selected,false,false);saveURL();freshness();
  }catch(error){if(error.name!=='AbortError'&&version===loadVersion){$('detail').inert=false;$('detail').setAttribute('aria-busy','false');$('loading').textContent='Selection not loaded.';notice(`${error.message} ${frame?'The map still shows its earlier labelled window.':'No saved observations are displayed.'}`);}}
 }
 async function refresh(){
@@ -146,7 +147,7 @@ function resetSelection(){
 }
 async function openBasin(id,gauge=null,preserveView=false){
  const basin=basinGroups.find(g=>g.id===id);if(!basin)return;
- resetSelection();selected=gauge;basinId=id;initialFit=!preserveView&&!gauge;focusPending=!!gauge&&!preserveView;revealPending=!!gauge;
+ resetSelection();selected=gauge;basinId=id;initialFit=!preserveView&&!gauge;focusPending=!!gauge&&!preserveView;
  MobileViewer.setGroup(id);MobileViewer.showMap();$('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=basin.label;
  $('count').textContent='Loading this group…';$('period').textContent='Loading saved observations';
  map.invalidateSize();saveURL();await refresh();

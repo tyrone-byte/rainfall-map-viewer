@@ -10,7 +10,7 @@ if(['trend','rate','age','flood'].includes(params.get('colours')))$('colourMode'
 
 if(['15','30','60','180'].includes(params.get('comparison')))$('comparison').value=params.get('comparison');
 let showRecordedPoints=false;
-let basin=null,groups=[],extent=null,frame=null,selected=null,chart=null,end=params.get('end'),follow=!end,version=0,detailVersion=0,controller,detailController,fitPending=true,refreshVersion=0,focusPending=false,revealPending=false;
+let basin=null,groups=[],extent=null,frame=null,selected=null,chart=null,end=params.get('end'),follow=!end,version=0,detailVersion=0,controller,detailController,fitPending=true,refreshVersion=0,focusPending=false;
 if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 $('ending').step='60';
 const map=L.map('map',{scrollWheelZoom:true,dragging:!L.Browser.mobile,tapHold:false}).setView([-22.5,145.5],5);SharedMapView.attach(map);MobileViewer.attach(map);
@@ -84,7 +84,7 @@ async function loadFrame(){
  try{
   const response=await fetch(`/api/archive-water/frame?basin=${encodeURIComponent(basin)}&end=${encodeURIComponent(end)}&minutes=${$('accumulation').value}&comparison=${$('comparison').value}`,{signal:controller.signal,cache:'no-store'});if(!response.ok)throw new Error();const result=await response.json();if(token!==version)return;if(!result.available)throw new Error();
   frame=result;legend();const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
-  $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;draw();if(focusPending){const gauge=frame.stations.find(s=>s.id===selected);if(gauge?.coordinates)map.setView([gauge.coordinates.lat,gauge.coordinates.lon],12,{animate:false});else fit();focusPending=false;fitPending=false;}else if(fitPending){fit();fitPending=false;}if(selected){const reveal=revealPending;revealPending=false;choose(selected,false,reveal);}saveURL();notice('');
+  $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;draw();if(focusPending){const gauge=frame.stations.find(s=>s.id===selected);if(gauge?.coordinates)map.setView([gauge.coordinates.lat,gauge.coordinates.lon],12,{animate:false});else fit();focusPending=false;fitPending=false;}else if(fitPending){fit();fitPending=false;}if(selected&&MobileViewer.isPlotOpen())choose(selected,false,false);saveURL();notice('');
  }catch(error){if(error.name!=='AbortError'&&token===version)notice('Could not load this saved selection. Any displayed map retains its earlier labelled time window.');}
  finally{if(token===version)$('loading').textContent='';}
 }
@@ -100,7 +100,7 @@ async function refresh(){
  finally{if(token===refreshVersion)$('refresh').disabled=false;}
 }
 async function openBasin(id,gauge=null,preserveView=false){
- const group=groups.find(g=>g.id===id);if(!group)return;version++;refreshVersion++;controller?.abort();clearDetail();basin=id;selected=gauge;frame=null;layer.clearLayers();markers.clear();$('stations').replaceChildren();$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;fitPending=!preserveView&&!gauge;focusPending=!!gauge&&!preserveView;revealPending=!!gauge;
+ const group=groups.find(g=>g.id===id);if(!group)return;version++;refreshVersion++;controller?.abort();clearDetail();basin=id;selected=gauge;frame=null;layer.clearLayers();markers.clear();$('stations').replaceChildren();$('search').value='';$('group').replaceChildren(new Option('All catchments in this group',''));document.querySelector('.sidebar').scrollTop=0;document.querySelector('.workspace').scrollTop=0;fitPending=!preserveView&&!gauge;focusPending=!!gauge&&!preserveView;
  MobileViewer.setGroup(id);MobileViewer.showMap();$('groupPicker').hidden=true;$('historyWorkspace').hidden=false;$('basinTitle').textContent=group.label;$('period').textContent='Loading saved water levels';map.invalidateSize();await refresh();
 }
 document.querySelector('.page-tabs [aria-current="page"]').onclick=event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();version++;refreshVersion++;controller?.abort();clearDetail();basin=null;frame=null;layer.clearLayers();markers.clear();MobileViewer.setGroup(null);$('historyWorkspace').hidden=false;$('groupPicker').hidden=false;$('freshness').textContent='Choose a water-level group';$('refresh').disabled=true;loadRainfallPriority();notice('');history.replaceState(null,'','/water-history');$('mapGroup').focus({preventScroll:true});map.viewportLayout?.fit();};

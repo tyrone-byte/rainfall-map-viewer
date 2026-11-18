@@ -12,16 +12,19 @@ Expanded-map mode temporarily enables one-finger dragging on phones and restores
 page-scroll behaviour on exit. Expanded desktop maps retain the fixed legend rail;
 phones retain their legend drawer, including after orientation changes.
 
-A gauge click opens a non-modal side panel on desktop and a bottom
-sheet on phones. Details do not scroll the page or resize the map. The panel has
+A gauge click opens a non-modal side panel on desktop and a full-screen
+dialog on phones. Details do not scroll the page or resize the map. The panel has
 Open Water Level, Open IFD and Close details actions.
-Escape closes it and restores focus. Navigation remains available while details
-are open. Existing totals, hyetographs, IFD controls and source notes are reused.
+Escape closes it and restores focus. Desktop navigation remains available while details are open. Phone dialogs keep
+the close action visible, contain keyboard focus, and prevent background scrolling.
+Rainfall panels show totals and hyetographs; Point IFD panels show point AEP and
+IFD comparisons without rainfall accumulation charts.
 
 A deep link targeting a gauge centres on that gauge once after its group loads;
 subsequent refreshes cannot replace that focus with a whole-group fit. Explicit
-viewport links (`view=keep`) take precedence, including a panel opened in a new
-tab. Ordinary gauge clicks do not recenter. Changing group closes details and
+viewport links (`view=keep`) take precedence, including comparison pages opened in a new
+tab. Gauge links highlight the selected gauge but leave its panel closed;
+series details load only after an explicit gauge click. Ordinary gauge clicks do not recenter. Changing group closes details and
 fits the new group; an explicit within-group filter also fits its displayed gauges.
 
 ## Data and geographic loading
@@ -62,7 +65,7 @@ drawers, two-finger pan/pinch zoom and the expanded-map action.
 
 ## Comparison actions
 
-Open Water Level and Open IFD are native new-tab links, retaining explicit map
+Open Water Level and Open IFD (Open Rainfall on the IFD page) are native new-tab links, retaining explicit map
 coordinates and zoom. Rainfall and IFD use the same rainfall-gauge identity.
 Cross-type matching uses exact six-digit BoM station numbers only, preferring
 the current group when a catalogue identity occurs in several groups. No name,
