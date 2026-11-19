@@ -19,7 +19,7 @@ test('dam wall symbols and legend distinguish below, above and unresolved test s
 });
 
 test('shared hydrograph draws compatible published thresholds and provisional spillway only',async({page})=>{
- await page.goto('/water-history');
+ await page.goto('/gauge?view=water');
  const result=await page.evaluate(()=>{
   const host=document.createElement('div');host.style='width:800px;height:600px';document.body.append(host);
   const start='2026-11-03T00:00:00Z',end='2026-11-03T01:00:00Z';
@@ -68,7 +68,7 @@ test('phone legend starts compact and expands within the map without horizontal 
 });
 
 test('SLS references use only the confirmed same-station datum basis',async({page})=>{
- const records=require('../../data/water-reference-levels.json').records.filter(r=>r.stationId==='540111');await page.goto('/water-history');
+ const records=require('../../data/water-reference-levels.json').records.filter(r=>r.stationId==='540111');await page.goto('/gauge?view=water');
  const result=await page.evaluate(records=>{
   const host=document.createElement('div');host.style='width:800px;height:600px';document.body.append(host);
   const start='2026-11-14T00:00:00Z',end='2026-11-14T01:00:00Z',station={id:'540111',name:'SLS test gauge',level:35,datum:'AHD',observedAt:end};

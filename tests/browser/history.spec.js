@@ -39,43 +39,14 @@ test('duration and ending time change totals, ranking and colours together witho
  await expect(page.locator('#latest')).toHaveAttribute('aria-pressed','true');
  expect(errors).toEqual([]);
 });
-test('chart interval groups bars independently of map totals, with mobile layout',async({page})=>{
- const errors=[];page.on('pageerror',e=>errors.push(e.message));await mock(page);
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');await page.locator('.station').first().click();
- await expect(page.locator('#hyetograph')).toBeVisible();
- await expect(page.locator('input[type=range]')).toHaveCount(0);
- const period=await page.locator('#period').textContent();
- await page.locator('#chartInterval').selectOption('60');
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(3).fill(4));
- await expect(page.locator('#period')).toHaveText(period);
- await page.locator('#accumulation').selectOption('30');await expect(page.locator('#period')).toContainText('30 minutes');
- await expect(page.locator('#chartInterval')).toHaveValue('30');
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual([2]);
- await page.setViewportSize({width:390,height:844});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
- expect(errors).toEqual([]);
-});
+
 test('unavailable archive never falls back to unlabelled coarse values',async({page})=>{
  await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{available:false,reason:'not-connected'}}));
  await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#notice')).toContainText('Could not read the saved rainfall database');
  await expect(page.locator('#ending')).toBeDisabled();await expect(page.locator('.station')).toHaveCount(0);
  await expect(page.locator('#freshness')).toContainText('Archive unavailable');
 });
-test('rainfall chart keeps a missing quarter as a gap and map labels stay on failed window loads',async({page})=>{
- await mock(page);
- await page.route('**/api/archive-rainfall/series?*',route=>{
-  const end=last,base=Date.parse(end),periods=Array.from({length:96},(_,i)=>({start:new Date(base-(96-i)*900000).toISOString(),end:new Date(base-(95-i)*900000).toISOString()}));
-  const values=Array(96).fill(1);values[94]=null;
-  return route.fulfill({json:{available:true,end,periodMinutes:15,periods,stations:[{...gauge('a','Alpha gauge',null,180,end),values}]}});
- });
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');await page.locator('.station').first().click();
- await expect(page.locator('#hyetograph')).toBeVisible();
- await page.locator('#chartInterval').selectOption('30');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.at(-1))).toBeNull();
- await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
- const caption=await page.locator('#period').textContent();
- await page.route('**/api/archive-rainfall/frame?*',r=>r.fulfill({status:503,json:{error:'Test failure'}}));
- await page.locator('#previous').click();await expect(page.locator('#notice')).toContainText('earlier labelled window');
- await expect(page.locator('#period')).toHaveText(caption);
-});
+
 test('late window response cannot replace a newer ending-time selection',async({page})=>{
  await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
  await page.locator('#accumulation').selectOption('15');await expect(page.locator('#period')).toContainText('15 minutes');
@@ -120,55 +91,7 @@ test('refresh preserves a paused time while Latest follows newly collected perio
  await page.locator('#latest').click();await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(newer));
 });
 
-test('rainfall duration bounds the chart and steps ending time',async({page})=>{
- const requests=await mock(page);
- await page.route('**/api/archive-rainfall/extent',r=>r.fulfill({json:{...metadata,firstEnd:'2026-10-20T00:00:00Z'}}));
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
- await expect(page.getByLabel('Rainfall duration',{exact:true})).toHaveValue('180');
- await expect(page.locator('#previous')).toHaveText('← 3 hours');
- await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.length)).toBe(12);
- await expect(page.locator('#observationTable')).toHaveCount(0);
- await page.locator('#accumulation').selectOption('360');
- await expect.poll(()=>page.locator('#hyetograph').evaluate(c=>Chart.getChart(c)?.data.labels.length)).toBe(24);
- await expect(page.locator('#previous')).toHaveText('← 6 hours');
- await page.locator('#previous').click();
- await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-6*3600000);
- await expect.poll(()=>page.locator('#hyetograph').evaluate(c=>Chart.getChart(c)?.data.labels[0]||'')).toContain('23:15');
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.at(-1))).toContain('05:00');
- await page.locator('#chartInterval').selectOption('60');
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.labels.length)).toBe(6);
- await page.locator('#next').click();
- await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last));
- await expect(page.locator('#chartInterval')).toHaveValue('60');
-});
 
-test('gauge selection reveals totals while later time updates keep the plot position',async({page})=>{
- const errors=[];page.on('pageerror',e=>errors.push(e.message));const requests=await mock(page);
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture&minutes=180');await expect(page.locator('#count')).toContainText('3 gauges');
- await expect(page.locator('#rainFilter')).toHaveCount(0);
- await expect(page.locator('.sidebar #accumulation')).toBeVisible();
- await expect(page.locator('.sidebar #ending')).toBeVisible();
- await expect(page.locator('.sidebar #previous')).toBeVisible();
- await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
- await page.locator('.workspace').evaluate(el=>el.scrollTop=700);
- let top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
- expect(top).toBe(0);
- await page.locator('.station').filter({hasText:'Beta gauge'}).click();
- await expect(page.locator('#detail h2').first()).toHaveText('Beta gauge');
- await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
- await expect(page.locator('.gauge-detail-panel')).toBeVisible();expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBe(top);
- top=await page.locator('.workspace').evaluate(el=>el.scrollTop);
- await page.locator('#accumulation').selectOption('15');
- await expect(page.locator('#period')).toContainText('15 minutes');
- await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
- await page.locator('#previous').click();
- await expect.poll(()=>Date.parse(requests.at(-1).end)).toBe(Date.parse(last)-900000);
- await expect(page.locator('#detail')).toHaveAttribute('aria-busy','false');
- expect(await page.locator('.workspace').evaluate(el=>el.scrollTop)).toBeCloseTo(top,0);
- expect(await page.evaluate(()=>window.scrollY)).toBe(0);
- expect(errors).toEqual([]);
-});
 
 test('gauge list and controls share a single sidebar scrollbar',async({page})=>{
  await mock(page);
@@ -195,7 +118,7 @@ test('basin list opens before any rainfall query, then selection fits gauges and
  await expect(page.locator('.station')).toHaveCount(3);
  await expect(page.locator('#basinTitle')).toHaveText('Brisbane basin');
  await expect(page).toHaveURL(/basin=brisbane-bremer-pine-caboolture/);
- await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
+
  await page.locator('.page-tabs [aria-current="page"]').click();await expect(page.locator('#groupPicker')).toBeVisible();await expect(page.locator('.basin-choice')).toHaveCount(2);
  expect(await page.evaluate(()=>markers.size)).toBe(0);await expect(page.locator('#hyetograph')).toHaveCount(0);
  await page.locator('[data-basin="gold-coast-logan"]').click();await expect(page.locator('#basinTitle')).toHaveText('Gold Coast basin');
@@ -211,14 +134,6 @@ test('group rainfall summaries disclose coverage and opening a group defaults to
  await expect.poll(()=>requests.at(-1)?.minutes).toBe(1440);
 });
 
-test('seven-day rainfall uses a seven-day chart',async({page})=>{
- await mock(page);await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
- await page.locator('#accumulation').selectOption('10080');await expect(page.locator('#period')).toContainText('7 days');
- await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
- expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data.length)).toBe(672);
- await expect(page.locator('#ifdChart')).toHaveCount(0);
- await page.locator('#chartInterval').selectOption('1440');expect(await page.locator('#hyetograph').evaluate(c=>Chart.getChart(c).data.datasets[0].data)).toEqual(Array(7).fill(96));
-});
 
 test('obsolete bulletin URLs redirect to history pages and their navigation is removed',async({page})=>{
  await mock(page);await page.goto('/');await expect(page).toHaveURL(/\/summary$/);await expect(page.locator('h1')).toHaveText('Storm summary');
@@ -248,13 +163,8 @@ test('phone layout places collapsed controls on the map, with gauges below and n
  await mock(page);await page.setViewportSize({width:390,height:844});await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('#count')).toContainText('3 gauges');
  expect(await page.locator('main').evaluate(el=>[...el.children].map(child=>child.classList.contains('mobile-controls')?'controls':child.classList.contains('workspace')?'plots':'gauges'))).toEqual(['plots','gauges']);
  await expect(page.locator('#accumulation')).toHaveCount(1);await expect(page.getByRole('link',{name:'Jump to station search and gauges'})).toBeHidden();
- await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
- await expect(page.locator('.gauge-detail-panel')).toBeVisible();
+
+ await expect(page.locator('.station').first()).toHaveAttribute('target','_self');
  await page.setViewportSize({width:1440,height:1000});await expect(page.locator('.sidebar>.time-controls')).toHaveCount(1);await expect(page.locator('#accumulation')).toHaveCount(1);
  await page.locator('#accumulation').selectOption('60');await expect(page.locator('#period')).toContainText('1 hour');
-});
-
-test('rainfall details contain totals and a hyetograph without fetching IFD references',async({page})=>{
- await mock(page);const references=[];page.on('request',r=>{if(r.url().includes('/reference/local-ifd'))references.push(r.url());});
- await page.goto('/history?basin=brisbane-bremer-pine-caboolture');await expect(page.locator('.station')).toHaveCount(3);await page.locator('.station').first().click();await expect(page.locator('#hyetograph')).toBeVisible();await expect(page.locator('#detail .metrics')).toBeVisible();await expect(page.locator('#ifdComparison')).toHaveCount(0);expect(references).toEqual([]);
 });

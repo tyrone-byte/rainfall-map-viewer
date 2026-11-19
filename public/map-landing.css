@@ -26,3 +26,6 @@
 @media(min-width:851px){.map-wrap.map-expanded{display:grid;grid-template-columns:minmax(0,1fr) 184px;gap:10px;padding:6px}.map-expanded>.map-legend-rail{height:100%;max-height:calc(100svh - 28px);overflow:auto}.map-expanded .expanded-map-caption{right:280px}.viewer-page .map-expanded #tileStatus{right:208px}}
 
 @media(max-width:850px){.gauge-detail-panel{inset:0;width:100%;height:100dvh;max-height:100dvh;border:0;border-radius:0;z-index:3000;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}.gauge-detail-panel .gauge-panel-bar{position:sticky;top:0}.gauge-detail-panel .ifd-chart{height:clamp(280px,48dvh,520px)}}
+
+.station[href]{display:block;text-align:left;text-decoration:none;color:inherit;cursor:pointer}
+.station[href]:hover{background:#e9f4ef}.station[href]:focus-visible{outline:3px solid #63b5d1;outline-offset:-3px}

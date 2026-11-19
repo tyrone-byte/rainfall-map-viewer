@@ -10,7 +10,7 @@ if(['trend','rate','age','flood'].includes(params.get('colours')))$('colourMode'
 
 if(['15','30','60','180'].includes(params.get('comparison')))$('comparison').value=params.get('comparison');
 let showRecordedPoints=false;
-let basin=null,groups=[],extent=null,frame=null,selected=null,chart=null,end=params.get('end'),follow=!end,version=0,detailVersion=0,controller,detailController,fitPending=true,refreshVersion=0,focusPending=false;
+let basin=null,groups=[],extent=null,frame=null,selected=null,end=params.get('end'),follow=!end,version=0,controller,fitPending=true,refreshVersion=0,focusPending=false;
 if(['15','30','60','180','360','720','1440','2880','4320','10080'].includes(params.get('minutes')))$('accumulation').value=params.get('minutes');
 $('ending').step='60';
 const map=L.map('map',{scrollWheelZoom:true,dragging:!L.Browser.mobile,tapHold:false}).setView([-22.5,145.5],5);SharedMapView.attach(map);MobileViewer.attach(map);
@@ -18,7 +18,7 @@ MapBackgrounds.attach(map,$('background'));MapContext.attach(map);
 const waterRenderer=L.svg({padding:.5});
 const layer=L.layerGroup().addTo(map),markers=new Map();
 function notice(text){$('notice').hidden=!text;$('notice').textContent=text||'';}
-function saveURL(){const q=new URLSearchParams({basin,minutes:$('accumulation').value,colours:$('colourMode').value,comparison:$('comparison').value});if(!follow)q.set('end',end);if(selected)q.set('gauge',selected);history.replaceState(null,'',`/water-history?${q}`);}
+function saveURL(){const q=new URLSearchParams({basin,minutes:$('accumulation').value,colours:$('colourMode').value,comparison:$('comparison').value});if(!follow)q.set('end',end);if(selected)q.set('gauge',selected);history.replaceState(null,'',`/water-history?${q}`);map.selectionEnd=frame?.end||end;map.shareViewLinks?.();}
 function controls(){
  if(!extent?.lastEnd)return;
  const minutes=Number($('accumulation').value),time=Date.parse(end);
@@ -32,59 +32,31 @@ function controls(){
  const stale=Date.now()-Date.parse(extent.lastEnd)>3600000||extent.source?.status!=='ok'||!extent.source?.checked_at||Date.now()-Date.parse(extent.source.checked_at)>1800000;
  $('freshness').className='badge'+(stale?' stale':'');$('freshness').textContent=stale?'● Saved data stale / check collector':follow?'● Latest saved observations':'● Selected time';
 }
-function clearDetail(){MobileViewer.hidePlot();detailVersion++;detailController?.abort();selected=null;chart?.destroy();chart=null;$('detail').replaceChildren(node('p','Select a water-level gauge to see its saved hydrograph.','empty'));}
+function clearDetail(){selected=null;}
+function gaugeSelection(){return {view:'water',end:frame.end,minutes:frame.minutes};}
 function draw(){
  if(!frame)return;
  const term=$('search').value.trim().toLowerCase(),group=$('group').value;
  const rows=frame.stations.filter(s=>(!s.basinId||s.basinId===basin)&&(!term||s.name.toLowerCase().includes(term))&&(!group||s.group===group)).sort((a,b)=>a.name.localeCompare(b.name));
  const scroll=document.querySelector('.sidebar').scrollTop;layer.clearLayers();markers.clear();$('stations').replaceChildren();
  for(const s of rows){
-  const button=node('button',undefined,'station'+(s.id===selected?' active':'')),dot=node('i',undefined,'dot');dot.style.background=pointColour(s);
-  button.append(dot,node('span',level(s.level),'reading'),document.createTextNode(s.name),node('small',`${s.group} · ${s.datum}`),node('small',s.observedAt?`${date(s.observedAt)} AEST · ${s.status==='current'?'under 60 min old':s.status==='suspect'?'60 min–6 h old':s.status==='out'?'6+ h old':'missing level'}`:'No observation in this window'));
+  const button=GaugeNavigation.link(map,s,gaugeSelection()),dot=node('i',undefined,'dot');dot.style.background=pointColour(s);
+  button.className='station'+(s.id===selected?' active':'');button.append(dot,node('span',level(s.level),'reading'),document.createTextNode(s.name),node('small',`${s.group} · ${s.datum}`),node('small',s.observedAt?`${date(s.observedAt)} AEST · ${s.status==='current'?'under 60 min old':s.status==='suspect'?'60 min–6 h old':s.status==='out'?'6+ h old':'missing level'}`:'No observation in this window'));
   button.append(node('small',s.flood?.category&&s.flood.category!=='unknown'?(s.flood.category==='below'?'Below minor flood':s.flood.category+' flood'):'Flood thresholds / classification unavailable'));
   if(!s.coordinates)button.append(node('span','Location unresolved · not plotted','unmapped'));
-  button.onclick=()=>choose(s.id,false,true);$('stations').append(button);
-  if(s.coordinates){const marker=WaterGaugeMarker.create([s.coordinates.lat,s.coordinates.lon],{...WaterGaugeStatus.classify(s,$('colourMode').value),id:s.id,selected:selected===s.id,renderer:waterRenderer}).addTo(layer);const tooltip=node('div',undefined,'gauge-tooltip');tooltip.append(node('strong',s.name),node('div',`${s.level===null?'No reading':`${level(s.level)} ${s.datum}`} · ${duration(frame.minutes)} view`));marker.bindTooltip(tooltip);marker.on('click',()=>choose(s.id,false,true));markers.set(s.id,marker);}
+  $('stations').append(button);
+  if(s.coordinates){const marker=WaterGaugeMarker.create([s.coordinates.lat,s.coordinates.lon],{...WaterGaugeStatus.classify(s,$('colourMode').value),id:s.id,selected:selected===s.id,renderer:waterRenderer}).addTo(layer);const tooltip=node('div',undefined,'gauge-tooltip');tooltip.append(node('strong',s.name),node('div',`${s.level===null?'No reading':`${level(s.level)} ${s.datum}`} · ${duration(frame.minutes)} view`));marker.bindTooltip(tooltip);marker.on('click',()=>GaugeNavigation.open(map,s,gaugeSelection()));markers.set(s.id,marker);}
  }
  document.querySelector('.sidebar').scrollTop=scroll;$('count').textContent=`${rows.length} gauges · ${markers.size} mapped · ${rows.filter(s=>s.level!==null).length} with readings`;
  if(selected&&!rows.some(s=>s.id===selected))clearDetail();
 }
 function fit(){const bounds=L.latLngBounds([...markers.values()].map(m=>m.getLatLng()));if(bounds.isValid())map.fitBounds(bounds.pad(.08),{maxZoom:12,animate:false});}
-function appendBomLinks(host,station){
- const links=node('div',undefined,'bom-check-links');
- function populate(source){
-  links.replaceChildren();
-  for(const [path,label] of [[source.plotPath,'Open BoM plot'],[source.historyPath,'Open BoM observation table']]){
-   if(!path||!/^\/fwo\/IDQ\d+\/IDQ\d+\.\d{6}\.(?:plt|tbl)\.shtml$/.test(path)||!path.includes(`.${station.id}.`))continue;
-   const link=node('a',label);link.href='https://reg.bom.gov.au'+path;link.target='_blank';link.rel='noopener';links.append(link);
-  }
-  if(station.membershipSource){const link=node('a','Open BoM group bulletin');link.href=station.membershipSource;link.target='_blank';link.rel='noopener';links.append(link);}
- }
- populate(station);
- host.append(links);
- links.title='BoM shows its current available record, which may cover different dates from your selection.';
- if(!station.plotPath&&station.membershipSource){
-  fetch(`/api/archive-water/links?gauge=${encodeURIComponent(station.id)}&basin=${encodeURIComponent(station.basinId)}`,{cache:'no-store'})
-   .then(response=>response.ok?response.json():null).then(result=>{if(result?.available&&links.isConnected)populate(result);}).catch(()=>{});
- }
-}
-async function choose(id,pan=false,reveal=false){
- const station=frame?.stations.find(s=>s.id===id);if(!station)return;selected=id;draw();saveURL();MobileViewer.selectGauge(station,{end:frame.end,minutes:frame.minutes});if(reveal){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Loading saved water levels…'));MobileViewer.showPlot();}
- const token=++detailVersion,frameVersion=version;detailController?.abort();detailController=new AbortController();
- try{
-  const result=await ViewerData.read(`/api/archive-water/series?gauge=${encodeURIComponent(id)}&end=${encodeURIComponent(frame.end)}&minutes=${frame.minutes}`,{signal:detailController.signal,cache:'no-store'});
-  if(token!==detailVersion||frameVersion!==version)return;if(!result.available)throw new Error();
-  chart?.destroy();const host=$('detail');
-  chart=GaugePlots.water(host,station,result,{showPoints:showRecordedPoints,onPoints:value=>{showRecordedPoints=value;},links:appendBomLinks});
-  if(reveal)MobileViewer.showPlot(host);
- }catch(error){if(error.name!=='AbortError'&&token===detailVersion){chart?.destroy();chart=null;$('detail').replaceChildren(node('h2',station.name),node('p','Could not load saved water levels. Please try again.'));appendBomLinks($('detail'),station);if(reveal)MobileViewer.showPlot($('detail'));}}
-}
 async function loadFrame(){
- if(!basin||!extent?.lastEnd)return;const token=++version;detailVersion++;detailController?.abort();controller?.abort();controller=new AbortController();$('loading').textContent='Loading selection…';
+ if(!basin||!extent?.lastEnd)return;const token=++version;controller?.abort();controller=new AbortController();$('loading').textContent='Loading selection…';
  try{
   const response=await fetch(`/api/archive-water/frame?basin=${encodeURIComponent(basin)}&end=${encodeURIComponent(end)}&minutes=${$('accumulation').value}&comparison=${$('comparison').value}`,{signal:controller.signal,cache:'no-store'});if(!response.ok)throw new Error();const result=await response.json();if(token!==version)return;if(!result.available)throw new Error();
   frame=result;legend();const group=$('group').value;$('group').replaceChildren(new Option('All catchments in this group',''),...[...new Set(frame.stations.map(s=>s.group))].sort().map(g=>new Option(g,g)));$('group').value=group;
-  $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;draw();if(focusPending){const gauge=frame.stations.find(s=>s.id===selected);if(gauge?.coordinates)map.setView([gauge.coordinates.lat,gauge.coordinates.lon],12,{animate:false});else fit();focusPending=false;fitPending=false;}else if(fitPending){fit();fitPending=false;}if(selected&&MobileViewer.isPlotOpen())choose(selected,false,false);saveURL();notice('');
+  $('period').textContent=`${duration(frame.minutes)} · ${date(frame.start)} – ${date(frame.end)} AEST`;draw();if(focusPending){const gauge=frame.stations.find(s=>s.id===selected);if(gauge?.coordinates)map.setView([gauge.coordinates.lat,gauge.coordinates.lon],12,{animate:false});else fit();focusPending=false;fitPending=false;}else if(fitPending){fit();fitPending=false;}saveURL();notice('');
  }catch(error){if(error.name!=='AbortError'&&token===version)notice('Could not load this saved selection. Any displayed map retains its earlier labelled time window.');}
  finally{if(token===version)$('loading').textContent='';}
 }

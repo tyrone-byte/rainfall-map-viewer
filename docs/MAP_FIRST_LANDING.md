@@ -21,7 +21,7 @@ fits initially at 320 × 568, 390 × 844, 844 × 390 and 1440 × 1000.
 
 Phone time/display settings are in **Map & time**, on the map. Fit/find actions
 are also on the map. Larger desktop screens retain the sidebar controls.
-Expanded-map mode remains available. Gauge plots and source notes open in a desktop side panel or full-screen phone dialog; the desktop
+Expanded-map mode remains available. Gauge plots and source notes open on a dedicated analysis page; the desktop
 legend/layer rail keeps an identical width across Rainfall, Water levels and IFD.
 Group summaries remain in the station sidebar. Opening a settings disclosure does not add a large white
 block above the map.
@@ -98,8 +98,9 @@ screenshots is for UI validation, not a live rainfall assessment.
 ## Mouse interaction update
 
 Desktop mouse-wheel zoom and dragging are enabled normally, without a lock.
-Gauge plots open in a desktop side panel or full-screen phone dialog without scrolling the page.
-Summary and comparison links retain map focus and leave details closed until a gauge is clicked.
+Gauge clicks open an independent analysis page in a new desktop tab or the same phone tab.
+The Map link retains the original view and time. Map page tabs carry historical ending times;
+Point IFD defaults to the wettest preceding 24 hours.
 Phones retain one-finger page scrolling and two-finger map pan/pinch zoom. Phone users find the ranked gauge list and search below the map.
 
 Catchment fills, boundary lines and their tiles are passive visual context. They

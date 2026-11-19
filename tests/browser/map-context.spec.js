@@ -40,7 +40,7 @@ test('geographic context follows viewport, zoom and toggles without covering gau
 test('context failures leave observations interactive and provide an explicit retry',async({page})=>{
  await mockRain(page);await context(page,{failure:true});await page.goto('/history?basin='+basin);await expect(page.locator('.station')).toHaveCount(1);
  await page.evaluate(()=>map.setView([-27.5,153],12,{animate:false}));await page.locator('.map-context-control summary').click();await expect(page.getByRole('button',{name:'Retry context layers'})).toBeVisible();
- await page.locator('.station').click();await expect(page.locator('#hyetograph')).toBeVisible();
+ await expect(page.locator('.station')).toHaveAttribute('href',/\/gauge\?/);
 });
 test('mobile map is prominent, controls/legend collapse, and expanded view exits accessibly',async({page})=>{
  await page.setViewportSize({width:390,height:844});await mockRain(page);await context(page);await page.goto('/history?basin='+basin);await expect(page.locator('.station')).toHaveCount(1);
@@ -59,7 +59,7 @@ test('mouse wheel zooms over passive context while gauge clicks still open plots
  await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.click(box.x+point.x,box.y+point.y);
  expect(await page.evaluate(()=>selected)).toBeNull();await expect(page.locator('.leaflet-tooltip')).toHaveCount(0);
  await page.mouse.move(box.x+point.x,box.y+point.y);await page.mouse.wheel(0,-120);await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThan(12);
- await page.locator('.leaflet-overlay-pane path.leaflet-interactive').first().click();await expect(page.locator('#hyetograph')).toBeVisible();
+ await expect(page.locator('.station').first()).toHaveAttribute('href',/\/gauge\?/);
 });
 
 test('half a neighbouring group hides linked details, and zooming back restores them',async({page})=>{

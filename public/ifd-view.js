@@ -93,6 +93,12 @@ function renderIfd(station){
  link.href=isLocal?`/reference/local-ifd/${encodeURIComponent(local.file)}`:'/reference/brisbane-ifd-2030.csv';
  link.download=isLocal?local.file:'brisbane-ifd-2030.csv';
  source.append(link,isLocal?` · ${local.data.attribution} · ${selectedDataset.name}. No AEP is assigned to the observed rainfall.`:' · User supplied “Default Current (2030) Baseline”. No AEP is assigned to the observed rainfall.');host.append(source);
+ if(options.compact){
+  host.querySelectorAll(':scope > .eyebrow,:scope > h2,:scope > .ifd-station,:scope > .ifd-controls').forEach(n=>n.remove());
+  const values=node('details',undefined,'ifd-values');values.append(node('summary','Values'),tw);
+  const notes=node('details',undefined,'plot-notes');notes.append(node('summary','Reference & data notes'),...[...host.children].filter(n=>n!==wrap));
+  host.replaceChildren(wrap,values,notes);
+ }
 }
 fetch('/reference/brisbane-ifd-2030.csv').then(response=>{if(!response.ok)throw new Error('IFD reference is unavailable.');return response.text();}).then(csv=>{ifdReference=RainfallIFD.parseReference(csv);}).catch(error=>{ifdReferenceError=error.message;}).finally(()=>{if(typeof data!=='undefined'&&data&&selected){const s=data.stations.find(s=>s.id===selected);if(s)renderIfd(s);}});
 

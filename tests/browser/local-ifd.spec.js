@@ -8,7 +8,7 @@ async function savedGoolman(page,{open=true}={}){
  await page.route('**/api/archive-rainfall/frame?*',r=>r.fulfill({json:{available:true,start:'2026-10-27T00:00:00Z',end,minutes:1440,stations:[station]}}));
  await page.route('**/api/archive-rainfall/series?*',r=>r.fulfill({json:{available:true,periodMinutes:15,periods:Array.from({length:96},(_,i)=>({start:new Date(Date.parse(end)-(96-i)*900000).toISOString(),end:new Date(Date.parse(end)-(95-i)*900000).toISOString()})),stations:[{...station,values:Array(96).fill(1)}]}}));
  await page.route('**/api/archive-rainfall/group-series?*',r=>r.fulfill({json:{available:true,start:'2026-10-27T00:00:00Z',end,periodMinutes:15,periods:Array.from({length:96},(_,i)=>({start:new Date(Date.parse(end)-(96-i)*900000).toISOString(),end:new Date(Date.parse(end)-(95-i)*900000).toISOString()})),stations:[{...station,values:Array(96).fill(1)}]}}));
- await page.goto('/point-ifd?basin='+basin);if(open){await expect(page.locator('.station')).toHaveCount(1);await page.locator('.station').click();}
+ await page.goto('/gauge?view=ifd&gauge=goolman&basin='+basin);
 }
 
 test('Goolman automatically uses the Ipswich centroid default 2030 reference',async({page})=>{
@@ -23,7 +23,7 @@ test('Goolman automatically uses the Ipswich centroid default 2030 reference',as
  const expected=reference.points.find(p=>p.minutes===180).depths[reference.aeps.indexOf(1)];
  const depth=()=>page.locator('#ifdChart').evaluate(c=>Chart.getChart(c).data.datasets.find(d=>d.label==='1% AEP reference').data.find(p=>p.x===180).y);
  expect(await depth()).toBe(expected);
- await page.locator('#ifdMode').selectOption('wettest');expect(await depth()).toBe(expected);
+ await page.locator('#mode').selectOption('wettest');expect(await depth()).toBe(expected);
  await page.setViewportSize({width:390,height:844});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
  expect(arr).toEqual([]);
 });
@@ -36,7 +36,7 @@ test('regional file failure never silently substitutes Brisbane',async({page})=>
 test('assignment index failure cannot silently substitute Brisbane',async({page})=>{
  await page.route('**/reference/local-ifd-index.json',r=>r.fulfill({status:503,json:{error:'Unavailable'}}));
  await savedGoolman(page,{open:false});
- await expect(page.locator('#notice')).toContainText('Saved IFD assignments unavailable');
+ await expect(page.locator('#status')).toContainText('Could not load this selection');
  await expect(page.locator('#ifdChart')).toHaveCount(0);
 });
 test('Point IFD does not offer non-default local scenarios outside a regional assignment',async({page})=>{

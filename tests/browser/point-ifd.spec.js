@@ -24,13 +24,8 @@ test('map defaults to rarest duration; hover and use-window expose the controlli
  expect(await page.evaluate(()=>frame.stations.find(s=>s.id==='a').pointIFD.minutes)).toBe(15);
  expect(await page.evaluate(()=>markers.get('a').options.fillColor)).toBe('#c9414a');
  await page.evaluate(()=>markers.get('a').openTooltip());await expect(page.locator('.point-ifd-tooltip')).toContainText('≈1% AEP');await expect(page.locator('.point-ifd-tooltip')).toContainText('40.0 mm · 15 minutes');expect(await page.locator('.point-ifd-tooltip').evaluate(el=>el.getBoundingClientRect().width)).toBeLessThan(250);
- await page.locator('.station').filter({hasText:'Alpha gauge'}).click();
- await expect(page.locator('#hyetograph')).toHaveCount(0);await expect(page.locator('#chartInterval')).toHaveCount(0);await expect(page.locator('#detail .metrics')).toHaveCount(0);await expect(page.locator('#ifdChart')).toBeVisible();await expect(page.locator('#ifdMode')).toHaveValue('wettest');
- expect(await page.locator('#detail').evaluate(el=>el.getBoundingClientRect().top>document.querySelector('#map').getBoundingClientRect().top)).toBe(true);
- await page.locator('#useIfdWindow').click();
- await expect(page.locator('#mapIfdMode')).toHaveValue('latest');await expect(page.locator('#accumulation')).toHaveValue('15');await expect(page.locator('#accumulation')).toBeEnabled();
- await expect.poll(()=>page.evaluate(()=>frame.end)).toBe(spikeEnd);
- expect(await page.evaluate(()=>frame.stations.find(s=>s.id==='a').pointIFD.aep)).toBe(1);
+ await expect(page.locator('.station').filter({hasText:'Alpha gauge'})).toHaveAttribute('href',/\/gauge\?view=ifd/);
+ await page.locator('#mapIfdMode').selectOption('latest');await page.locator('#accumulation').selectOption('15');await page.locator('#ending').fill('2026-10-21T15:15');await page.locator('#ending').dispatchEvent('change');await expect.poll(()=>page.evaluate(()=>frame.end)).toBe(spikeEnd);
  await page.locator('#accumulation').selectOption('60');await expect.poll(()=>page.evaluate(()=>frame.stations.find(s=>s.id==='a').pointIFD.minutes)).toBe(60);
  expect(await page.evaluate(()=>frame.stations.find(s=>s.id==='a').pointIFD.aep)).toBeGreaterThan(1);
  await expect(page).toHaveURL(/mode=latest/);expect(outside).toEqual([]);expect(errors).toEqual([]);
@@ -39,7 +34,7 @@ test('unassigned and missing readings stay grey; phone details have no rainfall 
  await mock(page,{missing:true});await page.setViewportSize({width:390,height:844});await page.goto('/point-ifd?basin='+basin);
  await expect(page.locator('#count')).toContainText('3 gauges');
  expect(await page.evaluate(()=>markers.get('a').options.fillColor)).toBe('#88969c');expect(await page.evaluate(()=>markers.get('c').options.fillColor)).toBe('#88969c');
- await page.locator('.station').filter({hasText:'No default gauge'}).click();await expect(page.locator('#ifdComparison')).toContainText('No assigned default 2030 IFD');await expect(page.locator('#ifdChart')).toHaveCount(0);
+ await expect(page.locator('.station').filter({hasText:'No default gauge'})).toHaveAttribute('target','_self');await expect(page.locator('#ifdChart')).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
 test('missing reference index cannot generate fallback point AEP colours',async({page})=>{

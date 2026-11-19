@@ -12,20 +12,27 @@ Expanded-map mode temporarily enables one-finger dragging on phones and restores
 page-scroll behaviour on exit. Expanded desktop maps retain the fixed legend rail;
 phones retain their legend drawer, including after orientation changes.
 
-A gauge click opens a non-modal side panel on desktop and a full-screen
-dialog on phones. Details do not scroll the page or resize the map. The panel has
-Open Water Level, Open IFD and Close details actions.
-Escape closes it and restores focus. Desktop navigation remains available while details are open. Phone dialogs keep
-the close action visible, contain keyboard focus, and prevent background scrolling.
-Rainfall panels show totals and hyetographs; Point IFD panels show point AEP and
-IFD comparisons without rainfall accumulation charts.
+A gauge click opens `/gauge` in a new desktop tab or the same phone tab. The page
+inherits the gauge identity, displayed ending time, duration and IFD mode. Its
+controls are independent of the map and other gauge tabs. Map links retain the
+original group, viewport, duration and ending time; phones also support browser
+Back. An explicit Open in new tab link remains available on the gauge page.
 
-A deep link targeting a gauge centres on that gauge once after its group loads;
-subsequent refreshes cannot replace that focus with a whole-group fit. Explicit
-viewport links (`view=keep`) take precedence, including comparison pages opened in a new
-tab. Gauge links highlight the selected gauge but leave its panel closed;
-series details load only after an explicit gauge click. Ordinary gauge clicks do not recenter. Changing group closes details and
-fits the new group; an explicit within-group filter also fits its displayed gauges.
+Rainfall shows totals and a hyetograph; Point IFD shows estimated AEP and the IFD
+comparison; water levels show the hydrograph and compatible classification lines.
+Time controls request only the selected gauge series, never a group frame or all
+gauge series. Completed series can serve shorter durations at the same ending
+time; Refresh clears this page-local cache. Failed requests retain the previous
+labelled plot, and aborted or late responses cannot replace a newer selection.
+
+Map page navigation carries the displayed historical ending time. Point IFD
+navigation defaults to wettest windows within the preceding 24 hours, including
+when the source page displays several days. Water times are rounded down to the
+preceding quarter-hour when entering a rainfall or IFD view.
+
+Summary gauge links still centre/highlight the gauge without opening analysis.
+Explicit viewport links (`view=keep`) take precedence. Gauge clicks leave the
+source map untouched. Changing group fits the new group.
 
 ## Data and geographic loading
 
@@ -65,11 +72,13 @@ drawers, two-finger pan/pinch zoom and the expanded-map action.
 
 ## Comparison actions
 
-Open Water Level and Open IFD (Open Rainfall on the IFD page) are native new-tab links, retaining explicit map
-coordinates and zoom. Rainfall and IFD use the same rainfall-gauge identity.
-Cross-type matching uses exact six-digit BoM station numbers only, preferring
-the current group when a catalogue identity occurs in several groups. No name,
-coordinate or nearest-neighbour matching is used. When no direct counterpart
-exists, open the destination group/view without selecting a gauge; the user chooses.
-The matching catalogue is local and involves no live BoM requests. IFD ending times
-are rounded down to a saved quarter-hour boundary for water-to-IFD navigation.
+Gauge-page Rainfall, Point IFD and Water level links preserve the selected analysis
+ending time. Rainfall and IFD share the same gauge identity. Cross-type matching
+uses exact six-digit BoM station numbers, preferring the current group when a
+catalogue identity occurs in several groups. No nearest or name matching is used.
+Without a verified counterpart, the destination map opens at the saved view and
+selected analysis time so the user can choose a gauge.
+
+The map pages no longer load chart libraries or create the old detail panel.
+Database schema and indexes are unchanged; these changes reduce gauge-analysis
+requests and do not claim to resolve the separate historical map-query bottleneck.

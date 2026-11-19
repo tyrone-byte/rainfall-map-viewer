@@ -58,9 +58,12 @@ class BrowserCacheTests(unittest.TestCase):
                 self.assertNotIn('href="/water"',html)
                 self.assertIn('>Water levels</a>',html)
                 self.assertIn('Storm summary',html)
-            with urlopen(base+'/history.js?v=separate-5') as response:
+            with urlopen(base+'/history.js?v=gauge-page-6') as response:
                 self.assertEqual(response.headers.get('Cache-Control'),'no-store')
-                self.assertIn('renderIfd(series)',response.read().decode())
+                self.assertIn('GaugeNavigation',response.read().decode())
+            with urlopen(base+'/gauge?view=rainfall&gauge=a') as response:
+                self.assertEqual(response.headers.get('Cache-Control'),'no-store')
+                self.assertIn('/gauge.js?v=1',response.read().decode())
         finally:
             httpd.shutdown()
             httpd.server_close()

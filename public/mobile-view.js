@@ -9,7 +9,6 @@
   const picker=document.getElementById('groupPicker');if(picker)sidebar.prepend(picker);
   const groupBar=document.createElement('div');groupBar.className='map-group-selector';const groupLabel=document.createElement('label');groupLabel.htmlFor='mapGroup';groupLabel.textContent='Group';const groupSelect=document.createElement('select');groupSelect.id='mapGroup';groupSelect.setAttribute('aria-label','Choose observation group');groupSelect.append(new Option('Loading groups…',''));document.getElementById('period').textContent='Choose a group to load saved gauge observations';groupBar.append(groupLabel,groupSelect);plots.prepend(groupBar);groupSelect.onchange=()=>document.dispatchEvent(new CustomEvent('viewer-group-select',{detail:groupSelect.value}));
   function groupLinks(id){for(const link of document.querySelectorAll('.page-tabs a')){const url=new URL(link.href,location.href);if(!['/history','/point-ifd','/water-history'].includes(url.pathname))continue;url.search=id?new URLSearchParams({basin:id,view:'keep'}).toString():'';link.href=url.pathname+url.search;}map.shareViewLinks?.();}
-  const details=GaugeDetails.attach(map);
   const media=root.matchMedia('(max-width: 850px)');
   const overview=GroupOverview.attach(map,{kind:location.pathname.startsWith('/water-history')?'water':'rain'});
   sidebar.id=sidebar.id||'viewerGauges';plots.id=plots.id||'viewerPlots';
@@ -38,7 +37,7 @@
    if(!main.hidden)requestAnimationFrame(()=>MapLanding.resize(map));
   }
   compact.addEventListener('toggle',()=>{if(!main.hidden)requestAnimationFrame(()=>MapLanding.resize(map));});
-  active={setGroups(groups){overview.setGroups(groups);groupSelect.replaceChildren(new Option('Choose a group…',''),...groups.map(g=>new Option(g.label,g.id)));},setGroup(id){groupLinks(id);overview.select(id);groupSelect.value=id||'';groupBar.hidden=false;if(!id)document.getElementById('period').textContent='Choose a group to load saved gauge observations';document.body.classList.toggle('viewer-awaiting-group',!id);main.hidden=false;map.viewportLayout?.fit();},showMap(){details?.close();if(expanded)return;},selectGauge(station,window){details?.select(station,window);},hidePlot(){details?.close();},isPlotOpen(){return !!details&&!details.panel.hidden;},show(){if(main.hidden)return;if(expanded)setExpanded(false);details?.open();}};
+  active={setGroups(groups){overview.setGroups(groups);groupSelect.replaceChildren(new Option('Choose a group…',''),...groups.map(g=>new Option(g.label,g.id)));},setGroup(id){groupLinks(id);overview.select(id);groupSelect.value=id||'';groupBar.hidden=false;if(!id)document.getElementById('period').textContent='Choose a group to load saved gauge observations';document.body.classList.toggle('viewer-awaiting-group',!id);main.hidden=false;map.viewportLayout?.fit();},showMap(){}};
   new MutationObserver(()=>{if(media.matches){root.scrollTo({top:0});if(!main.hidden)requestAnimationFrame(()=>MapLanding.resize(map));}}).observe(main,{attributes:true,attributeFilter:['hidden']});
   media.addEventListener('change',sync);sync();
   // Keep the active page tab discoverable without a second navigation button.
@@ -58,5 +57,5 @@
   }
   expand.onclick=()=>setExpanded(!expanded);
   document.addEventListener('keydown',event=>{if(!expanded)return;if(event.key==='Escape'){event.preventDefault();setExpanded(false);}else if(event.key==='Tab'){const focusable=[...wrap.querySelectorAll('button,input,select,summary,a[href],[tabindex="0"]')].filter(el=>!el.disabled&&el.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}}},true);
- },setGroups(groups){active?.setGroups(groups);},setGroup(id){active?.setGroup(id);},showMap(){active?.showMap();},showPlot(target){active?.show(target);},selectGauge(station,window){active?.selectGauge(station,window);},hidePlot(){active?.hidePlot();},isPlotOpen(){return active?.isPlotOpen()||false;}};
+ },setGroups(groups){active?.setGroups(groups);},setGroup(id){active?.setGroup(id);},showMap(){active?.showMap();},};
 })(window);
